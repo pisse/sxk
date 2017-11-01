@@ -1,0 +1,66 @@
+<kd-pane>
+  <ion-content class="has-footer">
+    <img class="top" src="img/bar.jpg" />
+    <div class="content">
+      <div class="span-1">
+        <p>聚沙成塔，积少成多</p>
+        <p>每次进步一点，财富自由不再遥远</p>
+        <p>实现财富增值，月底获得现金分红</p>
+      </div>
+      
+      <div class="span-2">
+        <p>9月分红总额：</p>
+        <h1>100,000元</h1>
+      </div>
+
+      <p class="span-3">
+        <a ng-if="data.is_login == 0" href="{{url.loginUrl}}">登录查看当前待收本金</a>
+        <span ng-if="data.is_login==1&&data.has_qualification==1">您当前待收本金净增长: <i>{{data.duein_capital_grow}}</i>元</span>
+      </p>
+      <p class="span-4" ng-if="data.is_login==1&&data.has_qualification==1"><i></i>最终数据以9月30日24:00的数据为准</p>
+      <p class="tips" ng-if="data.is_login==1&&data.has_qualification==0">您暂未拥有本月分红资格<br/>关注微信订阅号回复“分红”获得任务<br/>完成任务即可获得分红资格哟</p>
+      <div class="span-5">规则说明</div>
+      
+      <ul>
+        <li>
+          <h2>什么是分红？</h2>
+          <p>分红是口袋理财给袋王的一种福利。9月待收本金净增长为正的袋王，活动结束后可获得相应分红。</p>
+          <img alt="" src="img/img-1.jpg"/>
+          <p><span>口袋理财</span>
+            <span>符合条件代王</span></p>
+        </li>
+        <li>
+          <h2>谁可以参与分红？</h2>
+          <p>2016年9月1日0:00之前注册的用户有资格参与分红</p>
+          <div>
+            <img alt="" src="img/img-2.jpg"/>
+            <div class="chat"><p>俺是9月1日之前注册的有资格参与本次分红</p></div>
+          </div>
+        </li>
+        <li>
+          <h2>什么是待收本金净增长？</h2>
+          <p>待收本金是指您在定期项目（除口袋宝）中投资的金额，不包含预计收益</p>
+          <img alt="" src="img/img-3.jpg"/>
+          <p>举个例子：如您9月30日24:00的待收本金为5万元，9月1日0:00待收本金为2万元，则您9月待收本金净增长为3万元。</p>
+        </li>
+        <li>
+          <h2>我可以分得多少钱？</h2>
+          <img alt="" src="img/img-4.jpg"/>
+          <p>举个例子：您9月待收本金净增长为3万元，9月平台待收本金总增长为1000万元，分红总额为10万元，则您可获得300元现金的分红，分红将在活动结束后3个工作日内发放至您余额账户中，请注意查收。</p>
+        </li>
+        <li>
+          <h2>我不符合分红条件,也想获得分红怎么办？</h2>
+          <p>如您不符合分红条件，通过完成特殊任务，也可以获得分红资格哦！</p>
+        </li>
+      </ul>
+
+      <div class="span-6">
+        <p>添加口袋理财订阅号，回复"分红"获得特殊任务线索：</p>
+        <img alt="" src="img/img-5.jpg"/>
+        <p>微信订阅号：koudailc</p>
+      </div>
+    </div>
+</ion-content>
+  <a class="span-7" href="{{url.fundUrl}}">立刻投资得分红</a>
+</kd-pane>
+

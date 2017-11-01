@@ -1,0 +1,47 @@
+extends ../common/layout
+block prepend header
+    - let active = 0;
+block append wrapper
+  .reward
+    .top-bar
+    .container
+      form
+        div
+          label(for="name") 姓<i></i>名:
+          input(type="text" name="name" id="name")
+        div
+          label(for="phone") 电<i></i>话:
+          input(type="number" name="phone" id="phone")
+        div.message
+          label(for="text") 留<i></i>言: 填写你的资源优势(必填)
+          textarea(id="text", maxlength="140" name="text")
+        p.tips 还可以输入140个字
+        button(type="submit") 立刻报名抢资格
+        
+      .mail
+        p 你也可以直接发送合作意向至邮箱
+        a zhaomu@xianjincard.com
+        p 工作人员将在第一时间与您取得联系
+        
+      .arrow
+      img(class="title-1", src=require('assets/images/reward/img-2.jpg'))
+      img(src=require('assets/images/reward/img-1.jpg'))
+      .arrow
+      img(class="title-2", src=require('assets/images/reward/img-3.jpg'))
+      .rule
+        h2 活动目的
+        p 本活动旨在招募现金卡区域代言人，在负责区域进行渠道推广。只要你有能力，可以尝试任何推广方式，让现金卡能在目标人群中进行传播，帮助更多用户解决短期的小额急借的资金需求问题。
+        h2 奖励机制
+        p 本次招募的代言人将按照奖励机制获得现金分红，代言人带来的用户越多，获得分红的金额越大。具体分红规则以现金卡工作人员与您联系时的规则为准。
+        h2 招募时间
+        p 2017年2月7日起，结束时间待定
+        h2 人数限制
+        p 第一批限招100位代言人，先到先得    
+        
+      .reward-popup(style="display:none")
+        .popup-body
+          a(class="close")
+          .content
+            h1 恭喜你已报名成功！
+            p 恭喜您已报名成功！<br/>工作人员将第一时间与报名者取得联系<br/>请耐心等待，谢谢！
+          

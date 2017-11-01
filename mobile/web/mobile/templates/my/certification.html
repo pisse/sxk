@@ -1,0 +1,16 @@
+<ion-pane class="my information">
+    <ion-content class="has-banner has-footer">
+        <ion-refresher pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list>
+            <a class='item item-link item-icon-left' ng-click='item.verify && verify($event)' ng-repeat='item in items' nav-direction='forward' ng-href='{{item.url}}'>
+                <i class="icons" style='background-image: url({{item.logo}});'></i>
+                <div class='item-inner'>
+                    <h2>{{item.title}}<span class='required' ng-bind-html='item.title_mark'></span></h2>
+                    <p ng-bind='item.subtitle'></p>
+                </div>
+                <span class='item-note' ng-bind-html='item.operator'></span>
+            </a>
+        </ion-list>
+    </ion-content>
+</ion-pane>

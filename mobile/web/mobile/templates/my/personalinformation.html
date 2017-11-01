@@ -1,0 +1,30 @@
+<ion-pane class="my personalinformation">
+    <ion-content class="has-banner has-footer">
+        <ion-refresher pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class='message-info'>身份认证信息保存后将无法修改，请务必保证正确</div>
+        <ion-list>
+            <label class="item item-input">
+                <span class="input-label">姓名</span>
+                <input type='text' placeholder="姓名">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">身份证</span>
+                <input type='text' placeholder="身份证">
+            </label>
+            <ionic-picker label='学历'
+                class="item item-input item-link"
+                view-value-property="name"
+                picker-data='eduLevel'
+                selected='a'>
+            </ionic-picker>
+            <a class="item item-input item-link">
+                <span class="input-label">现居地址</span>
+            </a>
+            <label class="item item-input">
+                <span class="input-label"></span>
+                <input type='text' placeholder="请填写具体街道门牌号">
+            </label>
+        </ion-list>
+    </ion-content>
+</ion-pane>

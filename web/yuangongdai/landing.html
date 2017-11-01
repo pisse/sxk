@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <link href="css/style.css" rel="stylesheet" />
+  <script src="js/flexible.js"></script>
+  <script src="js/jquery.js"></script>
+  <title>landing</title>
+  <!--[if lte IE 8]>
+  <link href="css/ie8.css" rel="stylesheet"/>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="landing-three">
+    <img class="bar" src="img/landing-three-bar.jpg" />
+  </div>
+
+  <div class="landing-two" style="display: none;">
+    <img class="bar" src="img/landing-two-bar.jpg" />
+    <div class="content">
+      <p>投资有风险 入市需谨慎<br>上海浅橙网络科技有限公司</br>沪ICP备16040623号</p>
+    </div>
+  </div>
+
+  <div class="landing-one" style="display: none;">
+    <img class="bar" src="img/landing-one-bar.jpg" />
+    <div class="content">
+      <div class="header">
+        <ul>
+          <li><b class="arrival-money">1700.00</b>元
+            <br><span>到账金额</span></li>
+          <li><b class="service-fee">300.00</b>元
+            <br><span>手续费</span></li>
+          <li><b class="borrow-day">14</b>天
+            <br><span>借款天数</span></li>
+        </ul>
+      </div>
+      <div class="choose">
+        <h3>请选择借款金额(元)</h3>
+        <div class="loan-money">
+          <button class="loan-money-button1">500</button>
+          <button class="loan-money-button2 active">2000</button>
+        </div>
+        <h3>请选择借款期限(天)</h3>
+        <div class="loan-day">
+          <button class="loan-day-button1">7</button>
+          <button class="loan-day-button2 active">14</button>
+        </div>
+      </div>
+      <button>立即申请借款</button>
+      <p>投资有风险 入市需谨慎<br>上海浅橙网络科技有限公司</br>沪ICP备16040623号</p>
+    </div>
+  </div>
+  <script>
+  $(function() {
+    var $lm1 = $(".loan-money-button1"),
+      $lm2 = $(".loan-money-button2"),
+      $lt1 = $(".loan-day-button1"),
+      $lt2 = $(".loan-day-button2"),
+      $arrivalMoney = $(".arrival-money"),
+      $serviceFee = $(".service-fee"),
+      $borrowDay = $(".borrow-day");
+
+    $lm1.click(function() {
+      $lm1.addClass("active");
+      $lm2.removeClass("active");
+      if ($lt1.hasClass("active")) {
+        $arrivalMoney.html("451.00");
+        $serviceFee.html("49.00");
+        $borrowDay.html("7");
+      } else {
+        $arrivalMoney.html("425.00");
+        $serviceFee.html("75.00");
+        $borrowDay.html("14");
+      }
+    })
+
+    $lm2.click(function() {
+      $lm2.addClass("active");
+      $lm1.removeClass("active");
+      if ($lt1.hasClass("active")) {
+        $arrivalMoney.html("1804.00");
+        $serviceFee.html("196.00");
+        $borrowDay.html("7");
+      } else {
+        $arrivalMoney.html("1700.00");
+        $serviceFee.html("300.00");
+        $borrowDay.html("14");
+      }
+    })
+
+    $lt1.click(function() {
+      $lt1.addClass("active");
+      $lt2.removeClass("active");
+      $borrowDay.html("7");
+      if ($lm1.hasClass("active")) {
+        $arrivalMoney.html("451.00");
+        $serviceFee.html("49.00");
+      } else {
+        $arrivalMoney.html("1804.00");
+        $serviceFee.html("196.00");
+      }
+    })
+
+    $lt2.click(function() {
+      $lt2.addClass("active");
+      $lt1.removeClass("active");
+      $borrowDay.html("14");
+      if ($lm1.hasClass("active")) {
+        $arrivalMoney.html("425.00");
+        $serviceFee.html("75.00");
+      } else {
+        $arrivalMoney.html("1700.00");
+        $serviceFee.html("300.00");
+      }
+    })
+  })
+  </script>
+</body>
+
+</html>

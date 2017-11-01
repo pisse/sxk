@@ -1,0 +1,84 @@
+@import '../common/base';
+.wrapper-mobile{
+    .information{
+        .welfare{
+            color: #ff8003;
+            font-size: 26px;
+            margin-top: 30px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            &:before{
+                width: 30px;
+                height: 30px;
+                content: '';
+                background: url(../../img/mobile/certification/icon-quick.png) center no-repeat;
+                background-size: contain;
+                margin-right: 10px;
+                display: inline-block;
+            }
+        }
+        .street{
+            padding-left: 196px;
+        }
+        .upload{
+            .selfie,
+            .id_card{
+                margin-left: 30px;
+                display: flex;
+            }
+            .selfie,
+            .id_card_front,
+            .id_card_back{
+                width: 80px !important;
+                height: 52px !important;
+                border-radius: 2px;
+                background: center left no-repeat;
+                background-size: contain;
+                overflow: hidden;
+                .rc-upload{
+                    width: 100%;
+                    height: 100%;
+                    transition: .3s ease-out;
+                    &:active{
+                        background-color: rgba(#000, .35);
+                    }
+                }
+            }
+            .selfie{
+                background-image: url(../../img/mobile/certification/selfie.png);
+            }
+            .id_card_front{
+                background-image: url(../../img/mobile/certification/id-card-front.png);
+            }
+            .id_card_back{
+                background-image: url(../../img/mobile/certification/id-card-back.png);
+                margin-left: 30px;
+            }
+            .am-image-picker-list{
+                padding-top: 0;
+                margin-bottom: 0;
+            }
+            .am-image-picker-item{
+                width: 80px !important;
+                height: 52px !important;
+                border: none;
+                margin: 0;
+                &:before,
+                &:after{
+                    display: none;
+                }
+            }
+            .am-wingblank{
+                margin: 0;
+            }
+            .am-image-picker-upload-btn{
+                background-color: transparent;
+                transition: .3s ease-out;
+            }
+            .am-image-picker-upload-btn-active{
+                background-color: rgba(#000, .35);
+            }
+        }
+    }
+}

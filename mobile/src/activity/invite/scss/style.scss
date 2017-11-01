@@ -1,0 +1,1140 @@
+@import "../../../lib/common/scss/base";
+$green: #67a506;
+$yellow: #ffe500;
+$red: #ff4646;
+
+@font-face {
+  font-family: 'impact';
+  src: url('../font/impact.ttf');
+  src: url('../font/impact.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*winkChick animation*/
+@keyframes winkChick {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: rem(-130px) 0;
+  }
+}
+
+@-webkit-keyframes winkChick {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: rem(-130px) 0;
+  }
+}
+
+/*giftChick animation*/
+@keyframes gift {
+  0% {
+		top: rem(-30px);
+  }
+  28% {
+		transform: rotate(0deg);
+  }
+  30% {
+  	transform: rotate(-5deg);
+  }
+  32% {
+  	transform: rotate(0deg);
+  }
+  34% {
+  	transform: rotate(5deg);
+  }
+  36% {
+  	transform: rotate(0deg);
+  }
+  38% {
+		transform: rotate(0deg);
+  }
+  40% {
+  	transform: rotate(-5deg);
+  }
+  42% {
+  	transform: rotate(0deg);
+  }
+  44% {
+  	transform: rotate(5deg);
+  }
+  46% {
+  	transform: rotate(0deg);
+  }
+  60% {
+		top: rem(0px);
+  }
+  100 {
+  	top: rem(-30px);
+  }
+}
+
+@-webkit-keyframes gift {
+  0% {
+		top: rem(-30px);
+  }
+  28% {
+		transform: rotate(0deg);
+  }
+  30% {
+  	transform: rotate(-5deg);
+  }
+  32% {
+  	transform: rotate(0deg);
+  }
+  34% {
+  	transform: rotate(5deg);
+  }
+  36% {
+  	transform: rotate(0deg);
+  }
+  38% {
+		transform: rotate(0deg);
+  }
+  40% {
+  	transform: rotate(-5deg);
+  }
+  42% {
+  	transform: rotate(0deg);
+  }
+  44% {
+  	transform: rotate(5deg);
+  }
+  46% {
+  	transform: rotate(0deg);
+  }
+  60% {
+		top: rem(0px);
+  }
+  100 {
+  	top: rem(-30px);
+  }
+}
+
+@keyframes giftChick {
+  0% {
+    transform: scaleY(1);
+  }
+  13% {
+  	transform: scaleY(1);
+  }
+  60% {
+  	transform: scaleY(0.9);
+  }
+  100% {
+ 		transform: scaleY(1);
+  }
+}
+
+@-webkit-keyframes giftChick {
+  0% {
+    transform: scaleY(1);
+  }
+  13% {
+  	transform: scaleY(1);
+  }
+  60% {
+  	transform: scaleY(0.9);
+  }
+  100% {
+ 		transform: scaleY(1);
+  }
+}
+
+/*screamChick animation*/
+@keyframes scream {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	13% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	70% {
+		opacity: 1;
+		transform: scale(2);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(2);
+	}
+}
+
+@-webkit-keyframes scream {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	13% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	70% {
+		opacity: 1;
+		transform: scale(2);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(2);
+	}
+}
+
+@keyframes screamChick {
+	0% {
+		transform: scaleX(1);
+	}
+	50% {
+		transform: scaleX(0.8);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+@-webkit-keyframes screamChick {
+	0% {
+		transform: scaleX(1.1);
+	}
+	50% {
+		transform: scaleX(0.8);
+	}
+	100% {
+		transform: scaleX(1.1);
+	}
+}
+
+/*stompChick animation*/
+@keyframes wow {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	60% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+}
+
+@-webkit-keyframes wow {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	60% {
+		opacity: 0;
+		transform: scale(0);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+}
+
+@keyframes gasOne {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(-5px);
+		left: rem(-5px);
+	}
+	20% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(-5px);
+		left: rem(-5px);
+	}
+	57% {
+		opacity: 1;
+		transform: scale(1.5);
+		bottom: rem(5px);
+		left: rem(-15px);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(5px);
+		left: rem(-15px);
+	}
+}
+
+@-webkit-keyframes gasOne {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(-5px);
+		left: rem(-5px);
+	}
+	20% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(-5px);
+		left: rem(-5px);
+	}
+	57% {
+		opacity: 1;
+		transform: scale(1.5);
+		bottom: rem(5px);
+		left: rem(-15px);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(5px);
+		left: rem(-15px);
+	}
+}
+
+@keyframes gasTwo {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(-2px);
+		right: rem(-2px);
+	}
+	35% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(-2px);
+		right: rem(-2px);
+	}
+	70% {
+		opacity: 1;
+		transform: scale(1.5);
+		bottom: rem(5px);
+		right: rem(-12px);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(5px);
+		right: rem(-12px);
+	}
+}
+
+@-webkit-keyframes gasTwo {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(-2px);
+		right: rem(-2px);
+	}
+	35% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(-2px);
+		right: rem(-2px);
+	}
+	70% {
+		opacity: 1;
+		transform: scale(1.5);
+		bottom: rem(5px);
+		right: rem(-12px);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0);
+		bottom: rem(5px);
+		right: rem(-12px);
+	}
+}
+
+@keyframes stompChick {
+	0% {
+		transform: rotate(-10deg);
+	}
+	36% {
+		transform: rotate(10deg);
+	}
+	43% {
+		transform: rotate(5deg);
+	}
+	50% {
+		transform: rotate(10deg);
+	}
+	57% {
+		transform: rotate(5deg);
+	}
+	100% {
+		transform: rotate(-10deg);
+	}
+}
+
+@-webkit-keyframes stompChick {
+	0% {
+		transform: rotate(-10deg);
+	}
+	36% {
+		transform: rotate(10deg);
+	}
+	43% {
+		transform: rotate(5deg);
+	}
+	50% {
+		transform: rotate(10deg);
+	}
+	57% {
+		transform: rotate(5deg);
+	}
+	100% {
+		transform: rotate(-10deg);
+	}
+}
+
+.invite-home {
+	width: rem(750px);
+	overflow: hidden;
+	background: $green url(../img/invite-bar.jpg) 0 0 no-repeat;
+	background-size: rem(750px) rem(770px);
+	padding: rem(1px) 0;
+	position: relative;
+	h5 {
+		line-height: rem(90px);
+		font-size: rem(26px);
+		margin-bottom: rem(100px);
+		color: #508100;
+		text-align: center;
+	}
+}
+
+.invite-home,
+.invite-share {
+	.wink-chick {
+		position: absolute; 
+		width: rem(65px);
+		height: rem(75px);
+		top: rem(490px);
+		left: rem(340px);
+		background: transparent url(../img/invite-icon-03.png) 0 0 no-repeat;
+		background-size: rem(130px) rem(75px);
+		-webkit-animation: winkChick 5s steps(2) both infinite;
+		animation: winkChick 3s steps(2) both infinite ;
+	}
+	.gift-chick {
+		position: absolute;
+		width: rem(60px);
+		height: rem(90px);
+		top: rem(640px);
+		right: rem(30px);
+		.chick {
+			position: absolute;
+			top: rem(30px);
+			width: rem(60px);
+			height: rem(69px);
+			background: transparent url(../img/invite-icon-04.png) 0 0 no-repeat;
+			background-size: rem(60px) rem(69px);
+			-webkit-animation: giftChick 3s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+			animation: giftChick 3s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+			-webkit-transform-origin: center bottom;
+			transform-origin: center bottom;
+		}
+		.gift {
+			position: absolute;
+			top: rem(-30px);
+			width: rem(60px);
+			height: rem(49px);
+			background: transparent url(../img/invite-icon-05.png) 0 0 no-repeat;
+			background-size: rem(60px) rem(49px);
+			-webkit-animation: gift 3s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+			animation: gift 3s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+		}
+	}
+	.scream-chick {
+		position: absolute;
+		width: rem(40px);
+		height: rem(160px);
+		top: rem(540px);
+		left: rem(80px);
+		.chick {
+			width: rem(40px);
+			height: rem(160px);
+			background: transparent url(../img/invite-icon-06.png) 0 0 no-repeat;
+			background-size: rem(40px) rem(160px);
+			-webkit-transform: scaleX(1.1);
+			transform: scaleX(1.1);
+			-webkit-animation: screamChick 4s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+			animation: screamChick 4s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+		}
+		.scream {
+			position: absolute;
+			top: rem(-10px);
+			left: rem(40px);
+			width: rem(30px);
+			height: rem(34px);
+			background: transparent url(../img/invite-icon-07.png) 0 0 no-repeat;
+			background-size: rem(30px) rem(34px);
+			-webkit-animation: scream 4s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+			animation: scream 4s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+			-webkit-transform-origin: left bottom;
+			transform-origin: left bottom;
+		}
+	}
+	.stomp-chick {
+		position: absolute;
+		width: rem(60px);
+		height: rem(68px);
+		top: rem(660px);
+		right: rem(150px);
+		.chick {
+			width: rem(60px);
+			height: rem(68px);
+			background: transparent url(../img/invite-icon-08.png) 0 0 no-repeat;
+			background-size: rem(60px) rem(68px);
+			-webkit-animation: stompChick 3s cubic-bezier(0.43, 0, 0.57, 1) infinite;
+			animation: stompChick 3s cubic-bezier(0.43, 0, 0.57, 1) infinite;
+			-webkit-transform-origin: center top;
+			transform-origin: center top;
+		}
+		.wow {
+			position: absolute;
+			width: rem(33px);
+			height: rem(20px);
+			top: rem(-20px);
+			left: rem(40px);
+			background: transparent url(../img/invite-icon-09.png) 0 0 no-repeat;
+			background-size: rem(33px) rem(20px);
+			animation: wow 3s cubic-bezier(0.43, 0, 0.57, 1) infinite;
+			-webkit-transform-origin: left bottom;
+			transform-origin: left bottom;
+		}
+		.gas-one {
+			position: absolute;
+			width: rem(13px);
+			height: rem(12px);
+			background: transparent url(../img/invite-icon-10.png) 0 0 no-repeat;
+			background-size: rem(13px) rem(12px);
+			bottom: rem(-5px);
+			left: rem(-5px);
+			-webkit-animation: gasOne 3s cubic-bezier(0.43, 0, 0.57, 1) infinite;
+			animation: gasOne 3s cubic-bezier(0.43, 0, 0.57, 1) infinite;
+		}
+		.gas-two {
+			position: absolute;
+			width: rem(13px);
+			height: rem(12px);
+			background: transparent url(../img/invite-icon-10.png) 0 0 no-repeat;
+			background-size: rem(13px) rem(12px);
+			bottom: rem(-2px);
+			right: rem(-2px);
+			-webkit-animation: gasTwo 3s cubic-bezier(0.43, 0, 0.57, 1) infinite;
+			animation: gasTwo 3s cubic-bezier(0.43, 0, 0.57, 1) infinite;
+		}
+	}
+}
+
+.invite-share {
+	.gift-chick {
+		top: rem(550px);
+	}
+	.scream-chick {
+		top: rem(500px);
+	}
+	.stomp-chick {
+		top: rem(560px);
+	}
+}
+
+section {
+	width: rem(644px);
+	margin: 0 auto;
+	background: #7ab515;
+	position: relative;
+	margin-top: rem(73px);
+	text-align: center;
+	border-radius: rem(15px);
+	h3 {
+		position: absolute;
+		color: $yellow;
+		background: $red;
+		font-size: rem(30.16px);
+		padding: 0 rem(28px);
+		line-height: rem(55px);
+		box-shadow: 0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+		top: rem(-22.5px);
+		border-radius: rem(20px);
+	}
+	a {
+		color: #fff;
+		text-decoration: underline;
+		font-size: rem(30px);
+		font-weight: bold;
+		position: absolute;
+		top: rem(10px);
+		right: rem(15px);
+	}
+	p {
+		color: #fff;
+		padding-top: rem(50px);
+		line-height: rem(80px);
+		font-size: rem(30.33px);
+		span {
+			color: $red;
+			font-size: rem(26px);
+			margin: 0 rem(8px);
+		}
+		strong {
+			background: #ff5c5c;
+			padding: rem(5px) rem(12px);
+			border-radius: rem(10px);
+			font-weight: normal;
+		}
+	}
+}
+
+.invite-award {
+	p {
+		font-size: rem(28px);
+	}
+	.specific {
+		display: inline-block;
+		position: relative;
+		margin: rem(15px) rem(20px) rem(35px);
+		width: rem(248px);
+		height: rem(246px);
+		background: transparent url(../img/invite-icon-01.jpg) 0 0 no-repeat;
+		background-size: rem(248px) rem(246px);
+		vertical-align: top;
+		i {
+			position: absolute;
+			top: rem(50px);
+			left: rem(80px);
+			font-size: rem(28.02px);
+			color: $red;
+		}
+		span {
+			display: block;
+		}
+		span.amount {
+			font-family: 'impact';
+			position: absolute;
+			top: rem(65px);
+			left: rem(100px);
+			font-size: rem(78.68px);
+			color: $red;
+		}
+		span.award {
+			margin-top: rem(150px);
+			margin-left: rem(30px);
+			text-align: center;
+			font-size: rem(26.85px);
+			color: #bf0505;
+		}
+		span.friends {
+			text-align: center;
+			margin-top: rem(5px);
+			margin-left: rem(25px);
+			font-size: rem(22px);
+			color: #fff;
+		}
+	}
+	h4 {
+		font-size: rem(28px);
+		color: #406801;
+		margin-top: rem(30px);
+		position: relative;
+		&:before, &:after {
+			content: '';
+			display: inline-block;
+			position: absolute;
+			top: 45%;
+			width: rem(200px);
+			border-top: rem(3px) solid #517e04;
+		}
+		&:before {
+			left: rem(50px);
+		}
+		&:after {
+			right: rem(50px);
+		}
+	}
+	.p-award {
+		padding: rem(30px) rem(50px) rem(10px);
+		text-align: left;
+		line-height: rem(62px);
+	}
+}
+
+.friend-benefits {
+	p {
+		font-size: rem(28px);
+	}
+	img {
+		width: rem(578px);
+		height: rem(216px);
+	}
+	p.note {
+		padding: 0 rem(50px);
+		line-height: rem(26px);
+		text-align: left;
+		span {
+			color: #fff;
+			font-size: rem(28px);
+			margin-left: rem(70px);
+		}
+		span:last-child {
+			margin-left: rem(260px);
+		}
+	}
+	p.p2 {
+		padding: rem(10px) rem(50px) rem(40px);
+		font-size: rem(24px);
+		line-height: rem(42px);
+		color: #adde59;
+	}
+}
+
+.mask {
+  position: relative;
+  width: 100%;
+  height: rem(300px);
+  background: transparent;
+  opacity: 1;
+  z-index: 2;
+  margin-top: rem(390px);
+}
+
+.mask div {
+	position: absolute;
+	font-size: rem(24px);
+	font-weight: bold;
+	white-space: nowrap;
+	line-height: rem(40px);
+	text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 0 1px 0 #fff, 0 -1px #fff;
+	z-index: 3;
+}
+
+.footer {
+	height: rem(105px);
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 2;
+	a {
+		display: inline-block;
+		background: $red;
+		text-align: center;
+		line-height: rem(105px);
+		font-size: rem(0px);
+		color: #fff;
+	}
+	a.rule {
+		width: rem(108px);
+		border-top-right-radius: rem(10px);
+		border-bottom-right-radius: rem(10px);
+		font-size: rem(26px);
+		span {
+			display: inline-block;
+			line-height: rem(30px);
+			vertical-align: middle;
+		}
+	}
+	a.invite {
+		margin-left: rem(5px);
+		width: rem(637px);
+		border-top-left-radius: rem(10px);
+		border-bottom-left-radius: rem(10px);
+		font-size: rem(36.41px);
+		vertical-align: top;
+	}
+}
+
+div.popup-rule {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #fff;
+  line-height: rem(48px);
+  overflow: scroll;
+  z-index: 11;
+  .rule-content {
+  	width: rem(650px);
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  	position: fixed;
+  	background: $green;
+  	padding: rem(55px) rem(40px) rem(70px);
+  	border-radius: rem(10px);
+  }
+  h3 {
+  	font-size: rem(38px);
+    text-align: center;
+    color: #fff;
+    margin-bottom: rem(25px);
+  }
+  p {
+  	font-size: rem(26px);
+    margin-top: rem(10px);
+    span {
+    	font-weight: bold;
+    }
+  }
+  div.close-div {
+    position: absolute;
+    right: rem(20px);
+    top: rem(20px);
+    width: rem(35px);
+    height: rem(35px);
+    border-radius: 100%;
+    background: $red;
+    box-shadow: 0 0 0 rem(6px) $red,0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+    span.close {
+      display: inline-block;
+      width: rem(10px);
+      height: rem(10px);
+      cursor: pointer;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: $yellow;
+      }
+      &:before {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      &:after {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+div.popup {
+	position: relative;
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 12;
+  }
+  .dialog {
+  	width: rem(650px);
+  	background: $green;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: rem(15px);
+    z-index: 13;
+    p {
+    	font-size: rem(32px);
+    	line-height: rem(115px);
+    	padding-top: rem(50px);
+    	text-align: center;
+    	color: #fff;
+    }
+    a {
+    	display: block;
+    	font-size: rem(43.69px);
+    	color: $yellow;
+    	width: rem(410px);
+    	line-height: rem(90px);
+    	margin: 0 auto rem(75px);
+    	letter-spacing: rem(3px);
+    	text-align: center;
+    	background: $red;
+    	box-shadow: 0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+    	border-radius: rem(30px);
+    }
+  }
+  div.close-div {
+    position: absolute;
+    right: rem(20px);
+    top: rem(20px);
+    width: rem(35px);
+    height: rem(35px);
+    border-radius: 100%;
+    background: $red;
+    box-shadow: 0 0 0 rem(6px) $red, 0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+    span.close {
+      display: inline-block;
+      width: rem(10px);
+      height: rem(10px);
+      cursor: pointer;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: $yellow;
+      }
+      &:before {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      &:after {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+.invite-share {
+	width: rem(750px);
+	margin: 0 auto;
+	background: $green url(../img/invite-share-bar.jpg) 0 0 no-repeat;
+	background-size: rem(750px) rem(690px);
+	padding: rem(1px) 0;
+	text-align: center;
+	position: relative;
+	p.invite-name {
+		margin-top: rem(625px);
+		font-size: rem(32px);
+		color: #fff;
+	}
+	p.other {
+    width: rem(600px);
+    margin: rem(30px) auto 0;
+    font-size: rem(22px);
+    input {
+      display: none;
+    }
+    input[type='checkbox']:checked+label i {
+      display: block;
+    }
+    label {
+      display: block;
+      float: left;
+      color: #fff;
+      padding-left: rem(40px);
+      position: relative;
+      &:before {
+        content: '';
+        display: block;
+        width: rem(28px);
+        height: rem(28px);
+        background: #d9dbdb;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: rem(-14px);
+        border-radius: rem(5px);
+      }
+      i {
+        width: rem(28px);
+        height: rem(28px);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: rem(-14px);
+        background: url(../img/yes.png) 0 0 no-repeat;
+        background-size: rem(28px) rem(28px);
+        display: none;
+      }
+    }
+    a {
+    	color: #fff;
+    	text-decoration: none;
+    	float: left;
+    	font-size: rem(22px);
+    	line-height: rem(22px);
+    	margin-top: rem(6px);
+    }
+  }
+  p.company {
+  	text-align: center;
+    color: #fff;
+    font-size: rem(22px);
+    margin-top: rem(30px);
+    padding-bottom: rem(30px);
+  }
+	input {
+		width: rem(640px);
+		margin: rem(30px) auto 0;
+		line-height: rem(85px);
+		height: rem(85px);
+		border-radius: rem(25px);
+		padding-left: rem(40px);
+		font-size: rem(32px);
+	}
+	input:first-child {
+		margin-top: rem(20px);
+	}
+	button {
+		border: none;
+		border-radius: rem(35px);
+		box-shadow: 0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+		color: $yellow;
+		background: $red;
+	}
+	button[disabled="disabled"] {
+		background: #bbb;
+		color: #fff;
+	}
+	p.special {
+		input {
+			width: rem(350px);
+			display: inline-block;
+			vertical-align: bottom;
+			margin-top: rem(30px);
+		}
+		button {
+			width: rem(270px);
+			display: inline-block;
+			font-size: rem(36px);
+			margin: 0 0 rem(6px) rem(20px);
+			line-height: rem(65px);
+			vertical-align: middle;
+		}
+	}
+  p.form-error {
+    font-size: rem(30px);
+    line-height: rem(36px);
+    color: #ff8003;
+    text-align: left;
+    padding-left: rem(60px);
+  }
+	button.register {
+		width: rem(615px);
+		line-height: rem(85px);
+		font-size: rem(44.12px);
+		margin-top: rem(50px);
+	}
+	h3 {
+		font-size: rem(28px);
+		color: #c3ff47;
+		margin-top: rem(30px);
+	}
+	h4 {
+		font-size: rem(24px);
+		color: #446301;
+		margin-top: rem(30px);
+		position: relative;
+		&:before, &:after {
+			content: '';
+    	display: inline-block;
+    	position: absolute;
+    	top: 45%;
+    	width: rem(220px);
+    	border-top: rem(3px) solid #517e04;
+		}
+		&:before {
+			left: rem(80px);
+		}
+		&:after {
+			right: rem(80px);
+		}
+	}
+	p.rule {
+		padding: rem(20px) rem(70px) 0 rem(70px);
+		color: #446301;
+		text-align: left;
+	}
+	h5.rule {
+		line-height: rem(75px);
+    font-size: rem(24px);
+    color: #508100;
+    text-align: center;
+	}
+}
+
+div.popup-share {
+	position: fixed;
+	z-index: 10;
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .dialog {
+    -webkit-transform: translate3d(0, 0, 0);
+    background: $green;
+    width: rem(600px);
+    height: rem(300px);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: rem(-150px) rem(-300px);
+    line-height: 3em;
+    text-align: center;
+    border-radius: rem(6px);
+    h2 {
+      font-size: rem(32px);
+      line-height: rem(200px);
+      color: #fff;
+    }
+    p {
+      line-height: rem(100px);
+      a {
+      	display: block;
+        font-size: rem(43.69px);
+        line-height: rem(85px);
+        color: $yellow;
+        background: $red;
+        width: rem(410px);
+        margin: rem(-15px) auto 0;
+        text-decoration: none;
+        border-radius: rem(30px);
+    		box-shadow: 0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+      }
+    }
+    span.close {
+      display: inline-block;
+      position: absolute;
+      right: rem(20px);
+      top: rem(20px);
+      width: rem(35px);
+      height: rem(35px);
+      cursor: pointer;
+      border-radius: 100%;
+    	background: $red;
+    	box-shadow: 0 0 0 rem(6px) $red, 0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+    	&:before,
+      &:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -2px;
+        background: $yellow;
+      }
+      &:before {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      &:after {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

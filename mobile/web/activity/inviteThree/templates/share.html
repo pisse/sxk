@@ -1,0 +1,50 @@
+<kd-pane>
+	<div class="invite-share">
+		<div class="t_news">
+      <ul class="news_li">
+        <li ng-repeat="roll in rollData.data"><img ng-src="{{roll.logo_url}}" alt="" /><span>{{roll.name}} 成功领取好友定向红包</span></li>
+      </ul>
+    </div>
+    <div class="friend-red">
+			<img src="img/invite-home-26.jpg" alt="logo" />
+			<p>您的好友{{shareData.phone}}<br>给您发了一个定向红包</p>
+    </div>
+		<form name="myForm" novalidate>
+		 	<input name="phone" ng-model="form.phone" type="tel" value="" placeholder="请输入手机号码"/>
+		 	<input name="password" ng-model="form.password" type="password" value="" placeholder="请设置登录密码"/>
+      <p class="special">
+        <input name="code" ng-model="form.code" type="text" value="" placeholder="请输入验证码"/>
+        <button ng-click="getCode(form.phone, form.password)">{{codeText}}</button>
+      </p>
+      <button class="remove-red" ng-click="removeRed(form)">拆红包</button>
+		</form>
+		<div class="bg"></div>
+	</div>
+</kd-pane>
+<div class="popup popup-red popup-load" style="display: none;">
+	<div class="overlay" ng-click="close()"></div>
+	<div class="dialog">
+		<h3>恭喜你</h3>
+		<h3 class="red">成功领取10元现金券</h3>
+		<p>快下载现金卡APP<br>在【我的优惠】中查看吧</p>
+		<a ng-click="downloadApp()">朕知道了</a>
+	</div>
+</div>
+
+<div class="popup popup-red popup-error" style="display: none;">
+	<div class="overlay" ng-click="close()"></div>
+	<div class="dialog">
+		<p class="error">{{errorMessage}}</p>
+		<a ng-click="close()">朕知道了</a>
+	</div>
+</div>
+
+<div class="popup popup-red popup-login" style="display: none;">
+	<div class="overlay" ng-click="close()"></div>
+	<div class="dialog">
+		<p class="error">本红包仅限新手领取哦！</p>
+		<a ng-click="downloadApp()">去APP查看更多活动</a>
+	</div>
+</div>
+<download-popup></download-popup>
+

@@ -1,0 +1,40 @@
+<ion-content class="loan">
+  <ul class="loan-list">
+    <li><span>借款金额</span><i>{{item.money}} (元)</i><b></b></li>
+    <li><span>借款期限</span><i>{{item.period}} (天)</i><b></b></li>
+    <li><span>实际到帐</span><i>{{item.true_money}} (元)</i><b></b></li>
+    <li><span>服务费用</span><i>{{item.counter_fee}} (元)</i><b></b></li>
+    <li><span>到帐银行</span><i>{{item.bank_name}}</i></li>
+    <li><span>取现卡号</span><i>{{item.card_no}}</i></li>
+    <li class="ticket-item" ng-click="showPicker()"><span>可用券</span><span>{{item.coupon_total}}张可用券</span><i ng-if="item.coupon_total > 0" class="icon ion-ios-arrow-right"></i><span ng-class="selectedTicketClass">{{item.coupon_total > 0 ? ticket : ''}}</span></li>
+  </ul>
+  <p class="tips" ng-bind-html="item.tips"></p>
+  <div class="button-warp"><button ng-disabled="!isAgress" ng-click="confirm()" class="button button-block button-credit">确认申请</button></div>
+  <p ng-click="onAgree()" ng-class="isAgress ? 'accord' : 'accord not-agress'">我已阅读并同意<a ng-click="onHref($event)" href="">《借款协议》</a></p>
+  <img alt="" src="img/bottom-logo.png"/>
+</ion-content>
+<div class="picker-warp" ng-show="isPicker" ng-class="pickerAction">
+  <div class="picker-ticket">
+    <div class="head">
+      <h1>可用优惠券</h1>
+      <i ng-click="closePicker()" class="icon ion-ios-close-empty"></i>
+    </div>
+    <ul>
+      <li ng-click="selectPicker(coupon, $index)" ng-repeat="coupon in item.coupon_list track by $index">
+        <h2 ng-style="{'background': coupon.color_item}" ng-if="coupon.use_case != 4"><i>￥</i>{{coupon.amount}}</h2>
+        <h3 ng-style="{'background': coupon.color_item}" ng-if="coupon.use_case == 4">{{coupon.title}}</h3>
+        <span>
+          <h4>{{coupon.coupon_name}}</h4>
+          <p>{{coupon.loan_amount}}</p>
+          <p>{rowData.loan_term}</p>
+          <p>{{coupon.time}}</p>
+          <i class="icon" ng-class="selectIndex == $index ? 'ion-ios-checkmark' : 'ion-ios-circle-outline'"></i>
+        </span>
+      </li>
+    </ul>
+    <div class="footer">
+      <a href="" ng-click="notPicker()">不使用优惠券</a>
+    </div>
+  </div>
+</div>
+<popup-password is-show="isShow" title="passwordTitle" is-href="isHref" is-error="error" send-handler="applyLoan(password)" ></popup-password>

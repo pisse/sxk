@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>日常数据结算表</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.tmpl.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/BeatPicker.js"></script>
+    <link href="css/index.css" rel="stylesheet"/>
+    <link href="css/BeatPicker.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="all">
+    <header id="first_header">日常数据查询</header>
+    <div class="content">
+        <div class="data">
+            <label for="register-start">渠道名：</label>
+            <select id="appmarkt" style="width: 200px;font-size: 14px">
+                <!--<option value="">全部汇总</option>-->
+            </select>
+        </div>
+        <br>
+        <div class="data">
+            <label for="register-start">注册开始时间：</label><input id="register-start" data-beatpicker="true" class="tcal"
+                                                              type="text" placeholder="请填写注册开始时间"/>
+        </div>
+        <div class="data">
+            <label for="register-end">注册结束时间：</label><input id="register-end" data-beatpicker="true" class="tcal"
+                                                            type="text" placeholder="请填写注册结束时间"/>
+        </div>
+        <div class="footer">
+            <button id="test">查询</button>
+        </div>
+    </div>
+    <div>
+        <div>
+            <table id="rows">
+
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            url: "http://m.koudaikj.com/channel-cpa/get-select",
+            data: '',
+            dataType: 'jsonp',
+            success: function (data) {
+
+                if (data.code == 1) {
+//                    $("#appmarkt").empty();
+                    var title = '';
+                    $.each(data.data, function (n, value) {
+                        title += '<option value="' + value + '">' + value + '</option>';
+                    });
+                    $("#appmarkt").append(title);
+                } else if (data.code == -1) {
+
+                }
+            }
+        });
+
+
+        $("#test").click(function () {
+
+            var register_start = $("#register-start").val(),
+                register_end = $("#register-end").val(),
+                appMarkt = $("#appmarkt").val();
+
+            if (register_start != "") {
+                register_start = Date.parse(register_start) / 1000 - 28800;
+
+            }
+            if (register_end != "") {
+                register_end = Date.parse(register_end) / 1000 - 28800;
+            }
+
+
+            var params = {
+                register_start: register_start,
+                register_end: register_end,
+                appMarkt: appMarkt
+            };
+
+            $.ajax({
+                url: "http://m.koudaikj.com/channel-cpa/channel-record",
+                data: params,
+                dataType: 'jsonp',
+                success: function (data) {
+
+                    if (data.code == 0) {
+                        $("#rows").empty();
+                        var title = '<tr>';
+                        $.each(data.title, function (n, value) {
+                            title += '<th>' + value + '</th>';
+                        });
+                        title += '</tr>';
+                        $("#rows").append(title);
+                        var shujiu = '';
+                        var sumData = {};
+                        $.each(data.data, function (n, value_data) {
+                            shujiu += '<tr>';
+                            $.each(value_data, function (k, data_two) {
+                                shujiu += '<td>' + data_two + '</td>';
+                                if (k != 'date_time') {
+                                    if (k == 'check_rate') {
+                                        sumData[k] = '--';
+                                    }
+                                    sumData[k] = (sumData[k] || 0) + parseInt(data_two);
+                                }
+
+                            })
+                            shujiu += '</tr>';
+                        });
+
+
+                        var sumHtml = '<tr><td>汇总</td>'
+                        $.each(sumData, function (k, item) {
+                            sumHtml += '<td>' + item + '</td>';
+                        })
+                        sumHtml += '</tr>';
+                        $("#rows").append(shujiu + sumHtml);
+
+                    } else if (data.code == 1) {
+                        var title = '<tr><td>未查询到数据</td></tr>';
+                        $("#rows").html(title);
+                    }
+                }
+            });
+
+
+        });
+    })
+
+</script>
+

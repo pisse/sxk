@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Data</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="refresh" content="1800">
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/bubble.css"/>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery-plugins.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/china.js"></script>
+    <script src="js/map_effect.js"></script>
+    <script src="js/countUp.min.js"></script>
+    <script src="js/jquery.transform2d.js"></script>
+
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        html,body {
+            font-family: 'Microsoft YaHei', tahoma, arial, 'Hiragino Sans GB', 宋体, sans-serif;
+            font-family: 'Microsoft YaHei', tahoma, arial, 'Hiragino Sans GB', 宋体, sans-serif!important;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #404a59;
+            overflow: hidden;
+        }
+
+        .label_global { color: #ffffff; }
+        .label_realtime { color: #ffffff; }
+        .label_realtime_list_head { color: #ffffff; }
+
+        #title { position: absolute; top:145px; left:54%; font-size: 2.2em; color: #ffffff; padding: 8px; text-align: center; }
+
+        #main { position: absolute; left:200px; top:70px; overflow: hidden; }
+
+        #logo { position: absolute; left:30px; top:20px; overflow: hidden; }
+        #logo > img { width:250px; height:auto; }
+
+        #menu { position: absolute; top:0; right:0; }
+        #menu > ul { list-style: none; }
+        #menu > ul > li { float: left; }
+
+        #front { position: absolute; z-index: 999; top:0; left:0; width:100%; height:100%; overflow: hidden; }
+        #todayData { position:relative; width:80%; margin-top:20px; margin-left:20%; }
+        #todayData div.group { width:33.3%; text-align: center; vertical-align: middle; float: left; }
+        #todayData div.group > h2 { font-size: 1.6em; }
+        #todayData div.group > h1 { font-size: 2.8em; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; }
+
+        #realtimeData { position: absolute; top:0; left: 0; }
+        #realtimeData > div.group { position: absolute; top:0; left:20px; width: 350px; }
+        #realtimeData > div.group.l1 { position: absolute; top:140px; }
+        #realtimeData > div.group.l2 { position: absolute; top:510px; }
+        #realtimeData > div.group.r1 { position: absolute; top:358px; }
+        #realtimeData > div.group.r2 { position: absolute; top:510px; }
+
+        #realtimeData > div.group > h2 { font-size: 1.2em; width: 100%; text-align: center; padding:4px; }
+        #realtimeData > div.group > div.list { font-size: 1.1em; width: 100%; overflow: hidden; height:184px; background-color: rgba(0, 0, 0, 0.2) }
+        #realtimeData > div.group > div.list > div.wrapper { width: 100%; height: 100%; }
+        #realtimeData > div.group > div.list div.row { width: 100%; vertical-align: middle; height: 30px; line-height: 30px; }
+        #realtimeData > div.group > div.list div.row > span { display: inline-block; vertical-align: middle; padding: 0 4px; position: relative; height:30px; }
+
+
+        #realtimeData > div.group span.pro { width: 130px; text-align: center; overflow: hidden; white-space: nowrap; }
+        #realtimeData > div.group span.name { width: 105px; text-align: center; overflow: hidden; }
+        #realtimeData > div.group span.money { width: 95px; text-align: right; overflow: hidden; }
+        #realtimeData > div.group > div.head span { text-align: center; }
+
+        #realtimeData > div.group.l2 span.pro { width: 130px; }
+        #realtimeData > div.group.l2 span.name { width: 65px; text-align: right; }
+        #realtimeData > div.group.l2 span.money { width: 65px; text-align: right; }
+        #realtimeData > div.group.l2 span.other { width: 70px; text-align: right; }
+        #realtimeData > div.group.l2 > div.head span { text-align: center; }
+
+        #realtimeData > div.group.r1 span.pro { width: 150px; }
+        #realtimeData > div.group.r1 span.name { width: 85px; text-align: right; }
+        #realtimeData > div.group.r1 span.money { width: 110px; text-align: right; }
+        #realtimeData > div.group.r1 > div.head span { text-align: center; }
+
+        #realtimeData > div.group.r2 span.pro { width: 150px; }
+        #realtimeData > div.group.r2 span.name { width: 85px; text-align: right; }
+        #realtimeData > div.group.r2 span.money { width: 105px; text-align: right; }
+        #realtimeData > div.group.r2 > div.head span { text-align: center; }
+
+        #realtimeData > div.group > div.head { width: 100%; vertical-align: middle; height: 30px; line-height: 30px; background-color: #333333 }
+        #realtimeData > div.group > div.head > span { display: inline-block; text-align: center; vertical-align: middle; padding: 0 4px; overflow: hidden; }
+
+        #mapStyle { display: none; position: absolute; }
+        #mapStyle > span[key=areaColor] { color: #323c48 }
+        #mapStyle > span[key=borderColor] { color: #404a59 }
+        #mapStyle > span[key=starterColor] { color: #58B3CC }
+        #mapStyle > span[key=destColor] { color: #F58158 }
+
+        div.anylze { vertical-align: middle; height: 30px; line-height: 30px; }
+        div.anylze > embed, div.anylze > img { margin-right: 4px; vertical-align: middle;  }
+        div.anylze > img { height: 8px; margin-top: -2px; }
+        div.anylze > embed { margin-right: 2px; height: 21px; }
+        .passed { color:#33CC00; }
+        .failed { color:#FF0000; }
+
+        div.progressbar {
+            position: relative; margin-top: 6px; margin-left: 5px; height:20px; line-height: 20px; width:116px; font-size: 0.8em; color: #fff;
+            border: solid 1px #586b8c;
+            /*border-radius: 4px;*/
+            /*-webkit-border-radius: 4px;*/
+            /*-ms-border-radius: 4px;*/
+            /*-moz-border-radius: 4px;*/
+        }
+        div.progressbar > div.tracker {
+            background-color: #586b8c; width:1px; height:100%;
+            /*border-radius: 4px;*/
+            /*-webkit-border-radius: 4px;*/
+            /*-ms-border-radius: 4px;*/
+            /*-moz-border-radius: 4px;*/
+        }
+        div.progressbar > div.label { position: absolute; top:0; left:0; width:116px; text-align: center; }
+
+        .datatip { position: absolute; top:100px; left:100px; }
+
+        .total {
+            position: absolute;
+            border: 1px solid #586a8d;
+            border-radius: 4px;
+            width: 400px;
+            height: 225px;
+            top: 215px;
+            left: 80px;
+        }
+
+        .total p {
+            color: #fff;
+            font-size: 24px;
+            margin: 30px 35px;
+            line-height: 34px;
+            font-weight: bold;
+        }
+
+        .total p span {
+            float: right;
+            color: #ffa500;
+            font-size: 34px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="mapStyle">
+    <span key="areaColor"></span>
+    <span key="borderColor"></span>
+    <span key="starterColor"></span>
+    <span key="destColor"></span>
+</div>
+<div id="main">
+
+</div>
+<div id="front">
+    <div id="logo"><img src="img/logo.png"></div>
+    <div id="title">
+        <h1>实时放款</h1>
+    </div>
+    <div id="menu">
+        <ul>
+            <li><a id="fsBtn" style="text-underline: none; cursor: pointer; color: #666666;" onclick="javascript:fullScreen()">全屏</a></li>
+        </ul>
+    </div>
+    <div id="todayData">
+        <div class="group label_global">
+            <h2>今日新用户数</h2>
+            <h1 id="todayNewUserCount">0</h1>
+        </div>
+        <div class="group label_global">
+            <h2>今日放款金额</h2>
+            <h1 id="todayMoneyCount">0</h1>
+        </div>
+        <div class="group label_global">
+            <h2>今日放款笔数</h2>
+            <h1 id="todayNewTradeCount">0</h1>
+        </div>
+    </div>
+    <div id="realtimeData">
+        <div class="group l1 label_realtime">
+            <h2>实时申请订单</h2>
+            <div class="head label_realtime_list_head">
+                <span class="pro">省份</span><span class="name">用户</span><span class="money">借款金额</span>
+            </div>
+            <div class="list">
+                <div class="wrapper">
+                    <!--
+                    <div class="row"><span class="pro">广东</span><span class="name">王先生</span><span class="money">2000</span></div>
+                    -->
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="group l2">
+            <h2>实时放款</h2>
+            <div class="head">
+                <span class="pro">用户</span><span class="name">借款金额</span><span class="money">状态</span><span class="other">全程耗时</span>
+            </div>
+            <div class="list">
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
+        -->
+        <div class="total" style="display: none;">
+            <p>累计用户数 <span id="totalRegUser">0</span></p>
+            <p>累计放款金额 <span><b id="totalLoanMoney">0</b><b>万</b></span></p>
+            <p>累计放款笔数 <span id="totalLoanNum">0</span></p>
+        </div>
+        <div class="group r1 label_realtime">
+            <h2>HAS征信数据处理</h2>
+            <div class="head label_realtime_list_head">
+                <span class="pro">用户</span><span class="name">借款金额</span><span class="money">状态</span>
+            </div>
+            <div class="list">
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="group r2 label_realtime">
+            <h2>HAS风控决策分析</h2>
+            <div class="head label_realtime_list_head">
+                <span class="pro">用户</span><span class="name">借款金额</span><span class="money">状态</span>
+            </div>
+            <div class="list">
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var MAX_ROW = 7;
+
+    var chart;
+    var todayNewUserCount;
+    var todayNewTradeCount;
+    var todayMoneyCount;
+
+    //总计
+    /*var totalRegUser;
+    var totalLoanMoney
+    var totalLoanNum;*/
+
+    var CITY;
+    var CITY_NAME_LIST;
+    var LOCS;
+    var ShangHai;
+
+    var CONFIG;
+    var MAP_STYLES = {};
+    var DATA = {};
+
+	function $inited() {
+
+        $.ajax({
+            url: "config.json", dataType:"json",
+            success:function(content) {
+                CONFIG = content;
+                $.ajax({
+                    url: "city.json", dataType:"json",
+                    success:function(content) {
+                        CITY = content;
+                        CITY_NAME_LIST = Object.keys(CITY);
+                        mapUpdateTimer = setInterval(presentMapData, (CONFIG.mapUpdateDuration || 5) * 1000);
+                        startup();
+                    }
+                });
+            }
+        });
+	}
+
+    function startup() {
+
+        var temp = $('#mapStyle > span');
+        temp.each(function(index, ele) {
+            MAP_STYLES[ele.getAttribute('key')] = $(ele).css('color');
+        });
+
+        LOCS = [
+                //上海
+            {"name":"上海","value":[121.49295,31.22337],"symbolSize":MAP_ITEM_STYLE.source.size || 16,"itemStyle":{"normal":{"color":MAP_STYLES.starterColor}}}
+//            {"name":"北京","value":[116.41005,39.93157],"symbolSize":10,"itemStyle":{"normal":{"color":MAP_STYLES.destColor}}}
+        ];
+
+        for (var i = 0; i < LOCS.length; i++) {
+            if (LOCS[i].name == '上海') {
+                ShangHai = LOCS[i];
+                ShangHai.name = "";
+                break;
+            }
+        }
+
+        $(window).resize(function() {
+            setTimeout(resize, 0);
+        });
+
+        initChart([], []);
+
+        var options = {
+            useEasing : false,
+            useGrouping : true,
+            separator : ',',
+            decimal : '.',
+            prefix : '',
+            suffix : ''
+        };
+        DATA.todayNewUserCount = 0;
+        DATA.todayNewTradeCount = 0;
+        DATA.todayMoneyCount = 0;
+
+        DATA.totalRegUser = 0;
+        DATA.totalLoanMoney = 0;
+        DATA.totalLoanNum = 0;
+
+        todayNewUserCount = new CountUp("todayNewUserCount", 0, 0, 0, 2.0, options);
+        todayNewUserCount.start();
+        todayNewTradeCount = new CountUp("todayNewTradeCount", 0, 0, 0, 2, options);
+        todayNewTradeCount.start();
+        todayMoneyCount = new CountUp("todayMoneyCount", 0, 0, 0, 2, options);
+        todayMoneyCount.start();
+        /*totalRegUser = new CountUp("totalRegUser", 0, 0, 0, 2, options);
+        totalRegUser.start();
+        totalLoanMoney = new CountUp("totalLoanMoney", 0, 0, 0, 2, options);
+        totalLoanMoney.start();
+        totalLoanNum = new CountUp("totalLoanNum", 0, 0, 0, 2, options);
+        totalLoanNum.start();*/
+
+        var html = '';
+
+        for (var i = 0; i < MAX_ROW; i++) {
+            html += '<div class="row">&nbsp;</div>';
+        }
+        var l1 = $('#realtimeData > div.group.l1');
+        l1.find('div.wrapper').html(html);
+        //$('#realtimeData > div.group.l2 div.wrapper').html(html);
+        var r1 = $('#realtimeData > div.group.r1');
+        //r1.css('left', (getStageWidth() - r1.width() - 10) + 'px');
+        var r2 = $('#realtimeData > div.group.r2');
+        //r2.css('left', (getStageWidth() - r2.width() - 10) + 'px');
+        r2.find('div.wrapper').html(html);
+        r1.find('div.wrapper').html(html);
+
+        var gap = 30;
+        var h = l1.height();
+        var offset = parseInt(l1.css("top").replace("px", ""));
+        offset = offset + h + gap;
+        r1.css("top", offset);
+        offset = offset + h + gap;
+        r2.css("top", offset);
+
+        prod();
+//        debug();
+    }
+
+    function resize() {
+        setTimeout(function() {
+            var main = $("#main");
+            main.width(getStageWidth()/* - Number(main.css('left').replace('px', ''))*/);
+            main.height(getStageHeight() - 60/* - Number(main.css('top').replace('px', ''))*/);
+            if (chart) {
+                chart.resize();
+            }
+            mapViewChanged();
+        }, 200);
+    }
+
+    var apiTimer;
+
+    function prod() {
+        var doWork = function() {
+            loadData(function() {
+                clearTimeout(apiTimer);
+                apiTimer = setTimeout(doWork, CONFIG.duration * 1000);
+            });
+        };
+        doWork();
+    }
+
+    function getProvince(name) {
+        if (name.indexOf("新疆") == 0) {
+            return CITY["新疆"];
+        } else if (name.indexOf("内蒙古") == 0) {
+            return CITY["内蒙古"];
+        } else {
+            return CITY[name.replace("省", "")];
+        }
+    }
+
+    function getPos(name) {
+        var temp = CITY[name];
+        if (temp) return temp;
+        temp = CITY[name + "省"];
+        if (temp) return temp;
+
+        if (name.indexOf("新疆") == 0) {
+            return CITY["新疆维吾尔自治区"];
+        } else if (name.indexOf("内蒙古") == 0) {
+            return CITY["内蒙古自治区"];
+        } else if (name.indexOf("广西") == 0) {
+            return CITY["广西壮族自治区"];
+        } else if (name.indexOf("西藏") == 0) {
+            return CITY["西藏自治区"];
+        } else if (name.indexOf("宁夏") == 0) {
+            return CITY["宁夏回族自治区"];
+        }
+        return null;
+    }
+
+    function formatLocName(name) {
+        return name.replace(/\s/img, '').replace("省直辖行政单位", "");
+    }
+
+    function loadData(callBack) {
+        $.ajax({
+            url:CONFIG.api + "?time=" + (new Date().getTime()),
+            dataType:"jsonp",
+            timeout : 15000, //超时时间设置，单位毫秒
+            success: function(data) {
+                if (data.code == -1 || !data.hasOwnProperty('today')) {
+                    window.location.reload();
+                    callBack && callBack(new Error('api request error!'));
+                    return;
+                }
+                var today = data.today || {};
+                if (today.reg_num) {
+                    DATA.todayNewUserCount = today.reg_num;
+                    todayNewUserCount.duration = 2900;
+                    todayNewUserCount.update(DATA.todayNewUserCount);
+                }
+                if (today.loan_num) {
+                    DATA.todayNewTradeCount = today.loan_num;
+                    todayNewTradeCount.duration = 3400;
+                    todayNewTradeCount.update(DATA.todayNewTradeCount);
+                }
+                if (today.loan_money) {
+                    DATA.todayMoneyCount = today.loan_money;
+                    todayMoneyCount.duration = 3900;
+                    todayMoneyCount.update(DATA.todayMoneyCount);
+                }
+
+                /*var total = data.total || {};
+                if (total.reg_num_total) {
+                    DATA.totalRegUser = total.reg_num_total;
+                    totalRegUser.duration = 2900;
+                    totalRegUser.update(DATA.totalRegUser);
+                }
+
+                if (total.loan_money_total) {
+                    DATA.totalLoanMoney = (total.loan_money_total / 10000).toFixed(0);
+                    totalLoanMoney.duration = 4900;
+                    totalLoanMoney.update(DATA.totalLoanMoney);
+                }
+
+                if (total.loan_num_total) {
+                    DATA.totalLoanNum = total.loan_num_total;
+                    totalLoanNum.duration = 3900;
+                    totalLoanNum.update(DATA.totalLoanNum);
+                }*/
+
+
+
+
+                //var r1Data = [];
+                var temp = data.constantly;
+                temp.forEach(function(obj) {
+                    addRealtimeDataIntoStack('l1', { pro:formatLocName(obj.provinec + obj.city), name:obj.name, money:obj.loan_money });
+                });
+
+                temp = data.has_data;
+                temp.forEach(function(obj) {
+                    var name = obj.name.substring(obj.name.length - 3);
+                    var provinec = obj.name.substring(0, obj.name.length - 3);
+                    addRealtimeDataIntoStack('r1', { pro:formatLocName(obj.name), name:'', money:obj.loan_money, params:{ status:obj.status } });
+                });
+
+                temp = data.has_decision;
+                temp.forEach(function(obj) {
+                    var name = obj.name.substring(obj.name.length - 3);
+                    var provinec = obj.name.substring(0, obj.name.length - 3);
+                    addRealtimeDataIntoStack('r2', { pro:formatLocName(obj.name), name:'', money:obj.loan_money, params:{ status:obj.status } });
+                });
+
+                addMapPresentStack(data.loan);
+
+                callBack && callBack();
+            },
+            error: function() {
+                console.error('api request error!');
+                callBack && callBack(new Error('api request error!'));
+            },
+            statusCode: {
+                324: function () {
+                    console.error('api request error! code : 324');
+                    callBack && callBack(new Error('api request error! code : 324'));
+                },
+                502: function () {
+                    console.error('api request error! code : 502');
+
+                    callBack && callBack(new Error('api request error! code : 502'));
+                },
+                500: function () {
+                    console.error('api request error! code : 500');
+                    callBack && callBack(new Error('api request error! code : 500'));
+                }
+            }
+        });
+    }
+
+    function debug() {
+        var gen = function(params) {var data = { };
+            data.pro = CITY_NAME_LIST[Math.floor(Math.random() * CITY_NAME_LIST.length)];
+            data.name = String.fromCharCode(65 + Math.floor(Math.random() * 26)) + (Math.random() < 0.5 ? '先生' : '女士');
+            data.money = Math.ceil(Math.random() * 50) * 100;
+            data.params = params || {};
+            return data;
+        }
+
+        var mockDataUpdate1 = function() {
+            setTimeout(function() {
+                for (var i = 0; i < 5; i++) {
+                    addRealtimeDataIntoStack('l1', gen());
+                }
+            }, 0);
+            /*
+            setTimeout(function() {
+                for (var i = 0; i < 5; i++) {
+                    var status = ['放款中', '已放款'][Math.floor(Math.random() * 2)];
+                    var time = 2 + Math.round(Math.random() * 10);
+                    addRealtimeDataIntoStack('l2', gen({ status: status, time:time }));
+                }
+            }, 300 + Math.random() * 2000);
+            */
+            setTimeout(function() {
+                var STATUS = ['待系统审批', '待采集数据', '待分析数据'];
+                for (var i = 0; i < 5; i++) {
+                    var status = STATUS[Math.floor(Math.random() * STATUS.length)];
+                    addRealtimeDataIntoStack('r1', gen({ status: status }));
+                }
+            }, 100 + Math.random() * 800);
+            setTimeout(function() {
+                for (var i = 0; i < 5; i++) {
+                    var status = ['审核通过', '审核驳回'][Math.floor(Math.random() * 2)];
+                    addRealtimeDataIntoStack('r2', gen({ status: status }));
+                }
+            }, 300 + Math.random() * 1200);
+        }
+
+        var mockDataUpdate2 = function() {
+            DATA.todayNewUserCount += (10 + Math.round(Math.random() * 10));
+            todayNewUserCount.duration = 2900;
+            todayNewUserCount.update(DATA.todayNewUserCount);
+        }
+
+        var mockDataUpdate3 = function() {
+            DATA.todayNewTradeCount += (5 + Math.round(Math.random() * 5));
+            todayNewTradeCount.duration = 3400;
+            todayNewTradeCount.update(DATA.todayNewTradeCount);
+        }
+
+        var mockDataUpdate4 = function() {
+            DATA.todayMoneyCount += (1000 + Math.round(Math.random() * 5000));
+            todayMoneyCount.duration = 3900;
+            todayMoneyCount.update(DATA.todayMoneyCount);
+        }
+
+        /*var momockDataUpdate5 = function() {
+             DATA.totalRegUser += (10 + Math.round(Math.random() * 10));
+             totalRegUser.duration = 4400;
+             totalRegUser.update(DATA.totalRegUser);
+        }
+
+        var momockDataUpdate6 = function() {
+            DATA.totalLoanMoney += (2 + Math.round(Math.random() * 2));
+            totalLoanMoney.duration = 4900;
+            totalLoanMoney.update(DATA.totalLoanMoney);
+        }
+
+        var momockDataUpdate7 = function() {
+            DATA.totalLoanNum += (5 + Math.round(Math.random() * 5));
+            totalLoanNum.duration = 5400;
+            totalLoanNum.update(DATA.totalLoanNum);
+        }*/
+
+        var mockDataUpdateMap = function() {
+            /*
+             {
+                 "fromName": "上海",
+                 "toName": "北京",
+                 "coords": [
+                     [121.473701, 31.230416],
+                     [116.41005,39.93157]
+                 ]
+             }
+            * */
+            var symbolSize = MAP_ITEM_STYLE.dest.sizes;
+            var mockData = [];
+            var cities = [ ShangHai ];
+            var num = 10 + Math.round(Math.random() * 5);
+            for (var i = 0; i < num; i++) {
+                var mock = gen();
+                mockData.push({
+                    "name": mock.pro + mock.name,
+                    "loan_money": mock.money,
+                    "status": "打款中",
+                    "time": "6分钟",
+                    "city": ""
+                });
+            }
+            addMapPresentStack(mockData);
+        }
+
+        setInterval(mockDataUpdate1, 5000);
+        setInterval(mockDataUpdate2, 3000);
+        setInterval(mockDataUpdate3, 3500);
+        setInterval(mockDataUpdate4, 4000);
+        /*setInterval(mockDataUpdate5, 3000);
+        setInterval(mockDataUpdate6, 5500);
+        setInterval(mockDataUpdate7, 3500);*/
+        setInterval(mockDataUpdateMap, 10000);
+        mockDataUpdate1();
+        mockDataUpdate2();
+        mockDataUpdate3();
+        mockDataUpdate4();
+        /*mockDataUpdate5();
+        mockDataUpdate6();
+        mockDataUpdate7();*/
+        mockDataUpdateMap();
+    }
+
+    var mapUpdateTimer;
+    var mapDataStack = [];
+
+    function addMapPresentStack(data) {
+        if (mapDataStack.length > 10) return;
+
+        if (data.constructor == Array) {
+            mapDataStack = mapDataStack.concat(data);
+        } else {
+            mapDataStack.push(data);
+        }
+    }
+
+    function presentMapData() {
+        if (!chart) return;
+        if (!mapDataStack || mapDataStack.length == 0) return;
+
+        var num = 2; //Math.random() < 0.6 ? 2 : 1;
+        var temp = mapDataStack.splice(0, num);
+        var mapData = [];
+        var cityData = [ ShangHai ];
+        var symbolSize = MAP_ITEM_STYLE.dest.sizes;
+        temp.forEach(function(obj, index) {
+            /*
+             * {
+                 "provinec": "辽宁省",
+                 "name": "李先生",
+                 "loan_money": 1000,
+                 "city": "沈阳市"
+             }
+             * */
+            try {
+                var name = obj.name.substring(obj.name.length - 3);
+                var provinec = obj.name.substring(0, obj.name.length - 3).replace(/\s/img, '');
+                var p = obj.city ? getPos(obj.city) : null;
+                if (!p) {
+                    p = getPos(provinec);
+                }
+                if (p) {
+                    mapData.push({
+                        "fromName": ShangHai.name,
+                        "toName": formatLocName(obj.name),
+                        "coords": [
+                            ShangHai.value,
+                            p
+                        ]
+                    });
+                    var size = symbolSize[Number(obj.loan_money) >= 3000 ? (Number(obj.loan_money) >= 5000 ? 2 : 1) : 0];
+                    var text = '¥' + obj.loan_money + '元';
+                    cityData.push({params:obj, "name":text,"value":p,"symbolSize":size,"itemStyle":{"normal":{"color":MAP_STYLES.destColor}}});
+                }
+            } catch (exp) {
+                console.error(exp);
+            }
+        });
+        console.log(cityData);
+
+        DATA.cityData = cityData;
+        DATA.mapData = mapData;
+
+        initChart(cityData, mapData);
+    }
+
+    var realtimeDataStack = {};
+
+    function addRealtimeDataIntoStack(type, data) {
+        var stack = realtimeDataStack[type];
+        if (!stack) {
+            stack = [];
+            realtimeDataStack[type] = stack;
+        }
+        stack.push(data);
+        checkRealtimeDataStack(type);
+    }
+
+    function checkRealtimeDataStack(type) {
+        var stack = realtimeDataStack[type];
+        if (stack && stack.length > 0) {
+            var list = $('#realtimeData > div.group.' + type + ' div.wrapper');
+            if (!list[0].$adding) {
+                addNewRealtimeData(type, list, stack.shift());
+            } else {
+                //console.log(type + ' is animating, wait for completed.');
+            }
+        } else {
+            //console.log('no more data for --> ' + type);
+        }
+    }
+
+    function genRealtimeDataRow_l1(data) {
+        return $('<div class="row"><span class="pro">' + data.pro + '</span><span class="name">' + data.name + '</span><span class="money">' + data.money + '</span></div>');
+    }
+
+    function genRealtimeDataRow_l2(data) {
+        return $('<div class="row"><span class="pro">' + data.pro + data.name + '</span><span class="name">' + data.money + '</span><span class="money">' + data.params.status + '</span><span class="other">' + (data.params.time) + '分钟</span></div>');
+    }
+
+    function genRealtimeDataRow_r1(data) {
+        var status = data.params.status;
+        /*
+        if (status.indexOf('采集') >= 0) {
+            status = '数据采集' + Math.floor(10 + Math.random() * 90)  + '%';
+            status = genFlashContent('img/search.swf') + '<span>' + status + '</span>';
+        } else if (status.indexOf('分析') >= 0) {
+            status = '数据分析' + Math.floor(10 + Math.random() * 90)  + '%';
+            status = genFlashContent('img/search.swf') + '<span>' + status + '</span>';
+        }
+        */
+        var ele = $('<div class="progressbar"><div class="tracker"></div><div class="label">' + (0  + '%') + '</div></div>');
+        var row = $('<div class="row"><span class="pro">' + data.pro + data.name + '</span><span class="name">' + data.money + '</span><span class="money"></span></div>');
+        row.find('span.money').append(ele);
+        var fullWidth = ele.width() || 116;
+        ele.mockProgress = function() {
+            var ins = this;
+            var pect = Math.floor(20 + Math.random() * 80);
+            var time = Math.floor(6000 + Math.random() * 1200);
+            var maxWidth = fullWidth * (pect / 100);
+            ins.$tracker = ins.find('div.tracker');
+            ins.$label = ins.find('div.label');
+            ins.$tracker.animate({ width:maxWidth + "px" }, {
+                duration:time,
+                easing:"linear",
+                step: function() {
+                    ins.$label.html(Math.round(100 * ins.$tracker.width() / fullWidth) + '%');
+                }
+            });
+        };
+        setTimeout(function() {
+            ele.mockProgress();
+        }, 0);
+        return row;
+    }
+
+    function genRealtimeDataRow_r2(data) {
+        return $('<div class="row"><span class="pro">' + data.pro + data.name + '</span><span class="name">' + data.money + '</span><span class="money"><div class="anylze"><img src="img/anylze3.gif"><span></span></div></span></div>');
+    }
+
+    function addRealtimeDataRowComplete_r2(type, list, data, row) {
+        list[0].$adding = false;
+        if (data.params.status == '已审核' || data.params.status == '审核通过') {
+            setTimeout(function() {
+                row.addClass('passed');
+                row.find('.anylze').html(genFlashContent('img/passed.swf', 21, 21) + '<span>' + data.params.status + '</span>');
+            }, 2400);
+        } else {
+            setTimeout(function() {
+                row.addClass('failed');
+                row.find('.anylze').html(genFlashContent('img/failed.swf', 21, 21) + '<span>' + data.params.status + '</span>');
+            }, 2400);
+        }
+        return false;
+    }
+
+    function genFlashContent(file, w, h) {
+        return '<embed src="' + file + '" quality="high" width="' + (w || '100%') + '" height="' + (h || '100%') + '" wmode="transparent" type="application/x-shockwave-flash"></embed>';
+    }
+
+    function addNewRealtimeData(type, list, data) {
+        var row = window["genRealtimeDataRow_" + type](data);
+        list.append(row);
+        row[0].$y = 0;
+
+        list[0].$adding = true;
+
+        var h = row.height();
+        list.stop().animate({ transform: 'translateY(-' + h + 'px)' }, function() {
+            setTimeout(function() {
+                var done = window["addRealtimeDataRowComplete_" + type];
+                if (done && done(type, list, data, row)) {
+                    return;
+                }
+                list[0].$adding = false;
+                $(list.children()[0]).remove();
+                list.css('transform', 'none');
+                checkRealtimeDataStack(type);
+            }, 500);
+        });
+
+    }
+
+    function rgb2hex(rgb){
+        rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+        return (rgb && rgb.length === 4) ? "#" +
+        ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+    }
+
+    function initChart(cities, moves, needResize) {
+        var main = $("#main");
+        main.width(getStageWidth()/* - Number(main.css('left').replace('px', ''))*/);
+        main.height(getStageHeight()/* - Number(main.css('top').replace('px', ''))*/);
+
+		if (!chart) {
+            chart = echarts.init(document.getElementById("main"));
+        }
+
+		var allData = {
+			"citys":cities || [],
+            "moveLines": moves || []
+		};
+
+		var option = {
+			title: {
+				text: '',
+				left: 'center',
+				textStyle: {
+					color: '#fff'
+				}
+			},
+			legend: {
+				show: false,
+				orient: 'vertical',
+				top: 'bottom',
+				left: 'right',
+				data: ['地点', '线路'],
+				textStyle: {
+					color: '#fff'
+				}
+			},
+			geo: {
+				map: 'china',
+				label: {
+					emphasis: {
+						show: false
+					}
+				},
+				roam: false,
+				itemStyle: {
+					normal: {
+						areaColor: MAP_STYLES.areaColor,
+						borderColor: MAP_STYLES.borderColor
+					},
+					emphasis: {
+						areaColor: '#2a333d'
+					}
+				}
+			},
+			series: []
+		};
+        if (window.generateMapSeries) {
+            option.series = window.generateMapSeries(allData);
+        } else {
+            option.series = [{
+                name: '地点',
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                zlevel: 2,
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+                label: {
+                    normal: {
+                        textStyle: { color: "#333333", fontSize:13 },
+                        formatter: '{b}\r\n',
+                        position: 'top',
+                        show: true
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                symbolSize: 2,
+                showEffectOn: 'render',
+                itemStyle: MAP_ITEM_STYLE.series1,
+                data: [].concat(allData.citys)
+            }, {
+                name: '线路',
+                type: 'lines',
+                coordinateSystem: 'geo',
+                zlevel: 2,
+                large: true,
+                effect: MAP_EFFECT.series2,
+                lineStyle: MAP_ITEM_STYLE.series2,
+                data: [].concat(allData.moveLines)
+            }];
+        }
+
+		chart.setOption(option);
+        if (needResize) chart.resize();
+
+        setTimeout(function() {
+            mapViewChanged();
+        }, 200);
+	}
+
+    function mapViewChanged() {
+
+        $('p.datatip').fadeOut(400, function() { $(this).remove(); });
+
+        var mainCon = $('#main')[0];
+
+        var x = mainCon.offsetLeft;
+        var y = mainCon.offsetTop;
+        var posList = chart.getModel()._componentsMap.series[0]._data._graphicEls;
+        if (!posList || posList.length == 1) return;
+        var args = [];
+        posList.forEach(function(obj, index) {
+            if (index == 0) return;
+            var pos = posList[index].position;
+            var cityData = DATA.cityData[index];
+            var data = cityData.params;
+            var direction = 'bottom';
+            if (cityData.value[1] < ShangHai.value[1] || cityData.value[1] > 51) {
+                direction = 'top';
+            }
+            for (var i = 1; i < index; i++) {
+                var temp = DATA.cityData[i];
+                var dis = getDistanceInKm(cityData.value[0], cityData.value[1], temp.value[0], temp.value[1]);
+                console.log(temp.params.name, cityData.value, cityData.params.name, temp.value, 'dis ---> ', dis);
+                if (dis < 600 && direction == temp.direction) {
+                    //need justify
+                    direction = (direction == 'bottom') ? 'top' : 'bottom';
+                    break;
+                }
+            }
+            args.push([ x + pos[0], y + pos[1], data, direction ]);
+        });
+        if (args.length == 2) {
+            if (args[1][1] > args[0][1]) {
+                args[1][3] = 'top';
+                args[0][3] = 'bottom';
+            } else {
+                args[0][3] = 'top';
+                args[1][3] = 'bottom';
+            }
+            //args[1][3] = (args[0][3] == 'bottom') ? 'top' : 'bottom';
+        }
+        args.forEach(function(arg) {
+            showDataTip.apply(window, arg);
+        });
+    }
+
+    function showDataTip(x, y, data, direction) {
+
+        var tip = $('<p class="datatip triangle-border">' + (data.name + '&nbsp;<span>借款' + data.loan_money + '元</span>') + '</p>');
+        tip.css('position', 'absolute');
+
+        $('body').append(tip);
+
+        direction = direction || 'bottom';
+        switch (direction) {
+            case 'bottom':
+                x = x - 60;
+                y = y - tip[0].clientHeight - 70;
+                break;
+            case 'top':
+                x = x - 60;
+                y = y + 8;
+                break;
+        }
+        tip.css('display', 'none');
+        tip.css('top', y + 'px');
+        tip.css('left', x + 'px');
+        tip.addClass(direction);
+
+        tip.fadeIn(500);
+    }
+
+    function renderLabelPosition(data) {
+
+    }
+
+    function fullScreen() {
+        var elem = document.body;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        }
+        resize();
+    }
+
+
+</script>
+
+<link rel="stylesheet" href="css/dark.css"/>
+<link rel="stylesheet" href="css/tv.css"/>
+<script src="js/map_effect_dark.js"></script>
+<script src="js/map_effect_tv.js"></script>
+
+</body>
+</html>

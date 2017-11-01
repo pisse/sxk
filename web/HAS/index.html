@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Process</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta http-equiv="refresh" content="3600">
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery-plugins.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/async.min.js"></script>
+    <script src="js/createjs-2015.11.26.min.js"></script>
+    <script src="js/createjs-plugin.js"></script>
+    <script src="js/lib.js"></script>
+    <script src="js/fake.js"></script>
+    <script src="js/component/card.js"></script>
+    <script src="js/static_animation.js"></script>
+    <script src="js/flow.js"></script>
+    <script>
+
+        var isInited = false, CONFIG, canvas, stage, exportRoot, FPS, users = [];
+
+        function $inited() {
+
+            /*
+            window.$preloadIndex = 0;
+            setInterval(function() {
+                var end = '';
+                for (var i = 0; i < (4 - window.$preloadIndex); i++) {
+                    end += '.';
+                }
+                window.$preloadIndex ++;
+                if (window.$preloadIndex > 4) {
+                    window.$preloadIndex = 0;
+                }
+                $('#indicator').html(end);
+            }, 200);
+            */
+            $(window).resize(function() {
+                setTimeout(resize, 100);
+            });
+
+            $.ajax({
+                url: "config.json", dataType:"json",
+                success:function(content) {
+                    CONFIG = content;
+                    if (CONFIG.mode != "debug") {
+                        loadData(init);
+                    } else {
+                        init();
+                    }
+                }
+            });
+        }
+
+        function resize() {
+            var rw = 1920;
+            var rh = 1080;
+            var sw = getStageWidth();
+            var sh = getStageHeight();
+            var s = Math.min(sw / rw, sh / rh);
+            var cw = Math.round(rw * s);
+            var ch = Math.round(cw * (rh / rw));
+
+            var canvas = document.getElementById("canvas");
+            canvas.style.width = cw;
+            canvas.style.height = ch;
+            var ctx =canvas.getContext("2d");
+            ctx.canvas.width = cw;
+            ctx.canvas.height = ch;
+
+            if (exportRoot) {
+                exportRoot.scaleX = exportRoot.scaleY = (cw / rw);
+            }
+        }
+
+        function init() {
+
+            var manifest = lib.properties.manifest;
+            if (manifest) {
+                manifest.forEach(function(def) {
+                    //{src:"images/map.png?1481009504230", id:"map"}
+                    if (def.src) {
+                        def.src = def.src.replace("images/", "js/images/");
+                    }
+                });
+            }
+
+            var loader = new createjs.LoadQueue(false);
+            loader.addEventListener("fileload", handleFileLoad);
+            loader.addEventListener("complete", handleComplete);
+            loader.loadManifest(lib.properties.manifest);
+        }
+
+        function handleFileLoad(evt) {
+            if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+        }
+
+        function handleComplete(evt) {
+            canvas = document.getElementById("canvas");
+            exportRoot = new lib.HAS();
+            exportRoot.alpha = 0;
+
+            stage = new createjs.Stage(canvas);
+            stage.addChild(exportRoot);
+            stage.update();
+
+            createjs.Ticker.setFPS(lib.properties.fps);
+            createjs.Ticker.addEventListener("tick", stage);
+
+            FPS = lib.properties.fps;
+            setTimeout(startStaticAnimation, 100);
+            setTimeout(function() {
+                resize();
+                allReset();
+                showStage();
+            }, 200);
+        }
+
+        function showStage() {
+            $('#preload').fadeOut();
+            createjs.Tween.get(exportRoot).to({ alpha:1 }, 800).call(function() {
+                readyToGo();
+            });
+        }
+
+        function readyToGo() {
+
+            setInterval(function() {
+                if (lastProgress == progress) return;
+                if (progress > 100) progress = 100;
+                updatePhaseProgress(progress);
+                lastProgress = progress;
+            }, 1000 / 24);
+
+            isInited = true;
+
+            work();
+        }
+
+        function work() {
+            if (!isInited) return;
+            if (CONFIG.mode == "debug") {
+                debug();
+            } else {
+                prod();
+            }
+        }
+
+        function debug() {
+            process(genMockUser(), debug);
+        }
+
+        function prod() {
+            if (!users || users.length == 0) {
+                if (!users) users = [];
+                users.push(genMockUser());
+            }
+            var user = users.shift();
+            process(user, prod);
+
+            if (window.loadDataTimer == undefined && users.length <= CONFIG.min) {
+                //start load data
+                console.log("not enough data, start load data timer...");
+                loadData();
+            }
+        }
+
+        function process(data, callBack) {
+            var q = [];
+            q.push(function(cb) {
+                switchUser(data, function(){
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                doProcess1(function() {
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                fadeOutProcess(1, function() {
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                doProcess2(function() {
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                fadeOutProcess(2, function() {
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                doProcess3(function() {
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                fadeOutProcess(3, function() {
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                doProcess4(function() {
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                fadeOutProcess(4, function() {
+                    cb();
+                });
+            });
+            q.push(function(cb) {
+                var status = CONFIG.status[data.after_status];
+                if (!status) {
+                    console.error("出现了未知的状态码  after_status --> " + data.after_status);
+                }
+                status = status || "审核通过";
+                setPhaseTitle("COMPLETE");
+                window.$result.$show(status, function() {
+                    setTimeout(function() {
+                        window.$result.$hide(true, function() {
+                            cb();
+                        })
+                    }, 2000);
+                });
+            });
+            async.waterfall(q, function() {
+                allReset(function() {
+                    currentUser = null;
+                    setTimeout(function() {
+                        callBack && callBack();
+                    }, 500);
+                });
+            });
+        }
+
+        function loadData(callBack) {
+            clearTimeout(window.loadDataTimer);
+            console.log("start load data...");
+
+            var done = function(err) {
+                callBack && callBack(err);
+
+                if (users && users.length >= CONFIG.max) {
+                    //over max queue, pause load data
+                    console.log("over max users queue, pause load data timer...");
+                } else {
+                    window.loadDataTimer = setTimeout(function() {
+                        clearTimeout(window.loadDataTimer);
+                        window.loadDataTimer = undefined;
+
+                    }, CONFIG.duration * 1000);
+                }
+            }
+
+            $.ajax({
+                url:CONFIG.api,
+                dataType:"jsonp",
+                success: function(data) {
+                    if (data.code == -1 || !(data instanceof Array)) {
+                        callBack && callBack(new Error('api request error!'));
+                        return;
+                    }
+                    data = data || [];
+                    data.forEach(function(obj) {
+                        obj.id = String(obj.uid || randomNumber(8));
+                        obj.pic = obj.pic_url;
+                        obj.gender = obj.property == "男" ? 1 : 2;
+                        obj.realName = obj.name;
+                        obj.loc = obj.address || "";
+                        obj.loan = obj.money_amount || (500 + Math.round(Math.random() * 6) * 200);
+                        obj.info_score = randomBetween(50, 90, true);
+                    });
+                    if (!users) users = [];
+                    users = users.concat(data);
+                    console.log("load data complete...          current users: " + users.length);
+
+                    done();
+                },
+                error: function() {
+                    console.error('api request error!');
+                    done(new Error('api request error!'));
+                },
+                statusCode: {
+                    404: function () {
+                        console.error('api request error! code : 404');
+                        done(new Error('api request error! code : 404'));
+                    },
+                    408: function () {
+                        console.error('api request error! code : 408');
+                        done(new Error('api request error! code : 408'));
+                    },
+                    502: function () {
+                        console.error('api request error! code : 502');
+                        done(new Error('api request error! code : 502'));
+                    },
+                    500: function () {
+                        console.error('api request error! code : 500');
+                        done(new Error('api request error! code : 500'));
+                    }
+                }
+            })
+        }
+
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="1920" height="1080" style="background-color:#1b1b1b"></canvas>
+    <div id="preload" style="position: absolute; top:0; left:0; width:100%; height:100%;">
+        <div style="width:100%; text-align: center; margin-top:300px; font-size: 4.0em; color:#CCC;">现金卡H.A.S</div>
+        <div style="width:100%; text-align: center; font-size: 1.0em; color:#CCC; vertical-align: middle;">system initializing <span id="indicator" >...</span></div>
+    </div>
+</body>
+</html>

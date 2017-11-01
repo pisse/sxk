@@ -1,0 +1,8 @@
+mixin breadcrumb(data)
+    .container.clearfix
+        ol.breadcrumb.float-right
+            li.breadcrumb-item.disabled 您的位置：
+            li.breadcrumb-item 首页
+            li.breadcrumb-item 关于我们
+            -if(data)
+                li.breadcrumb-item.active: a(href=(data.link)) #{data.name}

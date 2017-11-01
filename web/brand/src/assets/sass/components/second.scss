@@ -1,0 +1,93 @@
+.second{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    &:after{
+        content: '';
+        background: transparent url(../images/welcome/background.png) center top no-repeat;
+        background-size: cover;
+        opacity: 0;
+        transition: opacity 1s ease-out;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+    }
+    &.fp-completely{
+        &:after{
+            opacity: 1;
+        }
+        .logo{
+            opacity: 1;
+            transition: opacity 1s ease-out .25s;
+        }
+        .slogen{
+            opacity: 1;
+            transition: all .5s cubic-bezier(.645,.045,.355,1) .5s;
+            transform: none;
+        }
+        .description-1,
+        .description-2{
+            opacity: 1;
+            transition: all .375s ease-in-out 1s;
+            transform: none;
+        }
+        .description-2{
+            transition-delay: 1.25s;
+        }
+        .arrow-handle{
+            top: 1024px; 
+            opacity: 1;
+            transition: opacity 1s ease-in 1.7s;
+        }
+    }
+    .logo,
+    .slogen,
+    .description-1,
+    .description-2{
+        background: center no-repeat;
+        background-size: contain;
+        position: absolute;
+        left: 50%;
+        z-index: 1;
+    }
+    .logo{
+        width: 209px;
+        height: 68px;
+        background-image: url(../images/second/logo.png);
+        top: 160px;
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+    .slogen{
+        width: 652px;
+        height: 50px;
+        background-image: url(../images/second/slogen.png);
+        margin-left: -326px;
+        top: 380px;
+        opacity: 0;
+        transform: scale(5);
+    }
+    .description-1{
+        width: 646px;
+        height: 143px;
+        background-image: url(../images/second/descripition-1.png);
+        margin-left: -323px;
+        top: 600px;
+        opacity: 0;
+        transform: rotate3d(0, 1, 1, 90deg);
+        transform-origin: left;
+    }
+    .description-2{
+        width: 459px;
+        height: 96px;
+        background-image: url(../images/second/descripition-2.png);
+        margin-left: -229.5px;
+        top: 780px;
+        opacity: 0;
+        transform: rotate3d(0, 1, 1, 90deg);
+        transform-origin: right;
+    }
+}

@@ -1,0 +1,44 @@
+@import '../common/base';
+
+.coupon {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: $bg;
+  .expired{
+    span:first-child{
+      background: $h3;
+    }
+    span:last-child{
+      background: #fff url(/assets/img/mobile/misc/benefit_expired.png) 100% 0 no-repeat;
+    }
+  }
+  .used {
+    span:first-child{
+      background: $h3;
+    }
+    span:last-child{
+      background-image: url(/assets/img/mobile/misc/benefit_used.png)
+    }
+  }
+}
+
+.result {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  p {
+    font-size: 28px;
+    color: $h1;
+    line-height: 3em;
+  }
+}

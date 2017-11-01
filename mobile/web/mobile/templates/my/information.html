@@ -1,0 +1,67 @@
+<div class="my personalinformation">
+    <div class='message-info'>身份认证信息保存后将无法修改，请务必保证正确</div>
+    <form name='information'>
+    <ion-list>
+        <label ng-if='!new_user' class="item item-input" ng-init='form.face_recognition_picture = undefined'>
+            <span class="input-label">自拍照</span>
+            <div class='attachs faces' style='{{ form.face_recognition_picture ? "background-image: url(" + form.face_recognition_picture + ");" : "" }}'>
+                <div class='button-upload'>
+                    <input type='file' ng-model='faces' ngf-accept="'image/jpg,image/jpeg,image/png'" ngf-select>
+                </div>
+            </div>
+        </label>
+        <label ng-if='!new_user' class="item item-input">
+            <span class="input-label">身份证正面</span>
+            <div class='attachs front-face' style='{{ form.id_number_z_picture ? "background-image: url(" + form.id_number_z_picture + ");" : "" }}'>
+                <div class='button-upload'>
+                    <input type='file' ng-model='idNumberFront' ngf-accept="'image/jpg,image/jpeg,image/png'" ngf-select>
+                </div>
+            </div>
+        </label>
+        <label ng-if='!new_user' class="item item-input">
+            <span class="input-label">身份证反面</span>
+            <div class='attachs back-face' style='{{ form.id_number_f_picture ? "background-image: url(" + form.id_number_f_picture + ");" : "" }}'>
+                <div class='button-upload'>
+                    <input type='file' ng-model='idNumberBack' ngf-accept="'image/jpg,image/jpeg,image/png'" ngf-select>
+                </div>
+            </div>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">姓名</span>
+            <input type='text' ng-model='form.name' ng-readonly='form.real_verify_status' placeholder="姓名">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">身份证</span>
+            <input type='text' ng-model='form.id_number' ng-readonly='form.real_verify_status' placeholder="身份证">
+        </label>
+        <ionic-picker label='工作信息'
+            ng-if='!new_user'
+            class="item item-input item-link"
+            picker-data='form.company_worktype_list'
+            ng-model='form.worktype_default' required='true'>
+        </ionic-picker>
+        <ionic-picker ng-if='!new_user' label='学历'
+            class="item item-input item-link"
+            picker-data='form.degrees_all'
+            ng-model='form.degrees_default' required='true'>
+        </ionic-picker>
+        <label ng-if='!new_user' class="item item-input">
+            <span class="input-label">现居地址</span>
+            <input type='text' ng-model='form.address_distinct' placeholder="请填写居住地址">
+        </label>
+        <!-- <a class="item item-input item-link" nav-direction='forward' ng-href='#/my/certification/information/position'>
+            <span class="input-label">现居地址</span>
+            <div class='input select-value address' ng-bind='form.address_distinct'></div>
+        </a> -->
+        <!-- <label class="item item-input">
+            <span class="input-label"></span>
+            <input type='text' ng-model='form.address' placeholder="请填写具体街道门牌号">
+        </label> -->
+    </ion-list>
+    <button class="button button-block button-primary" ng-disabled='form.real_verify_status' ng-click='save(form)'>保存</button>
+    <div class='message-security'>
+        <i class="icon-security"></i>
+        银行级数据加密防护
+    </div>
+    </form>
+</div>

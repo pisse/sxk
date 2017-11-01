@@ -1,0 +1,81 @@
+<kd-pane>
+    <div class="cross-year-home">
+      <header>
+        <h1 class="logo"></h1>
+        <h2>现金卡 · 跨年盛典</h2>
+        <h3>活动时间： <span>2016.12.28~2017.01.05</span></h3>
+        <p><span>活动期间，邀请好友协作完成拼图游戏<br>耗时最少的前三名队伍可瓜分<b>现金大奖</b></span></p>
+      </header>
+      <div class="content">
+        <div class="reward">
+          <h3 class="title">百万奖金虚位以待</h3>
+          <div class="reward-content">
+            <ul>
+              <li><b>8888</b>元现金<span>队伍平分</span></li>
+              <li><b>5888</b>元现金<span>队伍平分</span></li>
+              <li><b>2888</b>元现金<span>队伍平分</span></li>
+            </ul>
+            <h4>所有参与用户都将随机获得红包</h4>
+          </div>
+        </div>
+        <div class="participation">
+        	<h3 class="title">如何参与</h3>
+        	<ul>
+        		<li>生成主页<br>发起拼图</li>
+        		<li>号召好友<br>帮忙拼图</li>
+        		<li>完成拼图<br>获得奖励</li>
+        	</ul>
+        </div>
+        <div class="Ranking">
+        	<h3 class="title">实时排行榜</h3>
+        	<ul>
+        	  <li><span>排名</span><span>用户</span><span>用时</span></li>
+            <li ng-if="homeData.lists.length <= 0">暂无排名</li>
+        		<li ng-if="homeData.lists.length > 0" ng-repeat="dataList in homeData.lists">No.{{$index + 1}}<span>{{dataList.phone}}</span>{{dataList.hours}}时{{dataList.mins}}分{{dataList.secs}}秒</li>
+        	</ul>
+        </div>
+        <h4 class="rule">本活动最终解释权归现金卡所有，与苹果公司无关</h4>
+      </div>
+    </div>
+</kd-pane>
+<a class="rule" ng-click="showRule()">详细规则</a>
+<div class="footer">
+  <a ng-click="initiateJigsaw()">立刻组队发起拼图</a>
+</div>
+<div class="popup-rule" style="display: none;">
+  <div class="close-div" ng-click="closeRule()"><span class="close"></span></div>
+  <h3>详细规则：</h3>
+  <p>1.活动时间：<span>2016年12月28日0:00-2017年1月5日24:00</span></p>
+  <p>2.活动期间，用户可组队发起拼图，拼图一共4块，发起者和好友均可在拼图页抽取，随机获得1块拼图；</p>
+  <p>3. 每队的第1块拼图被抽取后，系统将开始计时，当4块拼图都集齐后，计时结束，系统将根据最终耗时实时排名，1月5日活动结束后，耗时最少的前三个团队将获得现金奖励，团队内所有参与者将平分现金奖励，奖金将在5个工作日内发放至现金卡账户中，可提现；</p>
+  <p><span>举个例子：</span>小明的队伍完成拼图耗时最少，获得8888元现金，队伍中共有8人帮助他完成拼图，则每人获得1111元现金奖励，发放至现金卡账户。</p>
+  <p><span>特别提醒：</span>无论是否在队伍中抽取拼图，只要你发起的队伍最终获得现金奖，你都将获得1份名额。</p>
+  <p>4. 活动期间，每人只有一次发起组队的机会，但每人每天可在不同队伍抽取拼图，每天上限10次，每位用户在一个队伍中只可抽取1次，不可重复抽取；</p>
+  <p>5.在本活动邀请新用户帮忙抽取拼图不会建立邀请关系；</p>
+  <p>6. 本活动仅可在微信中进行，建议在wifi网络稳定情况下参与活动，避免出现白屏、连接超时等无法使用的情况；</p>
+  <p>7. 本活动最终解释权归现金卡所有，如发现利用特殊手段刷奖者将被取消获奖资格。</p>
+</div>
+<div class="popup popup-message" style="display: none;">
+  <div class="overlay"></div>
+  <div class="dialog" ng-show="popupRuleFlag">
+    <span class="close" ng-click="closePop()"></span>  
+  	<h2 class="rule">让我们先了解一下游戏规则</h2>
+  	<p class="rule-content">你即将开启个人拼图页面<br>你和好友均可在页面抽取拼图<br>拼图完成时将计算出所用时间<br>耗时最少前3名的队伍可瓜分现金大奖！<br></p>
+  	<h3 class="tips">温馨提示：提前告知好友能节省不少时间哦！</h3>
+  	<a id="startJigsaw">朕知道了，快开始吧！</a>
+  </div>
+  <div class="dialog" ng-hide="popupRuleFlag">
+    <span class="close" ng-click="closePop()"></span>  
+    <p class="message message-top">您还未登录，无法参与拼图<br>登录之后再来开启吧，等你哟</p>
+    <a id="popup-button" ng-click="login()">点击登录</a>   
+  </div>
+</div>
+<div class="popup popup-error" style="display: none;">
+  <div class="overlay"></div>
+  <div class="dialog">
+    <span class="close" ng-click="closePop()"></span>  
+    <p class="message message-top">{{errorMessage}}</p>
+    <a ng-click="closePop()">朕知道了</a>
+  </div>
+</div>
+

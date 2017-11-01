@@ -1,0 +1,20 @@
+<div class='my position'>
+    <div id='amap' class='amap'>
+    </div>
+    <ion-content class="has-banner has-footer">
+        <!-- <ion-refresher pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()"> -->
+        </ion-refresher>
+        <ion-list>
+            <!-- <a class="item item-icon-left" ng-repeat='poi in pois' ng-href='#/my/certification/information?position=1&address={{poi.name}}&lng={{poi.location.lng}}&lat={{poi.location.lat}}'> -->
+            <a class="item item-icon-left" ng-repeat='poi in pois' ng-click='position(poi)'>
+                <i class="icons icon-position"></i>
+                <div class='item-inner'>
+                    <h2 ng-bind='poi.name'></h2>
+                    <p ng-bind='poi.address'></p>
+                </div>
+            </a>
+        </ion-list>
+        <ion-infinite-scroll ng-if='noMoreItemsAvailable' on-infinite='loadMoreData()' spinner='ios' distance='5%'></ion-infinite-scroll>
+        <p class="no-more" ng-if="noShowMore">暂无更多</p>
+    </ion-content>
+</div>

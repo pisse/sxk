@@ -1,0 +1,21 @@
+include breadcrumb
+doctype html
+html
+    include head
+    body(ontouchstart)
+        .wrapper
+            block wrapper
+                include header
+            include footer
+        script.
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?3ac5a6a835b4ee96a11d699ee4f6b39a";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        - if(__DEV__)
+            - for(let i in htmlWebpackPlugin.files.chunks)
+                - let chunk = htmlWebpackPlugin.files.chunks[i];
+                script(src=(chunk.entry), data-no-instant)

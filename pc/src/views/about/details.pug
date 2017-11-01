@@ -1,0 +1,9 @@
+extends ../common/layout
+block prepend header
+    - let active = 3;
+block append wrapper
+    +breadcrumb()
+    .container.clearfix
+        include sidebar
+        +sidebar()
+        .panel.panel-details.float-right

@@ -1,0 +1,31 @@
+-
+    let sidebar = [{
+        id: 1,
+        name: '公司介绍',
+        link: '/about/company.html'
+    },{
+        id: 6,
+        name: '公司资质',
+        link: '/about/qualifications.html'
+    },{
+        id: 2,
+        name: '股东背景',
+        link: '/about/backdrop.html'
+    },{
+        id: 3,
+        name: '媒体报道',
+        link: '/about/reported.html'
+    },{
+        id: 4,
+        name: '平台公告',
+        link: '/about/notice.html'
+    },{
+        id: 5,
+        name: '加入我们',
+        link: '/about/join.html'
+    }]
+mixin sidebar(active)
+    ul.sidebar.float-left
+        - for(let i in sidebar)
+            - let data = sidebar[i];
+            li.sidebar-item: a.sidebar-item-link(class=(active === data.id ? 'sidebar-item-link__active' : ''), href=(data.link)) #{data.name}

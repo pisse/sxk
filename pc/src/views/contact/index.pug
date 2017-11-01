@@ -1,0 +1,27 @@
+extends ../common/layout
+block prepend head
+    - let title = '联系我们 - 浅橙科技';
+    - let keywords = '现金卡，现金白卡，现金卡官方电话，现金卡客服电话';
+    - let description = '';
+block prepend header
+    - let active = 4;
+block append wrapper
+    .contact
+        .container
+            .subject: span 联系我们
+            ul
+                li
+                    a(href='/contact/business.html')
+                        .icon.icon-cooperate
+                        p 商务合作
+                        span BD@xianjincard.com
+                li
+                    .icon.icon-tel
+                    p 客户服务
+                    span(style='text-align: left;display: inline-block;') 客服电话：400-681-2016<br/>投诉电话：021-80260897
+                li
+                    .icon.icon-address
+                    p 公司坐标
+                    span 中国上海
+            //- img.picture(src=require('assets/images/contact/timg.jpg'))
+            //- .map

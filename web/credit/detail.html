@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="format-detection" content="telephone=no">
+    <title>还款详情</title>
+    <script src="js/flexible.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/swiper.jquery.min.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/swiper.min.css" rel="stylesheet"/>
+    <!-- <link href="css/theme-orange.css" rel="stylesheet"/> -->
+  </head>
+  <body>
+    <div class="repayment-detail wrap">
+      <style>body{background:#f2f2f2;}</style>
+
+      <!-- 顶部提示 -->
+      <div class='head-tips'>您本次借款的资金方为马上消费金融，为避免您的人行征信记录受到影响，请按时还款</div>
+
+      <div class="head"><h3>借款详情</h3></div>
+      <div class="prompt">
+        <div>
+          <a class="slow" href="">本单享受慢就赔服务</a>
+          <!-- <a class="refuse" href="">本单享受拒就赔服务</a> -->
+          <!-- <span class="time" href=""><i>00:15:29</i>本单参与慢就赔活动</span> -->
+          <!-- <h3>本单处理耗时00:15:39</h3> -->
+        </div>
+      </div>
+      <div class="content">
+        <ul>
+          <li class="do">
+            <h1>打款中 <span>2016-06-07<i>24:00</i></span>
+              <a href="javascript:void(0)">我要留言
+                <div class="popup-message" style="display: none;">
+                  <p>12月12日20:00之前还款，请不要再催了</p>
+                </div>
+              </a>
+            </h1>
+            <p>已进入风控审核状态，请耐心等待哦</p>
+          </li>
+          <li>
+            <h1>审核通赤 <span>2016-06-07<i>24:00</i></span></h1>
+            <p>恭喜通过风控审核</p>
+          </li>
+          <li>
+            <h1>申请提交成功 <span>2016-06-07<i>24:00</i></span></h1>
+            <p>申请借款500元，期限7天，手续费10.2元</p>
+          </li>
+        </ul>
+      </div>
+      <p>我已还款，但状态未更新？<a href="">点击上传还款凭证</a></p>
+      <div class="item">
+        <ul>
+          <li><span>借款金额</span><i>1000元</i></li>
+          <li><span>实际到账</span><i>940元</i></li>
+          <li><span><b class="overall"></b>综合费用</span><i>60元</i><a class="pay">立即支付</a></li>
+          <li><span>借款期限</span><i>7天</i></li>
+          <li><span>申请日期</span><i>2016-09-12</i></li>
+          <li><span>收款银行</span><i>招商银行</i></li>
+          <li><span>协议说明</span><i class='i-a'><a>《借款协议》</a><a>《平台服务协议》</a><a>《授权扣款委托书》</a></i></li>
+        </ul>
+      </div>
+      <div class="item">
+        <ul>
+          <li>
+            <span>还款金额中文</span>
+            <i>1000元</i>
+          </li>
+          <li>
+            <span>还款日期</span>
+            <i>2016-09-30</i>
+          </li>
+        </ul>
+      </div>
+
+      <div class="fixed-icon">
+        <img src='../img/wx-logo.png' />
+      </div>
+
+      <a class="fixed-button" href="" style="display: none;">立即还款</a>
+      <div class="button" style="display: none;">
+        <a class="the-one" href="">江湖救急</a>
+      </div>
+      <div class="button clearfix">
+        <div class="text">待还款<b>¥ 1000.00</b></div>
+        <div class="div-button">
+          <a class="a-small" id="delay">缓一缓</a>
+          <a class="a-small" href="">立即还款</a>
+        </div>
+      </div>
+      <!-- <div class='banner'>
+        <div class='swiper-container'>
+          <div class='swiper-wrapper'>
+            <div class='swiper-slide'>
+              <a href=''><img src='img/quick-loan-bar.jpg'/></a>
+            </div>
+            <div class='swiper-slide'>
+              <a href=''><img src='img/quick-loan-bar.jpg'/></a>
+            </div>
+            <div class='swiper-slide'>
+              <a href=''><img src='img/quick-loan-bar.jpg'/></a>
+            </div>
+            <div class='swiper-slide'>
+              <a href=''><img src='img/quick-loan-bar.jpg'/></a>
+            </div>
+            <div class='swiper-slide'>
+              <a href=''><img src='img/quick-loan-bar.jpg'/></a>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div> -->
+    </div>
+
+    <div class="repayment-detail wrap" style="display: none;">
+      <div class="content confirm-bankcard">
+        <ul>
+          <li class="do">
+            <h1>打款中</h1>
+            <p>已进入打款状态，请您耐心等候</p>
+          </li>
+          <li>
+            <h1>银行卡已确认</h1>
+            <p>本次借款将发放至招商银行</p>
+          </li>
+          <li>
+            <h1>审核通过</h1>
+            <p>恭喜通过风控审核</p>
+          </li>
+          <li>
+            <h1>申请提交成功</h1>
+            <p>申请借款500.00元，期限7天，手续费用10.2元</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="toast" style="display: none;">
+      <span>留言成功</span>
+    </div>
+
+    <div class="popup comments" style="display: none;">
+      <div class="overlay"></div>
+      <div class="dialog">
+        <h2>添加留言</h2>
+        <textarea placeholder="限30个字以内" cols="17" id="" name="" rows="5" maxlength="30"></textarea>
+        <p>*留言成功后无法修改</p>
+        <p>
+          <a href="">取消</a>
+          <a href="">留言</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="popup pop-image" style="display:none">
+      <div class="overlay"></div>
+      <div class="dialog">
+        <img src="img/detail-example.jpg" />
+      </div>
+    </div>
+
+    <div class="popup" id="detail-popup" style="display: none">
+      <div class="overlay"></div>
+      <div class="detail">
+        <h3>综合费用</h3>
+        <div class="content">
+          <p class="clearfix"><span class="left">撮合服务费</span><span class="right">1元</span></p>
+          <p class="clearfix"><span class="left">风险准备金</span><span class="right">2元</span></p>
+          <p class="clearfix"><span class="left">征信审核费</span><span class="right">12元</span></p>
+          <p class="clearfix"><span class="left">信息验证费</span><span class="right">120元</span></p>
+          <p class="clearfix"><span class="left">账户管理费</span><span class="right">21元</span></p>
+          <p class="clearfix"><span class="left">客户端使用费</span><span class="right">542元</span></p>
+          <p class="total clearfix"><span class="left">总计</span><span class="right">680元</span></p>
+        </div>
+        <a id="detail-ok">朕知道了</a>
+        <p class="tips">1.综合费用将在借款时一次性收取</p>
+        <p class="tips">2.利息将在还款时收取，交易成功后可在订单页的协议内查看</p>
+      </div>      
+    </div>
+
+    <div class="popup-select popup-select-delay">
+      <div class="overlay"></div>
+      <div class="content" id="content">
+        <div class="close-div"><span class="close"></span></div>
+        <h3>缓一缓</h3>
+        <div class="select-content">
+          <h4 style="display: none;">申请续期<small>延长还款时间</small></h4>
+          <h4 class="error" id="renewal-fail">申请续期<small>(您已续期3次)</small></h4>
+          <h4>部分还款<span class="orange">保持良好信用</span></h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast toast-delay" style="display: none;">
+      <span>您已续期3次，不可再次续期了哦</span> 
+    </div>
+
+    <script>
+      $(function(){
+        var $leaveMessage = $(".popup-message");
+        var $detailOk = $("#detail-ok");
+        var $overall = $(".overall");
+        var renewalFailFlag = 1;
+        var $banner = $('.banner');
+
+        $banner.find('.swiper-container').swiper({
+          autoplay: 3000,
+          pagination : '.banner .swiper-pagination',
+        });
+
+        $leaveMessage.parent().click(function(){
+          var display = $leaveMessage.css("display");
+          if(display == "none") {
+            $leaveMessage.css("display", "block");
+            $leaveMessage.css("opacity", 1);
+          } else {
+            $leaveMessage.css("opacity", 0);
+            setTimeout(function(){
+              $leaveMessage.css("display", "none");
+            },500);
+          }
+        });
+
+        $detailOk.click(function() {
+          $('#detail-popup').hide();
+        });
+
+        $overall.click(function() {
+          $('#detail-popup').show();
+        });
+
+        $('.fixed-icon').click(function() {
+          location.href = 'http://www.baidu.com'
+        })
+
+        $("#delay").click(function(){
+          $(".popup-select").show();
+          $("#content").removeClass("popup-out");
+          $("#content").addClass("popup-in");
+        });
+
+        $(".close, .overlay").click(function(){
+          $(".popup-select").hide();
+          $("#content").addClass("popup-out");
+          $("#content").removeClass("popup-in");
+        });
+
+        $("#renewal-fail").click(function(){
+          if(renewalFailFlag) {
+            renewalFailFlag = 0;
+            $(".toast-delay").show();
+            setTimeout(function() {
+              $(".toast-delay").hide();
+              renewalFailFlag = 1;
+            }, 2000)
+          }
+        })
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script src="js/flexible.js"></script>
+  <link href="css/style.css" rel="stylesheet" />
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+</head>
+
+<body>
+  <div class="bonus">
+    <div class="top">
+      <p>成功申请<i>3</i>人，领取奖励<i>100</i>元；成功申请<i>18</i>人，领取奖励<i>90</i>元。</p>
+      <!-- <div><span>若要领取奖金，请先绑定银行卡</span><a href="">去绑卡></a></div> -->
+    </div>
+    <div class="tab"><a class="current" href="">当前奖金</a><a href="">提现历史</a></div>
+    <div class="lists current-bonus">
+      <div class="head">
+        <p>当前可提现奖金</p>
+        <h1>52.00<span>元</span></h1>
+        <p>历史获得奖金：88元</p>
+        <a class="disabled" href="">立即提现</a>
+      </div>
+      <div class="list">
+        <h1>好友来源</h1>
+        <div>
+          <ul>
+            <li><span><i>**文</i><br/>2016.11.22</span><span><em>成功借款</em><br/>1000</span><span>8</span></li>
+            <li><span><i>**文</i><br/>2016.11.22</span><span><b>成功申请</b><br/>1000</span><span>8</span></li>
+            <li><span><i>**文</i><br/>2016.11.22</span><span><b>成功申请</b><br/>1000</span><span>8</span></li>
+            <li><span><i>**文</i><br/>2016.11.22</span><span><em>成功借款</em><br/>1000</span><span>8</span></li>
+          </ul>
+          <a href="">点击加载更多</a>
+        </div>
+        <!-- <div class="empty"> -->
+        <!--   <h3>暂无返利记录</h3> -->
+        <!-- </div> -->
+      </div>
+      <div class="info">
+        <h1>提现说明</h1>
+        <ul>
+          <li>1、每个周可申请一次现金提现；</li>
+          <li>2、累计满30元才可以提现，且只能全额提取；</li>
+          <li>3、处于逾期状态中的用户需先还款才可以提现</li>
+          <li>4、申请成功后，奖金将在3个工作日内发放到您绑定的银行卡上;</li>
+          <li>5、如遇法定节假日，提现进度顺延；</li>
+          <li>6、如有问题请拨打客服热线 <a href="tel:021-80260893">021-80260893</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="lists history" style="display:none">
+      <!-- <div class="empty"> -->
+      <!--   <h3>暂无记录哦~~</h3> -->
+      <!-- </div> -->
+      <div class="list-head">金额<span>提现日期</span></div>
+      <ul>
+        <li><span>￥30.0</span><span><i>提现完成</i><br/>2016.11.23</span></li>
+        <li><span>￥30.0</span><span><i>提现完成</i><br/>2016.11.23</span></li>
+        <li><span>￥30.0</span><span><i>提现完成</i><br/>2016.11.23</span></li>
+        <li><span>￥30.0</span><span><i>提现完成</i><br/>2016.11.23</span></li>
+        <li><span>￥30.0</span><span><i>提现完成</i><br/>2016.11.23</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="popup popup-bonus-success" style="display:none">
+    <div class="overlay"></div>
+    <div class="dialog">
+      <span class="close"></span>
+      <div class="content">
+        <p><span>恭喜哦~</span>
+          <br/>提现申请成功，奖金将在3个工作
+          <br/>日内发放到您绑定的银行卡上</p>
+      </div>
+    </div>
+  </div>
+  <div class="popup popup-bonus-success popup-bonus-card" style="display:none">
+    <div class="overlay"></div>
+    <div class="dialog">
+      <span class="close"></span>
+      <div class="content">
+        <p><span>抱歉哦~</span>
+          <br/>请绑定银行卡再提现</p>
+        <a href="">去绑卡></a>
+      </div>
+    </div>
+  </div>
+  <div class="popup popup-bonus-success popup-bonus-card popup-bonus-login" style="display:none">
+    <div class="overlay"></div>
+    <div class="dialog">
+      <span class="close"></span>
+      <div class="content">
+        <p>登录后才可以邀请好友哦！</p>
+        <a href="">立即登录</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="alert" class="popup" style="display:none;">
+    <div class="overlay"></div>
+    <div class="error alert">
+      <h2>本周提现机会已经用完，下周再申请吧</h2>
+      <p>
+        <a href="javascript:$('#alert').hide();">确定</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+  $(function() {
+    $('div.tab a').click(function(e) {
+      $('div.tab a').removeClass('current');
+      $('div.lists').hide();
+      $(this).addClass('current');
+      $('div.lists').eq($(this).index()).show();
+      return false;
+    });
+
+    (function(t) {
+      var $p = $('div.top p');
+      var ww = $(window).width();
+      var w = $p.width();
+      var l = parseInt($p.css('left'), 10);
+      $p.css('left', l);
+      $p.width(w);
+      setInterval(function() {
+        l--;
+        if (l < -w) {
+          $p.css('left', ww);
+          l = ww;
+        }
+        $p.css('left', l);
+      }, t)
+    }(10))
+
+  })
+  </script>
+</body>
+
+</html>

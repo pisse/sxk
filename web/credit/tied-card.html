@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <script src="js/flexible.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="tied-card">
+      <style>body{background:#eff3f5;}</style>
+      <div>
+        <p class="tips">添加打款银行卡</p>
+        <ul class="common-list">
+          <li>
+            <label>持卡人</label>
+            <span>张二</span>
+          </li>
+          <li class="choose-bank">
+            <label>选择银行</label>
+            <select id="select-bank">
+              <option id="default_bank" value ="0"></option>
+            </select>
+            <p class="p-bank placeholder bank-error">请选择银行</p>
+          </li>
+          <li>
+            <label>卡号</label>
+            <span><input class="error" oninput="inputChange(this)" placeholder="请输入银行卡号" name="" type="text" value=""/></span>
+          </li>
+          <li>
+            <label>手机号</label>
+            <span><input placeholder="请输入银行预留手机号" name="" type="text" value=""/></span>
+          </li>
+          <li class="code">
+            <label>验证码</label>
+            <span><input placeholder="请输入验证码" name="" type="text" value=""/><a href="">点击获取</a></span>
+          </li>
+        </ul>
+        <p class="error">卡号错误</p>
+        <p class="info">由于邮政储蓄银行不支持还款代扣，建议优先选择其他银行卡。</p>
+        <a class="common-button disabled-button" href="">下一步</a>
+        <p class="clearfix other">
+          <input id="checkbox" name="" type="checkbox" value="" checked="true" />
+          <label for="checkbox">我已阅读并同意<i></i><a href="">《现金卡还款代扣协议》</a></label>
+        </p>
+        <p id="bank-verify-note">银行级数据加密防护</p>
+      </div>
+    </div>
+
+    <div class="popup-select" style="display: none;">
+      <div class="overlay"></div>
+      <div class="content">
+        <div class="close-div"><span class="close"></span></div>
+        <h3>选择银行卡</h3>
+        <div class="select-content">
+          <h4 class="bank">招商银行(5029)</h4>
+          <h4 class="bank">交通银行(****)</h4>
+          <h4 class="bank">交通银行(****)</h4>
+          <h4 class="bank">交通银行(****)</h4>
+          <h4 class="bank">交通银行(****)</h4>
+          <h4 class="bank">交通银行(****)</h4>
+          <h4 class="bank">招商银行(5029)</h4>
+          <a class="add-bank"><span class="add"></span>添加银行卡</a>
+          <h4 class="bank single-out"><span>招商银行(5029)<br><small>银行系统维护中，请尝试其他还款方式</small></span></h4>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(function() {
+        $("#select-bank, .p-bank").click(function(){
+          $(".popup-select").show();
+          $(".content").removeClass("popup-out");
+          $(".content").addClass("popup-in");
+        });
+
+        $(".close, .overlay").click(function(){
+          $(".popup-select").hide();
+          $(".content").addClass("popup-out");
+          $(".content").removeClass("popup-in");
+        });
+
+        $(".bank").click(function(){
+          $(".popup-select").hide();
+          $(".p-bank").text($(this).html());
+          $(".p-bank").removeClass("placeholder");
+          $(".p-bank").addClass("normal");
+        });
+      });
+
+      var inputChange = function (e) {
+        $(e).removeClass('error');
+      }
+    </script>
+</html>

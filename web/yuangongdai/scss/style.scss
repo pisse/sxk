@@ -1,0 +1,4770 @@
+@import "../scss/reset.scss";
+$browser-default-font-size: 75px !default;
+@function rem($px) {
+  @return $px / $browser-default-font-size * 1rem;
+}
+
+@font-face {
+  font-family: 'impact';
+  src: url('../font/impact.ttf');
+  src: url('../font/impact.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes top {
+  0% {
+    opacity: 0;
+    top: rem(42px);
+  }
+  1% {
+    opacity: 1;
+    top: rem(42px);
+  }
+  100% {
+    opacity: 1;
+    top: rem(160px);
+  }
+}
+
+@-webkit-keyframes top {
+  0% {
+    opacity: 0;
+    top: rem(42px);
+  }
+  1% {
+    opacity: 1;
+    top: rem(42px);
+  }
+  100% {
+    opacity: 1;
+    top: rem(160px);
+  }
+}
+
+@-moz-keyframes top {
+  0% {
+    opacity: 0;
+    top: rem(42px);
+  }
+  1% {
+    opacity: 1;
+    top: rem(42px);
+  }
+  100% {
+    opacity: 1;
+    top: rem(160px);
+  }
+}
+
+@-ms-keyframes top {
+  0% {
+    opacity: 0;
+    top: rem(42px);
+  }
+  1% {
+    opacity: 1;
+    top: rem(42px);
+  }
+  100% {
+    opacity: 1;
+    top: rem(160px);
+  }
+}
+
+@-o-keyframes top {
+  0% {
+    opacity: 0;
+    top: rem(42px);
+  }
+  1% {
+    opacity: 1;
+    top: rem(42px);
+  }
+  100% {
+    opacity: 1;
+    top: rem(160px);
+  }
+}
+
+@keyframes o {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes o {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes o {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes o {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes o {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+* {
+  font-family: Helvetica;
+}
+
+body.signup-body {
+  background: #48cafb;
+  padding: rem(20px) rem(20px) 0;
+}
+
+.signup {
+  border-color: #fff;
+  border-style: solid;
+  border-width: rem(2px) rem(2px) 0;
+  width: rem(710px);
+  margin: 0 auto;
+  .logo {
+    background: #48cafb url(../img/logo.jpg) 0 0 no-repeat;
+    background-size: rem(259px) rem(99px);
+    width: rem(259px);
+    height: rem(106px);
+    margin: 0 auto;
+    border-bottom: 2px solid #fff;
+  }
+  .title {
+    margin-top: rem(65px);
+    img {
+      display: block;
+      width: rem(628px);
+      height: rem(126px);
+      margin: 0 auto;
+    }
+    p {
+      margin-top: rem(10px);
+      font-size: rem(30px);
+      color: #fff;
+      text-align: center;
+      span {
+        display: inline-block;
+        margin: 0 rem(4px);
+        border-left: 2px solid #ffb93f;
+        border-right: 2px solid #ffb93f;
+        padding: 0 rem(2px);
+      }
+      i {
+        display: inline-block;
+        font-style: normal;
+        background: #ffb93f;
+        padding: 0 rem(6px);
+      }
+    }
+  }
+  .bar {
+    display: block;
+    width: rem(750px);
+  }
+  .content {
+    background: #ffb93f;
+    padding-top: rem(54px);
+  }
+  form {
+    input {
+      display: block;
+      width: rem(510px);
+      margin: 0 auto rem(20px);
+      height: rem(82px);
+      line-height: rem(82px);
+      border-radius: rem(15px);
+      padding: 0 rem(20px);
+      font-size: rem(26px);
+      border: none;
+    }
+    button {
+      display: block;
+      background: #48cafb;
+      width: rem(510px);
+      border: none;
+      color: #fff;
+      font-size: rem(34px);
+      line-height: rem(82px);
+      height: rem(82px);
+      margin: 0 auto;
+      border-radius: rem(15px);
+      box-shadow: 3px 2px 8px #333333;
+      -webkit-box-shadow: 4px 2px 8px #333333;
+      -moz-box-shadow: 3px 2px 8px #333333;
+    }
+    p.special {
+      width: rem(510px);
+      margin: 0 auto rem(40px);
+      input {
+        width: rem(294px);
+        float: left;
+      }
+      button {
+        font-size: rem(26px);
+        height: rem(82px);
+        line-height: rem(82px);
+        width: rem(198px);
+        float: right;
+      }
+    }
+    p.other {
+      width: rem(510px);
+      margin: rem(30px) auto 0;
+      input {
+        display: none;
+      }
+      input[type='checkbox']:checked+label i {
+        display: block;
+      }
+      label {
+        display: block;
+        float: left;
+        color: #fff;
+        padding-left: rem(40px);
+        position: relative;
+        &:before {
+          content: '';
+          display: block;
+          width: rem(28px);
+          height: rem(28px);
+          background: #d9dbdb;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          margin-top: rem(-14px);
+          border-radius: rem(5px);
+        }
+        i {
+          width: rem(28px);
+          height: rem(28px);
+          position: absolute;
+          left: 0;
+          top: 50%;
+          margin-top: rem(-14px);
+          background: url(../img/yes.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+          display: none;
+        }
+      }
+      a {
+        display: block;
+        float: right;
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+  p {
+    text-align: center;
+    color: #de8d01;
+    font-size: rem(22px);
+    margin-top: rem(75px);
+    padding-bottom: rem(30px);
+  }
+  p.cash-bonus {
+    font-size: rem(26px);
+    color: #fff;
+    margin-top: rem(-40px);
+    letter-spacing: rem(2px);
+    span {
+      margin: 0 rem(3px);
+    }
+  }
+}
+
+.popup {
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+  .dialog {
+    -webkit-transform: translate3d(0, 0, 0);
+    background: #f2f2f2;
+    width: rem(502px);
+    height: rem(232px);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: rem(-116px) rem(-251px);
+    line-height: 3em;
+    text-align: center;
+    border-radius: rem(6px);
+    z-index: 101;
+    h2 {
+      font-size: rem(28px);
+      height: rem(155px);
+      line-height: rem(155px);
+    }
+    h3 {
+      font-size: rem(28px);
+      height: rem(155px);
+      line-height: rem(155px);
+    }
+    p {
+      border-top: 1px solid #ccc;
+      height: rem(77px);
+      line-height: rem(77px);
+      a {
+        font-size: rem(34px);
+        color: #48cafb;
+        text-decoration: none;
+      }
+    }
+    span.close {
+      display: inline-block;
+      position: absolute;
+      right: rem(20px);
+      top: rem(20px);
+      width: rem(40px);
+      height: rem(40px);
+      cursor: pointer;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: #666;
+      }
+      &:before {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      &:after {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+.download-button {
+  display: block;
+  background: #48cafb;
+  width: rem(510px);
+  border: none;
+  color: #fff;
+  font-size: rem(34px);
+  line-height: rem(82px);
+  height: rem(82px);
+  margin: rem(210px) auto;
+  border-radius: rem(15px);
+  box-shadow: 3px 2px 8px #333333;
+  -webkit-box-shadow: 4px 2px 8px #333333;
+  -moz-box-shadow: 3px 2px 8px #333333;
+  text-decoration: none;
+  text-align: center;
+}
+
+.download-popup {
+  width: 100%;
+  height: rem(125px);
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  left: 0;
+  bottom: 0;
+  .download-popup-close {
+    position: absolute;
+    width: rem(50px);
+    height: rem(50px);
+    background: rgba(0, 0, 0, 0.7);
+    top: rem(10px);
+    right: rem(6px);
+    border-radius: 50%;
+    &:before, &:after {
+      content: '';
+      display: block;
+      background: white;
+      height: rem(5px);
+      width: rem(35px);
+      position: absolute;
+      top: 46%;
+      left: rem(7px);
+    }
+    &:before {
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+    &:after {
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+  }
+  i {
+    display: block;
+    width: rem(235px);
+    height: rem(75px);
+    position: absolute;
+    background: transparent url(../img/59-logo.png) 0 0 no-repeat;
+    background-size: rem(235px) rem(75px);
+    left: rem(60px);
+    top: rem(25px);
+  }
+  p {
+    margin: 0;
+    padding: 0;
+    width: rem(302px);
+    height: rem(98px);
+    background: #370675;
+    border-radius: rem(20px);
+    position: absolute;
+    top: rem(15px);
+    right: rem(96px);
+    z-index: 1;
+    span {
+      display: block;
+      width: rem(302px);
+      height: rem(92px);
+      border-radius: rem(20px);
+      background: #6236eb;
+      border-box: box-sizing;
+      padding-top: rem(10px);
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+
+.reg-agreement {
+  background: #fff;
+  .reg-wrap {
+    line-height: 2em;
+    font-size: rem(24px);
+    padding: rem(60px) rem(30px);
+  }
+  h1 {
+    font-size: rem(48px);
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: rem(24px);
+  }
+  h2 {
+    font-weight: bold;
+    font-size: rem(36px);
+    padding: rem(24px) 0;
+  }
+  p {
+    text-indent: 2em;
+  }
+}
+
+.signup-108 {
+  width: rem(750px);
+  position: relative;
+  .bar {
+    width: rem(750px);
+    height: rem(1194px);
+  }
+  .content {
+    background: transparent;
+    position: absolute;
+    padding-top: 0;
+    width: rem(690px);
+    top: rem(625px);
+    left: rem(30px);
+    padding-top: 1px;
+    form {
+      position: relative;
+      input {
+        width: rem(560px);
+        line-height: rem(40px);
+        margin: rem(30px) 0 0 rem(90px);
+        font-size: rem(26px);
+        padding: 0;
+        &:-webkit-autofill {
+          background: transparent;
+        }
+      }
+      p.special {
+        width: rem(560px);
+        line-height: rem(40px);
+        margin-left: rem(90px);
+        input {
+          margin: rem(30px) 0 0;
+          width: rem(320px);
+        }
+        button {
+          color: #4ab6fa;
+          font-size: 26px;
+          margin-top: rem(30px);
+          text-align: right;
+          font-weight: normal;
+        }
+      }
+      button {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background: transparent;
+        width: rem(640px);
+        height: rem(96px);
+        line-height: rem(96px);
+        margin-top: rem(62px);
+        font-size: rem(36px);
+        font-weight: bold;
+      }
+      ::-webkit-input-placeholder {
+        color: #ddd;
+      }
+      p.other {
+        position: absolute;
+        text-align: center;
+        top: rem(200px);
+        left: rem(195px);
+        input {
+          display: none;
+        }
+        label {
+          font-size: rem(26px);
+          padding: 0;
+          &:before {
+            content: none;
+          }
+          a {
+            color: #ffff32;
+          }
+          i {
+            visibility: hidden;
+          }
+        }
+      }
+    }
+    p {
+      font-size: rem(24px);
+      color: #fff;
+      margin-top: rem(30px);
+    }
+  }
+}
+
+.signup-107 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(580px);
+  }
+  .content {
+    background: #e8e8e8;
+    form {
+      input {
+        background: #d4d3d3;
+        color: #666;
+        width: rem(570px);
+        border-radius: rem(10px);
+        margin-bottom: rem(25px);
+      }
+      button {
+        width: rem(570px);
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        background: #4bb6fa;
+        border-radius: rem(10px);
+      }
+      ::-webkit-input-placeholder {
+        color: #666;
+      }
+      p.special {
+        width: rem(570px);
+        padding-bottom: 0;
+        margin-bottom: 0;
+        input {
+          width: rem(340px);
+        }
+      }
+      p.other {
+        position: relative;
+        width: rem(570px);
+        label, a {
+          color: #999;
+        }
+        &:after {
+          content: '';
+          display: block;
+          width: rem(230px);
+          height: rem(75px);
+          background: transparent url(../img/logo.png) 0 0 no-repeat;
+          background-size: rem(230px) rem(75px);
+          position: absolute;
+          top: rem(95px);
+          left: rem(180px);
+        }
+      }
+    }
+    p.activity-p {
+      margin-top: rem(150px);
+    }
+    p {
+      color: #999;
+      margin-top: 0;
+    }
+  }
+}
+
+.signup-88 {
+  width: rem(750px);
+  position: relative;
+  .bar {
+    width: rem(750px);
+    height: rem(1334px);
+  }
+  .content {
+    background: transparent;
+    position: absolute;
+    top: rem(725px);
+    left: rem(65px);
+    form {
+      width: rem(620px);
+      input {
+        width: rem(565px);
+        line-height: rem(95px);
+        height: rem(95px);
+        font-size: rem(32px);
+        padding-left: rem(30px);
+        box-sizing: border-box;
+      }
+      button {
+        background: #fff55e;
+        width: rem(565px);
+        font-size: rem(52px);
+        line-height: rem(95px);
+        height: rem(95px);
+        color: #e60012;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        width: rem(565px);
+        padding-bottom: 0;
+        margin-bottom: 0;
+        input {
+          width: rem(325px);
+        }
+        button {
+          height: rem(95px);
+          line-height: rem(95px);
+          font-size: rem(32px);
+        }
+      }
+      p.other {
+        width: rem(565px);
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+    .a-rule {
+      display: block;
+      text-align: center;
+      color: #fff;
+      margin-top: rem(15px);
+      font-size: rem(28px);
+      text-decoration: underline;
+    }
+    p {
+      color: #a13f0b;
+      margin-top: rem(5px);
+      padding-bottom: 0;
+    }
+  }
+}
+
+.signup-103 {
+  width: rem(750px);
+  background: #ffb847;
+  .bar {
+    width: rem(750px);
+    height: rem(520px);
+  }
+  .content {
+    background: #ffe6bd;
+    width: rem(676px);
+    margin: rem(40px) auto 0;
+    padding-top: rem(55px);
+    border-top-left-radius: rem(10px);
+    border-top-right-radius: rem(10px);
+    form {
+      button {
+        background: #ff9d2f;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      input {
+        border-radius: rem(8px);
+        box-sizing: border-box;
+        padding-left: rem(35px);
+      }
+      ::-webkit-input-placeholder {
+        color: #ddd;
+      }
+      p.special {
+        padding-bottom: 0;
+      }
+      p.other {
+        label, a {
+          color: #ff8a06;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+    p {
+      color: #ffb35d;
+      line-height: rem(40px);
+    }
+  }
+}
+
+.signup-102 {
+  width: rem(750px);
+  position: relative;
+  .bar {
+    width: rem(750px);
+    height: rem(1253px);
+  }
+  .content {
+    background: transparent;
+    position: absolute;
+    width: rem(620px);
+    top: rem(400px);
+    left: rem(65px);
+    form {
+      background: rgba(3,13,66, 0.6);
+      border-radius: rem(10px);
+      padding-top: rem(40px);
+      input {
+        background: transparent;
+        width: rem(540px);
+        line-height: rem(90px);
+        color: #456cfa;
+        border: 1px solid #11b9ff;
+        border-radius: rem(45px);
+        margin-bottom: rem(50px);
+        box-sizing: border-box;
+        padding-left: rem(40px);
+      }
+      ::-webkit-input-placeholder {
+        color: #456cfa;
+      }
+      p.special {
+        width: rem(540px);
+        height: rem(90px);
+      }
+      button {
+        background: #11b9ff;
+        width: rem(540px);
+        line-height: rem(90px);
+        height: rem(90px);
+        border-radius: rem(45px);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+  }
+  p {
+    color: #fff;
+    margin-top: rem(210px);
+  }
+}
+
+.signup-99 {
+  width: rem(750px);
+  .face {
+    padding-top: 1px;
+    width: rem(750px);
+    background: #4558d8 url(../img/99-face.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(1334px);
+    position: relative;
+    h1 {
+      width: rem(550px);
+      height: rem(75px);
+      padding-top: rem(4px);
+      margin: rem(350px) auto 0;
+      padding-top: rem(20px);
+      font-size: rem(24px);
+      color: #fff;
+      line-height: 1.4em;
+      text-align: center;
+      box-sizing: border-box;
+      b {
+        font-weight: normal;
+        font-size: rem(30px);
+        display: inline-block;
+        margin: 0 rem(10px);
+      }
+    }
+    .local-img {
+      display: block;
+      width: rem(575px);
+      height: rem(515px);
+      margin: rem(89px) auto 0;
+      visibility: hidden;
+    }
+    img {
+      display: block;
+      width: rem(575px);
+      height: rem(515px);
+      margin: rem(89px) auto 0;
+    }
+    .file {
+      visibility: hidden;
+      height: 0;
+    }
+    .photo, .red {
+      display: block;
+      font-size: rem(32px);
+      text-align: center;
+      line-height: rem(90px);
+      font-weight: bold;
+      width: rem(308px);
+      height: rem(96px);
+    }
+    .photo {
+      color: #fff;
+      background: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      font-weight: normal;
+      line-height: rem(60px);
+      height: rem(60px);
+      left: rem(221px);
+      top: rem(960px);
+    }
+    .red {
+      color: #f6e12d;
+      margin: rem(100px) auto 0;
+    }
+    p {
+      margin-top: rem(10px);
+      color: #fff;
+    }
+  }
+  .result {
+    width: rem(750px);
+    padding-top: 1px;
+    background: #4558d8 url(../img/99-result.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(1334px);
+    h3 {
+      font-size: rem(34px);
+      color: #fff;
+      text-align: center;
+      margin-top: rem(125px);
+      b {
+        display: inline-block;
+        font-weight: normal;
+        margin: 0 rem(12px);
+      }
+    }
+    h1 {
+      font-size: rem(34px);
+      color: #fff;
+      text-align: center;
+      b {
+        font-size: rem(184px);
+      }
+    }
+    h2 {
+      display: inline-block;
+      font-size: rem(26px);
+      width: rem(175px);
+      line-height: rem(50px);
+      background: #2c40c5;
+      border-radius: rem(15px);
+      color: #fff;
+      text-align: center;
+      margin: rem(30px) 0 0 rem(36px);
+    }
+    .first {
+      margin-left: rem(70px);
+    }
+    h4 {
+      font-size: rem(48px);
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+      margin-top: rem(270px);
+    }
+    h5 {
+      font-size: rem(34px);
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      b {
+        font-size: rem(86px);
+      }
+    }
+    a {
+      display: block;
+      width: rem(400px);
+      height: rem(125px);
+      margin: rem(207px) auto 0;
+      font-size: rem(56px);
+      color: #fff100;
+      font-weight: bold;
+      line-height: rem(110px);
+      text-align: center;
+    }
+    p {
+      color: #fff;
+      margin-top: rem(30px);
+    }
+  }
+  .pop-99 {
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .7);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 8;
+    }
+    .dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: rem(520px);
+      padding: rem(48px);
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      background: #fff;
+      z-index: 9;
+      span.close {
+        display: block;
+        width: rem(30px);
+        height: rem(30px);
+        position: absolute;
+        top: rem(10px);
+        right: rem(10px);
+        &:before, &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: rem(25px);
+          height: 1px;
+          background: #999;
+          top: rem(10px);
+          left: rem(2px);
+        }
+        &:before {
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        &:after {
+          -webkit-transform: rotate(-45deg);
+          -moz-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+      }
+      h6 {
+        font-size: rem(34px);
+        color: #475cd9;
+        text-align: center;      
+      }
+      form {
+        input {
+          width: rem(415px);
+          line-height: rem(60px);
+          height: rem(60px);
+          border: 1px solid #c9c9c9;
+          font-size: rem(24px);
+          border-radius: rem(8px);
+          margin-top: rem(40px);
+        }
+        button {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          width: rem(290px);
+          background: #475cd9;
+          color: #fff;
+          font-size: rem(28px);
+          height: rem(64px);
+          line-height: rem(64px);
+          border-bottom: rem(5px) solid #2c3fb1;
+        }
+        p.special {
+          width: rem(415px);
+          margin-top: rem(40px);
+          padding-bottom: 0;
+          input {
+            width: rem(230px);
+            margin: 0;
+          }
+          button {
+            width: rem(156px);
+            background: #ed7739;
+            line-height: rem(60px);
+            height: rem(60px);
+            font-size: rem(24px);
+            border-radius: rem(8px);
+            border-bottom: none;
+          }
+        }
+        p.other {
+          width: rem(415px);
+          label, a {
+            color: #666;
+          }
+          i {
+            background: url(../img/yes-two.png) 0 0 no-repeat;
+            background-size: rem(28px) rem(28px);
+          }
+        }
+      }
+    }
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.signup-92, .twenty-two {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(750px);
+  }
+  .content {
+    background: #fff;
+    form {
+      input {
+        line-height: rem(98px);
+        height: rem(98px);
+        width: rem(540px);
+        border: rem(3px) solid #2149dd;
+        border-radius: rem(15px);
+      }
+      button {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        width: rem(540px);
+        background: #2e5aca;
+        font-size: rem(36px);
+        font-weight: bold;
+        line-height: rem(98px);
+        height: rem(98px);
+      }
+      p.special {
+        width: rem(540px);
+        margin-bottom: 0;
+        padding-bottom: 0;
+        input {
+          width: rem(320px);
+        }
+        button {
+          line-height: rem(98px);
+          height: rem(98px);
+          font-weight: normal;
+        }
+      }
+      p.other {
+        width: rem(540px);
+        label, a {
+          color: #666;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #666;
+    font-size: rem(22px);
+    margin-top: 0;
+  }
+}
+
+.signup-90, .signup-91, .signup-96, .signup-98 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(870px);
+  }
+  .content {
+    background: #ffb81a;
+    padding-top: 0;
+    form {
+      input {
+        padding-left: rem(40px);
+        margin-bottom: rem(30px);
+        border-radius: rem(10px);
+      }
+      button {
+        background: linear-gradient(90deg, #f2471b, #d50d17);
+        border-radius: rem(10px);
+        -webkit-box-shadow: rem(2px) rem(2px) rem(2px) rem(2px) #a55d07;
+        box-shadow: rem(2px) rem(2px) rem(2px) rem(2px) #a55d07;
+        line-height: rem(88px);
+      }
+      p.special {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      p.other {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    margin-top: rem(10px);
+    color: #fff;
+  }
+  .pop-91 {
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .7);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 8;
+    }
+    .dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: rem(750px);
+      height: rem(1065px);
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      background: transparent url(../img/91-pop.png) 0 0 no-repeat;
+      background-size: rem(750px) rem(930px);
+      padding-top: 1px;
+      border-radius: rem(15px);
+      z-index: 9;
+      span.close {
+        display: block;
+        width: rem(64px);
+        height: rem(68px);
+        position: absolute;
+        border-radius: 50%;
+        top: rem(52px);
+        right: rem(34px);
+      }
+      input {
+        display: block;
+        width: rem(432px);
+        line-height: rem(86px);
+        border-radius: rem(10px);
+        padding-left: rem(30px);
+        font-size: rem(26px);
+        border: none;
+        box-sizing: border-box;
+      }
+      input[name='popPhone'] {
+        position: absolute;
+        top: rem(635px);
+        left: rem(158px);
+      }
+      p.special {
+        width: rem(432px);
+        margin: rem(750px) auto rem(30px);
+        font-size: 0;
+        input {
+          width: rem(264px);
+          line-height: rem(86px);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          float: left;
+          font-size: rem(26px);
+        }
+        button {
+          height: rem(86px);
+          line-height: rem(86px);
+          width: rem(168px);
+          font-size: rem(26px);
+          border: none;
+          border-top-right-radius: rem(10px);
+          border-bottom-right-radius: rem(10px);
+          float: right;
+          color: #fff;
+          -webkit-box-shadow: rem(2px) rem(2px) rem(2px) rem(2px) #9b1c0f;
+          box-shadow: rem(2px) rem(2px) rem(2px) rem(2px) #9b1c0f;
+          background: linear-gradient(90deg, #7131ea, #2349ef);
+        }
+      }
+      .money {
+        display: block;
+        margin: rem(70px) auto 0;
+        width: rem(555px);
+        line-height: rem(113px);
+        font-size: rem(52px);
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+        background: #f03838;
+        border-radius: rem(15px);
+      }
+      .money:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.signup-98 {
+  position: relative;
+  video {
+    width: rem(508px);
+    height: rem(292px);
+    position: absolute;
+    top: rem(185px);
+    left: rem(125px);
+  }
+}
+
+.signup-89, .signup-97 {
+  width: rem(750px);
+  background: linear-gradient(180deg, #218ce1, #2cc4ca);
+  .eval {
+    -webkit-transition: all 0.6s linear;
+    transition: all 0.6s linear;
+    opacity: 1;
+    .bar {
+      width: rem(750px);
+      height: rem(535px);
+    }
+    .content {
+      background: linear-gradient(180deg, #25a2d8, #2cc4ca);
+      margin-top: rem(-3px);
+      form {
+        h3 {
+          font-size: rem(26px);
+          color: #fff;
+          text-align: center;
+          line-height: rem(60px);
+        }
+        input {
+          line-height: rem(90px);
+          height: rem(90px);
+          width: rem(540px);
+          border-radius: rem(45px);
+        }
+        input[name='phone'] {
+          padding-left: rem(72px);
+          background: #eceff4 url(../img/89-phone.jpg) rem(25px) 50% no-repeat;
+          background-size: rem(31px) rem(45px);
+        }
+        button {
+          line-height: rem(90px);
+          height: rem(90px);
+          border-radius: rem(45px);
+          width: rem(540px);
+          background: #0b72f0;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+        p.special {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          width: rem(540px);
+        }
+        p.other {
+          width: rem(540px);
+          position: relative;
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: rem(-95px);
+            top: rem(70px);
+            width: rem(750px);
+            height: rem(200px);
+            background: transparent url(../img/89-icon.png) 0 0 no-repeat;
+            background-size: rem(750px) rem(200px);
+          }
+          i {
+            background: url(../img/yes-two.png) 0 0 no-repeat;
+            background-size: rem(28px) rem(28px);
+          }
+        }
+      }
+    }
+  }
+  .result {
+    height: rem(1334px);
+    padding-top: 1px;
+    position: relative;
+    opacity: 1;
+    h3 {
+      font-size: rem(36px);
+      color: #fff;
+      line-height: rem(90px);
+      text-align: center;
+      margin-top: rem(400px);
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: rem(746px);
+        height: rem(400px);
+        background: transparent url(../img/89-result.jpg) 0 0 no-repeat;
+        background-size: rem(746px) rem(400px);
+      }
+    }
+    h4 {
+      font-size: rem(32px);
+      color: #fffc72;
+      text-align: center;
+      b {
+        display: inline-block;
+        margin-left: rem(15px);
+        font-size: rem(90px);
+        font-weight: bold;
+        font-family: impact;
+      }
+    }
+    .loan {
+      display: block;
+      background: #0b72f0;
+      font-size: rem(42px);
+      width: rem(500px);
+      line-height: rem(100px);
+      cursor: pointer;
+      color: #fff;
+      border-radius: rem(10px);
+      margin: rem(30px) auto 0;
+      text-align: center;
+    }
+  }
+  .hide {
+    opacity: 0;
+  }
+  p {
+    margin-top: rem(290px);
+    font-size: rem(22px);
+    color: #04759f;
+  }
+  .pop-89 {
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .7);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 8;
+    }
+    .dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: rem(520px);
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      background: linear-gradient(180deg, #218ce1, #2cc4ca);
+      padding-top: 1px;
+      border-radius: rem(15px);
+      z-index: 9;
+      h3 {
+        text-align: center;
+        font-size: rem(28px);
+        line-height: rem(60px);
+        position: relative;
+        color: #fff;
+        margin-top: rem(60px);
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: rem(190px);
+          height: rem(135px);
+          left: rem(170px);
+          top: rem(-130px);
+          background: transparent url(../img/89-alert.png) 0 0 no-repeat;
+          background-size: rem(190px) rem(135px);
+        }
+      }
+      .code-p {
+        margin-top: 0;
+        width: rem(420px);
+        height: rem(80px);
+        margin: rem(15px) auto 0;
+        font-size: 0;
+        text-align: left;
+        input {
+          width: rem(297px);
+          line-height: rem(80px);
+          background: #fff;
+          border-top-left-radius: rem(40px);
+          border-bottom-left-radius: rem(40px);
+          font-size: rem(28px);
+          vertical-align: top;
+          border: none;
+          padding-left: rem(30px);
+        }
+        button {
+          width: rem(123px);
+          line-height: rem(80px);
+          background: #fff260;
+          font-size: rem(28px);
+          color: #666;
+          vertical-align: top;
+          border: none;
+          border-top-right-radius: rem(40px);
+          border-bottom-right-radius: rem(40px);
+        }
+      }
+      .submit {
+        display: block;
+        width: rem(420px);
+        line-height: rem(80px);
+        border: none;
+        background: #0b72f0;
+        border-radius: rem(40px);
+        color: #fff;
+        font-size: rem(36px);
+        text-align: center;
+        margin: rem(25px) auto rem(55px);
+      }
+    }
+  }
+}
+
+.signup-97 {
+  position: relative;
+  .eval {
+    video {
+      position: absolute;
+      top: rem(160px);
+      left: rem(135px);
+      width: rem(480px);
+      height: rem(305px);
+    }
+    .bar {
+      width: rem(750px);
+      height: rem(760px);
+    }
+    .content {
+      padding-top: 0;
+      margin-top: rem(-100px);
+      background: linear-gradient(180deg, #28aed4, #2cc4ca);
+      form {
+        input {
+          position: relative;
+        }
+      }
+    }
+  }
+}
+
+.signup-85, .signup-86, .signup-94, .signup-95, .signup-101, .signup-104, .signup-105, .signup-106 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(790px);
+  }
+  .content {
+    background: #642a90;
+    margin-top: rem(-5px);
+    padding-top: rem(15px);
+    form {
+      input {
+        line-height: rem(60px);
+        height: rem(60px);
+        border-radius: rem(10px);
+      }
+      p.special {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        button {
+          height: rem(60px);
+          line-height:rem(60px);
+          color: #666;
+        }
+      }
+      p.other {
+        margin-top: rem(15px);
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+      button {
+        background: #fce002;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #333;
+      }
+    }
+  }
+  p {
+    margin-top: 0;
+    color: #ccc;
+  }
+}
+
+.signup-22 {
+  width: rem(750px);
+  border: none;
+  .bar {
+    width: rem(750px);
+    height: rem(695px);
+  }
+  .content {
+    background: #5371f7 url(../img/22-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(634px);
+    margin-top: rem(-3px);
+    padding-top: rem(30px);
+    form {
+      input {
+        font-size: rem(28px);
+        border: rem(5px) solid #222731;
+        line-height: rem(80px);
+        border-radius: rem(15px);
+        width: rem(560px);
+        margin-bottom: rem(12px);
+      }
+      button {
+        font-size: rem(42px);
+        height: rem(80px);
+        line-height: rem(72px);
+        background: #0171d5;
+        border: rem(5px) solid #222731;
+        width: rem(560px);
+        -webkit-box-shadow: none;
+        box-shadow: inset rem(5px) rem(5px) rem(5px) rem(5px) #4aaaff;
+      }
+      p.special {
+        width: rem(560px);
+        margin-bottom: rem(18px);
+        padding-bottom: 0;
+        input {
+          width: rem(320px);
+          height: rem(80px);
+        }
+        button {
+          color: #666;
+          background: #fbcd2d;
+          width: rem(220px);
+          line-height: rem(72px);
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+      }
+      p.other {
+        width: rem(560px);
+        margin: rem(10px) auto 0;
+        label {
+          color: #ff9191;
+        }
+        a {
+          color: #ff9191;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+    .a-rule {
+      display: block;
+      color: #2a4dbe;
+      font-size: rem(24px);
+      text-align: center;
+      margin-top: rem(40px);
+      text-decoration: underline;
+    }
+  }
+  p {
+    color: #2a4bde;
+    margin-top: rem(40px);
+  }
+}
+
+.signup-82 {
+  width: rem(750px);
+  border: none;
+  .bar {
+    width: rem(750px);
+    height: rem(559px);
+  }
+  .content {
+    background: #283e51 url(../img/82-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(680px);
+    form {
+      input {
+        width: rem(600px);
+        line-height: rem(80px);
+        height: rem(80px);
+        padding-left: rem(120px);
+        border-radius: rem(12px);
+        margin-bottom: rem(30px);
+        border: 1px solid #bfbfbf;
+        box-sizing: border-box;
+      }
+      input[name='phone'] {
+        background: #fff url(../img/58-phone.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(55px);
+      }
+      input[name='password'] {
+        background: #fff url(../img/58-password.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(45px) rem(50px);
+      }
+      input[name='code'] {
+        background: #fff url(../img/58-code.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(45px) rem(50px);
+      }
+      button {
+        width: rem(490px);
+        background: #ff5e4d;
+        height: rem(75px);
+        line-height: rem(70px);
+        border-bottom: rem(6px) solid #b63527;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        width: rem(600px);
+        margin-bottom: rem(20px);
+        input {
+          width: rem(390px);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          border-right: none;
+        }
+        button {
+          width: rem(210px);
+          border: none;
+          height: rem(80px);
+          line-height: rem(80px);
+          background: #ffd200;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border: 1px solid #bfbfbf;
+          border-left: none;
+          box-sizing: border-box;
+        }
+      }
+      p.other {
+        margin-top: rem(20px);
+        a {
+          color: #ffda00;
+        }
+        label {
+          color: #603810;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    margin-top: rem(135px);
+    color: #fff;
+  }
+}
+
+.signup-81, .signup-76 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(550px);
+  }
+  .content {
+    background: #fff;
+    form {
+      input {
+        width: rem(600px);
+        line-height: rem(80px);
+        height: rem(80px);
+        padding-left: rem(120px);
+        border-radius: rem(12px);
+        margin-bottom: rem(30px);
+        border: 1px solid #bfbfbf;
+        box-sizing: border-box;
+      }
+      input[name='phone'] {
+        background: #fff url(../img/58-phone.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(55px);
+      }
+      input[name='password'] {
+        background: #fff url(../img/58-password.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(45px) rem(50px);
+      }
+      input[name='code'] {
+        background: #fff url(../img/58-code.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(45px) rem(50px);
+      }
+      button {
+        width: rem(490px);
+        background: #5fd1ea;
+        height: rem(75px);
+        line-height: rem(70px);
+        border-bottom: rem(6px) solid #3fb8d2;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        width: rem(600px);
+        margin-bottom: rem(20px);
+        input {
+          width: rem(390px);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          border-right: none;
+        }
+        button {
+          width: rem(210px);
+          border: none;
+          height: rem(80px);
+          line-height: rem(80px);
+          background: #ffd200;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border: 1px solid #bfbfbf;
+          border-left: none;
+          box-sizing: border-box;
+        }
+      }
+      p.other {
+        margin-top: rem(20px);
+        a {
+          color: #ffda00;
+        }
+        label {
+          color: #603810;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #603810;
+  }
+}
+
+.signup-76 {
+  video {
+    display: block;
+    width: rem(630px);
+    margin: 0 auto rem(30px);
+  }
+}
+
+.signup-80 {
+  width: rem(750px);
+  background: #ff8d4e;
+  .bar {
+    width: rem(750px);
+    height: rem(620px);
+  }
+  .content {
+    background: #ff8d4e url(../img/80-content.jpg) 0 95% no-repeat;
+    background-size: rem(750px) rem(100px);
+    padding-top: rem(20px);
+    form {
+      input {
+        width: rem(600px);
+        line-height: rem(80px);
+        height: rem(80px);
+        padding-left: rem(120px);
+        border-radius: rem(12px);
+        margin-bottom: rem(30px);
+      }
+      input[name='phone'] {
+        background: #fff url(../img/58-phone.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(55px);
+      }
+      input[name='password'] {
+        background: #fff url(../img/58-password.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(45px) rem(50px);
+      }
+      input[name='code'] {
+        background: #fff url(../img/58-code.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(45px) rem(50px);
+      }
+      button {
+        width: rem(490px);
+        background: #ffd200;
+        height: rem(75px);
+        line-height: rem(70px);
+        border-bottom: rem(6px) solid #ff7c00;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        width: rem(600px);
+        margin-bottom: rem(20px);
+        input {
+          width: rem(390px);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        button {
+          width: rem(210px);
+          border: none;
+          height: rem(80px);
+          line-height: rem(80px);
+          background: #0f648a;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+      p.other {
+        margin-top: rem(20px);
+        a {
+          color: #ffda00;
+        }
+        label {
+          color: #603810;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #603810;
+  }
+}
+
+.signup-84 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(510px);
+  }
+  .content {
+    background: #fc3d3d;
+    margin-top: -2px;
+    form {
+      input {
+        line-height: rem(84px);
+        width: rem(500px);
+        margin-bottom: rem(36px);
+      }
+      button {
+        width: rem(500px);
+        line-height: rem(84px);
+        color: #fc3d3d;
+        background: #fff55e;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        width: rem(500px);
+        padding-bottom: 0;
+        margin-bottom: 0;
+        input {
+          width: rem(270px);
+        }
+      }
+      p.other {
+        width: rem(500px);
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #ff9999;
+  }
+}
+
+.signup-72, .signup-83 {
+  width: rem(750px);
+  height: rem(1480px);
+  background: transparent url(../img/72-bg.jpg) 0 0 no-repeat;
+  background-size: cover;
+  .content {
+    background: transparent;
+    padding-top: 0;
+    position: relative;
+    &:before, &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      background: transparent url(../img/63-gold.png) 0 0 no-repeat;
+      background-size: cover;
+    }
+    &:before {
+      width: rem(48px);
+      height: rem(49px);
+      top: rem(-25px);
+      right: rem(142px);
+      z-index: 3;
+    }
+    &:after {
+      width: rem(90px);
+      height: rem(91px);
+      top: rem(506px);
+      left: rem(98px);
+      z-index: 1;
+    }
+    form {
+      background: #fff;
+      width: rem(700px);
+      margin: 0 auto;
+      border-radius: rem(15px);
+      padding-top: rem(25px);
+      position: relative;
+      z-index: 2;
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        background: transparent url(../img/63-gold.png) 0 0 no-repeat;
+        background-size: cover;
+      }
+      &:before {
+        width: rem(75px);
+        height: rem(76px);
+        bottom: rem(-25px);
+        right: rem(-12px);
+        transform: rotate(12deg);
+      }
+      &:after {
+        width: rem(38px);
+        height: rem(39px);
+        bottom: rem(-20px);
+        left: rem(157px);
+        transform: rotate(16deg);
+      }
+      input {
+        width: rem(643px);
+        line-height: rem(72px);
+        border: 1px solid #aaa;
+        padding-left: rem(22px);
+        margin-bottom: rem(25px);
+      }
+      ::-webkit-input-placeholder {
+        color: #999;
+      }
+      p.special {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        width: rem(645px);
+        position: relative;
+        input {
+          width: rem(365px);
+          line-height: rem(72px);
+        }
+        button {
+          width: rem(254px);
+          line-height: rem(74px);
+          font-size: rem(28px);
+          letter-spacing: 0;
+        }
+        &:before, &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          background: transparent url(../img/63-gold.png) 0 0 no-repeat;
+          background-size: cover;
+        }
+        &:before {
+          width: rem(65px);
+          height: rem(66px);
+          left: rem(-3px);
+          top: rem(275px);
+        }
+        &:after {
+          width: rem(52px);
+          height: rem(53px);
+          left: rem(-35px);
+          top: rem(285px);
+          transform: rotate(6deg);
+        }
+      }
+      button {
+       width: rem(645px);
+       line-height: rem(104px);
+       height: rem(104px);
+       font-size: rem(38px);
+       letter-spacing: rem(2px);
+       color: #fff;
+       background: #f0354f;
+       -webkit-box-shadow: none;
+       box-shadow: none;
+      }
+      p.other {
+        width: rem(645px);
+        padding-bottom: rem(30px);
+        label {
+          color: #999;
+        }
+        a {
+          color: #999;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #999;
+    margin-top: rem(290px);
+    padding-bottom: rem(10px);
+  }
+}
+
+.signup-70 {
+  width: rem(750px);
+  height: rem(1334px);
+  background: #642a90;
+  .bar {
+    width: rem(750px);
+    height: rem(470px);
+  }
+  .content {
+    background: #642a90;
+    form {
+      button {
+        background: #fce002;
+        color: #333;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        margin-bottom: 0;
+      }
+      p.other {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+}
+
+.signup-68, .signup-69 {
+  width: rem(750px);
+  background: #656da1;
+  .bar {
+    width: rem(750px);
+    height: rem(430px);
+  }
+  .content {
+    background: #656da1;
+    padding-top: 0;
+    form {
+      width: rem(668px);
+      background: #f87c4f url(../img/68-head.jpg) rem(14px) 0 no-repeat;
+      background-size: rem(640px) rem(156px);
+      margin: rem(5px) auto;
+      padding-top: rem(180px);
+      border-radius: rem(20px);
+      box-shadow: 0 0 rem(20px) #30457e;
+      padding-bottom: 1px;
+      input {
+        width: rem(610px);
+        line-height: rem(90px);
+        padding-left: rem(100px);
+      }
+      input[name='phone'] {
+        background: #fefbea url(../img/68-phone.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(60px);
+      }
+      input[name='password'] {
+        background: #fefbea url(../img/68-password.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(47px);
+      }
+      input[name='code'] {
+        background: #fefbea url(../img/68-code.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(46px) rem(58px);
+      }
+      button {
+        width: rem(610px);
+        height: rem(107px);
+        line-height: rem(107px);
+        background: transparent url(../img/68-button.jpg) 0 0 no-repeat;
+        background-size: rem(610px) rem(107px);
+        font-size: rem(50px);
+        color: #482851;
+        letter-spacing: rem(15px);
+        -webkit-box-shadow: none;
+        box-shadow: none;          
+      }
+      p.special {
+        width: rem(610px);
+        margin-bottom: 0;
+        padding-bottom: rem(10px);
+        input {
+          width: rem(410px);
+        }
+        button {
+          background: transparent;
+          letter-spacing: 0;
+          text-decoration: underline;
+          font-size: rem(32px);
+          color: #482851;
+          line-height: rem(90px);
+          width: rem(190px);
+        }
+      }
+      p.other {
+        width: rem(605px);
+        margin-top: rem(10px);
+        a {
+          color: #482851;
+        }
+        label {
+          color: #482851;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+      .anim {
+        width: rem(292px);
+        height: rem(76px);
+        background: transparent url(../img/68-icon.jpg) 0 0 no-repeat;
+        background-size: rem(292px) rem(76px);
+        position: relative;
+        margin: 0 auto rem(24px);
+        i {
+          display: block;
+          width: rem(258px);
+          height: rem(77px);
+          background: transparent url(../img/68-anim.png) 0 0 no-repeat;
+          background-size: rem(258px) rem(77px);
+          position: absolute;
+          left: rem(15px);
+          top: rem(42px);
+          opacity: 0;
+        }
+        .i-1 {
+          animation: top 4s ease-out infinite forwards;
+          z-index: 2;
+        }
+        .i-2 {
+          top: rem(160px);
+          animation: o 4s ease-out 4s forwards;
+          z-index: 1;
+        }
+      }
+    }
+  }
+  p {
+    margin-top: rem(180px);
+  }
+}
+
+.signup-69 {
+  background: #83d9fa;
+  .content {
+    background: #83d9fa;
+    form {
+      background: #33dbf4 url(../img/69-head.jpg) rem(14px) 0 no-repeat;
+      background-size: rem(640px) rem(156px);
+      -webkit-box-shadow: 0 0 rem(20px) #448dc2;
+      box-shadow: 0 0 rem(20px) #448dc2;
+      input[name='phone'] {
+        background: #daf5ff url(../img/69-phone.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(60px);
+      }
+      input[name='password'] {
+        background: #daf5ff url(../img/69-password.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(47px);
+      }
+      input[name='code'] {
+        background: #daf5ff url(../img/69-code.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(46px) rem(58px);
+      }
+      button {
+        background: transparent url(../img/69-button.jpg) 0 0 no-repeat;
+        background-size: rem(610px) rem(107px);
+      }
+      .anim {
+        background: transparent url(../img/69-icon.png) 0 0 no-repeat;
+        background-size: rem(292px) rem(76px);
+      }
+    }
+  }
+  p {
+    color: #482851;
+  }
+}
+
+.signup-67 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(700px);
+  }
+  .content {
+    background: #fff;
+    padding-top: rem(15px);
+    form {
+      input {
+        border: rem(5px) solid #c1c1c1;
+        line-height: rem(111px);
+        height: rem(111px);
+        font-size: rem(36px);
+        width: rem(683px);
+        border-radius: rem(50px);
+        outline: none;
+        padding-left: rem(110px);
+      }
+      input[name='phone'] {
+        background: #f3f3f3 url(../img/67-phone.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(60px);
+      }
+      input[name='password'] {
+        background: #f3f3f3 url(../img/67-password.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(40px) rem(47px);
+      }
+      input[name='code'] {
+        background: #f3f3f3 url(../img/67-code.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(46px) rem(58px);
+      }
+      p.special {
+        width: rem(683px);
+        margin-bottom: 0;
+        padding-bottom: rem(10px);
+        input {
+          width: rem(450px);
+        }
+        button {
+          letter-spacing: 0;
+          background: transparent;
+          height: rem(117px);
+          line-height: rem(117px);
+          font-size: rem(36px);
+          text-decoration: underline;
+        }
+      }
+      button {
+        width: rem(690px);
+        height: rem(117px);
+        font-size: rem(50px);
+        color: #291202;
+        background: transparent url(../img/67-button.jpg) 0 0 no-repeat;
+        background-size: rem(690px) rem(117px);
+        letter-spacing: rem(30px);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.other {
+        width: rem(670px);
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+        a {
+          color: #999;
+        }
+        label {
+          color: #999;
+        }
+      }
+    }
+  }
+}
+
+.signup-75, .seventy-five {
+  width: rem(750px);
+  position: relative;
+  .bar {
+    width: rem(750px);
+    height: rem(650px);
+  }
+  .content {
+    background: #ee5e39;
+    padding-top: rem(75px);
+    form {
+      button {
+        background: #ffee00;
+        color: #d32a01;
+        -webkit-box-shadow: none;
+        box-shadow: 0 2px 2px #9a300f;
+      }
+      p.special {
+        padding-bottom: 0;
+      }
+      p.other {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  .t_news {
+    top: rem(625px);
+    left: rem(75px);
+    height: rem(65px);
+    width: rem(600px);
+    font-size: rem(26px);
+    overflow: hidden;
+    background: #5324c6;
+    border-radius: rem(30px);
+    position: absolute;
+    .news_li {
+      line-height: rem(65px);
+      text-align: center;
+      position: absolute;
+      margin-left: rem(3px);
+      top: rem(0px);
+      left: rem(0px);
+      width: rem(600px);
+      color: #fff;
+      b {
+        font-weight: bold;
+        color: #ffee00;
+      }
+    }
+  }
+  .a-rule {
+    display: block;
+    width: rem(210px);
+    font-size: rem(28px);
+    text-align: center;
+    color: #ff9c99;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0 auto rem(30px);
+  }
+  p {
+    margin-top: 0;
+    color: #ff9c99;
+  }
+}
+
+.signup-63, .signup-64 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(474px);
+  }
+  .content {
+    background: #5063e8 url(../img/63-content.jpg) 0 rem(590px) no-repeat;
+    background-size: rem(750px) rem(380px);
+    padding-top: 0;
+    position: relative;
+    &:before, &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      background: transparent url(../img/63-gold.png) 0 0 no-repeat;
+      background-size: cover;
+    }
+    &:before {
+      width: rem(48px);
+      height: rem(49px);
+      top: rem(-25px);
+      right: rem(142px);
+      z-index: 3;
+    }
+    &:after {
+      width: rem(90px);
+      height: rem(91px);
+      top: rem(506px);
+      left: rem(98px);
+      z-index: 1;
+    }
+    form {
+      background: #fff;
+      width: rem(700px);
+      margin: 0 auto;
+      border-radius: rem(20px);
+      padding: rem(30px) 0;
+      position: relative;
+      z-index: 2;
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        background: transparent url(../img/63-gold.png) 0 0 no-repeat;
+        background-size: cover;
+      }
+      &:before {
+        width: rem(75px);
+        height: rem(76px);
+        bottom: rem(-25px);
+        right: rem(-12px);
+        transform: rotate(12deg);
+      }
+      &:after {
+        width: rem(38px);
+        height: rem(39px);
+        bottom: rem(-20px);
+        left: rem(157px);
+        transform: rotate(16deg);
+      }
+      input {
+        border: 1px solid #aaa;
+        width: rem(640px);
+      }
+      button {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        width: rem(640px);
+        background: #f0354f;
+        line-height: rem(105px);
+        height: rem(105px);
+      }
+      p.special {
+        width: rem(640px);
+        margin-bottom: 0;
+        padding-bottom: 0;
+        position: relative;
+        input {
+          width: rem(365px);
+        }
+        button {
+          width: rem(250px);
+          height: rem(80px);
+          line-height: rem(80px);
+        }
+        &:before, &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          background: transparent url(../img/63-gold.png) 0 0 no-repeat;
+          background-size: cover;
+        }
+        &:before {
+          width: rem(65px);
+          height: rem(66px);
+          left: rem(-3px);
+          top: rem(275px);
+        }
+        &:after {
+          width: rem(52px);
+          height: rem(53px);
+          left: rem(-35px);
+          top: rem(285px);
+          transform: rotate(6deg);
+        }
+      }
+      p.other {
+        width: rem(640px);
+        padding-bottom: 0;
+        margin-top: rem(20px);
+        a {
+          color: #999;
+        }
+        label {
+          color: #999;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #fff;
+    margin-top: rem(315px);
+  }
+}
+
+.signup-59, .signup-62 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(850px);
+  }
+  .content {
+    padding-bottom: 1px;
+    form {
+      p.special {
+        padding-bottom: 0;
+      }
+      button {
+        background-image: linear-gradient(90deg, #7131ea, #2349ef);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;  
+        box-shadow: none;
+      }
+      p.other {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+    p {
+      color: #9d4e00;
+      margin-top: rem(30px);
+      margin-bottom: rem(120px);
+    }
+    .rule {
+      h3 {
+        font-size: rem(30px);
+        color: #9d4e00;
+        text-align: center;
+        position: relative;
+        margin-top: rem(15px);
+        margin-bottom: rem(35px);
+        &:before, &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: rem(92px);
+          height: rem(4px);
+          background: #9d4e00;
+          top: 46%;
+        }
+        &:before {
+          left: rem(205px);
+        }
+        &:after {
+          right: rem(205px);
+        }
+      }
+      p {
+        font-size: rem(24px);
+        color: #9d4e00;
+        line-height: rem(40px);
+        margin: 0;
+        padding: 0 rem(100px) 0 rem(70px);
+        text-align: left;
+      }
+      .footer {
+        margin-top: rem(30px);
+      }
+    }
+  }
+}
+
+.signup-73, .signup-71, .signup-65, .signup-60, .signup-61, .thirty-five {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(870px);
+  }
+  .content {
+    background: #2091ff;
+    padding: 0;
+    margin-top: rem(-110px);
+    position: relative;
+    z-index: 1;
+    form {
+      input {
+        width: rem(600px);
+        line-height: rem(80px);
+        padding-left: rem(115px);
+      }
+      input[name='phone'] {
+        background: #fff url(../img/58-phone.jpg) rem(45px) 45% no-repeat;
+        background-size: rem(35px) rem(55px);
+      }
+      input[name='password'] {
+        background: #fff url(../img/58-password.jpg) rem(40px) 45% no-repeat;
+        background-size: rem(45px) rem(50px);
+      }
+      input[name='code'] {
+        background: #fff url(../img/58-code.jpg) rem(40px) 45% no-repeat;
+        background-size: rem(45px) rem(50px);
+        width: rem(390px);
+        border-radius: 0;
+        border-top-left-radius: rem(15px);
+        border-bottom-left-radius: rem(15px);
+      }
+      ::-webkit-input-placeholder {
+      color: #a6a9ad;
+      }
+      :-moz-placeholder {
+        color: #a6a9ad;
+      }
+      ::-moz-placeholder {
+        color: #a6a9ad;
+      }
+      :-ms-input-placeholder {
+        color: #a6a9ad;
+      }
+      p.special {
+        width: rem(600px);
+        padding-bottom: 0;
+        margin-bottom: 0;
+        button {
+          width: rem(210px);
+          background: #1f83ff;
+          line-height: rem(80px);
+          border: none;
+          border-radius: 0;
+          border-top-right-radius: rem(15px);
+          border-bottom-right-radius: rem(15px);
+        }
+      }
+      button {
+        width: rem(490px);
+        line-height: rem(75px);
+        font-size: rem(36px);
+        background: #ffd200;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-bottom: rem(8px) solid #ff7c00;
+      }
+      p.other {
+        width: rem(490px);
+        padding-bottom: 0;
+        span {
+          color: #ffda00;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+        a {
+          color: #ffda00;
+        }
+      }
+    }
+  }
+  p {
+    color: #fff;
+  }
+}
+
+.signup-71, .signup-73 {
+  height: rem(1334px);
+  background: #2091ff;
+  .content {
+    form {
+      input {
+        display: none;
+      }
+      p.special {
+        button {
+          display: none;
+        }
+      }
+      a.button {
+        display: block;
+        margin: rem(140px) auto 0;
+        width: rem(620px);
+        line-height: rem(75px);
+        font-size: rem(36px);
+        font-weight: bold;
+        letter-spacing: rem(5px);
+        background: #ffd200;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-bottom: rem(8px) solid #ff7c00;
+        border-radius: rem(15px);
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      p.other {
+        display: none;
+      }
+    }
+  }
+  p {
+    margin-top: rem(80px);
+  }
+}
+
+.signup-57 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(530px);
+  }
+  .content {
+    background: #fff;
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      width: rem(750px);
+      height: rem(640px);
+      background: transparent url(../img/57-content.jpg) 0 0 no-repeat;
+      background-size: rem(750px) rem(640px);
+      position: absolute;
+      top: rem(630px);
+    }
+    form {
+      width: rem(640px);
+      height: rem(500px);
+      border: 1px solid #191919;
+      border-radius: rem(25px);
+      margin: 0 auto;
+      input {
+        width: rem(638px);
+        height: rem(124px);
+        line-height: rem(124px);
+        font-size: rem(30px);
+        border: none;
+        border-bottom: 1px solid #191919;
+        border-radius: 0;
+        border-top-left-radius: rem(50px);
+        border-top-right-radius: rem(50px);
+        margin-bottom: 0;
+      }
+      button {
+        width: rem(471px);
+        height: rem(94px);
+        line-height: rem(94px);
+        background: transparent url(../img/57-button.jpg) 0 0 no-repeat;
+        background-size: rem(471px) rem(94px);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        margin-top: rem(16px);
+      }
+      p.special {
+        width: rem(638px);
+        height: rem(124px);
+        border-bottom: 1px solid #191919;
+        padding: 0;
+        margin: 0;
+        input {
+          border-bottom: none;
+        }
+        button {
+          background: #fff;
+          color: #ffa800;
+          border: rem(5px) solid #ffa800;
+          width: rem(258px);
+          line-height: rem(60px);
+          margin-right: rem(20px);
+          border-radius: rem(40px);
+        }
+      }
+      p.other {
+        width: rem(471px);
+        label {
+          color: #999;
+        }
+        a {
+          color: #999;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #999;
+    position: relative;
+    margin-top: rem(740px);
+    z-index: 1;
+  }
+}
+
+.signup-56 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(540px);
+  }
+  .content {
+    background: #fff;
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      width: rem(750px);
+      height: rem(1008px);
+      background: transparent url(../img/56-content.jpg) 0 0 no-repeat;
+      background-size: rem(750px) rem(1008px);
+      position: absolute;
+      top: rem(520px);
+    }
+    form {
+      input {
+        width: rem(590px);
+        height: rem(90px);
+        border: 2px solid #4c4c4c;
+        border-radius: rem(15px);
+        font-size: rem(24px);
+        padding-left: rem(100px);
+      }
+      input[name='phone'] {
+        background: transparent url(../img/56-phone.jpg) rem(46px) 50% no-repeat;
+        background-size: rem(45px) rem(47px);
+      }
+      input[name='password'] {
+        background: transparent url(../img/56-password.jpg) rem(45px) 50% no-repeat;
+        background-size: rem(50px) rem(47px);
+      }
+      input[name='code'] {
+        background: transparent url(../img/56-code.jpg) rem(43px) 50% no-repeat;
+        background-size: rem(50px) rem(47px);
+      }
+      button {
+        width: rem(500px);
+        background: linear-gradient(to bottom, #83d7fe, #09a3eb);
+        border-radius: rem(45px);
+      }
+      p.special {
+        width: rem(590px);
+        margin-bottom: 0;
+        padding-bottom: 0;
+        input {
+          width: rem(350px);
+        }
+        button {
+          width: rem(210px);
+          border-radius: rem(25px);
+        }
+      }
+      p.other {
+        width: rem(500px);
+        label {
+          color: #999;
+        }
+        a {
+          color: #999;
+        }
+      }
+    }
+  }
+  p {
+    color: #fff;
+    position: relative;
+    margin-top: rem(760px);
+    z-index: 1;
+  }
+}
+
+.signup-55, .signup-78, .signup-79 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(520px);
+  }
+  .content {
+    background: #ca1946 url(../img/55-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(920px);
+    padding-top: 0;
+    form {
+      background: #fff;
+      width: rem(700px);
+      margin: 0 auto;
+      padding-top: 1px;
+      border-radius: rem(15px);
+      input {
+        width: rem(640px);
+        border: 1px solid #aaa;
+        line-height: rem(73px);
+        margin-top: rem(30px);
+        font-size: rem(30px);
+        padding-left: rem(30px);
+      }
+      button {
+        width: rem(640px);
+        background: #f0354f;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        width: rem(640px);
+        margin: rem(30px) auto;
+        padding-bottom: 0;
+        input {
+          margin-top: 0;
+          margin-bottom: 0;
+          width: rem(365px);
+        }
+        button {
+          width: rem(250px);
+          font-size: rem(30px);
+        }
+      }
+      p.other {
+        width: rem(640px);
+        label {
+          color: #999;
+        }
+        a {
+            color: #999;
+        }
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #fff;
+    margin-top: rem(260px);
+  }
+}
+
+.signup-50 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(478px);
+  }
+  .content {
+    background: #ff5033 url(../img/50-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(1051px);
+    padding-top: 0;
+    form {
+      background: #fff;
+      width: rem(670px);
+      height: rem(500px);
+      margin: 0 auto;
+      border-radius: rem(20px);
+      padding: rem(18px) 0;
+      input {
+        width: rem(590px);
+        border: 1px solid #9fa0a0;
+        margin: rem(18px) auto 0;
+      }
+      button {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        width: rem(590px);
+        border-radius: rem(50px);
+        background: #0062fe;
+        font-weight: bold;
+        margin-top: rem(18px);
+      }
+      p.special {
+        width: rem(590px);
+        margin-bottom: 0;
+        padding-bottom: rem(18px);
+        padding: 0;
+        background: transparent;
+        input {
+          width: rem(350px);
+        }
+        button {
+          margin-top: rem(18px);
+          border-radius: rem(15px);
+          background: #ff6f48;
+          font-weight: normal;
+        }
+      }
+      p.other {
+        margin-top: rem(18px);
+        width: rem(590px);
+        padding: 0;
+        background: transparent;
+        label {
+          color: #b5b5b6;
+          a {
+            color: #b5b5b6;
+          }
+          i {
+            background: url(../img/yes-two.png) 0 0 no-repeat;
+            background-size: rem(28px) rem(28px);
+          }
+        }
+      }
+    }
+    p {
+      margin-top: rem(570px);
+      margin-bottom: 0;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      color: #fff;
+      background: #3e3a39;
+    }
+  }
+}
+
+.signup-49 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(660px);
+  }
+  .content {
+    background: transparent url(../img/49-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(674px);
+    padding-top: rem(10px);
+    form {
+      button {
+        background: #fff55e;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #f4344b;
+      }
+      p.special {
+        background: transparent;
+        margin: 0 auto;
+        padding-bottom: 0;
+        padding-top: 0;
+      }
+      p.other {
+        background: transparent;
+        margin-top: rem(10px);
+        label {
+          i {
+            background: url(../img/yes-two.png) 0 0 no-repeat;
+            background-size: rem(28px) rem(28px);
+          }
+        }
+      }
+    }
+    a.a-rule {
+      display: block;
+      font-size: rem(28px);
+      text-align: center;
+      background: #ff8a00;
+      color: #fff;
+      padding-top: rem(10px);
+      text-decoration: underline;
+    }
+  }
+  p {
+    margin-top: 0;
+    padding-top: rem(20px);
+    background: #ff8a00;
+    color: #7e4201;
+    font-size: rem(22px);
+  }
+}
+
+.signup-48 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+  }
+  .content {
+    background: transparent url(../img/48-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) auto;
+    padding-top: rem(20px);
+    form {
+      button {
+        background: #fff100;
+        color: #6d6e71;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        margin: 0 auto;
+        padding-bottom: 0;
+      }
+      p.other {
+        margin-top: rem(10px);
+        padding-bottom: 0;
+        label {
+          i {
+            background: url(../img/yes-two.png) 0 0 no-repeat;
+            background-size: rem(28px) rem(28px);
+          }
+        }
+      }
+    }
+    p {
+      margin-top: rem(30px);
+    }
+  }
+}
+
+.signup-46, .signup-47, .signup-54 {
+  width: rem(750px);
+  position: relative;
+  border: none;
+  .bar {
+    width: rem(750px);
+    height: rem(1334px);
+  }
+  .head {
+    position: absolute;
+    top: rem(515px);
+    .left, .right {
+      display: inline-block;
+    }
+    .left {
+      font-size: rem(40px);
+      color: #ff3000;
+      margin-left: rem(70px);
+      b {
+        font-size: rem(90px);
+        font-weight: bold;
+        font-family: impact;
+      }
+    }
+    .right {
+      font-size: rem(28px);
+      color: #666;
+      margin-left: rem(65px);
+      b {
+        font-size: rem(32px);
+        color: #ff3000;
+        font-weight: bold;
+      }
+    }
+  }
+  .t_news {
+    top: rem(645px);
+    padding-left: rem(90px);
+    width: rem(750px);
+    height: rem(40px);
+    font-size: rem(22px);
+    overflow: hidden;
+    position: absolute;
+    background: transparent url(../img/46-icon-01.png) rem(140px) 50% no-repeat;
+    background-size: rem(21px) rem(19px);
+    .news_li {
+      line-height: rem(40px);
+      text-align: center;
+      position: absolute;
+      margin-left: rem(3px);
+      top: rem(0px);
+      left: rem(0px);
+      width: rem(750px);
+      color: #ccc;
+      b {
+        font-weight: bold;
+        color: #fff;
+      }
+      .li {
+        padding-left: rem(65px);
+      }
+    }
+  }
+  .content {
+    position: absolute;
+    background: transparent;
+    top: rem(685px);
+    left: rem(95px);
+    padding: 0;
+  }
+  form {
+    input {
+      width: rem(560px);
+      height: rem(80px);
+      line-height: rem(80px);
+      border-radius: rem(10px);
+      margin-bottom: rem(10px);
+    }
+    button {
+      width: rem(560px);
+      color: #ff6600;
+      background: #ffed5c;
+      font-weight: bolder;
+      -webkit-shadow: 0 5px 5px #f16000;
+      box-shadow: 0 5px 5px #f16000;
+      border-radius: rem(10px);
+    }
+    p.special {
+      width: rem(560px);
+      margin-bottom: 0;
+      padding-bottom: rem(12px);
+      input {
+        width: rem(320px);
+      }
+      button {
+        color: #666;
+        width: rem(220px);
+        line-height: rem(80px);
+      }
+    }
+    p.other {
+      width: rem(560px);
+      margin-top: rem(5px);
+      font-size: rem(22px);
+      padding-bottom: rem(15px);
+      color: #ccc;
+      label {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  .a-rule {
+    display: block;
+    font-size: rem(28px);
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+    width: rem(200px);
+    text-align: center;
+    margin: rem(10px) auto 0;
+    cursor: pointer;
+  }
+  p {
+    font-size: rem(22px);
+    color: #6bcf67;
+    margin-top: rem(20px);
+  }
+  p.company {
+    color: #fff;
+    margin-top: rem(10px);
+  }
+  p.protection-statement {
+    margin: 0 auto;
+    width: rem(550px);
+    padding-bottom: 0;
+    color: #e43c1d;
+  }
+}
+
+.signup-46 {
+  .head {
+    .left {
+      margin-left: rem(90px);
+    }
+  }
+}
+
+.signup-47, .signup-54 {
+  .head {
+    .left {
+      vertical-align: middle;
+    }
+    .right {
+      font-size: rem(36px);
+      color: #ff3000;
+      margin-left: rem(45px);
+      margin-top: rem(30px);
+      line-height: rem(60px);
+    }
+  }
+}
+
+.signup-54 {
+  p {
+    margin-top: rem(75px);
+  }
+}
+
+.signup-39 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(600px);
+  }
+  .content {
+    background: transparent url(../img/39-content.jpg) 0 0 no-repeat;
+    background-size: cover;
+    form {
+      input {
+        border-radius: rem(10px);
+      }
+      button {
+        background: #fc3c7a;
+        box-shadow: none;
+      }
+      p.special {
+        margin-bottom: 0;
+      }
+      p.other {
+        background: transparent url(../img/39-logo.png) 50% 90% no-repeat;
+        background-size: rem(320px) rem(90px);
+        padding-bottom: rem(100px);
+      }
+    }
+  }
+  p {
+    color: #fff;
+    margin-top: 0px;
+  }
+}
+
+.twenty-eight {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(453px);
+  }
+  .content {
+    width: rem(750px);
+    height: rem(2347px);
+    background: transparent url(../img/twenty-eight-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(2347px);
+    padding-top: rem(245px);
+    form {
+      input {
+        width: rem(622px);
+      }
+      p.special {
+        width: rem(622px);
+        margin-bottom: 0;
+        padding-bottom: 0;
+        input {
+          width: rem(345px);
+        }
+        button {
+          width: rem(258px);
+          font-weight: normal;
+        }
+      }
+      button {
+        background: #fde101;
+        color: #fe4e02;
+        font-weight: bold;
+        box-shadow: none;
+        width: rem(622px);
+      }
+      p.other {
+        width: rem(610px);
+        margin-top: rem(15px);
+        label {
+          i {
+            background: url(../img/yes-two.png) 0 0 no-repeat;
+            background-size: rem(28px) rem(28px);
+          }
+        }
+      }
+    }
+    p {
+      margin-top: rem(1670px);
+    }
+  }
+}
+
+.twenty-seven {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(640px);
+  }
+  .content {
+    background: #9c0abb url(../img/twenty-seven-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(694px);
+    padding-top: rem(24px);
+    form {
+      button {
+        color: #fff;
+        background: #e40533;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      p.special {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+      }
+    }
+  }
+  p {
+    color: #fff;
+  }
+}
+
+
+.signup-40, .thirty, .signup-52, .signup-53, .signup-66, .signup-74, .signup-77, .signup-87, .signup-93, .signup-100 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(650px);
+  }
+  .content {
+    background: #8fdc97 url(../img/40-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(684px);
+    form {
+      p.special {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        button {
+          font-size: rem(30px);
+        }
+      }
+      p.other {
+        label {
+          i {
+            background: url(../img/yes-two.png) 0 0 no-repeat;
+            background-size: rem(28px) rem(28px);
+          }
+        }
+      }
+      button {
+        font-size: rem(34px);
+        color: #73d89d;
+        background: #fff55e;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+    p {
+      color: #fff;
+      margin-top: rem(90px);
+    }
+    p.company {
+      margin-top: rem(10px);
+    }
+    p.protection-statement {
+      margin: rem(90px) auto 0;
+      width: rem(550px);
+      padding-bottom: 0;
+      color: #e43c1d;
+    }
+  }
+}
+
+.signup-100 {
+  .content {
+    height: rem(684px);
+    form {
+      p.other {
+        padding-bottom: rem(10px);
+      }
+    }
+    p {
+      margin-top: 0;
+    }
+  }
+}
+
+.signup-77 {
+  .content {
+    padding-top: 0;
+    background: #53d2a5 url(../img/40-content.jpg) 0 rem(340px) no-repeat;
+    background-size: rem(750px) rem(684px);
+    p {
+      background: #8fdc98;
+    }
+    p.other, p.special {
+      background: transparent;
+    }
+  }
+  video {
+    display: block;
+    width: rem(630px);
+    margin: 0 auto rem(30px);
+  }
+}
+
+.signup-52, .signup-66 {
+  .content {
+    background: #8fdc97 url(../img/52-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(684px);
+    position: relative;
+    z-index: 1;
+    form {
+      margin-top: rem(-185px);
+    }
+    p {
+      margin-top: rem(320px);
+    }
+  }
+}
+
+.signup-53 {
+  .bar {
+    height: rem(780px);
+  }
+  .content {
+    padding-top: rem(30px);
+    background: #53d2a5 url(../img/53-content.jpg) 0 rem(105px) no-repeat;
+    background-size: contain;
+  }
+  p {
+    padding-bottom: rem(10px);
+  }
+  p.icp {
+    background: #86db9a;
+  }
+}
+
+.twenty-six {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(582px);
+  }
+  .content {
+    background:#dc0000;
+  }
+  form {
+    p.special {
+      margin: 0 auto;
+    }
+    button {
+      background: #ffd72a;
+      color: #330000;
+    }
+    p.other {
+      label {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #de8d01;
+    margin-top: 0;
+  }
+  p.prize {
+    font-size: rem(34px);
+  }
+  p.tips, p.rule {
+    text-align: center;
+    margin-top: 0;
+    padding: 0 rem(80px) rem(50px);
+  }
+  p.tips {
+    font-size: rem(26px);
+    color: #ffd72a;
+  }
+  p.rule {
+    font-size: rem(20px);
+    margin-top: rem(15px);
+    color: #fff;
+    text-align: left;
+  }
+  h4.rule {
+    font-size: rem(26px);
+    position: relative;
+    text-align: center;
+    color: #fff;
+    &:before, &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 45%;
+      width: rem(220px);
+      border-top: rem(3px) solid #fff;
+    }
+    &:before {
+      left: rem(80px);
+    }
+    &:after {
+      right: rem(80px);
+    }
+  }
+}
+
+.signup-36 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(700px);
+  }
+  .content {
+    background: #ffcf03 url(../img/36-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(634px);
+  }
+  form {
+    button {
+      background: #e93938;
+    }
+    p.special {
+      margin: 0 auto;
+    }
+    p.other {
+      label {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+}
+
+.signup-35 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(675px);
+  }
+  .content {
+    background: #f8ebdd url(../img/35-content.jpg) 0 0 repeat-y;
+    background-size: rem(750px) rem(150px);
+  }
+  form {
+    input {
+      border: rem(5px) solid #f2395b;
+      border-radius: rem(40px);
+    }
+    button {
+      background: #f9ce0e;
+      color: #333;
+    }
+    p.other {
+      label {
+        color: #333;
+        a {
+          color: #333;
+        }
+      }
+    }
+  }
+  p {
+    color: #333;
+  }
+}
+
+.signup-33, .signup-34 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(690px);
+  }
+  .content {
+    background: #67a507;
+    padding-top: rem(20px);
+  }
+  form {
+    input {
+      width: rem(610px);
+    }
+    button {
+      background: #ff4646;
+      width: rem(610px);
+      box-shadow: 0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+      border-radius: rem(25px);
+      color: #ffe500;
+    }
+    p.special {
+      width: rem(610px);
+      margin: 0 auto;
+      input {
+        width: rem(380px);
+      }
+      button {
+        width: rem(190px);
+        height: rem(69px);
+        line-height: rem(69px);
+        border-radius: rem(40px);
+        margin-top: rem(8px);
+      }
+    }
+    p.other {
+      width: rem(610px);
+      label {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #fff;
+    margin-top: rem(40px);
+  }
+  p.prize {
+    font-size: rem(34px);
+  }
+  p.tips, p.rule {
+    text-align: center;
+    margin-top: 0;
+    padding: 0 rem(60px) rem(30px);
+  }
+  p.tips {
+    font-size: rem(28px);
+    color: #c3ff47;
+  }
+  p.rule {
+    font-size: rem(24px);
+    color: #446301;
+    margin-top: rem(15px);
+    text-align: left;
+  }
+  h4.rule {
+    font-size: rem(24px);
+    color: #446301;
+    position: relative;
+    text-align: center;
+    &:before, &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 45%;
+      width: rem(220px);
+      border-top: rem(3px) solid #517e04;
+    }
+    &:before {
+      left: rem(80px);
+    }
+    &:after {
+      right: rem(80px);
+    }
+  }
+}
+
+
+.signup-32 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(790px);
+  }
+  .content {
+    background: #67a507;
+  }
+  form {
+    button {
+      background: #ff4646;
+      box-shadow: 0 0 0 rem(10px) #5c9500, 0 0 0 rem(13px) #93d521;
+      border-radius: rem(25px);
+      color: #ffe500;
+    }
+    p.special {
+      margin: 0 auto;
+      button {
+        width: rem(190px);
+        height: rem(69px);
+        line-height: rem(69px);
+        border-radius: rem(40px);
+        margin-top: rem(8px);
+      }
+    }
+    p.other {
+      label {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    color: #fff;
+  }
+}
+
+.signup-31 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(775px);
+  }
+  .content {
+    background: #0a0738 url(../img/31-content.jpg) 0 0 repeat-y;
+    background-size: rem(750px) rem(540px);
+  }
+  form {
+    input {
+      border: 1px solid #07859e;
+      border-radius: rem(10px);
+      background: rgba(255, 255, 255, 0.15);
+      color: #0ac9d7;
+    }
+    ::-webkit-input-placeholder {
+      color: #0ac9d7;
+    }
+    :-moz-placeholder {
+      color: #0ac9d7;
+    }
+    ::-moz-placeholder {
+      color: #0ac9d7;
+    }
+    :-ms-input-placeholder {
+      color: #0ac9d7;
+    }
+    p.special {
+      button {
+        background: -moz-linear-gradient(45deg, #46089a 0%, #c943e5 100%);
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #46089a), color-stop(100%, #c943e5));
+        background: -webkit-linear-gradient(45deg, #46089a 0%, #c943e5 100%);
+        background: -o-linear-gradient(-45deg, #46089a 0%, #c943e5 100%);
+        background: linear-gradient(-45deg, #46089a 0%, #c943e5 100%);
+        border-radius: rem(15px);
+        &:before {
+          content: none;
+        }
+      }
+    }
+    button {
+      background: -moz-linear-gradient(45deg, #01fcff 0%, #fd02f3 100%);
+      background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #01fcff), color-stop(100%, #fd02f3));
+      background: -webkit-linear-gradient(45deg, #01fcff 0%, #fd02f3 100%);
+      background: -o-linear-gradient(45deg, #01fcff 0%, #fd02f3 100%);
+      background: linear-gradient(45deg, #01fcff 0%, #fd02f3 100%);
+      border-radius: rem(40px);
+      position: relative;
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.15);
+        width: rem(750px);
+        height: rem(110px);
+        left: rem(-120px);
+        top: rem(-14px);
+      }
+    }
+  }
+  p {
+    color: #fff;
+  }
+}
+
+.signup-30 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(630px);
+  }
+  .content {
+    background: #fb3c4c url(../img/30-content.jpg) 0 0 repeat-y;
+    background-size: rem(750px) rem(450px);
+    >p {
+      position: relative;
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: rem(114px);
+        height: rem(232px);
+        background: transparent url(../img/30-icon.png) 0 0 no-repeat;
+        background-size: rem(114px) rem(232px);
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+  form {
+    position: relative;
+    input {
+      border: rem(5px) solid #f22c3c;
+      border-radius: rem(40px);
+    }
+    button {
+      background: #fff;
+      border: rem(5px) solid #f22c3c;
+      border-radius: rem(40px);
+      color: #eb1115;
+    }
+    >button {
+      font-size: rem(36px);
+      background: #fff url(../img/30-button-02.png) rem(135px) center no-repeat;
+      background-size: rem(33px) rem(45px);
+    }
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: rem(128px);
+      height: rem(125px);
+      background: transparent url(../img/30-button-01.png) 0 0 no-repeat;
+      background-size: rem(128px) rem(125px);
+      left: rem(60px);
+      top: rem(-45px);
+    }
+  }
+}
+
+.signup-29 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(760px);
+  }
+  .content {
+    background: #252b4f url(../img/29-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(300px);
+  }
+  form {
+    position: relative;
+    button {
+      background: #fb3c4c;
+    }
+    >button {
+      background: #fb3c4c url(../img/29-button.png) 0 0 no-repeat;
+      background-size: rem(510px) rem(85px);
+    }
+    &:before {
+      content: '';
+      display: block;
+      background: transparent url(../img/29-icon.png) 0 0 no-repeat;
+      background-size: rem(5px) rem(40px);
+      position: absolute;
+      width: rem(5px);
+      height: rem(40px);
+      top: rem(72px);
+      left: rem(160px);
+    }
+    &:after {
+      content: '';
+      display: block;
+      background: transparent url(../img/29-icon.png) 0 0 no-repeat;
+      background-size: rem(5px) rem(40px);
+      position: absolute;
+      width: rem(5px);
+      height: rem(40px);
+      top: rem(72px);
+      right: rem(160px);
+    }
+    p.special {
+      position: relative;
+      &:before {
+        content: '';
+        display: block;
+        background: transparent url(../img/29-icon.png) 0 0 no-repeat;
+        background-size: rem(5px) rem(40px);
+        position: absolute;
+        width: rem(5px);
+        height: rem(40px);
+        top: rem(-30px);
+        left: rem(40px);
+      }
+    }
+  }
+}
+
+.signup-28 {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(650px);
+  }
+  .content {
+    background: #aa171f;
+  }
+  form {
+    button {
+      background: #017c68;
+    }
+  }
+}
+
+.signup-8,
+.signup-10,
+.signup-13,
+.signup-15,
+.signup-19,
+.signup-41,
+.signup-42,
+.eight,
+.ten,
+.thirteen,
+.fiveteen,
+.nineteen {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(700px);
+  }
+  .content {
+    background: url(../img/eight-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(634px);
+  }
+  form {
+    button {
+      background: #002a68;
+    }
+  }
+}
+
+.signup-19,
+.nineteen {
+  p.cash-bonus {
+    font-size: rem(36.54px);
+    font-weight: bold;
+    color: #594800;
+    span {
+      color: #cf0b13;
+      font-weight: bold;
+    }
+  }
+  form {
+    button {
+      background: #e93938;
+    }
+  }
+}
+
+.signup-7,
+.signup-12,
+.signup-16,
+.signup-17,
+.signup-18,
+.signup-20,
+.seven,
+.twelve,
+.sixteen,
+.seventeen,
+.eighteen,
+.twenty {
+  width: rem(750px);
+  border: none;
+  .bar {
+    width: rem(750px);
+    height: rem(670px);
+  }
+  .content {
+    background: url(../img/seven-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(664px);
+  }
+  form {
+    button {
+      background: #ffd72b;
+      color: #d32a01;
+    }
+    p.other {
+      padding: 0;
+    }
+    p.other label i {
+      background: url(../img/yes.png) 0 0 no-repeat;
+      background-size: rem(28px) rem(28px);
+    }
+    p.other-two {
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      padding-left: rem(163px);
+      font-size: rem(22px);
+    }
+  }
+}
+
+.signup-5,
+.signup-4,
+.signup-6,
+.five,
+.four,
+.six {
+  width: rem(750px);
+  border: none;
+  .bar {
+    width: rem(750px);
+    height: rem(670px);
+  }
+  .content {
+    background: #dc0000;
+  }
+  form {
+    button {
+      background: #ffd72b;
+      color: #330000;
+    }
+    p.other {
+      padding: 0;
+    }
+    p.other label i {
+      background: url(../img/five-yes.png) 0 0 no-repeat;
+      background-size: rem(28px) rem(28px);
+    }
+    p.other-two {
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      padding-left: rem(163px);
+      font-size: rem(22px);
+    }
+  }
+}
+
+.signup-3,
+.signup-9,
+.signup-11,
+.signup-14,
+.signup-27,
+.three,
+.nine,
+.eleven,
+.fourteen {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(700px);
+  }
+  .content {
+    background: #fef636;
+  }
+  form {
+    button {
+      background: #e93938;
+    }
+    p.other {
+      label {
+        color: #6c3120;
+      }
+      a {
+        color: #6c3120;
+      }
+    }
+  }
+}
+
+.signup-2,
+.signup-1,
+.two,
+.one {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(670px);
+  }
+  .content {
+    background: url(../img/one-content.jpg) 0 0 no-repeat;
+    background-size: rem(750px) rem(664px);
+  }
+  form {
+    button {
+      background: #002a68;
+    }
+  }
+}
+
+.signup-21,
+.twenty-one {
+  width: rem(750px);
+  .bar {
+    width: rem(750px);
+    height: rem(365px);
+  }
+  .content {
+    background: #fff;
+  }
+  form {
+    input {
+      background-color: #f2f2f2;
+      border: 1px solid #bbbbbb;
+    }
+    button {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+    p.other {
+      label,
+      a {
+        color: #333;
+      }
+    }
+  }
+  p {
+    color: #333;
+  }
+}
+
+.signup-38, .signup-37, .signup-24, .signup-58, .thirty-four, .twenty-nine, .signup-43, .signup-44, .thirty-two, .thirty-three, .signup-51,
+.twenty-four {
+  width: rem(750px);
+  position: relative;
+  .bar {
+    width: rem(750px);
+    height: rem(850px);
+  }
+  .a-rule {
+    display: block;
+    position: absolute;
+    background: transparent;
+    top: rem(430px);
+    right: rem(60px);
+    color: #fff;
+    font-size: rem(28px);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .content {
+    background: #642a90;
+  }
+  form {
+    button {
+      background-color: #fce002;
+      color: #333;
+    }
+    p.special {
+      margin: 0 auto;
+      button {
+        color: #333;
+      }
+    }
+    p.other {
+      label {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  .code {
+    display: block;
+    width: rem(560px);
+    height: rem(328px);
+    margin: 0 auto;
+  }
+  a.ok {
+    display: block;
+    color: #333;
+    font-size: rem(36px);
+    width: rem(550px);
+    line-height: rem(90px);
+    margin: rem(50px) auto 0;
+    background: #fce002;
+    border-radius: rem(20px);
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: rem(10px);
+  }
+}
+
+.signup-44 {
+  .bar {
+    width: rem(750px);
+    height: rem(515px);
+  }
+}
+
+.thirty-two, .thirty-three {
+  .bar {
+    width: rem(750px);
+    height: rem(540px);
+  }
+}
+
+.signup-23,
+.twenty-three,
+.signup-26,
+.thirty-one {
+  width: rem(710px);
+  .bar {
+    width: rem(710px);
+    height: rem(640px);
+  }
+  .content {
+    margin: 0 rem(17px) 0 rem(18px);
+  }
+  form {
+    button.bonus {
+      margin-top: rem(-40px);
+    }
+  }
+}
+
+.signup-25,
+.twenty-five {
+  width: rem(750px);
+  position: relative;
+  .bar {
+    width: rem(750px);
+    height: rem(1336px);
+    position: absolute;
+    z-index: -1;
+  }
+  .content {
+    background: none;
+    margin-top: rem(650px);
+  }
+  form {
+    button {
+      background-color: #fce002;
+      color: #333;
+      box-shadow: none;
+    }
+    p.special {
+      margin: 0 auto;
+      button {
+        color: #fff;
+      }
+    }
+    p.other {
+      label {
+        i {
+          background: url(../img/yes-two.png) 0 0 no-repeat;
+          background-size: rem(28px) rem(28px);
+        }
+      }
+    }
+  }
+  p {
+    margin-top: rem(20px);
+  }
+}
+
+
+.landing-21,
+.landing-one {
+  width: rem(750px);
+  margin: 0 auto;
+  text-align: center;
+  .bar {
+    width: rem(750px);
+    height: rem(444px);
+  }
+  .content {
+    .header {
+      border-bottom: 1px solid #e6e6e6;
+      ul {
+        text-align: center;
+        font-size: rem(0px);
+        height: rem(145px);
+        li {
+          display: inline-block;
+          box-sizing: border-box;
+          width: 33%;
+          font-size: rem(26px);
+          color: #333;
+          margin-top: rem(30px);
+          position: relative;
+          b {
+            margin-right: rem(10px);
+            font-size: rem(42px);
+          }
+          span {
+            position: absolute;
+            color: #999;
+            top: rem(50px);
+            left: rem(70px);
+          }
+        }
+      }
+    }
+    .choose {
+      text-align: center;
+      h3 {
+        font-size: rem(32px);
+        color: #999;
+        margin-top: rem(45px);
+      }
+      .loan-money,
+      .loan-day {
+        margin-top: rem(25px);
+        button {
+          display: inline-block;
+          width: rem(230px);
+          height: rem(75px);
+          margin: 0 rem(65px) 0 rem(65px);
+          font-size: rem(50px);
+          background-color: #fff;
+          border: rem(5px) solid #4bb6fa;
+          border-radius: rem(10px);
+          color: #4bb6fa;
+          -webkit-transition: all 0.25s linear;
+          -moz-transition: all 0.25s linear;
+          -o-transition: all 0.25s linear;
+          transition: all 0.25s linear;
+        }
+        button.active {
+          color: #fff;
+          background-color: #4bb6fa;
+        }
+      }
+    }
+    button {
+      width: rem(600px);
+      height: rem(80px);
+      margin-top: rem(90px);
+      margin-bottom: rem(30px);
+      font-size: rem(36px);
+      color: #fff;
+      background-color: #4bb6fa;
+      border-radius: rem(10px);
+      border: none;
+    }
+    p {
+      text-align: center;
+      color: #333;
+      font-size: rem(22px);
+      margin-top: rem(75px);
+      padding-bottom: rem(30px);
+    }
+  }
+}
+
+.landing-2,
+.landing-two {
+  width: rem(750px);
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  img {
+    width: rem(750px);
+    height: rem(1250px);
+  }
+  p {
+    color: #333;
+    font-size: rem(22px);
+    position: absolute;
+    bottom: rem(30px);
+    left: rem(250px);
+  }
+}
+
+.landing-three {
+  width: rem(750px);
+  margin: 0 auto;
+  img {
+    width: rem(750px);
+    height: rem(1325px);
+  }
+}
+
+.popup-46 {
+  .dialog {
+    height: auto;
+    border-radius: rem(20px);
+    margin: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    i {
+      position: absolute;
+      display: block;
+      top: rem(-73px);
+      left: 50%;
+      margin-left: rem(-59px);
+      width: rem(118px);
+      height: rem(146px);
+      background: transparent url(../img/46-icon-02.png) 0 0 no-repeat;
+      background-size: rem(118px) rem(146px);
+    }
+    h1 {
+      background: #96e393;
+      font-size: rem(28px);
+      line-height: 1.5em;
+      padding-top: rem(70px);
+      color: #fff;
+      border-top-left-radius: rem(20px);
+      border-top-right-radius: rem(20px);
+    }
+    h2 {
+      font-size: rem(24px);
+      line-height: 2em;
+      margin: rem(20px) 0 0;
+      height: auto;
+      b {
+        color: #ff3000;
+      }
+    }
+    p {
+      border: none;
+      margin: rem(20px) 0 rem(10px);
+      a {
+        display: block;
+        color: #fff;
+        font-size: rem(32px);
+        width: rem(400px);
+        height: rem(60px);
+        line-height: rem(60px);
+        margin: 0 auto;
+        background: #96e393;
+        border-radius: rem(20px);
+      }
+    }
+  }
+}
+
+.popup-47 {
+  .dialog{
+    i {
+      width: rem(155px);
+      height: rem(144px);
+      top: rem(-72px);
+      margin-left: rem(-77.5px);
+      background: transparent url(../img/47-icon-01.png) 0 0 no-repeat;
+      background-size: rem(155px) rem(144px);
+    }
+    h1 {
+      height: rem(88px);
+    }
+    h2 {
+      b {
+        font-weight: bold;
+      }
+      b.head {
+        font-size: rem(28px);
+      }
+    }
+  }
+}
+
+.rule {
+  .dialog {
+    h1 {
+      height: rem(135px);
+      background: #96e393 url(../img/46-icon-03.png) rem(100px) 50% no-repeat;
+      background-size: rem(327px) rem(70px);
+    }
+    span.close {
+      top: rem(10px);
+      right: rem(10px);
+      &:before, &:after {
+        background: #333;
+      }
+    }
+  }
+  .rule-content {
+    height: rem(430px);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    padding: 0 rem(25px);
+    p {
+      height: auto;
+      font-size: rem(24px);
+      color: #333;
+      line-height: rem(50px);
+      text-align: left;
+      b {
+        font-weight: bold;
+        color: #ff8003;
+      }
+    }
+  }
+}
+
+.signup-22-rule, .signup-88-rule {
+  .dialog {
+    height: rem(600px);
+    margin-top: rem(-300px);
+    h3 {
+      height: rem(135px);
+      background: #5976f8 url(../img/22-icon.png) rem(100px) 50% no-repeat;
+      background-size: rem(330px) rem(75px);
+    }
+    span.close {
+      top: rem(10px);
+      right: rem(10px);
+      &:before, &:after {
+        height: rem(4px);
+        background: #2747f5;
+      }
+    }
+    .rule-content {
+      p {
+        border-top: none;
+      }
+    }
+  }
+}
+
+.twenty-two-rule {
+  .dialog {
+    width: rem(530px);
+    height: auto;
+    margin: 0;
+    line-height: 1.5em;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: rem(20px);
+    h3 {
+      font-size: rem(30px);
+      font-weight: bold;
+      color: #333;
+      height: rem(90px);
+      line-height: rem(90px);
+    }
+    p {
+      border: none;
+    }
+    a {
+      display: block;
+      border-top: 1px solid #bbb;
+      line-height: rem(80px);
+      font-size: rem(28px);
+      color: #4ab6fa;
+      cursor: pointer
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .rule-content {
+    height: rem(360px);
+    border-top: 1px solid #bbb;
+    padding: rem(30px) rem(30px);
+  }
+}
+
+.signup-75-rule {
+  .dialog {
+    background: #dd4b6a;
+    width: rem(615px);
+    padding: rem(40px);
+    height: auto;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    top: 68%;
+    left: 82%;
+    &:before {
+      content: '';
+      display: block;
+      width: rem(615px);
+      height: rem(331px);
+      position: absolute;
+      background: transparent url(../img/22-rule.png) 0 0 no-repeat;
+      background-size: rem(615px) rem(331px);
+      top: rem(-330px);
+      left: 0;
+    }
+    span.close {
+      width: rem(53px);
+      height: rem(53px);
+      border: rem(5px) solid #fff;
+      border-radius: 50%;
+      top: rem(-330px);
+      right: rem(-15px);
+      &:before, &:after {
+        height: rem(5px);
+        background: #fff;
+        width: rem(40px);
+        left: rem(2px);
+        margin-top: 0;
+      }
+    }
+    .rule-content {
+      height: rem(500px);
+      overflow-y: scroll;
+    }
+    h3 {
+      font-size: rem(32px);
+      color: #fff;
+      text-align: center;
+      line-height: rem(80px);
+      font-weight: bold;
+      height: auto;
+    }
+    p {
+      font-size: rem(26px);
+      color: #fff;
+      line-height: rem(42px);
+      border: none;
+    }
+  }
+}
+
+.popup-spin {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+  }
+   .content {
+    .spin {
+      position: fixed;
+      left: 64%;
+      top: 58%;
+      color: #fff;
+      float: left;
+      width: rem(220px);
+      height: rem(220px);
+      margin-left: rem(-110px);
+      margin-top: rem(-130px);
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-transform: translate3d(0, 0, 0);
+      z-index: 15;
+    }
+  }
+}
+
+.popup-flow {
+  .dialog {
+    background: #fff;
+    width: rem(580px);
+    height: auto;
+    padding: rem(60px) 0 rem(40px);
+    margin: 0;
+    transform: translate(-50%, -50%);
+    border-radius: rem(15px);
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: rem(512px);
+      height: rem(182px);
+      background: transparent url(../img/popup-flow.png) 0 0 no-repeat;
+      background-size: rem(512px) rem(182px);
+      top: rem(-182px);
+      left: 50%;
+      transform: translate(-50%);
+    }
+    p {
+      border: none;
+      font-size: rem(28px);
+      line-height: rem(42px);
+      color: #333;
+      height: auto;
+    }
+    .button {
+      margin: rem(58px) 0 0;
+      text-align: center;
+      .flow-wait, .flow-other, .flow-download {
+        display: inline-block;
+        width: rem(230px);
+        line-height: rem(85px);
+        border-radius: rem(20px);
+        text-align: center;
+        font-size: rem(28px);
+        cursor: pointer;
+      }
+      .flow-wait, .flow-download {
+        color: #656565;
+        background: #dcdbdb;
+      }
+      .flow-other {
+        color: #fff;
+        background: #ee5e39;
+        margin-left: rem(10px);
+      }
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}

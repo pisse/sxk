@@ -1,0 +1,36 @@
+<ion-pane class="my orders">
+    <ion-content class="has-banner has-footer">
+        <ion-refresher pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class='credit-limit'>
+            <div class='amount'>
+                <div class='indicator' data-radial-indicator="indicatorOption" data-radial-indicator-id='amount'></div>
+                <div class='amount-text'>
+                    总额度(元)
+                    <h6 ng-bind='credit_info.card_amount / 100'></h6>
+                </div>
+            </div>
+            <p class='restAmount'>剩余可借：<span ng-bind='credit_info.card_unused_amount / 100'></span>元</p>
+        </div>
+        <ion-list>
+            <a class="item item-link item-icon-left" nav-direction='forward' ng-href="#/my/orders">
+                <i class="icons icon-orders"></i>
+                借款记录
+            </a>
+            <a class="item item-link item-icon-left" nav-direction='forward' ng-href="#/my/certification">
+                <i class="icons icon-information"></i>
+                完善资料
+            </a>
+            <a class="item item-link item-icon-left" ng-click='verify($event)' nav-direction='forward' ng-href="{{card_url}}">
+                <i class="icons icon-card"></i>
+                收款银行卡
+                <span class='item-note' ng-bind='card_info.format'></span>
+            </a>
+            <a class="item item-link item-icon-left" nav-direction='forward' ng-href="{{url}}">
+                <i class="icons icon-help"></i>
+                帮助中心
+            </a>
+        </ion-list>
+        <div class='logout' ng-click='logout()'>退出登录</div>
+    </ion-content>
+</ion-pane>

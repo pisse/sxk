@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>拒就赔活动页</title>
+        <script src="js/dest/flexible.js"></script>
+        <script src="js/dest/jquery.js"></script>
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="activity-body" >
+            <div class="activity-img">
+                <span>活动时间: 11月15日-12月15日</span>
+                <div class="rules">
+                    <h2>拒就赔服务细则</h2>
+                    <div class="content">
+                        <p>1. 活动时间：2016年11月15日至2016年12月15日</p>
+                        <p>2. 赔付条件：
+                            <br/> 活动期间，首次在现金白卡平台申请借款的新用户，按照借款流程提交了借款资料后，经系统判断所填资料属实但由于风控审核未能予以通过，则满足赔付条件；
+                        </p>
+                        <p>3. 赔付领取步骤：
+                            <br/> 第一步：满足赔付条件的订单，可在首页审核结果或“借款记录-借款详情”中找到“拒就赔红包领取”入口；
+                            <br/> 第二步：点击“拒就赔红包领取”进入活动页，并将活动页分享至微信朋友圈，分享成功后，系统将自动发放一张随机现金红包券（最高金额50元）至您的账户中，可至“我的优惠”中查看。系统将在24小时内自动打入您所绑定的银行卡内。
+                        </p>
+                        <p>注意：
+                            <br/> a. 红包只能在活动期内的相关页面提现领取；
+                            <br/> b. 现金红包有效期为发放之日起30天内，过期失效；
+                            <br/> c. 您的订单是否享受拒就赔服务请以页面显示信息为主；</p>
+                        <p>4. 活动期间每天限制10000个红包领取资格，按照申请时间排序前10000名符合赔付条件的用户有权获得红包领取资格，先到先得，发完即止。如果截止当日23:59:59红包领取资格未发放完，则当日剩余红包领取资格自动过期，不予发放；</p>
+                        <p>5. 针对被风控审核拒绝的用户，如为恶意胡乱填写审核资料或采用其他非正常手段申请借款的用户被拒绝审核，平台有权利取消红包领取资格；</p>
+                        <p>6. 活动解释权归现金白卡平台所有，客服电话：021-80260893。</p>
+                    </div>
+                </div>
+                <div class="interactive">
+                        <div class="t_news">
+                            <ul class="news_li">
+                                <li>用户 <span>111****1111</span> 获得<span>拒就赔安慰红包 5.55元</span></li>
+                                <li>用户 <span>222****2222</span> 获得<span>拒就赔安慰红包 5.55元</span></li>
+                                <li>用户 <span>333****3333</span> 获得<span>拒就赔安慰红包 5.55元</span></li>
+                                <li>用户 <span>444****4444</span> 获得<span>拒就赔安慰红包 5.55元</span></li>
+                                <li>用户 <span>555****5555</span> 获得<span>拒就赔安慰红包 5.55元</span></li>
+                            </ul>
+                        </div>
+                    <h2>现金借贷，我们是认真的!</h2>
+                    <p class="p1">申请借款成功通过审核放款20分钟到账 如审核被拒绝, 还将获得<span>现金红包</span>赔偿</p>
+                    <h1>独创赔付机制  被拒可得现金</h1>
+                    <p class="p2">活动期间，首次在现金白卡平台申请借款的新用户，如因风控审核未能给予通过，将获得现金红包赔偿。活动期间每天发放10000个现金红包，发完即止先到先得。</p>
+                    <img class="img1" src="img/icon-01.jpg" alt=""/>
+                    <p class="p3">
+                        <span class="span1">注册<br/>现金白卡</span>
+                        <span class="span2">选择借款<br/>额度期限</span>
+                        <span class="span3">填写资料<br/>提交审核</span>
+                    </p>
+                    <img class="img2" src="img/icon-02.jpg" alt=""/>
+                    <a href="">点此查看赔付细则及红包领取步骤</a>
+                    <!--<button>点此申请借款</button>-->
+                </div>
+            </div>
+        </div>
+         <script>
+            $(function(){
+                var $ul = $('.news_li');
+                var $li = $('.news_li li').eq(0);
+                var h = $li.height();
+                var l = $('li', $ul).length;
+                $ul.append($('li', $ul).eq(0).clone());
+                var i = 0;
+                setInterval(function(){
+                    i++;
+                    if(i > l ){
+                       i = 1;  
+                       $ul.css('top',0);
+                    }
+                    $ul.animate({top: -h*i})
+                }, 3000)
+            })
+        </script>
+    </body>
+
+</html>

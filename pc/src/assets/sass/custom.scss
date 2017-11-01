@@ -1,0 +1,37 @@
+@import '~swiper/dist/idangerous.swiper.css';
+@import 'components/header';
+@import 'components/menu';
+@import 'components/sidebar';
+@import 'components/panel';
+@import 'components/footer';
+@import 'components/pagination';
+@import 'components/modal';
+
+@import 'containers/home';
+@import 'containers/product';
+@import 'containers/about';
+@import 'containers/contact';
+@import 'containers/register';
+
+@import 'containers/reward';
+
+body{
+    padding-top: 75px;
+}
+
+.clearfix{
+    @include clearfix();
+}
+
+.container{
+    width: 1200px;
+    min-width: 1200px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.instantclick-bar{
+    height: 1px !important;
+    background-color: $brand-primary !important;
+}

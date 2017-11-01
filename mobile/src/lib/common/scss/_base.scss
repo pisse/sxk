@@ -1,0 +1,127 @@
+@import "reset";
+$browser-default-font-size: 75px !default;
+@function rem($px) {
+  @return $px / $browser-default-font-size * 1rem;
+}
+
+@function px2($px) {
+  @return $px/2;
+}
+
+* {
+  font-family: Helvetica;
+}
+
+[nav-view-transition="ios"][nav-view-direction="forward"], [nav-view-transition="ios"][nav-view-direction="back"] {
+  background-color: transparent;
+}
+
+//button style
+.button.button-credit {
+  border-color: transparent;
+  background-color: #4ab6fa;
+  color: #fff;
+}
+
+.button.button-credit-gray {
+  border-color: transparent;
+  background-color: #999;
+  color: #fff;
+}
+
+.button.button-credit.button-outline {
+  border-color: #4ab6fa;
+  background: transparent;
+  color: #4ab6fa;
+}
+
+.button.button-credit.disabled, .button-credit.button[disabled] {
+  cursor: default !important;
+  pointer-events: none;
+  background: #999;
+  border-color: #999;
+  color: #fff;
+}
+
+.popup-container.active .popup{
+  border-radius:rem(10px);
+  color:#333;
+  font-size: rem(26px);
+  width: rem(600px);
+}
+
+.popup-container .popup-body{
+  text-align: center;
+}
+
+.kd-pane {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@keyframes slidein {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.download-popup{
+  z-index:2;
+  display: block;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width: 100%;
+  height: rem(148px);
+  background-color:rgba(0,0,0,.8);
+  a.close {
+    display: block;
+    width: rem(50px);
+    height: rem(50px);
+    position:absolute;
+    right:rem(20px);
+    top:rem(20px);
+    &:after,&:before{
+      content: '';
+      display: block;
+      width: rem(50px);
+      height: rem(4px);
+      background-color: #fff;
+      position:absolute;
+      top:50%;
+      margin-top: rem(-2px);
+    }
+    &:before{
+      transform:rotate(45deg);
+    }
+    &:after{
+      transform:rotate(-45deg);
+    }
+  }
+  img {
+    width: rem(278px);
+    height: rem(78px);
+    display: inline-block;
+    margin-top: rem(35px);
+    margin-left: rem(40px);
+  }
+  div{
+    position:absolute;
+    right:rem(100px);
+    display: inline-block;
+    line-height: rem(148px);
+    color:#ffe930;
+    font-size: rem(26px);
+    text-align: center;
+    p{
+      background-color:#f8760d;
+      border-radius:rem(10px);
+      padding:rem(10px) rem(30px);
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1.2em;
+    }
+  }
+}

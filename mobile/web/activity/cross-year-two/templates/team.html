@@ -1,0 +1,130 @@
+<kd-pane>
+  <div class="cross-year-team">
+    <header>
+      <h1 class="logo"></h1>
+      <h2>现金卡 · 跨年盛典</h2>
+      <h3>活动时间： <span>2016.12.28~2017.01.05</span></h3>
+    </header>
+    <div class="content">
+      <div class="team">
+        <h3 class="title">{{jigData.name}}的拼团队</h3>
+        <div class="differ">
+          <div class="wx-picture">
+            <img src="img/cross-year-15.png" ng-hide="imageFlag"/>
+            <img src="{{jigData.img}}" ng-show="imageFlag"/>
+          </div>
+          <p>
+            <span>还差<b>{{sumJigsaw}}</b>张拼图<br>有机会赢取8888元现金！</span>
+            <span class="linear-gradient" style="display: none;">紧急求助！快来帮我完成拼图<br>和我一起赢取<b>百万红包</b>吧！</span>
+          </p>
+        </div>
+        <div class="card">
+          <ul class="card">
+            <li class="card-one"><img src="img/cross-year-10.jpg" ng-if="jigsaw.one == 1"/><img src="img/cross-year-15.jpg" ng-if="jigsaw.one != 1"/></li>
+            <li class="card-two"><img src="img/cross-year-11.jpg"  ng-if="jigsaw.two == 2"/><img src="img/cross-year-15.jpg"  ng-if="jigsaw.two != 2"/></li>
+            <li class="card-three"><img src="img/cross-year-12.jpg" ng-if="jigsaw.three == 3"/><img src="img/cross-year-14.jpg" ng-if="jigsaw.three != 3"></li>
+            <li class="card-four"><img src="img/cross-year-13.jpg" ng-if="jigsaw.four == 4"/><img src="img/cross-year-16.jpg" ng-if="jigsaw.four != 4"></li>
+          </ul>
+          <div class="card-overlay"></div>
+        </div>
+        <a class="help" ng-click="drawCard()">点此抽取拼图</a>
+        <div class="jigsawComplete" style="display: none;"></div>
+        <h4 ng-if="teamData.data.validate.code != 1 && (jigData.rand == 0 || jigData.rand == null || jigData.rand == '')">活动已结束，未获得成绩</h4>
+        <h4 ng-if="(jigData.rand == 0 || jigData.rand == null || jigData.rand == '') && teamData.data.validate.code == 1">当前已耗时:<span>{{timeHours}}:{{timeMins}}:{{timeSecs}}</span></h4>
+        <h4 ng-if="jigData.rand != 0 && jigData.rand != null && jigData.rand != ''">最终耗时:<span>{{finalHours}}:{{finalMins}}:{{finalSecs}}</span></h4>
+        <h4 ng-if="jigData.rand != 0 && jigData.rand != null && jigData.rand != ''">当前排名：第{{jigData.rand}}名</h4>
+        <h5>已有<b>{{sumPeople}}</b>人加入队伍</h5>
+      </div>
+      <div class="lucky">
+        <h3 class="title">看看大家的手气</h3>
+        <div class="wx-ul">
+          <ul>
+            <li ng-if="teamData.data.lists.length == 0 || teamData.data.lists.length == null"><p>虚位以待</p></li>
+            <li ng-repeat="friends in teamData.data.lists">
+              <img src="img/cross-year-15.png" ng-if="friends.img == null || friends.img == ''"/>
+              <img src="{{friends.img}}" ng-if="friends.img != null && friends.img != ''"/>
+              <div class="information">
+                <h3 ng-if="friends.nickname == '' || friends.nickname == null">XXX</h3>
+                <h3 ng-if="friends.nickname != null">{{friends.nickname}}</h3>
+                <h4>{{friends.time*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</h4>
+              </div>
+              <h5>抽中<span ng-if="friends.pic == 1">①</span><span ng-if="friends.pic == 2">②</span><span ng-if="friends.pic == 3">③</span><span ng-if="friends.pic == 4">④</span>号拼图</h5>
+            </li>
+          </ul>
+        </div>
+        <h4 class="rule">本活动最终解释权归现金卡所有，与苹果公司无关</h4>
+      </div>
+    </div>
+  </div>
+</kd-pane>
+<footer class="footer">
+  <a ng-click="startJigsaw()" ng-hide="callFriend">我也要发起拼图</a>
+  <a ng-click="callHelp()" ng-show="callFriend">号召小伙伴一起来</a>
+</footer>
+<a class="rule" ng-click="showRule()">活动规则</a>
+
+<div class="popup popup-message" style="display: none;">
+  <div class="overlay"></div>
+  <div class="dialog" ng-hide="firstJigsaw">
+    <span class="close" ng-click="closePop()"></span>
+    <div ng-if="diglogFlag == 1">
+      <h3 class="title">成功获得<b>{{prizeData.pic}}号</b>拼图！</h3>
+      <p class="message">答谢您的助力<br><b>送您{{prizeData.amount}}元红包</b></p>
+      <a ng-click="lookDrawRed()">点击查看</a>
+    </div>
+    <div ng-if="diglogFlag == 2">
+      <p class="message message-top">您已经帮TA抽过啦<br>右上角把本页传播出去<br>帮助队伍完成胜利</p>
+      <a ng-click="closePop()">朕知道了</a>
+    </div>
+    <div ng-if="diglogFlag == 3">
+      <h3 class="title">成功获得<b>{{prizeData.pic}}号</b>拼图！</h3>
+      <p class="message">右上角把本页传播出去<br>帮助队伍完成胜利</p>
+      <a ng-click="closePop()">朕知道了</a>
+    </div>
+    <div ng-if="diglogFlag == 4">
+      <h3 class="title"><b>啊哦~~</b></h3>
+      <p class="message">每天只能抽取10块拼图<br>明天再来助力把</p>
+      <a ng-click="closePop()">朕知道了</a>
+    </div>
+    <div ng-if="diglogFlag == 5">
+      <p class="message message-top">绑定成功</p>
+      <a ng-click="closePop()">朕知道了</a>
+    </div>
+    <div ng-if="diglogFlag == 6">
+      <p class="message message-top">{{errorMessage}}</p>
+      <a ng-click="closePop()">朕知道了</a>
+    </div>
+  </div>
+  
+  <div class="dialog" ng-show="firstJigsaw">
+  	<span class="close" ng-click="closePop()"></span>
+  	<h3 class="title first">拼图瓜分<b>8888元现金</b>大奖</h3>  
+  	<h4>为了获奖后能联系到您<br>请在此填写领奖手机号</h4>
+  	<form name="myForm" novalidate>
+      <input name="phone" ng-model="form.phone" type="tel" value="" placeholder="请输入您的手机号码" ng-pattern="/^1(3|4|5|7|8)\d{9}$/" required/>
+      <p class="form-error" ng-show="(myForm.phone.$invalid && myForm.phone.$dirty && !registerForm.username.$focused) || (myForm.phone.$invalid && sendDisabled )">
+      	<span ng-show="myForm.phone.$error.required">手机号不能为空</span>
+      	<span ng-show="myForm.phone.$error.pattern">请输入正确的手机号码</span>
+      </p>
+      <p class="special">
+        <input name="code" ng-model="form.code" ng-focus="setCode()" type="text" value="" placeholder="请输入验证码" required/>
+        <button ng-click="getCode(form.phone)" ng-disabled="sendDisabled || myForm.phone.$invalid">{{codeText}}</button>
+      </p>
+      <p class="form-error" ng-show="myForm.code.$invalid && myForm.code.$dirty">
+      	<span ng-show="myForm.code.$error.required">验证码不能为空</span>
+      </p>
+      <p class="form-error" ng-show="codeFlag">请输入正确的验证码</p>
+      <button class="receive-red" ng-click="receiveRed(form)" ng-disabled="myForm.phone.$invalid || myForm.code.$invalid || codeFlag" ng-show="binding">点击抽取</button>
+      <button class="receive-red" ng-click="bindingWx(form)" ng-disabled="myForm.phone.$invalid || myForm.code.$invalid || codeFlag" ng-hide="binding">点击绑定</button>
+  	</form>
+  </div>
+</div>
+
+<div class="popup popup-share" style="display: none;">
+  <div class="overlay" ng-click="closePop()"></div>
+  <div class="share" ng-click="closePop()">
+    <img class="arrow" src="img/cross-year-19.png" />
+    <p>将本页分享给好友或朋友圈<br>大家一起来完成拼图瓜分奖金<br>速度一定要快哦！</p>
+    <img class="red" src="img/cross-year-20.png" />
+  </div>
+</div>

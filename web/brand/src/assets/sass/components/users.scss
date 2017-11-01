@@ -1,0 +1,105 @@
+.users{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    &:after{
+        width: 715px;
+        height: 1267px;
+        content: '';
+        background: transparent url(../images/users/background.png) center no-repeat;
+        background-size: cover;
+        opacity: 0;
+        transition: opacity 1s ease-out;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        z-index: 0;
+    }
+    &.fp-completely{
+        &:after{
+            opacity: 1;
+        }
+        .slogen,
+        .tags,
+        .icon{
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .arrow-handle{
+            top: 1024px; 
+            opacity: 1;
+            transition: opacity 1s ease-in 1.25s;
+        }
+    }
+    .slogen{
+        line-height: 34px;
+        font-size: 34px;
+        color: #efefef;
+        font-weight: 700;
+        text-align: center;
+        white-space: nowrap;
+        position: absolute;
+        top: 200px;
+        left: 50%;
+        z-index: 1;
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    .tags{
+        width: 525px;
+        height: 525px;
+        background: transparent url(../images/users/circle.png) center no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 360px;
+        left: 50%;
+        z-index: 1;
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    .tag{
+        font-size: 36px;
+        font-weight: 700;
+        position: absolute;
+        &:nth-child(1){
+            color: #f5cd19;
+            top: 90px;
+            left: 15px;
+        }
+        &:nth-child(2){
+            color: #65c3fb;
+            left: -40px;
+            bottom: 163px;
+        }
+        &:nth-child(3){
+            color: #f87a08;
+            top: 180px;
+            right: -20px;
+        }
+        &:nth-child(4){
+            color: #00b050;
+            right: -12px;
+            bottom: 75px;
+        }
+    }
+    .icon{
+        font-size: 36px;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        z-index: 10;
+        opacity: 0;
+        &:before{
+            width: 59px;
+            height: 64px;
+            content: '';
+            background: transparent url(../images/users/icon.png) center no-repeat;
+            background-size: contain;
+            margin: 0 auto 10px;
+            display: block;
+        }
+    }
+}

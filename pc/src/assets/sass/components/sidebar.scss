@@ -1,0 +1,27 @@
+.sidebar{
+    width: 210px;
+    box-shadow: 0 0 8px rgba(#000, .02);
+    background-color: $white;
+    overflow: hidden;
+}
+.sidebar-item{
+    &:first-child{
+        border-top: none;
+    }
+}
+.sidebar-item-link{
+    height: 70px;
+    line-height: 70px;
+    color: #999;
+    text-align: center;
+    border-top: 1px solid #f2f2f2;
+    transition: all .15s ease;
+    display: block;
+    &:hover,
+    &__active{
+        color: $white;
+        border-color: $brand-primary;
+        background-color: $brand-primary;
+    }
+
+}

@@ -1,0 +1,100 @@
+extends ../common/layout
+block prepend head
+    - let title = '现金卡借款流程 - 浅橙科技';
+    - let keywords = '';
+    - let description = '';
+block prepend header
+    - let active = 2;
+block append wrapper
+    .product
+        .banner(style=('background-image: url(' + require('assets/images/product/banner.jpg') + ');'))
+        section.section-1
+            .container
+                .subject: span 现金卡借款流程
+                .content.clearfix
+                    .phone.float-left
+                        .swiper-container#J_product_phone
+                            .swiper-wrapper
+                                .swiper-slide: img(src=require('assets/images/product/step-1.jpg'))
+                                .swiper-slide: img(src=require('assets/images/product/step-2.jpg'))
+                                .swiper-slide: img(src=require('assets/images/product/step-3.jpg'))
+                    .details.float-left
+                        .swiper-container#J_product_details
+                            .swiper-wrapper
+                                .swiper-slide
+                                    h3 注册及认证
+                                    p 下载现金卡APP<br/>注册并完成必填信息认证
+                                .swiper-slide
+                                    h3 一键申请
+                                    p 选择借款金额和借款期限<br/>一键申请借款
+                                .swiper-slide
+                                    h3 审批到账
+                                    p 审批通过极速到账<br/>让您借款无忧
+                    .prev#J_product_prev.disabled
+                    .next#J_product_next
+                .steps
+                    .step.active
+                        .step-icon.step-icon-1
+                        span 注册及认证
+                    .step
+                        .step-icon.step-icon-2
+                        span 一键申请
+                    .step
+                        .step-icon.step-icon-3
+                        span 审批到账
+        section.section-2
+            .container
+                .subject: span 为什么选择现金卡
+                ul.clearfix
+                    li
+                        .picture(style=('background-image: url(' + require('assets/images/product/icon-card.png') + ');'))
+                        p 纯信用借款
+                        span 无需任何抵押和担保
+                    li
+                        .picture(style=('background-image: url(' + require('assets/images/product/icon-quick.png') + ');'))
+                        p 随时随地借款
+                        span 可移动的ATM<br/>随时随地申请借款
+                    li
+                        .picture(style=('background-image: url(' + require('assets/images/product/icon-automatic.png') + ');'))
+                        p 全智能审核
+                        span 24小时线上全智能<br/>无人工审核服务
+                    li
+                        .picture(style=('background-image: url(' + require('assets/images/product/icon-speed.png') + ');'))
+                        p 极速到账
+                        span 98%的订单30分钟内到账<br/>最快1分钟到账
+                .title 立即借钱
+                .qrcode.clearfix
+                    .float-left
+                        img(src=require('assets/images/qrcode.png'))
+                        p 扫码下载APP
+                    .float-left
+                        img(src=require('assets/images/wx_qrcode.jpg'))
+                        p 扫码关注公众号
+        section.section-3
+            .container
+                .subject: span <font class='text-primary'>前程数据</font> - 互联网金融数据解决方案
+                .content.clearfix
+                    .picture.float-left(style=('background-image: url(' + require('assets/images/product/data.png') + ');'))
+                    ul.float-left
+                        li
+                            h4 基于场景的大数据风控
+                            p 通过用户授权获取用户基本信息、通信、消费、社交、金融等信息
+                        li
+                            h4 信息核检与用户画像
+                            p 交叉验证信息真伪，反欺诈，形成完整的用户画像
+
+        section.section-4
+            .container
+                .subject: span 为什么选择前程数据
+                .content.clearfix
+                    .picture.float-right(style=('background-image: url(' + require('assets/images/product/chosen.png') + ');'))
+                    ul.float-left
+                        li
+                            h4 丰富的行业经验
+                            p 互联网+金融沉浸多年，熟悉多种风控模型，能提供全面有效的服务
+                        li
+                            h4 强大的技术团队 
+                            p 银行高管，BAT大牛，互金行业精英，专注为客户提供优质的产品
+                        li
+                            h4 海量的用户数据
+                            p 技术与时间的赛跑积累下海量的数据，只为呈现最真实的信息

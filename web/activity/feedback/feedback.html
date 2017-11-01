@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>全民回馈活动页</title>
+  <script src="js/dest/flexible.js"></script>
+  <script src="js/dest/jquery.js"></script>
+  <link href="css/feedback.css" rel="stylesheet" />
+</head>
+
+<body>
+  <style>
+  body {
+    background-color: #296cc9;
+  }
+  </style>
+  <div class="feedback-body">
+    <header>
+      <h1>返现提额双重礼 百万额度已到位</h1>
+      <h2>活动时间：12月6日——12月10日</h2>
+    </header>
+    <div class="t_news">
+      <ul class="news_li">
+        <li>恭喜13******180获得额外信用额度1.11元</li>
+        <li>恭喜13******180获得额外信用额度1.12元</li>
+        <li>恭喜13******180获得额外信用额度1.13元</li>
+        <li>恭喜13******180获得额外信用额度1.14元</li>
+        <li>恭喜13******180获得额外信用额度1.15元</li>
+      </ul>
+    </div>
+    <div class="content">
+    	<h3><span>1</span>返现礼</h3>
+    	<p>申请成功每一千元即返5元还款抵用券。</p>
+    	<h3><span>2</span>提额礼</h3>
+    	<p>申请成功一笔借款即可抽取额外信用额度， 随机获得5-2000元信用额度。</p>
+    </div>
+    <button disabled="disabled"><span>点此抽取额度</span></button>
+    <div class="rule">
+    	<h3>活动规则</h3>
+    	<p>活动时间：2016年12月6日0:00-12月10日23:59</p>
+    	<p>活动对象：平台所有注册用户</p>
+    	<p>活动规则：<br>
+    	a.活动期间申请成功每1000元即获5元还款抵用券(限领一次），有效期20天，不可与其他抵用券叠加使用。该券将会在活动结束后3个工作日内发放，可至 “我的” -> “我的优惠” 中查看；<br>
+    	b.活动期间申请成功即可抽取额外信用额度（限抽一次），该笔借款还款成功且未逾期时，所抽取额度将自动增加到个人信用额度中，还款后抽取无效；<br>
+			c.本活动最终解释权归现金卡平台所有，如有问题请咨询客服电话：4006812016。<br>
+    	</p>
+    	<h4>* 申请成功是指申请通过并进入打款阶段</h4>
+    </div>
+    <div class="popup" style="display: none;">
+      <div class="overlay"></div>
+      <div class="dialog">
+        <div class="close"><span></span></div>
+        <h2><span>恭喜您获取XXX元额外信用额度！<span></h2>
+        <p style="display: none;"><a href="">登录</a></p>
+      </div>
+    </div>
+  </div>
+  <script>
+  $(function() {
+    var $ul = $('.news_li');
+    var $li = $('.news_li li').eq(0);
+    var h = $li.height();
+    var l = $('li', $ul).length;
+    $ul.append($('li', $ul).eq(0).clone());
+    var i = 0;
+    setInterval(function() {
+      i++;
+      if (i > l) {
+        i = 1;
+        $ul.css('top', 0);
+      }
+      $ul.animate({
+        top: -h * i
+      })
+    }, 3000)
+  })
+  </script>
+</body>
+
+</html>

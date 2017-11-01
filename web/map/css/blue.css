@@ -1,0 +1,33 @@
+html, body {
+    background-color: #ffffff;
+}
+
+/* text color */
+.label_global {
+    color: #333333;
+}
+
+.label_realtime {
+    color: #333333;
+}
+
+.label_realtime_list_head {
+    color: #ffffff;
+}
+
+#realtimeData > div.group > div.head {
+    background-color: #4ab6fa;
+}
+
+#realtimeData > div.group > div.list {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#main { color: #4ab6fa; }
+
+/* map */
+#mapStyle > span[key=areaColor] { color: #8BD1FC }
+#mapStyle > span[key=borderColor] { color: #ffffff }
+#mapStyle > span[key=starterColor] { color: #ff3300 }
+#mapStyle > span[key=destColor] { color: #f4e925 }
+

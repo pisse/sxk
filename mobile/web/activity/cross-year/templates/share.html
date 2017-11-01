@@ -1,0 +1,43 @@
+<kd-pane>
+  <div class="cross-year-share">
+    <header>
+      <h2>现金卡 · 跨年盛典</h2>
+      <h3>活动时间： <span>2016.12.28~2017.01.05</span></h3>
+    </header>
+    <div class="content">
+    	<h3>你已获得<span><span ng-if="shareData.data.pic == 1">①</span><span ng-if="shareData.data.pic == 2">②</span><span ng-if="shareData.data.pic == 3">③</span><span ng-if="shareData.data.pic == 4">④</span> 号拼图</span>，速度分享出去赢取现金！</h3>
+    	<div class="card">
+    		<ul class="card">
+          <li class="card-one"><img src="img/cross-year-10.jpg" ng-if="shareData.data.pic == 1"/><img src="img/cross-year-15.jpg" ng-if="shareData.data.pic != 1"/></li>
+          <li class="card-two"><img src="img/cross-year-11.jpg" ng-if="shareData.data.pic == 2"/><img src="img/cross-year-15.jpg" ng-if="shareData.data.pic != 2"/></li>
+          <li class="card-three"><img src="img/cross-year-12.jpg" ng-if="shareData.data.pic == 3"/><img src="img/cross-year-14.jpg" ng-if="shareData.data.pic != 3"/></li>
+          <li class="card-four"><img src="img/cross-year-13.jpg" ng-if="shareData.data.pic == 4"/><img src="img/cross-year-16.jpg" ng-if="shareData.data.pic != 4"/></li>
+    		</ul>
+    	</div>
+    	<h4>当前已耗时:<span>{{timeHours}}:{{timeMins}}:{{timeSecs}}</span></h4>
+    	<a>点此立刻分享</a>
+    </div>
+  </div>
+</kd-pane>
+<a class="rule" ng-click="showRule()">活动规则</a>
+<div class="popup-rule" style="display: none;">
+	<div class="close-div" ng-click="closeRule()"><span class="close"></span></div>
+	<h3>活动规则：</h3>
+	<p>1、活动时间：<span>2016年12月28日-2017年1月5日；</span></p>
+	<p>2、活动期间，每位用户可发起拼图，拼图一共4块，发起拼图时自己将随机获得一块拼图，剩下3块需分享好友帮忙抽取，每位好友都将随机获得1块拼图，当4块拼图全部集齐后，拼图完成即可领取百万现金奖励；</p>
+	<p>3、获得第一块拼图时开始计时，当所有拼图都集齐后，计时结束，系统将根据最终耗时进行排名，活动结束后，耗时最少的前三名团队将获得团体奖现金奖励，团体内所有参与者将平分现金奖励；</p>
+	<p><span>举个例子：</span>小明的队伍完成拼图耗时最少，获得8888元现金，队伍中共有8人帮助他完成拼图，则每人获得1111元现金奖励。</p>
+	<p>4、每位用户抽取拼图有一定几率抽到重复拼图；</p>
+	<p>5、每位用户在同一个队伍中每天只可抽取1次，不可重复抽取，每人每天最多3次；</p>
+	<p>6、如发现利用特殊手段刷奖者将被取消获奖资格；</p>
+	<p>7、官方建议在wifi网络稳定情况下参与活动，避免出现白屏、连接超时等无法使用的情况；</p>
+	<p>8、本活动最终解释权归活动运营方所有。</p>
+</div>
+<div class="popup" style="display: none;">
+  <div class="overlay"></div>
+  <div class="dialog">
+    <span class="close" ng-click="closePop()"></span>  
+    <p class="message"></p>
+    <a class="popup-button">朕知道了</a>   
+  </div>
+</div>

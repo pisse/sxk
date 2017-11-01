@@ -1,0 +1,32 @@
+html{
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(#000, 0);
+}
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+}
+body{
+    color: $body-color;
+    font-size: 16px;
+    font-family: $font-family-base;
+    background-color: #fbf9f5;
+    position: relative;
+}
+a{
+    color: $link-color;
+    text-decoration: $link-decoration;
+    @include hover{
+        color: $link-hover-color;
+        text-decoration: $link-hover-decoration;
+    }
+}
+ul{
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}

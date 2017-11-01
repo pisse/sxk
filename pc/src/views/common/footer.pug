@@ -1,0 +1,57 @@
+- 
+    let quick = [{
+        name: '产品服务',
+        link: '/product/index.html'
+    },{
+        name: '媒体报道',
+        link: '/about/reported.html'
+    },{
+        name: '公司介绍',
+        link: '/about/company.html'
+    },{
+        name: '平台公告',
+        link: '/about/notice.html'
+    },{
+        name: '公司资质',
+        link: '/about/qualifications.html'
+    },{
+        name: '加入我们',
+        link: '/about/join.html'
+    },{
+        name: '股东背景',
+        link: '/about/backdrop.html'
+    },{
+        name: '联系我们',
+        link: '/contact'
+    }];
+.footer
+    .container.clearfix
+        ul.quick-link.float-left
+            - for(let i in quick)
+                - let data = quick[i];
+                li: a(href=(data.link)) #{data.name}
+        .float-right
+            .consult
+                p 400-681-2016
+                span 咨询时间：09:00~18:00
+            ul.howToMakeLove
+                li.app
+                    a(href='javascript:;')
+                    .qrcode
+                        img(src=require('assets/images/qrcode.png'))
+                li.wechat
+                    a(href='javascript:;')
+                    .qrcode
+                        img(src=require('assets/images/wx_qrcode.jpg'))
+                li.qq: a(target='_blank', href='http://crm2.qq.com/page/portalpage/wpa.php?uin=4006812016&aty=0&a=0&curl=http://www.xianjincard.com&ty=1')
+                    .qrcode.text 点击联系客服<br/>400-681-2016
+        .float-right(style='margin-right: 35px;font-size: 18px;color: #c8c8c8;')
+            p 投诉电话：021-80260897
+            p 公司地址：上海市杨浦区政学路
+    .container.clearfix
+        .copyright.float-left
+            p ©2017 上海浅橙网络科技有限公司
+            p 2017 Shanghai QianCheng Network Technology Co., Ltd.
+            p: a(href='http://www.miibeian.gov.cn/state/outPortal/loginPortal.action', target='_blank') 沪ICP备16040623号-1
+        .float-right
+            a.security(href='http://t.cn/RMu5iq7', target='_blank')

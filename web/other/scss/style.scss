@@ -1,0 +1,26 @@
+@import "../scss/reset.scss";
+$browser-default-font-size: 75px !default;
+@function rem($px) {
+  @return $px / $browser-default-font-size * 1rem;
+}
+
+.crossyear2017-body {
+	img {
+		display: block;
+		width: rem(750px);
+	}
+}
+
+.cashClass-body {
+	img {
+		display: block;
+		width: rem(750px);
+	}
+}
+
+.springBudPlan-body {
+	img {
+		display: block;
+		width: rem(750px);
+	}
+}

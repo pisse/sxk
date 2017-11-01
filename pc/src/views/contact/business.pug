@@ -1,0 +1,34 @@
+extends ../common/layout
+block prepend head
+    - let title = '招募合作 - 浅橙科技';
+    - let keywords = '';
+    - let description = '';
+block prepend header
+    - let active = 4;
+block append wrapper
+    .business
+        .container
+            .subject
+                h5 招募详情
+                p 此次招募旨在寻找区域市场合作伙伴，在当地市场进行现金白卡的推广。我们有充足的资金，合理的运
+                p 营政策，让你在短期内迅速的抢占当地小额短贷市场。
+                p
+                    span 区域合作收益：各种高额返佣加运营激励
+                    span 区域合作数量：50名
+            form.form(onsubmit='return false')
+                .form-group
+                    input.form-control(type='text', name='channel_name', placeholder='渠道商名称')
+                .form-group.form-inline
+                    input.form-control(type='text', name='relation_name', placeholder='姓名')
+                    input.form-control(type='text', name='relation_phone', placeholder='电话')
+                .form-group.form-inline
+                    select.form-control#province(name='province')
+                        option(value='载入中') 载入中
+                    select.form-control#city(name='city')
+                        option(value='载入中') 载入中
+                .form-group
+                    .textarea.form-control
+                        textarea(rows='6', name='remark', maxlength='140', placeholder='备注内容（团队介绍、账务的资源情况等）')
+                        .total (<span>0</span>/140)
+                .form-group
+                    button.button.button-primary 确认提交

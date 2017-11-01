@@ -1,0 +1,264 @@
+.product{
+    .banner{
+        height: 360px;
+        background: $gray-light center no-repeat;
+        background-size: cover;
+    }
+    section{
+        background-color: #fff;
+        &:nth-child(odd){
+            background-color: #fafafb;
+        }
+    }
+    .subject{
+        text-align: center;
+        padding: 35px 0;
+        span{
+            font-size: 28px;
+            position: relative;
+            &:after{
+                $width: 75px;
+                width: $width;
+                height: 1px;
+                content: '';
+                background-color: $brand-primary;
+                margin-left: -$width / 2;
+                position: absolute;
+                bottom: -15px;
+                left: 50%;
+            }
+        }
+    }
+    .section-1{
+        padding-bottom: 85px;
+        .content{
+            margin: 0 90px;
+            padding-top: 45px;
+            position: relative;
+        }
+        .phone{
+            width: 285px;
+            height: 581px;
+            background: url(../images/product/phone.png) center no-repeat;
+            background-size: contain;
+            position: relative;
+            margin-left: 155px;
+            user-select: none;
+            .swiper-container{
+                width: 255px;
+                height: 449px;
+                border-radius: 2px;
+                background-color: #f9f9f9;
+                position: absolute;
+                top: 71px;
+                left: 15px;
+                z-index: 5;
+                overflow: hidden;
+            }
+            .swiper-slide{
+                img{
+                    max-width: 255px;
+                }
+            }
+        }
+        .details{
+            width: 420px;
+            padding-left: 85px;
+            padding-top: 225px;
+            h3{
+                color: $brand-primary;
+            }
+            p{
+                line-height: 32px;
+                color: $gray-light;
+            }
+        }
+        .prev,
+        .next{
+            width: 55px;
+            height: 110px;
+            background: center no-repeat;
+            background-size: contain;
+            margin-top: -27.5px;
+            position: absolute;
+            top: 50%;
+            cursor: pointer;
+            transition: background-image .15s ease-out;
+            &.disabled{
+                cursor: default;
+            }
+        }
+        .prev{
+            background-image: url(../images/product/arrow-left.png);
+            left: 0;
+            &.disabled{
+                background-image: url(../images/product/arrow-left-disabled.png);
+            }
+        }
+        .next{
+            background-image: url(../images/product/arrow-right.png);
+            right: 0;
+            &.disabled{
+                background-image: url(../images/product/arrow-right-disabled.png);
+            }
+        }
+        .steps{
+            text-align: center;
+            margin-top: 45px;
+        }
+        .step{
+            padding: 0 85px;
+            display: inline-block;
+            position: relative;
+            &:after{
+                width: 32px;
+                height: 8px;
+                content: '';
+                background: url(../images/product/step/arrow.png) center no-repeat;
+                margin-top: -4px;
+                background-size: contain;
+                position: absolute;
+                top: 50%;
+                right: 0;
+            }
+            &:last-child{
+                &:after{
+                    display: none;
+                }
+            }
+            span{
+                color: #999;
+                font-size: 15px;
+                margin-left: 10px;
+                position: relative;
+                top: -10px;
+                transition: color .15s ease-out;
+            }
+            &.active{
+                .step-icon{
+                    background-image: url(../images/product/step/circle-active.png);
+                }
+                span{
+                    color: $brand-primary;
+                }
+            }
+        }
+        .step-icon{
+            width: 32px;
+            height: 32px;
+            background: url(../images/product/step/circle.png) center no-repeat;
+            background-size: contain;
+            position: relative;
+            display: inline-block;
+            transition: background-image .15s ease-out;
+            &:after{
+                width: 10px;
+                height: 26px;
+                content: '';
+                background: center no-repeat;
+                background-size: contain;
+                margin: -13px 0 0 -5px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+        }
+        .step-icon-1:after{
+            background-image: url(../images/product/step/1.png);
+        }
+        .step-icon-2:after{
+            background-image: url(../images/product/step/2.png);
+        }
+        .step-icon-3:after{
+            background-image: url(../images/product/step/3.png);
+        }
+    }
+    .section-2{
+        text-align: center;
+        padding-bottom: 50px;
+        .picture{
+            width: 100px;
+            height: 100px;
+            background: center no-repeat;
+            background-size: contain;
+            display: inline-block;
+        }
+        ul{
+            padding: 45px 0;
+        }
+        li{
+            width: 25%;
+            float: left;
+            p{
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            span{
+                color: #999;
+                font-size: 12px;
+            }
+        }
+        .title{
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 45px;
+        }
+        .qrcode{
+            display: inline-block;
+            font-size: 14px;
+            div + div{
+                margin-left: 110px;
+            }
+            img{
+                width: 160px;
+                height: 160px;
+                box-shadow: 0 5px 24px rgba(#000, .09);
+                background-color: #fff;
+                padding: 15px;
+            }
+        }
+    }
+    .section-3{
+        .picture{
+            width: 252px;
+            height: 252px;
+            margin-right: 135px;
+        }
+        ul{
+            
+            padding-top: 20px;
+        }
+        li + li{
+            margin-top: 45px;
+        }
+    }
+    .section-4{
+        .picture{
+            width: 225px;
+            height: 210px;
+            margin-top: 45px;
+            margin-left: 155px;
+        }
+    }
+    .section-3,
+    .section-4{
+        text-align: center;
+        .content{
+            padding: 65px 0 95px;
+            display: inline-block;
+        }
+        .picture{
+            background: center no-repeat;
+            background-size: contain;
+        }
+        ul{
+            text-align: left;
+        }
+        h4{
+            color: $brand-primary;
+        }
+        p{
+            color: $gray-light;
+        }
+    }
+}

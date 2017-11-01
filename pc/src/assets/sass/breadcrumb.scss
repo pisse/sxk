@@ -1,0 +1,35 @@
+.breadcrumb{
+    list-style: none;
+    font-size: 14px;
+    background-color: $breadcrumb-background;
+    margin-bottom: $spacer-y;
+    padding: $breadcrumb-padding-y $breadcrumb-padding-x;
+    @include clearfix;
+}
+.breadcrumb-item{
+    color: $gray-light;
+    float: left;
+    + .breadcrumb-item::before{
+        color: $breadcrumb-divider-color;
+        font-family: Simhei;
+        content: '#{$breadcrumb-divider}';
+        padding-right: $breadcrumb-item-padding;
+        padding-left: $breadcrumb-item-padding;
+        display: inline-block;
+    }
+    + .breadcrumb-item:hover::before{
+        text-decoration: underline;
+    }
+    + .breadcrumb-item:hover::before{
+        text-decoration: none;
+    }
+    &.active{
+        color: $breadcrumb-active-color;
+    }
+    &.disabled{
+        color: #999;
+        + .breadcrumb-item::before{
+            display: none;
+        }
+    }
+}

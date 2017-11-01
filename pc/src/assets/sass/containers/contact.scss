@@ -1,0 +1,203 @@
+.contact{
+    .subject{
+        text-align: center;
+        margin-top: 100px;
+        padding: 35px 0;
+        span{
+            font-size: 28px;
+            position: relative;
+            &:after{
+                $width: 75px;
+                width: $width;
+                height: 1px;
+                content: '';
+                background-color: $brand-primary;
+                margin-left: -$width / 2;
+                position: absolute;
+                bottom: -15px;
+                left: 50%;
+            }
+        }
+    }
+    .icon{
+        width: 95px;
+        height: 95px;
+        background: url(../images/contact/circle.png) center no-repeat;
+        background-size: contain;
+        display: inline-block;
+        position: relative;
+        &:after{
+            width: 45px;
+            height: 42px;
+            content: '';
+            background: center no-repeat;
+            background-size: contain;
+            margin: -20px 0 0 -22.5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    }
+    .icon-cooperate:after{
+        background-image: url(../images/contact/icon-cooperate.png);
+    }
+    .icon-tel:after{
+        background-image: url(../images/contact/icon-tel.png);
+        
+    }
+    .icon-address:after{
+        background-image: url(../images/contact/icon-address.png);
+    }
+    ul{
+        text-align: center;
+        margin-top: 65px;
+        padding-bottom: 240px;
+        @include clearfix();
+    }
+    li{
+        width: 33.3333%;
+        float: left;
+        p{
+            color: $gray-light;
+            margin-bottom: 10px;
+        }
+        span{
+            line-height: 20px;
+            color: #999;
+            font-size: 14px;
+        }
+    }
+    // .map{
+    //     height: 500px;
+    //     border-radius: 2px;
+    //     box-shadow: 0 0 5px rgba(#000, .07);
+    //     margin: 65px 0 100px;
+    //     overflow: hidden;
+    // }
+    .picture{
+        max-width: 100%;
+        margin: 65px 0 100px;
+    }
+}
+.business{
+    background: #000 url(../images/business/bg.jpg) center top no-repeat;
+    padding-top: 670px;
+    padding-bottom: 100px;
+    .container{
+    }
+    .subject{
+        width: 820px;
+        color: #2378ec;
+        text-align: center;
+        margin: 0 auto;
+        h5{
+            font-size: 20px;
+            font-weight: 700;
+        }
+        p{
+            line-height: 22px;
+            margin: 8px 0;
+            span{
+                font-size: 18px;
+                font-weight: 700;
+            }
+        }
+    }
+    .form{
+        width: 425px;
+        margin: 30px auto 0;
+    }
+    input.form-control,
+    select.form-control{
+        height: 55px;
+        line-height: 55px;
+    }
+    .form-group{
+        + .form-group{
+            margin-top: 15px;
+        }
+    }
+    .form-inline{
+        &:after{
+            content: '';
+            clear: both;
+            display: block;
+        }
+        .form-control{
+            width: 160px;
+            float: left;
+            + .form-control{
+                width: 252px;
+                float: right;
+            }
+        }
+    }
+    .form-control{
+        width: 100%;
+        color: #b0d1ff;
+        border-radius: 10px;
+        border: 1px solid #2378ec;
+        background-color: #0a1330;
+        padding: 0 15px;
+        display: block;
+        &:focus{
+            outline: none;
+        }
+    }
+    select.form-control{
+        padidng-left: 20px;
+        background: #0a1330 url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='#455991' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>") no-repeat right 15px center;
+        background-size: 12px 14px;
+        appearance: none;
+    }
+    .textarea.form-control{
+        line-height: 20px;
+        padding: 10px 15px 10px;
+        resize: none;
+        textarea{
+            color: #b0d1ff;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: transparent;
+            resize: none;
+            &:focus{
+                outline: none;
+            }
+        }
+        .total{
+            color: #455991;
+            font-size: 14px;
+            text-align: right;
+            margin-top: 8px;
+        }
+    }
+    *{
+        &::placeholder{
+            color: #455991;
+        }
+    }
+    .button{
+        width: 100%;
+        height: 55px;
+        line-height: 55px;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        background-color: #2378ec;
+        transition: .3s ease-out;
+        display: block;
+        cursor: pointer;
+        &:focus{
+            outline: none;
+        }
+        &:active{
+            background-color: darken(#2378ec, 10);
+        }
+        &.disabled,
+        [disabled]{
+            background-color: lighten(#2378ec, 20);
+            cursor: default;
+        }
+    }
+}

@@ -1,0 +1,183 @@
+@import "../../../lib/common/scss/base";
+.reward {
+  -webkit-user-select: auto;
+  -khtml-user-select: auto;
+  -moz-user-select: all;
+  -ms-user-select: auto;
+  -o-user-select: auto;
+  user-select: auto;
+  background: #1b1b1b;
+  padding-bottom: 1px;
+  img.top {
+    width: rem(750px);
+    height: rem(422px);
+    display: block;
+  }
+  p {
+    color: #7e7e7e;
+    font-size: rem(26px);
+  }
+  h2{
+    font-size: rem(42px);
+    color: #fff;
+    text-align: center;
+    background: url(../img/icon.png) 50% 0 no-repeat;
+    background-size: rem(28px) rem(17px);
+    padding-top: rem(40px);
+  }
+  h3{
+    color: #f6c143;
+    font-size: rem(26px);
+  }
+  form {
+    width: rem(517px);
+    margin: 0 auto;
+    div{
+      height: rem(80px);
+      border: 1px solid #f6c143;
+      border-radius: rem(10px);
+      margin-bottom: rem(50px);
+    }
+    div.message{
+      height: rem(300px);
+      margin-bottom: rem(10px);
+      label{
+        width:100%;
+      }
+    }
+    textarea{
+      width: rem(515px);
+      height: rem(200px);
+      font-size: rem(28px);
+      color:#fff;
+      background-color: transparent;
+      padding:0 rem(20px);
+
+      overflow: auto;
+      outline: none;
+      resize: none;
+      border-color: Transparent;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+    textarea:focus, input:focus{
+      outline: 0;
+    }
+    label,input[type=text],input[type=tel]{
+      display: inline-block;
+    }
+    input[type=text],input[type=tel]{
+      background-color: transparent;
+      outline:none;
+      height: rem(78px);
+      width: rem(350px);
+      color:#fff;
+      font-size: rem(28px);
+    }
+    label{
+      font-size: rem(28px);
+      color: #7e7e7e;
+      padding:0 rem(20px);
+      line-height: rem(80px);
+      span{
+        padding-right: rem(50px);
+      }
+    }
+    button{
+      margin-top: rem(60px);
+      display: block;
+      height: rem(83px);
+      width: 100%;
+      line-height: rem(83px);
+      text-align: center;
+      background-color: #f6c143;
+      border:none;
+      border-radius:rem(10px);
+    }
+  }
+  div.mail{
+    padding: rem(80px) 0;
+    text-align: center;
+    a, p:nth-child(2){
+      color: #f6c143;
+    }
+  }
+  img {
+    display: block;
+    width: rem(750px);
+    height: rem(677px);
+  }
+  p.info {
+    color: #f6c143;
+    margin: rem(50px) 0 rem(80px);
+    text-align: center;
+  }
+
+  div.rule{
+    width: rem(650px);
+    margin: rem(50px) auto rem(50px);
+    h3{
+      padding:rem(20px) 0;
+    }
+    p:last-child{
+      padding: rem(40px);
+      text-align: center;
+    }
+  }
+}
+.reward-popup{
+  z-index:2;
+
+  div.popup-body{
+    z-index: 2;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #f6c143;
+    width: rem(580px);
+    border-radius: rem(20px);
+    padding: rem(80px) rem(40px);
+    text-align: center;
+    font-size: rem(26px);
+    color:#050505;
+    h1{
+      font-size:rem(34px);
+      padding-bottom: rem(30px);
+    }
+    a.close{
+      display: block;
+      width: rem(50px);
+      height: rem(50px);
+      position: absolute;
+      right: rem(20px);
+      top: rem(20px);
+      &:after, &:before{
+        content: "";
+        display: block;
+        width: 100%;
+        height: rem(4px);
+        background-color: #050505;
+        position: absolute;
+        top: 50%;
+        margin-top: rem(-2px);
+      }
+      &:after{
+        transform:rotate(45deg);
+      }
+      &:before{
+        transform:rotate(-45deg);
+      }
+    }
+  }
+  div.mask{
+    background-color:#000;
+    opacity:0.7;
+    position:absolute;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+  }
+}

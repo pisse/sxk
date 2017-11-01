@@ -1,0 +1,46 @@
+#all{
+    padding: 20px 0 0 50px;
+}
+header{
+    font-weight: bold;
+    font-size: 28px;
+}
+#first_header{
+    margin-bottom: 30px;
+}
+th{
+    width:150px;
+}
+td{
+    width:150px;
+    text-align: center;
+}
+.data{
+    margin-bottom: 10px;
+}
+.content{
+    padding-left:80px;
+}
+.footer{
+    margin-top: 20px;
+    padding-left: 112px;
+}
+.footer button{
+    width:136px;
+    height: 40px;
+    background-color: #87CEFF;
+    color: #191970;
+    border-color: #87CEFF;
+    font-size: 14px;
+    font-weight: bold;
+}
+.result{
+    margin-top: 20px;
+    display: none;
+}
+#repay_amount{
+    margin-bottom: 30px;
+}
+.input-parent{
+    display: inline-block;
+}

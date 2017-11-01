@@ -1,0 +1,10 @@
+<div class= "login login-next" >
+  <img alt="" src="img/wx-icon01.png"/>
+  <h1>{{phone}}</h1>
+  <form name="loginNextForm">
+    <input ng-model="form.password" type="password" value="" placeholder="请输入您的登录密码" ng-minlength="6" required/>
+    <button ng-disabled="loginNextForm.$invalid" ng-click="submit(form)" class="button button-block">登录</button>
+  </form>
+  <a ng-click="resetPassword()" href="" >忘记密码？</a>
+</div>
+

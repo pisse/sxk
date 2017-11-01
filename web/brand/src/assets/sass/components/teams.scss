@@ -1,0 +1,191 @@
+.teams{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    &:after{
+        width: 715px;
+        height: 1267px;
+        content: '';
+        background: transparent url(../images/teams/background.png) center no-repeat;
+        background-size: cover;
+        opacity: 0;
+        transition: opacity 1s ease-out;
+        background-size: cover;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        z-index: 0;
+    }
+    &.fp-completely{
+        &:after{
+            opacity: 1;
+        }
+        .arrow-handle{
+            top: 1024px; 
+            opacity: 1;
+            transition: opacity 1s ease-in 1s;
+        }
+        .avatar{
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        li{
+            &:nth-child(1){
+                .avatar{
+                    transition-delay: .15s;
+                }
+                .realname,
+                .jobtitle,
+                .resume{
+                    transition-delay: .15s;
+                }
+            }
+            &:nth-child(2){
+                .avatar{
+                    transition-delay: .3s;
+                }
+                .realname,
+                .jobtitle,
+                .resume{
+                    transition-delay: .3s;
+                }
+            }
+            &:nth-child(3){
+                .avatar{
+                    transition-delay: .45s;
+                }
+                .realname,
+                .jobtitle,
+                .resume{
+                    transition-delay: .45s;
+                }
+            }
+        }
+        .details{
+            .realname,
+            .jobtitle,
+            .resume{
+                opacity: 1;
+                transition: all 1s ease-in-out;
+            }
+            .realname{
+                // transition-delay: .5s;
+                transform: none;
+            }
+            .jobtitle{
+                transition-delay: 1s;
+            }
+            .resume{
+                // transition-delay: 1.25s;
+            }
+            .jobtitle{
+                color: #fff;
+                border-color: transparent;
+                background-color: #37b0e9;
+                // transition: opacity 1s ease-in-out 1s, color .5s ease-in 1.75s, border-color .5s ease-in 1.75s, background-color .5s ease-in 1.75s;
+                // transition: opacity 1s ease-in-out 1s, color .5s ease-in 1.75s, border-color .5s ease-in 1.75s, background-color .5s ease-in 1.75s;
+            }
+        }
+    }
+    ul{
+        width: 640px;
+        list-style: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 0;
+        position: absolute;
+        top: 185px;
+        left: 50%;
+        z-index: 10;
+        transform: translateX(-50%);
+    }
+    li{
+        &::after{
+            content: '';
+            clear: both;
+            display: block;
+        }
+    }
+    .details{
+        width: 330px;
+        float: right;
+        .realname{
+            color: #f5cd19;
+            font-size: 32px;
+            // font-weight: 700;
+            opacity: 0;
+            // transform: translateX(32px);
+        }
+        .jobtitle{
+            height: 57px;
+            line-height: 57px;
+            color: #37b0e9;
+            font-size: 24px;
+            font-weight: 500;
+            text-align: center;
+            border-radius: 10px;
+            border: 3px solid #37b0e9;
+            background-color: transparent;
+            margin-top: 20px;
+            opacity: 0;
+        }
+        .resume{
+            line-height: 36px;
+            color: #37b0e9;
+            font-size: 24px;
+            text-align: justify;
+            margin-top: 20px;
+            opacity: 0;
+            p{
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
+    .avatar{
+        width: 265px;
+        height: 205px;
+        background: center no-repeat;
+        background-size: cover;
+        border-radius: 10px;
+        float: left;
+        opacity: 0;
+    }
+    .avatar-1{
+        background-image: url(../images/teams/avatar/1.jpg);
+    }
+    .avatar-2{
+        background-image: url(../images/teams/avatar/2.jpg);
+    }
+    .avatar-3{
+        background-image: url(../images/teams/avatar/3.jpg);
+    }
+    .avatar-4{
+        background-image: url(../images/teams/avatar/4.jpg);
+    }
+    .avatar-5{
+        background-image: url(../images/teams/avatar/5.jpg);
+    }
+}
+.teams-1{
+    .avatar{
+        height: 285px;
+    }
+    li:nth-child(1){
+        margin-top: 50px;
+    }
+    li:nth-child(2){
+        margin-top: 125px;
+    }
+}
+.teams-2{
+    li{
+        &:nth-child(2){
+            margin-top: 45px;
+        }
+        &:nth-child(3){
+            margin-top: 75px;
+        }
+    }
+}

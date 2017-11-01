@@ -1,0 +1,22 @@
+extends ../common/layout
+block prepend head
+    - let title = '关于我们 - 公司资质 - 浅橙科技';
+    - let keywords = '';
+    - let description = '';
+block prepend header
+    - let active = 3;
+block append wrapper
+    +breadcrumb({name: `公司资质`, link: `/about/qualifications.html`})
+    .container.clearfix
+        include sidebar
+        +sidebar(6)
+        .panel.panel-qualifications.float-right
+            p
+                img(src=require('assets/images/about/3.jpg'))
+                span 营业执照
+            p
+                img(src=require('assets/images/about/1.jpg'))
+                span 开户许可证
+            p
+                img(src=require('assets/images/about/2.png'))
+                span 现金卡软著

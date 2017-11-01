@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>圣诞活动页</title>
+  <script src="js/flexible.js"></script>
+  <script src="js/jquery.js"></script>
+  <link href="css/christmas.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="christmas-body">
+		<header>
+			<h2>活动时间:12月20日-12月25日</h2>
+		</header>
+		<div class="roll">
+      <div class="t_news">
+        <ul class="news_li">
+          <li>恭喜13******180获得免息7天</li>
+          <li>恭喜13******181获得免息7天</li>
+          <li>恭喜13******182获得免息7天</li>
+          <li>恭喜13******183获得免息7天</li>
+          <li>恭喜13******184获得免息7天</li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+    	<h3>圣诞狂欢</h3>
+    	<h4>活动期间成功借款，即可打开圣诞礼盒 (限开一次)</h4>
+    	<div class="christmas-tree">
+    		<img class="shake" src="img/christmas-icon-06.png">
+    	</div>
+    	<a><span>打开你的圣诞豪礼<span></a>
+    	<p>暂未获任何奖励</p>
+    </div>
+    <div class="rule">
+    	<h3>- 活动规则 -</h3>
+    	<p>1、活动时间：2016年12月20日00:00——12月25日23:59</p>
+    	<p>2、活动人群：活动期间成功借款的用户</p>
+    	<p>3、奖励领取：</p>
+					<p>a.永久提额将在用户活动期间首笔成功借款按时成功还款后显示在 “我的” - “总额度” 中</p>
+					<p>b.免息奖励发放至 “我的” — “我的优惠” 中，根据用户活动期间首笔成功借款计算，例：小明成功借款1000元7天，那么免息7天奖励就是98元，以还款抵扣券形式发放</p>
+					<p>c.抵扣券奖励获得后立即发放到 “我的” — “我的优惠” 中，还款时可直接抵扣现金</p>
+			<p>4、除永久提额外，个人所获奖励有效期均为20天</p>
+			<p>5、本活动最终解释权归现金白卡所有，客服热线：4006812016</p>
+    </div>
+    <div class="popup" style="display: none;">
+      <div class="overlay"></div>
+      <div class="dialog">
+        <div class="close"><span></span></div>
+        <h2><span>恭喜您获得了1元抵扣券一张<br>请至 “我的” - “我的优惠” 中查收</span></h2>
+        <a href="">马上申请</a>
+      </div>
+    </div>
+	</div>
+	<script>
+		$(function(){
+			var $ul = $('.news_li');
+      var $li = $('.news_li li').eq(0);
+      var h = $li.height();
+      var l = $('li', $ul).length;
+      $ul.append($('li', $ul).eq(0).clone());
+      var i = 0;
+      var buttonFlag = 0;
+
+      setInterval(function() {
+        i++;
+        if (i > l) {
+          i = 1;
+          $ul.css('top', 0);
+        }
+        $ul.animate({
+          top: -h * i
+        })
+      }, 3000)
+
+      $("a").click(function(){
+      	$("img").removeClass("shake");
+      	$("img").addClass("scale");
+      	if (buttonFlag == 0) {
+      		buttonFlag = 1;
+      		setTimeout(function(){
+	      		$(".popup").css("display","block");
+	      	},500);
+      	} else {
+      		$(".popup").css("display","block");
+      	}
+      });
+
+      $(".overlay, .close").click(function(){
+      	$(".popup").css("display","none");
+      });
+		});
+	</script>
+</body>
+
+</html>

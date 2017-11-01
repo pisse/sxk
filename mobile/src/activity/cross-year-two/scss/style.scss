@@ -1,0 +1,907 @@
+@import "../../../lib/common/scss/base";
+$white:#f3f0f9;
+$border-color: #04506f;
+$font-color-3: #333;
+$font-color-6: #666;
+$font-color-9: #999;
+$line-color: #f5f8fa;
+%background {
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #01fcff), color-stop(100%, #fd02f3));
+}
+
+@font-face {
+  font-family: 'impact';
+  src: url('../font/impact.ttf');
+  src: url('../font/impact.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes complete-animation {
+  0% {
+    opacity: 1;
+    transform: scale(5, 5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+@-webkit-keyframes complete-animation {
+  0% {
+    opacity: 1;
+    transform: scale(5, 5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+header {
+  text-align: center;
+  width: rem(750px);
+  overflow: hidden;
+  position: relative;
+  h1 {
+    width: rem(92px);
+    height: rem(123px);
+    background: transparent url(../img/cross-year-logo.png) 0 0 no-repeat;
+    background-size: rem(92px) rem(123px);
+    position: absolute;
+    top: rem(14px);
+    right: rem(33px);
+  }
+  h2 {
+    width: rem(360px);
+    line-height: rem(40px);
+    margin: 0 auto;
+    padding-left: rem(30px);
+    color: $white;
+    font-size: rem(30px);
+    padding-top: rem(32px);
+  }
+  h3 {
+    font-size: rem(28px);
+    color: #c80067;
+    padding-top: rem(365px);
+    span {
+      display: inline-block;
+      color: $white;
+      padding-left: rem(5px);
+    }
+  }
+  p {
+    font-size: rem(0px);
+    line-height: rem(120px);
+    width: rem(575px);
+    margin: rem(30px) auto 0;
+    color: $white;
+    background-color: #150a2d;
+    border: rem(3px) solid transparent;
+    border-image: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #01fcff), color-stop(100%, #fd02f3)) 3 3;
+    span {
+      display: inline-block;
+      font-size: rem(30px);
+      line-height: rem(44px);
+      vertical-align: middle;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      @extend %background;
+      b {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.cross-year-home,
+.cross-year-share,
+.cross-year-team {
+  width: rem(750px);
+  background: transparent url(../img/cross-year-01.jpg) 0 0 no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.cross-year-home,
+.cross-year-team {
+  .content {
+    h3.title {
+      font-size: rem(36px);
+      font-weight: bold;
+      position: relative;
+      margin: rem(65px) auto rem(25px);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      @extend %background;
+      &:before,
+      &:after {
+        content: '';
+        display: block;
+        width: rem(51px);
+        height: rem(29px);
+        background: transparent url(../img/cross-year-02.png) 0 0 no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: rem(3px);
+      }
+      &:before {
+        left: rem(-60px);
+      }
+      &:after {
+        right: rem(-60px);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.cross-year-home {
+  .content {
+    padding-bottom: 1px;
+    .reward {
+      text-align: center;
+      h3 {
+        width: rem(350px);
+      }
+      .reward-content {
+        width: rem(675px);
+        height: rem(465px);
+        margin: rem(30px) auto 0;
+        color: $white;
+        border: 1px solid $border-color;
+        border-radius: rem(10px);
+        padding: rem(0px) rem(50px) rem(90px);
+        background: rgba(255, 255, 255, 0.1);
+        ul {
+          li {
+            border-bottom: 1px solid #4010a5;
+            height: rem(125px);
+            padding-top: rem(40px);
+            padding-left: rem(120px);
+            line-height: rem(75px);
+            font-size: rem(36px);
+            color: #358ad0;
+            font-weight: bold;
+            span {
+              padding-left: rem(50px);
+              line-height: rem(36px);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              @extend %background;
+            }
+            b {
+              font-size: rem(60px);
+              font-family: impact;
+            }
+            &:first-child {
+              background: transparent url(../img/cross-year-03.png) rem(10px) 70% no-repeat;
+              background-size: rem(75px) rem(61px);
+              b {
+                color: #ffb91b;
+              }
+            }
+            &:nth-child(2) {
+              background: transparent url(../img/cross-year-04.png) rem(10px) 70% no-repeat;
+              background-size: rem(77px) rem(60px);
+              b {
+                color: #d7b4a8;
+              }
+            }
+            &:last-child {
+              background: transparent url(../img/cross-year-05.png) rem(10px) 70% no-repeat;
+              background-size: rem(79px) rem(62px);
+              b {
+                color: #fc7724;
+              }
+            }
+          }
+        }
+        h4 {
+          font-size: rem(24px);
+          text-align: right;
+          color: #10b2fd;
+          line-height: rem(80px);
+        }
+      }
+    }
+    .participation {
+      h3 {
+        width: rem(185px);
+      }
+      ul {
+        width: rem(670px);
+        margin: rem(70px) auto 0;
+        color: #bcb2ff;
+        font-size: rem(0px);
+        li {
+          display: inline-block;
+          font-size: rem(28px);
+          margin-left: rem(43px);
+          width: rem(178px);
+          height: rem(200px);
+          text-align: center;
+          padding-top: rem(125px);
+          position: relative;
+          &:first-child {
+            margin-left: rem(10px);
+            background: transparent url(../img/cross-year-06.jpg) 0 0 no-repeat;
+            background-size: rem(178px) rem(118px);
+          }
+          &:nth-child(2) {
+            background: transparent url(../img/cross-year-07.jpg) 0 0 no-repeat;
+            background-size: rem(178px) rem(118px);
+          }
+          &:last-child {
+            background: transparent url(../img/cross-year-08.jpg) 0 0 no-repeat;
+            background-size: rem(178px) rem(118px);
+          }
+          &:after {
+            content: '';
+            display: block;
+            width: rem(49px);
+            height: rem(35px);
+            background: transparent url(../img/cross-year-09.png) 0 0 no-repeat;
+            background-size: cover;
+            position: absolute;
+            top: rem(45px);
+            left: rem(168px);
+          }
+          &:last-child:after {
+            content: none;
+          }
+        }
+      }
+    }
+    .Ranking {
+      h3 {
+        width: rem(220px);
+      }
+      ul {
+        width: rem(675px);
+        max-height: rem(410px);
+        min-height: rem(120px);
+        border: 1px solid $border-color;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 0 auto rem(150px);
+        border-radius: rem(10px);
+        padding: rem(75px) rem(50px) rem(11px);
+        text-align: center;
+        position: relative;
+        li {
+          font-size: rem(26px);
+          line-height: rem(64px);
+          color: #10b2fd;
+          span {
+            line-height: rem(26px);
+            padding: 0 rem(70px) 0 rem(100px);
+          }
+          &:first-child {
+            color: #c80067;
+            span {
+              padding: 0;
+              position: absolute;
+              top: rem(43px);
+              &:first-child {
+                left: rem(88px);
+              }
+              &:nth-child(2) {
+                left: rem(290px);
+              }
+              &:last-child {
+                right: rem(110px);
+              }
+            }
+          }
+          &:nth-child(6),
+          &:nth-child(7) {
+            color: #aca3ec;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cross-year-share,
+.cross-year-team {
+  .content {
+    .card {
+      width: rem(682px);
+      height: rem(569px);
+      margin: 0 auto;
+      background-color: transparent;
+    }
+    ul.card {
+      width: rem(682px);
+      height: rem(569px);
+      font-size: rem(0px);
+      li {
+        display: inline-block;
+        width: rem(340px);
+        height: rem(284px);
+        vertical-align: top;
+        img {
+          width: rem(340px);
+          height: rem(284px);
+        }
+      }
+      li.card-one {
+        margin-bottom: 1px;
+      }
+      li.card-two {
+        margin-left: 1px;
+        margin-bottom: 1px;
+      }
+      li.card-four {
+        margin-left: 1px;
+      }
+    }
+    h4 {
+      margin: rem(40px) 0 rem(70px) rem(30px);
+      color: #1990ff;
+      font-size: rem(30px);
+      font-weight: bold;
+      span {
+        display: inline-block;
+        border: 1px solid $border-color;
+        background: rgba(255, 255, 255, 0.1);
+        width: rem(315px);
+        line-height: rem(65px);
+        text-align: center;
+        margin-left: rem(18px);
+        border-radius: rem(10px);
+        font-size: rem(48px);
+        letter-spacing: rem(5px);
+      }
+    }
+  }
+}
+
+.cross-year-share {
+  .content {
+    padding-bottom: rem(1px);
+    h3 {
+      color: #1990ff;
+      font-size: rem(26px);
+      line-height: rem(64px);
+      text-align: center;
+      margin-top: rem(100px);
+      margin-bottom: rem(35px);
+      span {
+        margin-left: rem(5px);
+        color: #fbba16;
+      }
+    }
+    a {
+      display: block;
+      width: rem(500px);
+      margin: 0 auto rem(150px);
+      line-height: rem(80px);
+      text-align: center;
+      font-size: rem(32px);
+      color: $white;
+      border: rem(8px) solid #2e2657;
+      border-radius: rem(45px);
+      overflow: hidden;
+      position: relative;
+      background: #ffaf00;
+      background-size: rem(40px) rem(40px);
+      background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+    }
+  }
+}
+
+.cross-year-team {
+  padding-bottom: 1px;
+  .content {
+    .team {
+      h3 {
+        width: rem(310px);
+        font-size: rem(28px);
+        line-height: rem(36px);
+      }
+      .differ {
+        width: rem(520px);
+        margin: 0 auto rem(65px);
+        .wx-picture {
+          display: inline-block;
+          width: rem(90px);
+          height: rem(90px);
+          margin-top: rem(15px);
+          vertical-align: middle;
+          position: relative;
+          z-index: auto;
+          img {
+            width: rem(90px);
+            height: rem(90px);
+            position: relative;
+            border-radius: rem(15px);
+            z-index: 2;
+          }
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: rem(94px);
+            height: rem(94px);
+            top: rem(-1px);
+            left: rem(-2px);
+            border-radius: rem(15px);
+            @extend %background;
+          }
+        }
+        p {
+          display: inline-block;
+          width: rem(388px);
+          height: rem(111px);
+          text-align: center;
+          color: #26a5fb;
+          vertical-align: middle;
+          padding-left: rem(17px);
+          margin: rem(25px) 0 0 rem(20px);
+          background: transparent url(../img/cross-year-16.png) 0 0 no-repeat;
+          background-size: rem(387px) rem(111px);
+          span {
+            display: inline-block;
+            font-size: rem(28px);
+            line-height: rem(42px);
+            width: rem(366px);
+            height: rem(111px);
+            vertical-align: middle;
+            padding-top: rem(20px);
+            b {
+              color: #ff9f00;
+            }
+          }
+          span.linear-gradient {
+            font-size: rem(24px);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            @extend %background;
+            b {
+              font-weight: bold;
+              text-shadow: 0 rem(5px) rem(5px) rgba(255, 255, 255, 0.1);
+            }
+          }
+        }
+      }
+      .card {
+        position: relative;
+      }
+      .card-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      a.help {
+        display: block;
+        position: relative;
+        width: rem(500px);
+        margin: 0 auto;
+        top: rem(-329.5px);
+        line-height: rem(80px);
+        text-align: center;
+        font-size: rem(30px);
+        color: $white;
+        background: #ff9c00;
+        background-size: rem(30px) rem(30px);
+        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, .05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%, transparent 75%, transparent);
+        border-radius: rem(40px);
+        box-shadow: 0 rem(8px) 0 #c75900, 0 rem(10px) 0 #440d00;
+        z-index: 2;
+      }
+      div.jigsawComplete {
+        width: rem(249px);
+        height: rem(212px);
+        background: transparent url(../img/cross-year-18.png) 0 0 no-repeat;
+        background-size: rem(249px) rem(212px);
+        position: absolute;
+        left: 50%;
+        margin-left: rem(-124.5px);
+        top: rem(450px);
+        opacity: 0;
+      }
+      div.jigsawCompleteAnimation {
+        -webkit-animation: complete-animation 0.5s linear 0.5s forwards;
+        animation: complete-animation 0.5s linear 0.5s forwards;
+      }
+      h4 {
+        text-align: center;
+        margin-top: rem(-40px);
+      }
+      h5 {
+        font-size: rem(30px);
+        color: #1990ff;
+        text-align: center;
+        margin-top: rem(-30px);
+        b {
+          color: #fbba16;
+          margin-left: rem(15px);
+          margin-right: rem(15px);
+        }
+      }
+    }
+    .lucky {
+      h3 {
+        width: rem(300px);
+        margin: rem(70px) auto rem(35px);
+      }
+      .wx-ul {
+        width: rem(675px);
+        max-height: rem(545px);
+        min-height: rem(120px);
+        margin: 0 auto rem(30px);
+        padding: rem(55px) rem(60px) rem(55px) rem(50px);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid $border-color;
+        border-radius: rem(10px);
+      }
+      ul {
+        width: rem(565px);
+        max-height: rem(435px);
+        min-height: rem(80px);
+        overflow: scroll;
+        li {
+          font-size: rem(0px);
+          line-height: rem(64px);
+          position: relative;
+          margin-bottom: rem(20px);
+          p {
+            font-size: rem(32px);
+            padding-top: rem(15px);
+            color: #26a5fb;
+            text-align: center;
+          }
+          img {
+            display: inline-block;
+            width: rem(60px);
+            height: rem(60px);
+            vertical-align: middle;
+          }
+          .information {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: rem(20px);
+          }
+          h3 {
+            font-size: rem(26px);
+            color: #10b2fd;
+            margin: rem(0px);
+            width: auto;
+            line-height: rem(40px);
+          }
+          h4 {
+            margin: rem(0px);
+            font-size: rem(24px);
+            color: #5144c8;
+            line-height: rem(40px);
+          }
+          h5 {
+            font-size: rem(26px);
+            color: #fbba16;
+            position: absolute;
+            right: 0;
+            top: 25%;
+          }
+        }
+      }
+      h4.rule {
+        color: #aca3ec;
+        font-size: rem(24px);
+        margin-bottom: rem(150px);
+        text-align: center;
+      }
+    }
+  }
+}
+
+a.rule {
+  display: block;
+  position: fixed;
+  color: $white;
+  font-size: rem(24px);
+  line-height: rem(48px);
+  text-align: left;
+  width: rem(150px);
+  top: rem(485px);
+  right: rem(-25px);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #47089d), color-stop(60%, #950ec8));
+  padding-left: rem(20px);
+  border-radius: rem(25px);
+  opacity: 0.9;
+  z-index: 10;
+}
+
+.footer {
+  width: rem(750px);
+  height: rem(110px);
+  background: rgba(255, 255, 255, 0.15);
+  position: fixed;
+  bottom: rem(0px);
+  left: rem(0px);
+  z-index: 10;
+  a {
+    display: block;
+    text-decoration: none;
+    width: rem(375px);
+    line-height: rem(70px);
+    color: $white;
+    font-size: rem(30px);
+    margin: rem(20px) auto 0;
+    text-align: center;
+    border-radius: rem(40px);
+    @extend %background;
+  }
+}
+
+footer.footer {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+div.popup-rule {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: $white;
+  padding: rem(100px) rem(40px) rem(100px) rem(70px);
+  line-height: rem(48px);
+  overflow: scroll;
+  z-index: 11;
+  h3 {
+    width: rem(130px);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @extend %background;
+  }
+  p {
+    margin-top: rem(10px);
+    span {
+      color: #00deff;
+    }
+  }
+  div.close-div {
+    position: absolute;
+    right: rem(40px);
+    top: rem(100px);
+    width: rem(40px);
+    height: rem(40px);
+    border: 1px solid $white;
+    border-radius: 100%;
+    span.close {
+      display: inline-block;
+      width: rem(10px);
+      height: rem(10px);
+      cursor: pointer;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: $white;
+      }
+      &:before {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      &:after {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+div.popup {
+  position: relative;
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 12;
+  }
+  .dialog {
+    width: rem(620px);
+    background: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: rem(15px);
+    z-index: 13;
+    h2.rule {
+      color: $font-color-3;
+      font-size: rem(43.47px);
+      line-height: rem(100px);
+      margin-top: rem(50px);
+      border-bottom: 1px solid $line-color;
+    }
+    p {
+      color: $font-color-6;
+      font-size: rem(28px);
+    }
+    p.rule-content {
+      line-height: rem(80px);
+    }
+    p.message {
+      line-height: rem(63.47px);
+      margin-top: rem(30px);
+      margin-bottom: rem(70px);
+      b {
+        color: #c80067;
+      }
+    }
+    p.message-top {
+      margin-top: rem(110px);
+    }
+    h3.tips {
+      color: #1daafc;
+      line-height: rem(100px);
+    }
+    h3.title {
+      color: $font-color-3;
+      font-size: rem(43.47px);
+      line-height: rem(48.3px);
+      margin-top: rem(100px);
+      b {
+        color: #c80067;
+        margin-left: rem(10px);
+      }
+    }
+    h3.draw-red {
+      b {
+        letter-spacing: rem(0px);
+      }
+    }
+    h3.first {
+      margin-top: rem(70px);
+    }
+    h4 {
+      font-size: rem(28px);
+      color: $font-color-6;
+      line-height: rem(70px);
+    }
+    form {
+      width: rem(525px);
+      margin: 0 auto;
+      input {
+        width: rem(525px);
+        height: rem(78px);
+        border: 1px solid #c8c8c8;
+        border-radius: rem(10px);
+        padding-left: rem(20px);
+        margin-bottom: rem(42px);
+        font-size: rem(30px);
+      }
+      p.special {
+        width: rem(525px);
+        input {
+          display: inline-block;
+          width: rem(290px);
+        }
+        button {
+          display: inline-block;
+          border: none;
+          width: rem(220px);
+          background: #7675f0;
+          line-height: rem(78px);
+          vertical-align: top;
+          border-radius: rem(10px);
+          font-size: rem(28px);
+          color: $white;
+        }
+        button[disabled="disabled"] {
+          background: $font-color-9;
+        }
+      }
+      button[disabled="disabled"] {
+        background: $font-color-9;
+      }
+      button.receive-red {
+        display: block;
+        width: rem(500px);
+        line-height: rem(85px);
+        border: none;
+        border-radius: rem(45px);
+        margin: 0 auto rem(50px);
+        color: $white;
+        font-size: rem(32px);
+        @extend %background;
+      }
+    }
+    p.form-error {
+      font-size: rem(24px);
+      color: #ff8003;
+      text-align: left;
+      margin-top: rem(-39px);
+      padding-left: rem(10px);
+    }
+    a {
+      display: block;
+      width: rem(500px);
+      line-height: rem(85px);
+      border-radius: rem(45px);
+      margin: 0 auto rem(50px);
+      color: $white;
+      font-size: rem(32px);
+      @extend %background;
+    }
+    span.close {
+      display: inline-block;
+      position: absolute;
+      right: rem(25px);
+      top: rem(25px);
+      width: rem(50px);
+      height: rem(50px);
+      cursor: pointer;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -2px;
+        background: #e1e1e1;
+      }
+      &:before {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      &:after {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+div.popup-share {
+  .share {
+    position: relative;
+    text-align: center;
+    z-index: 13;
+    img.arrow {
+      width: rem(130px);
+      height: rem(136px);
+      float: right;
+      margin-top: rem(12px);
+      margin-right: rem(40px);
+    }
+    img.red {
+      width: rem(375px);
+      height: rem(340px);
+      margin-top: rem(20px);
+    }
+    p {
+      color: $white;
+      font-size: rem(40px);
+      clear: right;
+      line-height: rem(70px);
+      letter-spacing: rem(3px);
+      margin-top: rem(20px);
+    }
+  }
+}

@@ -1,0 +1,1 @@
+cat ionic.min.css | python -c "import sys,re;[sys.stdout.write(re.sub(r'([\d.]+)\s*px',(lambda m:(str(float(m.group(1))/37.5)+'rem') if float(m.group(1))>1 else m.group(0)),line)) for line in sys.stdin]" > ionic.rem.css

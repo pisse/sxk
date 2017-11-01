@@ -1,0 +1,247 @@
+.panel{
+    width: 970px;
+    min-height: 600px;
+    box-shadow: 0 0 8px rgba(#000, .02);
+    background-color: $white;
+    padding: 40px;
+
+}
+.panel-company{
+    *:first-child{
+        margin-top: 0;
+    }
+    h4{
+        color: $brand-primary;
+        font-weight: normal;
+    }
+    p{
+        line-height: 39px;
+        color: #666;
+        font-size: 18px;
+    }
+}
+.panel-backdrop{
+    ul{
+        @include clearfix();
+    }
+    li{
+        width: 100%;
+        margin: 35px 0;
+        float: left;
+        @include clearfix();
+    }
+    .picture{
+        width: 132px;
+        height: 132px;
+        background: center no-repeat;
+        background-size: contain;
+        margin-right: 30px;
+        float: left;
+    }
+    .details{
+        padding-top: 12px;
+        float: left;
+        width: 728px;
+        text-align: justify;
+    }
+    h4{
+        font-weight: normal;
+        margin-top: 0;
+    }
+    p{
+        line-height: 28px;
+        color: $gray-light;
+        font-size: 14px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+.panel-list{
+    ul{
+        transition: .25s ease;
+        &.loading{
+            opacity: 0;
+        }
+    }
+    li{
+        border-top: 1px solid #efefef;
+        padding: 20px 0 10px;
+        @include clearfix();
+        &:first-child{
+            border-top: 0;
+            padding-top: 0;
+        }
+        &:last-child{
+            padding-bottom: 0;
+        }
+    }
+    .picture{
+        width: 180px;
+        height: 120px;
+        max-width: 180px;
+        margin-right: 25px;
+        margin-bottom: 10px;
+        float: left;
+    }
+    .details{
+        display: block;
+        float: left;
+        width: 685px;
+        text-align: justify;
+        .title{
+            color: $gray;
+        }
+        .dete{
+            color: #999;
+            font-size: 12px;
+        }
+        p{
+            line-height: 20px;
+            color: #999;
+            font-size: 13px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+    .pagination{
+        margin-top: 55px;
+    }
+}
+.panel-details{
+    .title{
+        font-size: 24px;
+    }
+    .props{
+        color: #999;
+        font-size: 14px;
+        margin: 15px 0;
+        span + span{
+            margin-left: 35px;
+        }
+    }
+    .content{
+        line-height: 30px;
+        color: $gray-light;
+        font-size: 15px;
+        margin-top: 20px;
+        padding-bottom: 5px;
+        img{
+            max-width: 100%;
+        }
+    }
+    .related{
+        color: $gray-light;
+        font-size: 14px;
+        border-top: 1px solid #e9e9e9;
+        margin-top: 15px;
+        padding-top: 20px;
+        &,
+        a{
+            color: $gray-light;
+        }
+        span{
+            color: #999;
+        }
+    }
+}
+.panel-join{
+    .content{
+        text-align: center;
+    }
+    .subject{
+        font-size: 24px;
+    }
+    .description{
+        color: #444;
+        font-size: 15px;
+        padding-top: 10px;
+    }
+    ul{
+        margin-top: 30px;
+    }
+    li{
+        border: 1px solid #e9e9e9;
+        + li{
+            margin-top: -1px;
+        }
+        &.active{
+            .title{
+                color: $gray-light;
+                font-size: 22px;
+                // border-color: #f1f9fe;
+                background-color: #f1f9fe;
+                &:after{
+                    background-image: url(../images/join/arrow-active.png);
+                }
+            }
+            .details{
+                display: block;
+            }
+        }
+    }
+    .title{
+        height: 75px;
+        line-height: 75px;
+        font-size: 18px;
+        border: 1px solid #e9e9e9;
+        margin: -1px;
+        padding-left: 35px;
+        cursor: pointer;
+        transition: background-color.2s ease-out;
+        position: relative;
+        &:hover{
+            background-color: #f1f9fe;
+            &:after{
+                background-image: url(../images/join/arrow-active.png);
+            }
+        }
+        &:after{
+            width: 6px;
+            height: 10px;
+            content: '';
+            background: url(../images/join/arrow.png) center no-repeat;
+            background-size: contain;
+            margin-top: -5px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transition: .2s ease-out;
+        }
+    }
+    .details{
+        padding: 25px 45px;
+        display: none;
+        .props{
+            color: #999;
+            font-size: 13px;
+            span + span{
+                margin-left: 35px;
+            }
+        }
+
+        p{
+            color: $gray-light;
+            font-size: 13px;
+        }
+    }
+}
+.panel-qualifications{
+    p{
+        max-width: 360px;
+        color: #666;
+        font-size: 13px;
+        text-align: center;
+        margin: 0 auto;
+        + p{
+            margin-top: 40px;
+        }
+    }
+    span{
+        margin-top: 10px;
+        display: block;
+    }
+    img{
+        max-width: 100%;
+        display: block;
+    }
+}

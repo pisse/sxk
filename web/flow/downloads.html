@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name='viewport' content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no">
+  <script src="js/flexible.js"></script>
+  <!-- <script src="js/zepto.js"></script> -->
+  <link href="css/style.css" rel="stylesheet" />
+  <title>应用下载</title>
+<style>
+.wrapper{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+</style>
+</head>
+<body>
+    <div class='wrapper'></div>
+<script>
+(function(){
+    var wrapper = document.querySelector('.wrapper');
+    var query = (function(){
+        var uri = location.search.replace(/^\?/, '');
+        if(!uri) return {};
+        var params = uri.split('&');
+        var temps = {};
+        for(var i in params){
+            var param = params[i].split('=');
+            temps[param[0]] = decodeURIComponent(param[1]);
+        }
+        return temps;
+    }());
+    var iframe = document.createElement('iframe');
+        iframe.onready = function(){
+            console.log(this);
+        }
+    if(query.name === 'idai'){
+        // var iframeIdai = document.createElement('iframe');
+        //     iframeIdai.src = query.url;
+        //     iframeIdai.style.visibility = 'hidden';
+        //     iframeIdai.setAttribute('security', 'restricted');
+        // document.body.appendChild(iframeIdai);
+    }
+    query.url && (iframe.src = query.url);
+    wrapper.appendChild(iframe);
+}());
+</script>
+</body>
+</html>

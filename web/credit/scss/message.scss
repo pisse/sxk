@@ -1,0 +1,17 @@
+@import "../scss/reset.scss";
+$browser-default-font-size: 75px !default;
+@function rem($px) {
+  @return $px / $browser-default-font-size * 1rem;
+}
+
+* {
+  font-family: Helvetica, "Microsoft YaHei";
+}
+
+body{
+	padding: 15px 15px 0px;
+}
+
+img {
+	min-width: 100%;
+}

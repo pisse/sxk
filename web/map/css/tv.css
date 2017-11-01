@@ -1,0 +1,74 @@
+
+#logo { top:50px; left:80px; }
+
+#title { display: none; }
+
+#realtimeData > div.group {
+    left: 80px;
+}
+
+#realtimeData > div.group {
+    width: 400px;
+}
+
+#realtimeData > div.group.l1 {
+    top: 180px;
+}
+
+#realtimeData > div.group > h2 {
+    font-size: 1.4em;
+}
+
+#realtimeData > div.group span.pro { width: 160px; }
+#realtimeData > div.group span.name { width: 111px; }
+#realtimeData > div.group span.money { width: 121px; }
+
+/*#realtimeData > div.group.l2 span.pro { width: 130px; }*/
+/*#realtimeData > div.group.l2 span.name { width: 65px; }*/
+/*#realtimeData > div.group.l2 span.money { width: 65px; }*/
+/*#realtimeData > div.group.l2 span.other { width: 70px; }*/
+
+#realtimeData > div.group.r1 span.pro { width: 160px; }
+#realtimeData > div.group.r1 span.name { width: 101px; }
+#realtimeData > div.group.r1 span.money { width: 131px; }
+
+#realtimeData > div.group.r1 span.money > embed { width:24px; height:24px; margin-left: 3px; }
+
+#realtimeData > div.group.r2 span.pro { width: 160px; }
+#realtimeData > div.group.r2 span.name { width: 101px; }
+#realtimeData > div.group.r2 span.money { width: 131px; }
+
+#todayData { margin-top: 40px; }
+
+#main { top:110px; }
+
+#todayData div.group > h2 { font-size: 2.8em; }
+#todayData div.group > h1 { font-size: 4.2em; }
+
+#realtimeData > div.group > div.head span {
+    margin-top: -8px;
+}
+
+#realtimeData > div.group > div.head {
+    font-size:1.2em;
+}
+
+#realtimeData > div.group > div.list {
+    font-size:1.3em;
+    height: 196px;
+}
+
+#realtimeData > div.group > div.list div.row {
+    width: 100%;
+    vertical-align: middle;
+    height: 32px;
+    line-height: 32px;
+}
+
+/* map */
+#mapStyle > span[key=areaColor] { color: #1b1b1b }
+#mapStyle > span[key=borderColor] { color: #ffffff }
+
+.triangle-border {
+    font: 24px/36px "Microsoft Yahei";
+}

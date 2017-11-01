@@ -1,0 +1,277 @@
+@import "../../../lib/common/scss/base";
+
+.invite-share {
+	width: rem(750px);
+	background: #2c0f61 url(../img/invite-share-01.jpg) 0 0 no-repeat;
+	background-size: rem(750px) rem(710px);
+	padding: 1px;
+	h2 {
+		margin-top: rem(440px);
+		font-size: rem(28px);
+		line-height: rem(40px);
+		color: #f2cdff;
+		text-align: center;
+		b {
+			font-size: rem(36px);
+			color: #ffd100;
+		}
+		span {
+			font-size: rem(24px);
+			color: #f1caff;
+		}
+	}
+	.invite-share-content {
+		width: rem(750px);
+		background: #2c0f61 url(../img/invite-share-02.jpg) 0 0 repeat-y;
+		background-size: rem(750px) rem(100px);
+		margin-top: rem(190px);
+		form {
+			width: rem(610px);
+			margin: 0 auto;
+			input {
+				width: rem(608px);
+				height: rem(80px);
+				line-height: rem(80px);
+				padding-left: rem(34px);
+				border-radius: rem(10px);
+				font-size: rem(26px);
+				margin-top: rem(40px);
+			}
+			button.submit-test {
+				width: rem(608px);
+				color: #fff;
+				background: #ffd100;
+				font-size: rem(36px);
+				line-height: rem(89px);
+				border-radius: rem(18px);
+				margin-top: rem(60px);
+				font-weight: bold;
+				border: none;
+				border-bottom: rem(10px) solid #bc9a01;
+			}
+			p.special {
+				input {
+					width: rem(353px);
+					display: inline-block;
+					vertical-align: bottom;
+				}
+				button {
+					display: inline-block;
+					width: rem(220px);
+					font-size: rem(26px);
+					line-height: rem(80px);
+					color: #fff;
+					background: #ffd100;
+					border: none;
+					border-radius: rem(8px);
+					vertical-align: bottom;
+					margin-left: rem(24px);
+				}
+			}
+			p.other {
+		    width: rem(600px);
+		    margin: rem(30px) auto 0;
+		    font-size: rem(22px);
+		    input {
+		      display: none;
+		    }
+		    input[type='checkbox']:checked+label i {
+		      display: block;
+		    }
+		    label {
+		      display: block;
+		      float: left;
+		      color: #7944d9;
+		      padding-left: rem(40px);
+		      position: relative;
+		      &:before {
+		        content: '';
+		        display: block;
+		        width: rem(28px);
+		        height: rem(28px);
+		        background: #d9dbdb;
+		        position: absolute;
+		        left: 0;
+		        top: 50%;
+		        margin-top: rem(-14px);
+		        border-radius: rem(5px);
+		      }
+		      i {
+		        width: rem(28px);
+		        height: rem(28px);
+		        position: absolute;
+		        left: 0;
+		        top: 50%;
+		        margin-top: rem(-14px);
+		        background: url(../img/yes.png) 0 0 no-repeat;
+		        background-size: rem(28px) rem(28px);
+		        display: none;
+		      }
+		    }
+		    a {
+		    	color: #7944d9;
+		    	text-decoration: none;
+		    	float: left;
+		    	font-size: rem(22px);
+		    	line-height: rem(22px);
+		    	margin-top: rem(3px);
+		    }
+  		}
+		}
+		h5 {
+			text-align: center;
+			color: #7944d9;
+			font-size: rem(22px);
+			margin-top: rem(60px);
+		}
+		p.company {
+			text-align: center;
+			margin-top: rem(20px);
+			padding-bottom: rem(160px);
+			color: #7944d9;
+			font-size: rem(22px);
+		}
+	}
+}
+
+.popup {
+	.overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: rgba(0, 0, 0, 0.7);
+		width: 100%;
+		height: 100%;
+		z-index: 11;
+	}
+	.dialog {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: rem(526px);
+		background: #311269 url(../img/invite-share-03.jpg) rem(40px) 0 no-repeat;
+		background-size: rem(496px) rem(410px);
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		border-radius: rem(20px);
+		z-index: 12;
+	}
+	.footer {
+		background: #fff;
+		height: rem(176px);
+		border-top: 1px solid #9080af;
+		border-bottom: 1px solid #908c99;
+		border-bottom-left-radius: rem(20px);
+		border-bottom-right-radius: rem(20px);
+		a {
+			display: block;
+			width: rem(460px);
+			margin: 0 auto;
+			line-height: rem(90px);
+			background: #ffd100;
+			text-align: center;
+			color: #fff;
+			text-decoration: none;
+			font-size: rem(32px);
+			font-weight: bold;
+			border-radius: rem(15px);
+			margin-top: rem(48px);
+			letter-spacing: rem(2px);
+		}
+	}
+}
+
+.popup-intimacy {
+	img {
+		display: block;
+		width: rem(205px);
+		height: rem(120px);
+		text-align: center;
+		margin: rem(85px) auto 0;
+	}
+	p {
+		text-align: center;
+		color: #8248eb;
+		font-size: rem(26px);
+		line-height: rem(34px);
+		b {
+			color: #dccafc;
+		}
+		span {
+			font-size: rem(24px);
+		}
+	}
+	h3 {
+		font-size: rem(42px);
+		font-weight: bold;
+		color: #dccafc;
+		text-align: center;
+		line-height: rem(80px);
+	}
+}
+
+.popup-red {
+	img {
+		display: block;
+		width: rem(193px);
+		height: rem(130px);
+		text-align: center;
+		margin: rem(10px) auto 0;
+	}
+	p.p-head {
+		text-align: center;
+		font-weight: bold;
+		color: #dccafc;
+		font-size: rem(26px);
+		margin-top: rem(35px);
+	}
+	h3 {
+		font-size: rem(42px);
+		font-weight: bold;
+		color: #dccafc;
+		text-align: center;
+		line-height: rem(80px);
+		margin-top: rem(10px);
+	}
+	p.content {
+		text-align: center;
+		font-size: rem(26px);
+		line-height: rem(40px);
+		padding-bottom: rem(25px);
+		color: #8248eb;
+		span {
+			color: #dccafc;
+		}
+	}
+}
+
+.popup-error, .popup-login {
+	.dialog-error {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: rem(550px);
+		background: #311269;
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		border-radius: rem(20px);
+		z-index: 12;
+		p {
+			font-size: rem(32px);
+			padding-top: rem(70px);
+			line-height: rem(54px);
+			text-align: center;
+			font-weight: bold;
+			color: #d9dbdb;
+		}
+		.footer {
+			background: #311269;
+			border: none;
+			height: rem(150px);
+			a {
+				width: rem(350px);
+				letter-spacing: 0;
+			}
+		}
+	}
+}

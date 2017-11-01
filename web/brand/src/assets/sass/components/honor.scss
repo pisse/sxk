@@ -1,0 +1,120 @@
+.honor{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    &:after{
+        width: 715px;
+        height: 1267px;
+        content: '';
+        background: transparent url(../images/honor/background.png) center no-repeat;
+        background-size: cover;
+        opacity: 0;
+        transition: opacity 1s ease-out;
+        background-size: cover;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        z-index: 0;
+    }
+    &.fp-completely{
+        &:after{
+            opacity: 1;
+        }
+        .picture{
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .gallery{
+            p{
+                opacity: 1;
+                transition: all 1s ease-in-out .65s;
+                transform: none;
+            }
+            &:nth-child(2){
+                .picture{
+                    transition-delay: .35s;
+                }
+            }
+            &:nth-child(3){
+                .picture{
+                    transition-delay: .5s;
+                }
+            }
+        }
+        .arrow-handle{
+            top: 1024px; 
+            opacity: 1;
+            transition: opacity 1s ease-in 1s;
+        }
+    }
+    .gallery{
+        white-space: nowrap;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        &:nth-child(2){
+            top: 155px;
+        }
+        &:nth-child(3){
+            top: 570px;
+        }
+        p{
+            line-height: 34px;
+            color: #37b0e9;
+            font-size: 24px;
+            text-align: center;
+            opacity: 0;
+            // transform: translateY(32px);
+        }
+    }
+    .picture{
+        background: center no-repeat;
+        background-size: cover;
+        margin: 0 auto;
+        opacity: 0;
+    }
+    .picture-1{
+        width: 285px * .75;
+        height: 379px * .75;
+        background-image: url(../images/honor/cicfc2016.jpg);
+        margin-top: 20px;
+    }
+    .picture-2{
+        width: 600px * .55;
+        height: 450px * .55;
+        background-image: url(../images/honor/3.jpg);
+        margin-top: 50px;
+    }
+    .picture-3{
+        width: 285px * .8;
+        height: 379px * .8;
+        background-image: url(../images/honor/1.jpg);
+        margin-top: 10px;
+    }
+    .picture-4{
+        width: 285px * .8;
+        height: 379px * .8;
+        background-image: url(../images/honor/2.jpg);
+        margin-top: 20px;
+    }
+    .picture-5{
+        width: 657px * .75;
+        height: 436px * .75;
+        background-image: url(../images/honor/ad.jpg);
+        margin-top: 265px;
+    }
+    .picture-6{
+        width: 477px * .55;
+        height: 613px * .55;
+        background-image: url(../images/honor/5.jpg);
+        margin-top: 45px;
+    }
+    .picture-7{
+        width: 700px * .65;
+        height: 435px * .65;
+        background-image: url(../images/honor/6.jpg);
+        margin-top: 50px;
+    }
+}

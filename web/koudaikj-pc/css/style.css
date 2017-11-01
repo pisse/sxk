@@ -1,0 +1,283 @@
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary { margin: 0; padding: 0; border: 0; font-size: 100%; font-weight: normal; vertical-align: baseline; background: transparent; }
+
+article, aside, figure, footer, header, nav, section, details, summary { display: block; }
+
+/* Handle box-sizing while better addressing child elements: http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html { box-sizing: border-box; }
+
+*, *:before, *:after { box-sizing: inherit; }
+
+/* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
+/* Responsive images and other embedded objects */
+/* if you don't have full control over `img` tags (if you have to overcome attributes), consider adding height: auto */
+img, object, embed { max-width: 100%; }
+
+/* Note: keeping IMG here will cause problems if you're using foreground images as sprites. In fact, it *will* cause problems with Google Maps' controls at small size. If this is the case for you, try uncommenting the following: #map img { max-width: none; } */
+/* force a vertical scrollbar to prevent a jumpy page */
+html { overflow-y: scroll; }
+
+/* we use a lot of ULs that aren't bulleted.
+you'll have to restore the bullets within content,
+which is fine because they're probably customized anyway */
+ul { list-style: none; }
+
+blockquote, q { quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+
+a { margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent; }
+
+del { text-decoration: line-through; }
+
+abbr[title], dfn[title] { border-bottom: 1px dotted #000; cursor: help; }
+
+/* tables still need cellspacing="0" in the markup */
+table { border-collapse: separate; border-spacing: 0; }
+
+th { font-weight: bold; vertical-align: bottom; }
+
+td { font-weight: normal; vertical-align: top; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+input, select { vertical-align: middle; }
+
+pre { white-space: pre; /* CSS2 */ white-space: pre-wrap; /* CSS 2.1 */ white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */ word-wrap: break-word; /* IE */ }
+
+input[type="radio"] { vertical-align: text-bottom; }
+
+input[type="checkbox"] { vertical-align: bottom; }
+
+.ie7 input[type="checkbox"] { vertical-align: baseline; }
+
+.ie6 input { vertical-align: text-bottom; }
+
+select, input, textarea { font: 99% sans-serif; }
+
+table { font-size: inherit; font: 100%; }
+
+small { font-size: 85%; }
+
+strong { font-weight: bold; }
+
+td, td img { vertical-align: top; }
+
+/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+/* hand cursor on clickable elements */
+.clickable, label, input[type=button], input[type=submit], input[type=file], button { cursor: pointer; }
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea { margin: 0; }
+
+/* make buttons play nice in IE */
+button, input[type=button] { width: auto; overflow: visible; }
+
+/* scale images in IE7 more attractively */
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+/* prevent BG image flicker upon hover (commented out as usage is rare, and the filter syntax messes with some pre-processors) .ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));} */
+/* let's clear some floats */
+.clearfix:after { content: " "; display: block; clear: both; }
+
+* { font-family: Helvetica, "Microsoft YaHei"; }
+
+.header .logo { float: left; padding-top: 17px; }
+
+.header .logo img { display: block; float: left; }
+
+.header ul { float: right; font-size: 16px; padding-right: 25px; }
+
+.header ul li { float: left; width: 75px; height: 110px; line-height: 110px; text-align: center; margin-left: 25px; }
+
+.header ul li a { color: #333; text-decoration: none; }
+
+.header ul li.current { border-bottom: 2px solid #ff8200; }
+
+.header ul li.current a { color: #ff8200; }
+
+.wrap { width: 1200px; margin: 0 auto; }
+
+.banar { height: 577px; background: #06bafa url(../img/bar-2.jpg) 50% 0 no-repeat; background-size: 1920px 577px; }
+
+.banar .wrap { position: relative; }
+
+.banar a { display: block; width: 195px; height: 65px; position: absolute; top: 380px; }
+
+.banar a.ios { left: 20px; }
+
+.banar a.android { left: 260px; }
+
+div .wrap { font-size: 26px; }
+
+div .wrap h1 { font-size: 38px; font-weight: bold; }
+
+.content ul { padding: 20px 0 80px; color: #666; }
+
+.content ul li { font-size: 18px; float: left; width: 250px; text-align: center; background: url(../img/icon-1.png) 50% 50% no-repeat; }
+
+.content ul li:nth-child(2) { background-image: url(../img/icon-2.png); }
+
+.content ul li:nth-child(3) { background-image: url(../img/icon-3.png); }
+
+.content ul li:nth-child(4) { background-image: url(../img/icon-4.png); }
+
+.content ul li p { padding-top: 150px; }
+
+.content ul li:hover p { color: #ff8200; }
+
+.content ul li:nth-child(1):hover { background-image: url(../img/icon-1_1.png); }
+
+.content ul li:nth-child(2):hover { background-image: url(../img/icon-2_2.png); }
+
+.content ul li:nth-child(3):hover { background-image: url(../img/icon-3_3.png); }
+
+.content ul li:nth-child(4):hover { background-image: url(../img/icon-4_4.png); }
+
+.record { background: #eaeff5; }
+
+.record div { padding: 40px 0; background: url(../img/bar-3.jpg) 50% 0 no-repeat; }
+
+.record div h1 { font-size: 24px; line-height: 1.6em; background: url(../img/icon-7.png) 0 50% no-repeat; padding-left: 50px; margin-bottom: 30px; color: #ff8200; }
+
+.record div ul { background: #f5f7fa; padding: 30px 0; font-size: 14px; float: left; margin-left: 50px; }
+
+.record div ul li { line-height: 2em; }
+
+.record div ul span { width: 150px; display: block; float: left; text-align: center; }
+
+.record div ul i { font-style: normal; color: #ff0000; }
+
+.liOne { box-sizing: content-box; float: left; background: url(../img/icon-5.png) 0 50% no-repeat; padding-left: 70px; margin-right: 50px; padding-right: 51px; border-right: 1px solid #999; }
+
+.liTwo { box-sizing: content-box; float: left; background: url(../img/icon-9.png) 0 50% no-repeat; position: relative; padding-left: 70px; margin-right: 50px; padding-right: 51px; border-right: 1px solid #999; }
+
+.liTwo:before { content: ''; display: none; width: 236px; height: 254px; position: absolute; left: -87px; top: -260px; background: url(../img/icon-8.png) 0 0 no-repeat; }
+
+.liTwo:hover { background-image: url(../img/icon-6.png); }
+
+.liTwo:hover:before { display: block; }
+
+.liThree { box-sizing: content-box; float: left; background: url(../img/icon-13.png) 0 50% no-repeat; height: 57px; line-height: 57px; padding-left: 70px; padding-right: 0; margin-right: 0; border-right: none; }
+
+.footer { background: #232328; position: relative; }
+
+.footer div { padding-bottom: 50px; background: #232328; }
+
+.footer .wrap { position: relative; }
+
+.footer ul { padding: 60px 0; }
+
+.footer ul li h1 { font-size: 30px; color: #bcbcbd; font-weight: normal; }
+
+.footer p { font-size: 14px; line-height: 1.8em; color: #999; }
+
+.footer a { position: absolute; left: 750px; bottom: 60px; }
+
+.item { background: #ffe28f; position: relative; }
+
+.item > div { color: #5d4603; padding: 80px 0; }
+
+.item > div img { display: block; width: 374px; height: 182px; margin: 0 auto; }
+
+.item > div div { width: 600px; float: left; }
+
+.item > div div h1 { font-size: 36px; font-weight: normal; }
+
+.item > div div p { font-size: 22px; }
+
+.item > div .text { padding: 40px 0 0 40px; }
+
+.reverse { background: #ffdede; }
+
+.reverse > div { padding: 20px 0; }
+
+.reverse > div h1 { color: #6e0d0d; }
+
+.reverse > div img { width: 385px; height: 259px; }
+
+.reverse > div .text { padding: 50px 0 0 100px; }
+
+.first > div:before { content: ''; display: block; width: 44px; height: 44px; background: url(../img/icon-1-1.png) 0 0 no-repeat; background-size: 44px 44px; position: absolute; left: 50%; bottom: -22px; z-index: 10; }
+
+.second > div:before { content: ''; display: block; width: 44px; height: 44px; background: url(../img/icon-1-2.png) 0 0 no-repeat; background-size: 44px 44px; position: absolute; left: 50%; bottom: -22px; z-index: 10; }
+
+.three { background: #f2f2f2; }
+
+.three > div { color: #333333; }
+
+.three > div img { width: 407px; height: 209px; }
+
+.three > div:before { content: ''; display: block; width: 44px; height: 44px; background: url(../img/icon-1-3.png) 0 0 no-repeat; background-size: 44px 44px; position: absolute; left: 50%; bottom: -22px; z-index: 10; }
+
+.last { background: #c1eeba; }
+
+.last > div { color: #115007; padding: 50px 0; }
+
+.last > div h1 { color: #115007; }
+
+.last > div img { width: 258px; height: 200px; }
+
+.bar img { display: block; }
+
+.about { background: #f2f2f2; }
+
+.about > div { padding-top: 30px; }
+
+.about > div p, .about > div a { font-size: 16px; }
+
+.about > div h1 { margin-top: 80px; font-size: 24px; text-align: center; font-weight: normal; color: #333; }
+
+.about > div p { line-height: 2.4em; color: #666; margin-top: 20px; }
+
+.about > div .nav ul > li { border-bottom: 1px solid #f2f2f2; }
+
+.about > div .nav li.current { background: #ff8200; }
+
+.about > div .nav li.current a { border-left-color: #f5cd19; color: #fff; }
+
+.about > div .nav a { display: block; text-align: center; padding: 20px 0; border-left: 4px solid #c8c8c8; text-decoration: none; color: #999; }
+
+.about > div .nav, .about > div .substance { float: left; background: #fff; height: 1300px; }
+
+.about > div .nav { width: 200px; }
+
+.about > div .substance { margin-left: 50px; width: 950px; padding: 0 80px 80px; }
+
+.about > div .substance span { color: #ff8200; }
+
+.join > div .nav, .join > div .substance { height: 2500px; }
+
+.join > div .substance h1 { font-size: 30px; color: #ff8200; font-weight: normal; text-align: left; margin-top: 50px; }
+
+.join > div .substance h2 { font-size: 18px; margin-top: 30px; }
+
+.join > div .substance p { margin: 0; }
+
+.join > div .substance p span { color: #333; display: inline-block; padding-right: 50px; }
+
+.join > div .substance ul > li { font-size: 16px; line-height: 2.2em; }
+
+.contact > div .nav, .contact > div .substance { height: 1000px; }
+
+.contact > div .substance { padding-top: 60px; }
+
+.contact > div .substance ul > li { color: #333; font-size: 14px; line-height: 1.6em; padding-bottom: 40px; padding-left: 40px; background: url(../img/icon-10.png) 0 0 no-repeat; }
+
+.contact > div .substance ul > li span { display: inline-block; color: #333; padding-right: 50px; }
+
+.contact > div .substance ul > li:nth-child(1) { background-position: 7px 0; }
+
+.contact > div .substance ul > li:nth-child(2) { background-image: url(../img/icon-11.png); }
+
+.contact > div .substance ul > li:nth-child(3) { background-image: url(../img/icon-12.png); }
+
+.contact > div .substance ul > li i { font-style: normal; color: #ff8200; }

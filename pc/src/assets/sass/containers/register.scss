@@ -1,0 +1,204 @@
+.register{
+    background-color: #fff;
+    padding: 100px 0;
+    &.success{
+        form,
+        .container:before{
+            display: none;
+        }
+        .successful{
+            display: block;
+        }
+    }
+    .successful{
+        width: 280px;
+        margin: 100px auto;
+        display: none;
+        .subject{
+            line-height: 36px;
+            white-space: nowrap;
+            margin-bottom: 20px;
+            position: relative;
+            &:before{
+                width: 72px;
+                height: 72px;
+                content: '';
+                background: url(../images/success.png) center no-repeat;
+                background-size: contain;
+                position: absolute;
+                top: -5px;
+                left: -90px;
+            }
+            p{
+                color: #49ce00;
+                font-size: 32px;
+                margin: 0;
+            }
+            span{
+                color: #999;
+                font-size: 16px;
+                display: block;
+            }
+        }
+        .qrcode{
+            width: 175px;
+            height: 175px;
+            img{
+                width: 100%;
+                max-width: 100%;
+                display: block;
+            }
+        }
+    }
+    .container{
+        padding-right: 75px;
+        padding-left: 75px;
+        position: relative;
+        &:before{
+            width: 325.5px;
+            height: 322.5px;
+            content: '';
+            background: url(../images/register.png) center no-repeat;
+            background-size: contain;
+            margin-top: -161px;
+            position: absolute;
+            top: 50%;
+            left: 90px;
+        }
+    }
+    .tips{
+        height: 16px;
+        font-size: 14px;
+        color: $brand-danger;
+        padding-left: 115px;
+        margin-bottom: 15px;
+    }
+    form{
+        width: 500px;
+        min-height: 400px;
+        border-left: 1px solid #f2f2f2;
+        padding-left: 100px;
+        padding-bottom: 15px;
+        float: right;
+    }
+    .label{
+        width: 100px;
+        height: 42px;
+        color: #555;
+        font-size: 15px;
+        line-height: 42px;
+        text-align: right;
+        display: inline-block;
+        + .form-control{
+            margin-left: 12px;
+        }
+    }
+    .form-group{
+        + .form-group{
+            margin-top: 30px;
+        }
+    }
+    .form-control{
+        width: 285px;
+        height: 42px;
+        line-height: 42px;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        padding-right: 16px;
+        padding-left: 16px;
+        transition: .25s ease-out;
+        &:hover,
+        &:focus{
+            border-color: $brand-primary;
+        }
+        &:focus{
+            outline: none;
+        }
+        &::placeholder{
+            color: #c9c9c9;
+            font-size: 15px;
+        }
+        + .button{
+            width: auto;
+            margin-left: 12px;
+            display: inline-block;
+        }
+        &[name='code']{
+            width: 154px;
+        }
+        &[name='verify']{
+            width: 154px;
+            + .button{
+                width: 121px;
+                text-align: center;
+            }
+        }
+    }
+    #J_code{
+        width: 120px;
+        height: 42px;
+        border: #f5f5f5 solid 1px;
+        background: #fff center no-repeat;
+        background-size: contain;
+        margin-left: 12px;
+        vertical-align: middle;
+        position: relative;
+        top: -2px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .button{
+        width: 100%;
+        height: 42px;
+        line-height: 42px;
+        color: #fff;
+        border: 1px solid $brand-primary;
+        border-radius: 3px;
+        font-size: 15px;
+        background-color: $brand-primary;
+        transition: .25s ease-out;
+        padding: 0 12px;
+        display: block;
+        cursor: pointer;
+        &:hover{
+            background-color: darken($brand-primary, 5);
+        }
+        &:active{
+            border-color: darken($brand-primary, 15);
+            background-color: darken($brand-primary, 15);
+        }
+        &:focus{
+            outline: none;
+        }
+        &[type='submit']{
+            width: 285px;
+            margin-left: 112px;
+        }
+        &[disabled],
+        &.disabled{
+            &,
+            &:hover,
+            &:focus,
+            &:active{
+                color: #999;
+                border-color: $gray-lighter;
+                background-color: $gray-lighter;
+                cursor: not-allowed;
+            }
+        }
+    }
+    .agreement{
+        color: $gray-light;
+        font-size: 14px;
+        margin-left: 112px;
+        user-select: none;
+        a{
+            cursor: pointer;
+        }
+        input[type='checkbox']{
+            margin-right: 8px;
+            position: relative;
+            top: -1px;
+        }
+    }
+}

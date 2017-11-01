@@ -1,0 +1,5 @@
+{
+  "api":"http://api.koudaikj.com/cash/constantly-data",
+  "duration":6,
+  "mapUpdateDuration":5
+}

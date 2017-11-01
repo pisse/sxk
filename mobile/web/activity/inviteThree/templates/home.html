@@ -1,0 +1,226 @@
+<kd-pane>
+  <div class="invite-home">
+    <h2 class="head-h2"><i class="before"></i>邀请升级 双重奖励 现金结算<i class="after"></i></h2>
+    <div class="invite-tab clearfix">
+      <div class="invite-reward active">
+        <h3>邀请人奖励</h3>
+        <div class="reward">
+          <i class="bg"></i>
+          <i class="invite-reward-img"></i>
+        </div>
+      </div>
+      <div class="friends-reward">
+        <h3>好友奖励</h3>
+        <div class="reward">
+          <i class="bg"></i>
+          <i class="friends-reward-img"></i>
+        </div>
+      </div>
+      <div class="invite-skill">
+        <h3>邀请技巧</h3>
+        <div class="reward">
+          <i class="bg"></i>
+          <i class="invite-skill-img"></i>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="invite-reward-content content-active">
+        <h2><i class="before"></i>基础奖励：先实现一个小目标！<i class="after"></i></h2>
+        <p class="title">活动期间邀请好友且好友成功放款，邀请人可获得：</p>
+        <div class="column-chart clearfix">
+          <div class="chart red">
+            <div class="chart-img"><p class="p-animation-one">¥28</p><i class="chart-animation-one"></i></div>
+            <p>首位好友</p>
+          </div>
+          <div class="chart">
+            <div class="chart-img"><p class="p-animation-two">¥20/人</p><i class="chart-animation-two"></i></div>
+            <p>2~10位</p>
+          </div>
+          <div class="chart">
+            <div class="chart-img"><p class="p-animation-three">¥30/人</p><i class="chart-animation-three"></i></div>
+            <p>11~100位</p>
+          </div>
+           <div class="chart">
+            <div class="chart-img"><p class="p-animation-four">¥50/人</p><i class="chart-animation-four"></i></div>
+            <p>100位以上</p>
+          </div>
+        </div>
+        <h2><i class="before"></i>额外奖励：再完成一个大梦想！<i class="after"></i></h2>
+        <p class="title">活动期间，达到相应条件，邀请人可额外获得：</p>
+        <div class="extra-bonus">
+          <p class="first"><span>¥888</span><br>邀请500位好友<br>注册可得</p>
+          <p class="second"><span>¥1888</span><br>100位好友注册<br>且放款可得</p>
+        </div>
+      </div>
+      <div class="friends-reward-content content-right" style="display: none;">
+        <h2><i class="before"></i>邀请来的好友可获得专属奖励<i class="after"></i></h2>
+        <div class="ticket">
+          <p><span>￥10</span>现金券</p>
+          <h4>好友通过邀请注册后，系统将自动发放至其账户</h4>
+        </div>
+        <div class="close-friends">
+          <h3>关系亲密的好友，请点击以下方式邀请</h3>
+          <div class="weChat-friends" ng-click="Share('WEIXIN')">
+            <img src="img/invite-home-11.png" alt="weChat-friends"/>
+            <p>微信好友</p>
+          </div>
+          <div class="circle-friends" ng-click="Share('WEIXIN_CIRCLE')">
+            <img src="img/invite-home-12.png" alt="circle-friends"/>
+            <p>朋友圈</p>
+          </div>
+          <div class="QQ-friends" ng-click="Share('QQ')">
+            <img src="img/invite-home-13.png" alt="QQ-friends"/>
+            <p>QQ好友</p>
+          </div>
+          <div class="QQ-space" ng-click="Share('QZONE')">
+            <img src="img/invite-home-14.png" alt="QQ-space"/>
+            <p>QQ空间</p>
+          </div>
+          <div class="SMS" ng-click="Share('SMS_INVITE')">
+            <img src="img/invite-home-15.png" alt="SMS"/>
+            <p>短信</p>
+          </div>
+          <div class="sina-micro-blog" ng-click="Share('SINA')">
+            <img src="img/invite-home-16.png" alt="sina-micro-blog"/>
+            <p>新浪微博</p>
+          </div>
+        </div>
+        <div class="my-code">
+          <p class="my-title clearfix"><span class="font">我的邀请码：</span><span class="code">{{inviteData.data.invite_code}}</span><a ng-click="copyText('{{inviteData.data.invite_code}}')" ng-if="inviteData != undefined">复制邀请码</a><a ng-click="login()" ng-if="inviteData == undefined">登录后可查看</a></p>
+          <p class="ps">* 好友注册可填写邀请码</p>
+        </div>
+        <div class="my-url">
+          <p class="my-title clearfix"><span class="font">我的邀请链接：</span><a ng-click="copyText('{{inviteUrl.data.short_url}}')" ng-if="inviteUrl != undefined">复制链接</a><a ng-click="login()" ng-if="inviteUrl == undefined">登录后可查看</a></p>
+          <p class="ps url">{{inviteUrl.data.short_url}}</p>
+        </div>
+      </div>
+      <div class="invite-skill-content content-right" style="display: none;">
+        <p>邀请好友，绝对是一荐双赢的好事！一方面能帮助好友找到快速下款的平台，以备不时之需，另一方面也能让自己赚取现金奖励，让你月入万元不是梦，想想是不是有小激动？</p>
+        <p class="small-blank">下面，美眉就现场教教大家如何更高效地邀请到更多好友，赚取更多现金奖励！</p>
+        <h2><i class="before"></i>如何邀请更多好友<i class="after"></i></h2>
+        <p>如果是现实生活中认识的朋友，不想强行进行邀请，我们为你准备了这种方式：</p>
+        <p class="blank">你可以在【好友奖励】页面中，找到给专门给【关系亲密好友】准备的邀请方式，选择这些邀请方式发送给好友时，你将给好友发送一条【测测我们的亲密度】的邀请链接，就可以通过测试亲密度的方式邀请好友了，既不谈钱，又不伤感情，哦耶！</p>
+        <h2><i class="before"></i>更高效的邀请技巧<i class="after"></i></h2>
+        <p>如果想拓展邀请好友的路子，更高效地邀请更多好友，那么你可能需要这种方式：（没错美眉我就是路子野）</p>
+        <p class="small-blank">你可以在以下任意平台发宣传贴，可以获得更多收获哦，发得越多得到的回报越多哦~</p>
+        <div class="wild-ways">
+          <h3>路子玩的野，邀请好友量最多</h3>
+          <div class="wild-img">
+            <a class="rong360" href="https://bbs.rong360.com/forum-52-1.html" onclick="_hmt.push(['_trackEvent', '邀请活动第三期', 'click', '融360'])">
+              <img src="img/invite-home-19.jpg" alt="融360"/>
+              <p>融360</p>
+            </a>
+            <a class="jiedianqian" href="http://bbs.jiedianqian.com/forum.php?mod=guide&view=new" onclick="_hmt.push(['_trackEvent', '邀请活动第三期', 'click', '借点钱'])">
+              <img src="img/invite-home-20.jpg" alt="借点钱"/>
+              <p>借点钱</p>
+            </a>
+            <a class="kashenba" href="http://www.kashen8.com/forum-87-1.html" onclick="_hmt.push(['_trackEvent', '邀请活动第三期', 'click', '卡神吧'])">
+              <img src="img/invite-home-21.jpg" alt="卡神吧"/>
+              <p>卡神吧</p>
+            </a>
+            <a class="woaika" href="http://bbs.51credit.com/forum-216-1.html" onclick="_hmt.push(['_trackEvent', '邀请活动第三期', 'click', '我爱卡'])">
+              <img src="img/invite-home-22.jpg" alt="我爱卡"/>
+              <p>我爱卡</p>
+            </a>
+            <a class="ganjiwang" href="http://3g.ganji.com/gy_danbaobaoxian" onclick="_hmt.push(['_trackEvent', '邀请活动第三期', 'click', '赶集网'])">
+              <img src="img/invite-home-23.jpg" alt="赶集网"/>
+              <p>赶集网</p>
+            </a>
+            <a class="58tongcheng" href="http://m.58.com/qd/danbaobaoxiantouzi/?reform=pcfront&key=%E5%B0%8F%E9%A2%9D%E8%B4%B7%E6%AC%BE&cmcskey=%E5%B0%8F%E9%A2%9D%E8%B4%B7%E6%AC%BE&jump=3&searchtype=1&sourcetype=5" onclick="_hmt.push(['_trackEvent', '邀请活动第三期', 'click', '58同城'])">
+              <img src="img/invite-home-24.jpg" alt="58同城"/>
+              <p>58同城</p>
+            </a>
+          </div>
+          <p class="normal">点击可以直接跳转，也欢迎大家提供更多宣传平台哦</p>
+          <p class="yellow">美眉再告诉你一个小秘密：长按复制下方文字 发贴，可以获得更多好友哦~</p>
+          <p class="red" id="red" on-hold="longPress()">#贷款新口子推荐#今天发现一个新贷款口子：现金卡。最高放款5000元，人均可借2000元，首次下款速度竟然只要5分钟！！！口子链接>></p>
+          <h4 ng-if="inviteUrl != undefined">{{inviteUrl.data.short_url}}</h4><h4 ng-if="inviteUrl == undefined">（此处附上你的专属链接）</h4>
+        </div>
+        <p>好了，美眉只能帮你到这儿了，剩下的就靠你自己啦！如还有不懂，欢迎加美眉个人微信号（<b>XJC-MM</b>）来找美眉玩，更多活动等你哦！</p>
+        <i class="QRcode"></i>
+        <i class="people"></i>
+      </div>
+    </div>
+  </div>
+</kd-pane>
+<div class="footer">
+  <a class="rule" ng-click="showRule()"><span>查看<br>规则</span></a><a class="invite" ng-click="inviteFriend()"><span>马上邀请拿现金</span></a><a class="reward" ng-click="lookAward()"><span>我的<br>奖励</span></a>
+</div>
+<div class="popup popup-rule" style="display: none;">
+  <div class="overlay" ng-click="closeRule()"></div>
+  <div class="rule-content">
+    <div class="close" ng-click="closeRule()"></div>
+    <h2>活动详情规则</h2>
+    <h4>活动时间：2017年2月7日-3月12日</h4>
+    <h4>参与对象：所有现金卡注册用户均可参与</h4>
+    <div class="line"></div>
+    <div class="scroll">
+      <p class="yellow">邀请人奖励：<br>活动期间邀请人与好友成功建立邀请关系，且好友在30天内成功放款，邀请人即可获得邀请奖励，具体奖励如下。</p>
+      <h3>基础奖励：</h3>
+      <ul>
+        <li>• 首位好友放款，邀请人可获得28元现金奖励</li>
+        <li>• 第2~10位，邀请人可获得20元/人，共计180元</li>
+        <li>• 第11~100位，邀请人可获得30元/人，共计2700元</li>
+        <li>• 第100位以上，邀请人可获得50元/人</li>
+      </ul>
+      <p class="red">*  基础奖励将在1个工作日内发放至邀请人“我的邀请”账户</p>
+      <h3>额外奖励：</h3>
+      <ul>
+        <li>• 活动期间成功与500位好友建立邀请关系，额外获得888元</li>
+        <li>• 活动期间有100位好友注册且放款，邀请人额外获得1888元</li>
+      </ul>
+      <p class="red">*  额外奖励将在活动结束后发放至邀请人“我的邀请”账户</p>
+      <p class="red">*  关于奖金的提现规则，请至【我的】-【我的邀请】中查看详情</p>
+      <h3>举个例子：</h3>
+      <p>小明在活动期间成功邀请500位好友，且这些好友中有200位成功放款</p>
+      <p>则小明将获得：28+180+2700+50*100+888+1888=10684元，月入一万不是梦！</p>
+      <h3>好友奖励：</h3>
+      <p>被邀请好友注册后，系统将自动发放一张10元现金券至其账户中，可至【我的】-【我的优惠】中查看，现金券有效期20天，在还款时可抵扣相应现金。</p>
+      <p>活动期间对于恶意刷奖励的用户，现金卡有权取消用户奖励资格</p>
+      <p class="statement">本活动最终解释权归现金卡所有，与苹果公司无关</p>
+    </div>
+  </div>
+</div>
+<div class="popup popup-login" style="display: none;">
+  <div class="overlay" ng-click="close()"></div>
+  <div class="dialog">
+    <div class="close" ng-click="close()"></div>
+    <p>{{loginMessage}}</p>
+    <a ng-click="login()">点击登录</a>
+  </div>
+</div>
+<div class="popup popup-error" style="display: none;">
+  <div class="overlay" ng-click="close()"></div>
+  <div class="dialog">
+    <div class="close" ng-click="close()"></div>
+    <p class="message">{{errorMessage}}</p>
+    <a ng-click="close()">朕知道了</a>
+  </div>
+</div>
+<div class="popup popup-share" style="display: none;">
+  <div class="overlay" ng-click="close()"></div>
+  <div class="dialog">
+    <div class="close" ng-click="close()"></div>
+    <p class="message">请至现金卡APP中进行邀请</p>
+    <a ng-click="downloadApp()">点击前往</a>
+  </div>
+</div>
+<div class="popup popup-old" style="display: none;">
+  <div class="overlay" ng-click="close()"></div>
+  <div class="dialog">
+    <div class="close" ng-click="close()"></div>
+    <p class="message">你的版本过老，无法邀请<br>请下载最新的版本再来邀请哦</p>
+    <a ng-click="downloadApp()">点击下载</a>
+  </div>
+</div>
+<div class="popup popup-old-android" style="display: none;">
+  <div class="overlay" ng-click="close()"></div>
+  <div class="dialog">
+    <div class="close" ng-click="close()"></div>
+    <p class="message">当前版本暂不支持<br>请等待版本更新</p>
+  </div>
+</div>
+<download-popup class="home-download"></download-popup>
+
+

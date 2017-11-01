@@ -1,0 +1,64 @@
+-
+    let menu = [{
+        id: 1,
+        name: '首页',
+        link: '/index.html'
+    },{
+        id: 2,
+        name: '产品服务',
+        link: '/product/index.html'
+    },{
+        id: 3,
+        name: '关于我们',
+        link: '/about/company.html',
+        children: [{
+            id: 1,
+            name: '公司介绍',
+            link: '/about/company.html'
+        },{
+            id: 7,
+            name: '公司资质',
+            link: '/about/qualifications.html'
+        },{
+            id: 2,
+            name: '股东背景',
+            link: '/about/backdrop.html'
+        },{
+            id: 3,
+            name: '媒体报道',
+            link: '/about/reported.html'
+        },{
+            id: 4,
+            name: '平台公告',
+            link: '/about/notice.html'
+        },{
+            id: 5,
+            name: '加入我们',
+            link: '/about/join.html'
+        }]
+    },{
+        id: 4,
+        name: '联系我们',
+        link: '/contact'
+    }];
+block header
+    .header
+        .container.clearfix
+            a.logo.float-left(href='/index.html') 现金卡
+            .users.float-right
+                a.download(href='javascript:;')
+                    | 下载
+                    .qrcode
+                        img(src=require('assets/images/qrcode.png'))
+                        p 扫码下载<span>现金卡</span>APP
+                a(href='/register.html', class=(active === 5 ? 'active' : '')) 注册
+            ul.menu.menu-horizontal.float-right
+                - for(let i in menu)
+                    - let data = menu[i];
+                    li.menu-item(class=((data.children && data.children.length) ? 'dropdown' : ''))
+                        a.menu-item-link(class=(active === data.id ? 'menu-item-link__active' : ''), href=(data.link)) #{data.name}
+                        - if(data.children && data.children.length)
+                            ol
+                                - for(let i in data.children)
+                                    - let children = data.children[i];
+                                    li: a(href=!children.link ? 'javascript:;' : children.link) #{children.name}

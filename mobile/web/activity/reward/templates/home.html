@@ -1,0 +1,45 @@
+<kd-pane>
+  <div class="reward">
+    <img class="top" src="img/top.jpg" />
+    <p class="info">只要你能为现金卡批量带来优质用户<br/> 无论推荐还是自荐，都将拥有丰厚的现金回报哦</p>
+    <form name="myForm" novalidate>
+      <div><label for="name"><span>姓</span>名:</label><input id="name" placeholder="点此输入" type="text" ng-model="user.name" name="name" required/></div>
+      <div><label for="phone"><span>电</span>话:</label><input id="phone" placeholder="点此输入" ng-model="user.phone" name="phone" ng-pattern="/^1\d{10}/" required type="tel"/></div>
+      <div class="message"><label for="message"><span>留</span>言：填写你的资源优势(必填)</label><textarea cols="30" maxlength="140" id="message" ng-model="user.text" name="text" rows="10" required></textarea></div>
+      <p>还可以输入: {{140-user.text.length}}个字</p>
+      <button ng-click="submit(myForm,user)">立刻报名抢资格</button>
+    </form>
+    <div class="mail">
+      <p>你也可以直接发送合作意向至邮箱</p>
+      <p><a href="" on-hold="hold('zhaomu@xianjincard.com')">zhaomu@xianjincard.com</a>（长按复制邮箱)</p>
+      <p>工作人员将在第一时间与您取得联系</p>
+    </div>
+    <h2>成为代言人有什么好处？</h2>
+    <img alt="" src="img/img.jpg"/>
+    <div class="rule">
+      <h2>活动规则</h2>
+      <h3>活动目的</h3>
+      <p>本活动旨在招募现金卡区域代言人，在负责区域进行渠道推广。只要你有能力，可以尝试任何推广方式，让现金卡能在目标人群中进行传播，帮助更多用户解决短期的小额急借的现金借贷问题。</p>
+      <h3>奖励机制</h3>
+      <p>本次招募的代言人将按照奖励机制获得现金分红，代言人带来的用户越多，获得分红的金额越大。具体分红规则以现金卡工作人员与您联系时的规则为准。</p>
+      <h3>招募时间</h3>
+      <p>2017年2月7日起，结束时间待定</p>
+      <h3>人数限制</h3>
+      <p>第一批限招100位代言人，先到先得</p>
+      <p>本活动解释权归现金卡所有，与Apple.lnc无关</p>
+    </div>
+</div>
+</kd-pane>
+<download-popup></download-popup>
+
+<div class="reward-popup" ng-show="isShow">
+  <div class="mask"></div>
+  <div class="popup-body">
+    <a class="close" ng-click="close()"></a>
+    <div class="content">
+      <h1>恭喜你已报名成功！</h1>
+      <p ng-bind-html="content">{content}</p>
+    </div>
+  </div>  
+</div>
+

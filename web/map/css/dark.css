@@ -1,0 +1,91 @@
+html, body {
+    background-color: #1b1b1b;
+}
+
+/* text color */
+.label_global {
+    color: #ffffff;
+}
+
+.label_realtime {
+    color: #ffffff;
+}
+
+.label_realtime_list_head {
+    color: #586b8c;
+}
+
+#title { display: none; }
+
+#todayData div.group > h2 { font-size: 2.0em; }
+#todayData div.group > h1 { font-size: 3.2em; color: orange; }
+
+#realtimeData > div.group > div.head {
+    background: none;
+    border: solid 1px #586b8c;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom: -1px;
+}
+
+#realtimeData > div.group > div.list {
+    /*background-color: rgba(255, 255, 255, 0.2);*/
+    background: none;
+    border: solid 1px #586b8c;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-size:1em;
+}
+
+#realtimeData > div.group span.money { width: 95px; text-align: center; overflow: hidden; }
+#realtimeData > div.group > div.head span { text-align: center; }
+
+#realtimeData > div.group.l2 span.pro { width: 130px; }
+#realtimeData > div.group.l2 span.name { width: 65px; text-align: center; }
+#realtimeData > div.group.l2 span.money { width: 65px; text-align: center; }
+#realtimeData > div.group.l2 span.other { width: 70px; text-align: center; }
+#realtimeData > div.group.l2 > div.head span { text-align: center; }
+
+#realtimeData > div.group.r1 span.pro { width: 150px; }
+#realtimeData > div.group.r1 span.name { width: 85px; text-align: center; }
+#realtimeData > div.group.r1 span.money { width: 110px; text-align: center; }
+#realtimeData > div.group.r1 > div.head span { text-align: center; }
+
+#realtimeData > div.group.r2 span.pro { width: 150px; }
+#realtimeData > div.group.r2 span.name { width: 85px; text-align: center; }
+#realtimeData > div.group.r2 span.money { width: 105px; text-align: center; }
+#realtimeData > div.group.r2 > div.head span { text-align: center; }
+
+#main { color: #4ab6fa; }
+
+.passed { color:#33CC00; }
+.failed { color:#FF0000; }
+
+/* map */
+#mapStyle > span[key=areaColor] { color: #1b1b1b }
+#mapStyle > span[key=borderColor] { color: #586b8c }
+#mapStyle > span[key=starterColor] { color: aqua }
+#mapStyle > span[key=destColor] { color: lime }
+
+.datatip > span {
+    color: orange;
+}
+
+.triangle-border:before {
+    border-color: #fff transparent;
+    border: none;
+}
+
+.triangle-border {
+    font: 18px/26px "Microsoft Yahei";
+    border: none;
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.triangle-border.top:after {
+    right:auto;
+    left: 47px;
+}

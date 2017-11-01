@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>信息中心</title>
+  <script src="js/flexible.js"></script>
+  <script src="js/jquery.js"></script>
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <style type="text/css">
+  body {
+    background: #f2f2f2;
+  }
+  </style>
+  <div class="message-center">
+    <div class="tab"><a class="mes current">公告</a><a class='actv'>活动</a><div class='ink-bar'></div></div>
+    <div class="lists notice">
+      <h5></h5>
+      <a href="" class="activity-a">
+        <h1>【热】注册即送减免卷</h1>
+        <h6>2016年10月29日 09:18</h6>
+        <div class="content">
+          <img src="img/activity.jpg" alt="" />
+        </div>
+      </a>
+      <h5></h5>
+      <h1>【认证通知】</h1>
+      <h6>2016年10月29日 09:18</h6>
+      <p>您的运营商数据获取失败，无法生成订单，请登录APP至认证中心重新提交手机运营商认证信息。</p>
+      <h5></h5>
+      <h1>【公司运营公告】</h1>
+      <h6>2016年10月29日 09:18</h6>
+      <p>金融市场是指以金融资产为交易对象，以金融资产的供给方和需求方为交易主体形成的交易机制及其关系的综合，广而言之，是实现货币借贷和资金融通、办理各种票据和有价证券交易活动的市场。比较完善的金融市场定义是：金融市场是交易金融资产并确定金融资产价格的一种机制。</p>
+      <h2></h2>
+    </div>
+    <div class="lists activity">
+      <h5></h5>
+      <a href="" class="activity-a">
+        <h1>【热】注册即送减免卷</h1>
+        <h6>2016年10月29日 09:18</h6>
+        <div class="content">
+          <img src="img/activity.jpg" alt="" />
+        </div>
+      </a>
+      <h2></h2>
+    </div>
+  </div>
+</body>
+
+<script>
+  $(function() {
+    $('div.tab a').click(function(e) {
+      $('div.tab a').removeClass('current');
+      $('div.lists').hide();
+      $(this).addClass('current');
+      var className = $(this).attr('class');
+      if(className.indexOf('actv') >= 0) {
+        $('.ink-bar').css('left', '68%');
+      }
+      if(className.indexOf('mes') >= 0) {
+        $('.ink-bar').css('left', '17%');
+      }
+      $('div.lists').eq($(this).index()).show();
+      return false;
+    });
+  });
+</script>
+
+</html>

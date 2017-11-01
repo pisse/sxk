@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>员工贷-渠道返利</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.tmpl.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/BeatPicker.js"></script>
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/BeatPicker.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="all">
+        <header id="first_header">渠道返利</header>
+        <div class="content">
+            <div class="data">
+                <label for="register-start">注册开始时间：</label><input  id="register-start" data-beatpicker="true" class="tcal" type="text" placeholder="请填写注册开始时间"/>
+            </div>
+            <div class="data">
+                <label for="register-end">注册结束时间：</label><input  id="register-end" data-beatpicker="true" class="tcal" type="text" placeholder="请填写注册结束时间"/>
+            </div>
+            <div class="data">
+                <label for="loan-start">放款开始时间：</label><input  id="loan-start" data-beatpicker="true" class="tcal" type="text" placeholder="请填写放款开始时间"/>
+            </div>
+            <div class="data">
+                <label for="loan-end">放款结束时间：</label><input  id="loan-end" data-beatpicker="true" class="tcal" type="text" placeholder="请填写放款结束时间"/>
+            </div>
+            <div class="footer">
+                <button>查询</button>
+            </div>
+        </div>
+        <div class="result">
+            <header id="sx">筛选结果</header>
+            <div id="repay_amount">
+                <label for="repay">总返利金额:</label><span id="repay" style="color: red">0元</span>
+            </div>
+            <div>
+                <table id="rows">
+                    <tr id="head">
+                        <th>注册手机号：</th>
+                        <th>注册时间：</th>
+                        <th>借款金额：</th>
+                        <th>借款期限：</th>
+                        <th>申请借款时间：</th>
+                        <th>放款时间：</th>
+                        <th>状态：</th>
+                        <th>返现金额：</th>
+                        <th>应还款时间：</th>
+                        <!--<th>还款状态：</th>-->
+                        <!--<th>逾期天数：</th>-->
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script id="myTemplate" type="text/x-jquery-tmpl">
+<tr>
+    <td>${phone}</td>
+    <td>${register_time}</td>
+    <td>${money}</td>
+    <td>${loan_term}</td>
+    <td>${apply_time}</td>
+    <td>${loan_time}</td>
+    <td>${loan_status}</td>
+    <td>${repay_money}</td>
+    <td>${plan_repay_time}</td>
+    <!--<td>${repay_status}</td>-->
+    <!--<td>${overdue_day}</td>-->
+</tr>
+</script>

@@ -1,0 +1,320 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title 现金卡 - 年轻一族的预支卡
+        meta(name='author', content='me@dominicleo.me')
+        meta(name='renderer', content='webkit')
+        meta(http-equiv='X-UA-Compatible', content='IE=Edge, chrome=1')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1,user-scalable=no, minimal-ui')
+        meta(name='format-detection', content='telephone=no, email=no, address=no')
+        meta(http-equiv='Pragma', content='no-cache')
+        meta(http-equiv='Cache-Control', content='no-cache')
+        meta(name='apple-mobile-web-app-capable', content='yes')
+        meta(name='screen-orientation', content='portrait')
+        meta(name='x5-orientation', content='portrait')
+        meta(name='full-screen', content='yes')
+        meta(name='x5-fullscreen', content='true')
+    body(ontouchstart)
+        .background_music_handle
+        audio#J_background_music(loop)
+            source(type='audio/mpeg', src=require('assets/audio/BGM.mp3'))
+            source(type='audio/mpeg', src=require('assets/audio/BGM.wma'))
+            source(type='audio/ogg', src=require('assets/audio/BGM.ogg'))
+        .wrapper
+            // 欢迎页
+            .section.welcome
+                .line-up
+                .line-down
+                .container
+                    .logo
+                    .triangle-up
+                    .triangle-up-bg
+                        svg(x='0', y='0', xml:space='preserve', viewBox="0 0 636.945 481")
+                            path(d='M-0.208,480.266L318.368,0l318.577,480.266H-0.208z M610.26,466.134L317.912,25.411L25.568,466.134H610.26z')
+                    .triangle-down
+                    .triangle-down-bg
+                        svg(x='0', y='0', xml:space='preserve', viewBox="0 0 636.945 481")
+                            path(d='M-0.208,480.266L318.368,0l318.577,480.266H-0.208z M610.26,466.134L317.912,25.411L25.568,466.134H610.26z')
+                    .triangle-down-inner
+                    .debris-1
+                    .debris-2
+                    .debris-3
+                    .debris-4
+                    .line-left
+                    .line-right
+                canvas
+            // 第二屏
+            .section.second
+                .logo
+                .slogen
+                .description-1
+                .description-2
+            // 大事件
+            .section.events
+                .subject: span 大事件
+                ul
+                    li
+                        .date 2016.12
+                        .content
+                            ol
+                                li 用户量突破700万<br/>月交易流水突破10亿
+                                li A轮融资1亿元
+                                li 30亿循环授信
+                    li
+                        .date 2016.09
+                        .content
+                            ol
+                                li 现金卡正式运营推广
+                                li 获天使投资
+                    li
+                        .date 2016.06
+                        .content
+                            p 现金卡APP上线
+                    li
+                        .date 2015.08
+                        .content
+                            p 公司成立
+
+            // 特色
+            .section.feature
+                .subject: span 现金卡特色
+                .logo
+                    .logo-inner
+                ul
+                    li
+                        p 用户信用等级<br/>风险定价
+                        span.icon.icon-1
+                    li
+                        p 24小时在线<br/>全智能审核
+                        span.icon.icon-2
+                    li
+                        p 30分钟<br/>完成98%放款
+                        span.icon.icon-3
+                    li
+                        p 最快1分钟<br/>到账
+                        span.icon.icon-4
+                    li
+                        p 行业首创<br/>“慢就赔、拒就赔”
+                        span.icon.icon-5
+            // 用户
+            .section.users
+                .subject: span 现金卡用户
+                .slogen 年轻无卡人群
+                .tags
+                    .tag 23-35岁
+                    .tag 收入不高
+                    .tag 月光族
+                    .tag 超前消费意识
+                    .icon 用户
+            // 业务模式
+            .section.mode
+                .subject: span 业务模式
+                .picture
+
+            // 成绩
+            .section.achievement
+                .subject: span 运营成绩
+                .bar
+                    .title
+                        | 用户数据
+                        span (单位万)
+                .chart
+                    ul.horizontal
+                        li 800
+                        li 700
+                        li 600
+                        li 500
+                        li 400
+                        li 300
+                        li 200
+                        li 100
+                        li 0
+                        ul.vertical
+                            li: span Q1
+                            li: span Q2
+                            li: span Q3
+                            li: span Q4
+                            li.year: span ( 2016 )
+                .keyword
+                    span 月交易流水
+                    p 1000,000,000+
+                //- .keyword
+                //-     p 10% - 15%
+                //-     span 通过率
+                //- .keyword
+                //-     p 50,000+单/天
+                //-     span 放款数
+            // 核心实力
+            .section.core
+                .subject: span 核心实力
+                ul
+                    li
+                        .icon.icon-1
+                        .content
+                            p 资金
+                            span 30亿金融机构授信
+                    li
+                        .icon.icon-2
+                        .content
+                            p 大数据风控
+                            span 自主研发HAS风控体系
+                    li
+                        .icon.icon-3
+                        .content
+                            p 运营
+                            span 高峰获客10万人/天
+
+            // 风控模型
+            .section.model
+                .subject: span 风控体系
+                .pie
+                    .arrow
+                    .title 信用评级
+                    .details 天眼
+                .pie
+                    .arrow
+                    .title 欺诈分析
+                    .details 神盾
+                .pie
+                    .arrow
+                    .details 智云
+                //- .pie
+                //-     .arrow
+                //-     .title 社会关系
+                //-     .details 手机短信、QQ、<br/>手机运营商、地理位置、<br/>通讯记录、其他
+                //- .pie
+                //-     .arrow
+                //-     .title 消费行为
+                //-     .details 购物记录<br/>余额宝记录<br/>水电煤账单<br/>支付宝记录<br/>其他
+                //- .pie
+                //-     .arrow
+                //-     .title 个人信用
+                //-     .details 银行信用、资金流水<br/>邮箱账单、芝麻信用<br/>其他
+                //- .pie
+                //-     .arrow
+                //-     .title 基本信息
+                //-     .details 身份实名<br/>公积金<br/>收入<br/>社保<br/>其他
+                .pie
+                    .arrow
+                    .title 授信评估
+                .name: span HAS体系
+            // 未来战略
+            .section.future
+                .subject: span 未来战略
+                ul
+                    li
+                        .icon.icon-1
+                        .content
+                            p 信用生态
+                            span 年轻无卡人群金融信息服务
+                    li
+                        .icon.icon-2
+                        .content
+                            p 蓝领圈
+                            span 蓝领人群深度服务
+                .title 企业愿景
+                .slogen
+            // 团队介绍
+            .section.teams.teams-1
+                .subject: span 团 队
+                ul
+                    li
+                        .avatar.avatar-1
+                        .details
+                            .realname 朱永敏
+                            .jobtitle: span 创始人/CEO
+                            .resume
+                                p 2015年8月创办浅橙科技；
+                                p 曾供职腾讯与京东，负责重要战略项目的管理规划。拥有连续成功创业经历，曾创办口袋理财；复旦大学EMBA。
+                    li
+                        .avatar.avatar-2
+                        .details
+                            .realname 朱磊
+                            .jobtitle: span 联合创始人/执行副总裁
+                            .resume
+                                p 2015年联合创办浅橙科技；
+                                p 曾服务于爱立信、腾讯、京东、阿里等知名互联网企业，拥有近十年公司资产管理及市场策略制定的经验。
+
+            // 团队介绍
+            //- .section.teams.teams-2
+            //-     .subject: span 团 队
+            //-     ul
+            //-         li
+            //-             .avatar.avatar-3
+            //-             .details
+            //-                 .realname 余丽娟
+            //-                 .jobtitle: span 产品VP/联合创始人
+            //-                 .resume
+            //-                     p 2016年加入浅橙科技；
+            //-                     p 2010-2014年服务于腾讯电商业务部门；
+            //-                     p 香港城市大学硕士
+            //-         li
+            //-             .avatar.avatar-4
+            //-             .details
+            //-                 .realname 黄铭
+            //-                 .jobtitle: span 技术总监
+            //-                 .resume
+            //-                     p 2015年加入浅橙科技；
+            //-                     p 2010-2014年服务于腾讯，领导核心项目开发；
+            //-                     p 毕业于华东交通大学
+
+            //-         li
+            //-             .avatar.avatar-5
+            //-             .details
+            //-                 .realname 黄俊卿
+            //-                 .jobtitle: span 大数据风控总监
+            //-                 .resume
+            //-                     p 2015年加入浅橙科技，带领团队自主研发“HAS”风控系统；
+            //-                     p 2012-2014年服务于腾讯；
+            //-                     p 南京大学硕士
+            // 获得荣誉
+            .section.honor
+                .subject: span 荣 誉
+                .gallery
+                    .picture.picture-1
+                    p 荣获第二届中国消费金融发展大会<br/>2016年“年度消费金融突出贡献奖”
+                .gallery
+                    .picture.picture-2
+                    p 荣获第五届中国金融科技峰会<br/>“中国最具创新金融科技企业”
+            .section.honor
+                .subject: span 荣 誉
+                .gallery
+                    .picture.picture-3
+                    p 荣获2017中国消费金融风险管理高峰论坛<br/>“最佳消费金融风控企业奖”
+                .gallery
+                    .picture.picture-4
+                    p 荣获2017中国消费金融风险管理高峰论坛<br/>“最佳消费金融领袖奖”
+            .section.honor
+                .subject: span 荣 誉
+                .gallery
+                    .picture.picture-5
+                    p 受央视特邀荣登美国纳斯达克“世界<br/>“第一屏”2016-2017跨年展播”
+            .section.honor
+                .subject: span 公 益
+                .gallery
+                    .picture.picture-6
+                    p 捐助中国儿童少年基金会“春蕾计划”<br/>定向帮扶全国特困地区留守女童重返校园
+                    .picture.picture-7
+            .section.ending
+                .qrcode
+                    img(src=require('assets/images/end/qrcode.png'))
+                    p 长按二维码注册
+                .keyword
+                    p 商务合作
+                    span BD@xianjincard.com
+                .keyword
+                    p 客户服务
+                    span 400-681-2016
+                .keyword
+                    p 官方网站
+                    span www.xianjincard.com
+
+        script.
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?3ac5a6a835b4ee96a11d699ee4f6b39a";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();

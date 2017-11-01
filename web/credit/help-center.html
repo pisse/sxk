@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>help-center</title>
+        <script src="js/flexible.js"></script>
+        <script src="js/jquery.js"></script>
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <style>
+            body {
+                background-color: #f2f2f2;
+            }
+        </style>
+        <div class="help-center">
+            <?php if($title == true): ?>
+            <div class="consultation">
+                <a class="online-consultation" id="online" >
+                    <h4>在线咨询</h4>
+                </a>
+                <a class="phone-consultation"  href="javascript:callPhoneMehtod('400-681-2016')">
+                    <h4>电话咨询</h4>
+                </a>
+                <a class="wx-consultation" href="">
+                    <h4>微信咨询</h4>
+                </a>
+            </div>
+            <?php else: ?>
+            <?php endif; ?>
+            <div id="1" class="auth">
+                <h3>认证相关</h3>
+                <ul>
+                    <li id="4">为什么会读取联系人失败？</li>
+                    <li id="7">如何更换收款银行卡？</li>
+                    <li id="11">手机运营商认证失败的原因有哪些？</li>
+                </ul>
+            </div>
+            <div id="2" class="loan">
+                <h3>借款相关</h3>
+                <ul>
+                    <li id="16">审核通过后多久打款？</li>
+                    <li id="17">审核被拒绝的原因一般有哪些？</li>
+                    <li id="20">如何提升信用额度？</li>
+                </ul>
+            </div>
+            <div id="3" class="repayment">
+                <h3>还款相关</h3>
+                <ul>
+                    <li id="22">每种方式需要多久更新还款状态？</li>
+                    <li id="27">如何进行支付宝还款？</li>
+                    <li id="32">逾期还能申请续期服务吗？</li>
+                </ul>
+            </div>
+            <div id="4" class="cost">
+                <h3>费用相关</h3>
+                <ul>
+                    <li id="35">借款费用如何收取？</li>
+                    <li id="36">逾期费用如何收取？</li>
+                    <li id="37">续期费用如何收取？</li>
+                </ul>
+            </div>
+            <div id="5" class="other">
+                <h3>其他问题</h3>
+                <ul>
+                    <li id="38">收不到验证码怎么办？</li>
+                    <li id="39">如何更改手机号？</li>
+                    <li id="40">是否可以注销账户？</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                $("li").click(function () {
+                    var $faTag = $(this).parent().parent().attr("id");
+                    var $tag = $(this).attr("id");
+                    window.location.href = "http://localhost:7000/help-description.html?fatag=" + $faTag + "&tag=" + $tag;
+                });
+                $("h3").click(function () {
+                    var $faTag = $(this).parent().attr("id");
+                    window.location.href = "http://localhost:7000/help-description.html?fatag=" + $faTag;
+                });
+            })
+        </script>
+    </body>
+
+</html>

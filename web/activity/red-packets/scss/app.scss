@@ -1,0 +1,55 @@
+@import "../scss/reset.scss";
+$browser-default-font-size: 51px !default;
+@function rem($px) {
+  @return $px / $browser-default-font-size * 1rem;
+}
+* {
+  font-family: Helvetica;
+}
+body{
+  background: url(../img/bg.jpg) center repeat;
+  background-size: cover;
+  &:after{
+    width: rem(509px);
+    height: rem(192px);
+    content: '';
+    background: url(../img/floated.png) center no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: rem(12px);
+    left: 50%;
+    margin-left: rem(-254.5px);
+  }
+}
+.title{
+  width: rem(300px);
+  height: rem(71px);
+  background: url(../img/title.png) center no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: rem(78px);
+  left: 50%;
+  margin-left: rem(-150px);
+  z-index: 1;
+}
+.desc{
+  width: rem(439px);
+  height: rem(172px);
+  background: url(../img/desc.png) center no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: rem(285px);
+  left: 50%;
+  margin-left: rem(-219.5px);
+  z-index: 1;
+}
+.button{
+  width: rem(279px);
+  height: rem(61px);
+  background: url(../img/button.png) center no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: rem(555px);
+  left: 50%;
+  margin-left: rem(-139.5px);
+}

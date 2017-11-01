@@ -1,0 +1,42 @@
+<ion-pane class="repayment">
+  <ion-content class="has-banner has-footer" ng-class="item.list.length > 0 ? 'has-bg':''">
+    <ion-refresher ng-if="item.list.length > 0" pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()">
+    </ion-refresher>
+    <div ng-if="item.list.length > 0">
+      <div class='item-divider'>全部待还<i>{{item.list.length}}</i>笔</div>
+      <ul class="loan-list">
+        <li ng-repeat="loan in item.list">
+          <a class="clearfix" href="{{loan.url}}">
+            <div class="left">
+              <h4>还款时间</h4>
+              <h2>{{loan.plan_fee_time}}</h2>
+            </div>
+            <div class="right">
+              <h1>￥{{loan.debt}}</h1>
+              <h3>到账金额：{{loan.receipts}}元</h3>
+              <h3>服务费用：{{loan.counter_fee}}元</h3>
+            </div>
+            <ng-bind-html ng-bind-html="loan.span_tip"> </ng-bind-html>
+          </a>
+        </li>
+      </ul>
+      <img class="bottom-logo" alt="" src="img/bottom-logo.png"/>
+    </div>
+    <div ng-if="item.list.length == 0">
+      <div class="hand">
+        <img alt="" src="img/noresult.png"/>
+        <h3>您还没有还款记录哦~</h3>
+        <a href="#/home">马上申请</a>
+      </div>
+      <div class='item-divider'>支持多种还款方式，方便快捷</div>
+      <ul class="pay-list">
+        <li ng-repeat="pay in item.pay_type">
+          <a href="{{pay.link_url}}">
+            <img alt="" ng-src="{{pay.img_url}}"/>
+            <span>{{pay.title}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+</ion-pane>

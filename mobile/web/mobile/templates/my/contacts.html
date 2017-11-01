@@ -1,0 +1,40 @@
+<div class="my contacts">
+    <ion-list>
+        <div class='item item-divider'>直系亲属联系人</div>
+        <ionic-picker label='与本人关系'
+            class="item item-input item-link"
+            ng-class='{disabled: form.lock}'
+            picker-data='form.lineal_list'
+            ng-model='form.lineal_default' required='true'>
+        </ionic-picker>
+        <label class="item item-input">
+            <span class="input-label">姓名</span>
+            <input type='text' ng-model='form.lineal_name' placeholder="紧急联系人姓名" ng-readonly='form.lock'>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">联系方式</span>
+            <input type='text' ng-model='form.lineal_mobile' placeholder="紧急联系人电话" maxlength='11' ng-readonly='form.lock'>
+        </label>
+        <div class='item item-divider'>其他联系人</div>
+        <ionic-picker label='与本人关系'
+            class="item item-link"
+            ng-class='{disabled: form.lock}'
+            view-value-property="name"
+            picker-data='form.other_list'
+            ng-model='form.other_default' required='true'>
+        </ionic-picker>
+        <label class="item item-input">
+            <span class="input-label">姓名</span>
+            <input type='text' ng-model='form.other_name' placeholder="紧急联系人姓名" ng-readonly='form.lock'>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">联系方式</span>
+            <input type='text' ng-model='form.other_mobile' placeholder="紧急联系人电话" maxlength='11' ng-readonly='form.lock'>
+        </label>
+    </ion-list>
+    <button class="button button-block button-primary" ng-click='save(form)' ng-disabled='form.lock'>保存</button>
+    <div class='message-security'>
+        <i class="icon-security"></i>
+        银行级数据加密防护
+    </div>
+</div>

@@ -1,0 +1,31 @@
+extends ../common/layout
+block prepend head
+    - let title = '关于我们 - 平台背景 - 浅橙科技';
+    - let keywords = '';
+    - let description = '';
+block prepend header
+    - let active = 3;
+block append wrapper
+    +breadcrumb({name: `平台背景`, link: `/about/backdrop.html`})
+    .container.clearfix
+        include sidebar
+        +sidebar(2)
+        .panel.panel-backdrop.float-right
+            ul
+                li.clearfix
+                    .picture(style=('background-image: url(' + require('assets/images/about/baoxiniao.png') + ');'))
+                    .details
+                        h4 报喜鸟
+                        p 浙江报喜鸟服饰股份有限公司是一家主板上市公司（股票代码002154），成立于2001年6月，主要从事西服和衬衫等男士系列服饰产品的设计、生产和销售，于2007年8月在深交所上市，是温州地区第一家上市的鞋服企业。先后荣获中国驰名商标、中国名牌产品、最受消费者欢迎的男品牌等一系列荣誉称号，2004年首批荣获中国服装品质大奖。
+                li.clearfix
+                    .picture(style=('background-image: url(' + require('assets/images/about/51xinyong.png') + ');'))
+                    .details
+                        h4 51信用卡
+                        p 杭州恩牛网络技术有限公司（简称51信用卡）成立于2012年5月，首创了帮助用户一键智能管理信用卡账单的“51信用卡管家”APP， 目前已发展成为管理中国信用卡账单最多的移动互联网金融公司，拥有超7000万银行认证过的优质用户，管理中国超30%活跃信用卡账单。2016年9月20日，公司完成总计3.1亿美金的C轮融资，由天图投资和A股上市公司新湖中宝领投。3.1亿美金的融资额创下了互联网金融公司C轮融资纪录，融资后公司估值超10亿美元，跻身独角兽行列。公司曾荣膺福布斯中国互联网金融50强，胡润新金融50强，是中国互联网金融协会首批会员、杭州市互联网金融协会副会长单位以及浙江互联网金融联盟首批信息公示企业。
+
+                li.clearfix
+                    .picture(style=('background-image: url(' + require('assets/images/about/hemeng.png') + ');'))
+                    .details
+                        h4 和盟创投
+                        p 和盟创投，具有10多年投资历程的专业创投机构，旗下有移动互联网、医疗生物基金、PE 股权投资三个板块。公司成功投资了杭州银行等优质项目，作为杭州银行大股东之一，发起成立了杭银消费金融公司。其中互联网基金专注互联网早期投资，以A轮投资为主。聚焦在互联网金融、企业服务、前沿科技三个方向。先后投资了现金卡、法大大、flowerplus 、释码大华、创泰科技、文沥信息等数十个项目。
+

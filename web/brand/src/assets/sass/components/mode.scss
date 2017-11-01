@@ -1,0 +1,44 @@
+.mode{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    &:after{
+        width: 715px;
+        height: 1267px;
+        content: '';
+        background: transparent url(../images/mode/background.png) center no-repeat;
+        background-size: cover;
+        opacity: 0;
+        transition: opacity 1s ease-out;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        z-index: 0;
+    }
+    &.fp-completely{
+        &:after{
+            opacity: 1;
+        }
+        .picture{
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .arrow-handle{
+            top: 1024px; 
+            opacity: 1;
+            transition: opacity 1s ease-in 1s;
+        }
+    }
+    .picture{
+        width: 598px;
+        height: 488px;
+        background: transparent url(../images/mode/picture.png) center no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 305px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+}

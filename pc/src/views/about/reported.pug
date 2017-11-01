@@ -1,0 +1,16 @@
+extends ../common/layout
+block prepend head
+    - let title = '关于我们 - 媒体报道 - 浅橙科技';
+    - let keywords = '';
+    - let description = '';
+block prepend header
+    - let active = 3;
+block append wrapper
+    +breadcrumb({name: `媒体报道`, link: `/about/reported.html`})
+    .container.clearfix
+        include sidebar
+        +sidebar(3)
+        .panel.panel-list.float-right#J_about_reported
+            ul#J_about_list
+            .pagination
+            

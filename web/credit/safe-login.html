@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>safe-login</title>
+  <script src="js/flexible.js"></script>
+  <script src="js/jquery.js"></script>
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <style type="text/css">
+  body {
+    background-color: #f2f2f2;
+  }
+  </style>
+  <div class="safe-login">
+    <div class="header">
+      <h3>前程数据</h3>
+      <h4>为您提供安全可信赖的数据加密服务</h4>
+    </div>
+    <h3 class="h3">使用前程数据账号登录并授权</h3>
+    <form action="">
+      <div class="get-message">
+        <label>获得您的个人信息</label>
+        <label>获得您的紧急联系人信息</label>
+        <label>获得您的收款银行卡信息</label>
+        <label>获得您的芝麻信用信息</label>
+        <label>获得您的手机运营商信息</label>
+      </div>
+      <a id="button" class="button" href="#">登录并授权</a>
+      <p class="clearfix other">
+        <input id="checkbox" name="" type="checkbox" value="" checked="true" />
+        <label for="checkbox">我已阅读并同意<i></i><a href="">《信息授权及使用协议》</a></label>
+      </p>
+    </form>
+  </div>
+  <script>
+  $(function() {
+    var checkbox = $("input[type='checkbox']");
+    checkbox.click(function() {
+      var flag = checkbox.is(":checked");
+      if (flag == true) {
+        $("#button").removeClass("disabled").addClass("button");
+        $("#button").attr("href", "#");
+      } else {
+        $("#button").removeClass("button").addClass("disabled");
+        $("#button").attr("href", "#");
+      }
+    });
+  })
+  </script>
+</body>
+
+</html>

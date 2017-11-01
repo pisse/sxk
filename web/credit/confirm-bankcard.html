@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>确认银行卡</title>
+  <script src="js/flexible.js"></script>
+  <script src="js/jquery.js"></script>
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<style>
+		body {
+			background: #f2f2f2;
+		}
+	</style>
+	<div class="confirm-bankcard">
+		<div class="head">
+			<h3>银行卡待确认</h3>
+			<h4>请在一小时内确认银行卡信息，超时系统将自动确认</h4>
+		</div>
+		<div class="content">
+			<h3>姓名：李三</h3>
+			<h3 class="right">招商银行621 **** **** 1234</h3>
+			<p>放款成功还差一步！请填写159****1324收到的验证码</p>
+		</div>
+		<form>
+			<div class="code">
+				<input name="code" type="text" value="" placeholder="请输入您收到的验证码" />
+				<button type="button">获取验证码</button>
+				<p style="display: none;">
+          <span>请输入正确的验证码</span>
+          <a>跳过验证</a>
+        </p>
+			</div>
+			<a class="button" href="javascript:;" id="submit">确认</a>
+		</form>
+	</div>
+	<script>
+		$(function(){
+			var codeButton = $("input[name='code']+button");
+			var setTime = function(m,l) {
+	      setTimeout(function(){
+	      	if(m){
+	      		codeButton.attr("disabled","disabled");
+	      		codeButton.html(m + "s后重新发送");
+	          setTime(--m,1000);
+	        }else{
+	        	codeButton.html("重新获取");
+	        	codeButton.removeAttr("disabled");
+	        }	
+	      },l);
+	    }
+
+			codeButton.click(function(){
+				setTime(60);
+			});
+		});
+	</script>
+</body>
+
+</html>

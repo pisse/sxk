@@ -1,0 +1,290 @@
+@import "../scss/reset.scss";
+$browser-default-font-size: 75px !default;
+@function rem($px) {
+  @return $px / $browser-default-font-size * 1rem;
+}
+
+* {
+  font-family: Helvetica;
+}
+
+.slow-body {
+  background: transparent url(../img/slow-icon-02.jpg) 0 0 no-repeat;
+  background-size: rem(750px) rem(1200px);
+  width: rem(750px);
+  padding-top: rem(1px);
+  border-top: 1px solid #454486;
+  box-sizing: border-box;
+  .header {
+    width: rem(680px);
+    margin: rem(338px) auto 0;
+    text-align: center;
+    color: #fff;
+    h1 {
+      position: relative;
+      font-size: rem(47.11px);
+      line-height: rem(70px);
+      font-weight: bold;
+      font-style: italic;
+      text-shadow: 2px 2px 4px #2a2961;
+    }
+    h1:after {
+      content: "";
+      position: absolute;
+      top: rem(30px);
+      left: rem(0px);
+      width: 100%;
+      border: rem(4px) solid #454486;
+    }
+    h3 {
+      font-size: rem(22.92px);
+      white-space: nowrap;
+    }
+  }
+  .t_news {
+    margin: rem(30px) auto 0;
+    background: #fff url(../img/slow-icon-03.png) rem(24px) center no-repeat;
+    background-size: rem(40px) rem(34px);
+    padding-left: rem(90px);
+    width: rem(655px);
+    height: rem(70px);
+    border: rem(3px) solid #6967b1;
+    border-radius: rem(40px);
+    font-size: rem(28px);
+    -webkit-shadow: inset 2px 2px 3px #b1b1b1;
+    box-shadow: inset 2px 2px 3px #b1b1b1;
+    overflow: hidden;
+    position: relative;
+    .news_li {
+      line-height: rem(70px);
+      text-align: center;
+      position: absolute;
+      margin-left: rem(3px);
+      top: rem(0px);
+      left: rem(0px);
+      width: rem(655px);
+      color: #1f1f1f;
+      li {
+        span {
+          color: #fe9b00;
+        }
+      }
+    }
+  }
+  .slow {
+    width: rem(480px);
+    margin: rem(240px) auto 0;
+    padding-left: rem(15px);
+    font-size: rem(28.11px);
+    line-height: rem(49.62px);
+    color: #fff400;
+    -webkit-transform: rotate(-7deg);
+    transform: rotate(-7deg);
+    span {
+      color: #fe9b00;
+    }
+  }
+  .step {
+    width: rem(680px);
+    height: rem(220px);
+    margin: rem(85px) auto 0;
+    border: rem(8px) solid #6b6ad4;
+    border-radius: rem(40px);
+    color: #fff;
+    font-size: rem(21.41px);
+    line-height: rem(32.12px);
+    text-align: center;
+    span {
+      display: inline-block;
+      position: relative;
+      box-sizing: border-box;
+      width: 30%;
+      padding-top: rem(150px);
+    }
+    span:after {
+      content: "";
+      position: absolute;
+      background: transparent url(../img/slow-icon-10.png) 0 0 no-repeat;
+      background-size: rem(23px) rem(44px);
+      width: rem(23px);
+      height: rem(44px);
+      top: rem(60px);
+      right: rem(-20px);
+    }
+    span:last-child:after {
+      background: none;
+    }
+    .step1 {
+      background: transparent url(../img/slow-icon-04.png) center 35% no-repeat;
+      background-size: rem(120px) rem(120px);
+    }
+    .step2 {
+      background: transparent url(../img/slow-icon-05.png) center 35% no-repeat;
+      background-size: rem(120px) rem(120px);
+    }
+    .step3 {
+      background: transparent url(../img/slow-icon-06.png) center 35% no-repeat;
+      background-size: rem(120px) rem(120px);
+    }
+  }
+  .time {
+    text-align: center;
+    margin-top: rem(65px);
+    width: 100%;
+    color: #fff;
+    font-size: rem(31.3px);
+    line-height: rem(46.96px);
+    .time-icon {
+      font-size: rem(39.21px);
+      line-height: rem(47.06px);
+      background: transparent url(../img/slow-icon-07.png) center top no-repeat;
+      background-size: rem(190px) rem(190px);
+      padding-top: rem(200px);
+      span {
+        color: #ffcf03;
+      }
+    }
+    .compensation {
+      font-size: rem(45.45px);
+      line-height: rem(54.54px);
+      font-weight: bold;
+      color: #ffcf03;
+      margin-top: rem(30px);
+      margin-bottom: rem(10px);
+      span {
+        font-weight: bold;
+        color: #f18200;
+      }
+    }
+    a {
+      display: block;
+      position: relative;
+      color: #454486;
+      text-decoration: none;
+      font-size: rem(0px);
+      width: rem(225px);
+      height: rem(225px);
+      margin: rem(60px) auto rem(95px);
+      line-height: rem(225px);
+      background-color: #f4c424;
+      border: rem(3px) solid #fdff70;
+      border-radius: 50%;
+      span {
+        display: inline-block;
+        font-size: rem(33.43px);
+        line-height: 1.4em;
+        vertical-align: middle;
+        margin-top: rem(-30px);
+        b {
+          display: block;
+          font-weight: bold;
+        }
+      }
+      span:before {
+        content: "";
+        position: absolute;
+        border-top: rem(4px) solid #454486;
+        border-right: rem(4px) solid #454486;
+        width: rem(21.21px);
+        height: rem(21.21px);
+        left: 41%;
+        bottom: rem(40px);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      span:after {
+        content: "";
+        position: absolute;
+        border-top: rem(4px) solid #454486;
+        border-right: rem(4px) solid #454486;
+        width: rem(21.21px);
+        height: rem(21.21px);
+        left: 46%;
+        bottom: rem(40px);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+  }
+  .refuse {
+    background-color: #383777;
+    text-align: center;
+    h4 {
+      font-size: rem(34.15px);
+      line-height: rem(105px);
+      color: #f4c424;
+    }
+    img {
+      width: rem(691px);
+      height: rem(383px);
+      margin-bottom: rem(60px);
+    }
+  }
+  .footer {
+    p {
+      font-size: rem(24px);
+      line-height: rem(36px);
+      color: #8685d2;
+      text-align: center;
+      margin: rem(35px) 0 rem(218px) 0;
+    }
+    a {
+    	position: fixed;
+    	left: rem(0px);
+    	bottom: rem(0px);
+    	background: #2e2e5a url(../img/slow-icon-08.png) 0 0 no-repeat;
+    	background-size: rem(750px) rem(158px);
+    	width: rem(750px);
+    	height: rem(158px);
+    	line-height: rem(158px);
+    	text-decoration: none;
+    	text-align: center;
+    	color: #fff;
+    	font-size: rem(43.88px);
+    	font-weight: bold;
+    }
+  }
+}
+
+.slow-rule-body {
+  width: rem(750px);
+  h2 {
+    background-color: #454486;
+    ;
+    color: #fff;
+    font-size: rem(36px);
+    font-weight: bold;
+    line-height: rem(145px);
+    text-align: center;
+  }
+  .content {
+    font-size: rem(24px);
+    line-height: rem(42px);
+    padding: rem(40px);
+    h3 {
+      font-weight: bold;
+    }
+    p {
+      margin-bottom: rem(45px);
+      span {
+        font-weight: bold;
+      }
+      i {
+        display: inline-block;
+        background: transparent url(../img/slow-icon-01.png) 0 0 no-repeat;
+        background-size: rem(50px) rem(50px);
+        width: rem(50px);
+        height: rem(50px);
+        vertical-align: bottom;
+        margin-left: rem(3px);
+      }
+    }
+    p.notice {
+      color: #ff5400;
+      span {
+        display: block;
+        font-weight: normal;
+      }
+    }
+  }
+}

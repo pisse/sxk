@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="format-detection" content="telephone=no">
+    <title>还款方式选择</title>
+    <script src="js/flexible.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <!-- <link href="css/theme-orange.css" rel="stylesheet"/> -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+    <script src="js/spin.js"></script>
+    <script src="js/swiper.jquery.min.js"></script>
+    <link href="css/swiper.min.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="choose">
+      <div class='notice'>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="swiper-slide-inner"><span>XXX银行系统维护中，预计XXX恢复正常使用XXX银行系统维护中</span></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-slide-inner"><span>XXX银行系统维护中，预计XXX恢复正常</span></div>
+            </div>
+            <div class="swiper-slide">
+              <div class="swiper-slide-inner"><span>XXX银行系统维护中，预计XXX恢复正常使用XXX银行系统</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="head">
+        <h4>待还款</h4>
+        <h3>¥ 1000.00</h3>
+      </div>
+      <ul>
+        <li class="bank-icon"> <a href=""> <h2>银行卡还款<b>官方推荐</b></h2> <i></i> </a> </li>
+        <li class="wxpay-icon"> <a href=""> <h2>微信还款</h2> <i></i> </a> </li>
+        <li class="alipay alipay-icon"> <a href=""> <h2>支付宝还款</h2> <i></i> </a> </li>
+        <!-- <li class="bank-icon">
+          <label>
+            <input name='m-radio' type="radio" value="bank" />
+            <small></small> 
+            <a>
+              <h2>银行卡还款<b>官方推荐</b></h2> 
+              <i></i> 
+            </a> 
+          </label>
+        </li>
+        <li class="wxpay-icon">
+          <label>
+            <input name='m-radio' type="radio" value="wxpay" />
+            <small></small> 
+            <a> 
+              <h2>微信还款</h2> 
+              <i></i> 
+            </a> 
+          </label>
+        </li>
+        <li class="alipay alipay-icon">
+          <label>
+            <input name='m-radio' type="radio" value="alipay" />
+            <small></small>
+            <a> 
+              <h2>支付宝还款</h2> 
+              <i></i> 
+            </a>
+          </label> 
+        </li> -->
+        <div class="lookOtherRepay">查看其他还款方式</div>
+      </ul>
+      <p>备注：若在借款期间内未发动主动还款，则默认于还款日当天从绑定银行卡建设银行卡（0749）自动扣除所借款项，请保证在扣款之前账户资金充足。</p>
+      <!-- <a class='a-alipay'>还款<b>¥1000.00</b></a> -->
+    </div>
+
+    <div class="popup" style="display:none">
+      <div class="overlay"></div>
+      <div class="dialog pay">
+        <span class="close"></span>
+        <h2>请输入交易密码</h2>
+        <p class="clearfix">
+          <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>
+        </p>
+        <input autofocus name="" type="number" value="" pattern="\d*"/>
+        <p class="error-tips">密码错误</p>
+        <a href="">忘记密码?</a>
+      </div>
+    </div>
+
+    <div class="popup" id="defray" style="display:none">
+      <div class="overlay"></div>
+      <div class="dialog">
+        <span class="close"></span>
+        <h2>请输入交易密码</h2>
+        <h2>还款总额</h2>
+        <h1>1060.00元</h1>
+        <p class="clearfix">
+          <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>
+        </p>
+        <p class="error-tips">密码错误</p>
+        <input name="" type="number" value="" pattern="\d*"/>
+        <a href="">忘记密码?</a>
+      </div>
+    </div>
+
+    <div class="popup" style="display:none">
+      <div class="overlay"></div>
+      <div class="error">
+        <img alt="" src="img/icon-error.png"/>
+        <h2>密码错误，请重新输入</h2>
+        <p>
+          <a href="">重试</a>
+          <a href="">找回密码</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="popup" style="display:none">
+      <div class="overlay"></div>
+      <div class="error alert">
+        <h2>密码错误，请重新输入</h2>
+        <p>
+          <a href="">确定</a>
+          <a href="">取消</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="popup" id='error-copy' style='display: none;'>
+      <div class="overlay"></div>
+      <div class="detail">
+        <span class='close'></span>
+        <div class='content'>
+          <h4>该浏览器暂不支持，请手动复制<small>hr@xianjincard.com</small></h4>
+          <a>朕知道了</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var ua = navigator.userAgent;
+      var isAndroid = ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1;
+      var toastFlag = 1;
+
+      $(function(){
+        var interval = null;
+        $('#defray .close').click(function(event){
+            $('#defray').hide();
+        })
+
+        $('#defray p').click(function(event){
+            $('#defray input').focus();
+        })
+        $('#defray input').focus(function(){
+            var interval = setInterval(function(){
+              if(document.activeElement.nodeName == 'INPUT'){
+                 console.log('input')
+                 $('#defray .dialog').css({top:0,marginTop:0});
+              }else{
+                 $('#defray .dialog').attr('style','')
+                 if (interval) {
+                   clearInterval(interval);
+                   interval = null;
+                 }
+              }
+            },500)
+        });
+        $('#defray input').bind('input',function(event){
+          var val = $(this).val();
+          $('#defray i').removeClass('point');
+          for(var i = 0; i < val.length; i++){
+              $('#defray i').eq(i).addClass('point')
+          }
+          if (val.length >= 6){
+            $(this).val(val.slice(0,6));
+            console.log(val.slice(0,6));
+          }
+        })
+
+        $('.lookOtherRepay').click(function(event){
+          $('.alipay').addClass('active');
+          $('.lookOtherRepay').css('display', 'none');
+        })
+
+        $('.swiper-container').swiper({
+          autoplay: 3000
+        });
+
+        $('#copy-account').click(function(e) {
+          var input = document.createElement("input");
+          var text  = "hr@xianjincard.com";
+          input.setAttribute("value", text);
+          document.body.appendChild(input);
+          input.select();
+          if(document.execCommand('copy')) {
+            $('#error-copy').show();
+            return
+          }
+          document.body.removeChild(input);
+          e.stopPropagation();
+          if(toastFlag) {
+            toastFlag = 0;
+            $(".toast").show();
+            setTimeout(function() {
+              $(".toast").hide();
+              toastFlag = 1;
+            }, 2000)
+          }
+        })
+
+        $('#error-copy a').click(function() {
+          $('#error-copy').hide();
+        })
+
+        $('.a-alipay').click(function() {
+          var radioArr = $('input[type="radio"]');
+          var checkFlag = '';
+          for (var i in radioArr) {
+            if(radioArr[i].checked) {
+              checkFlag = i;
+              break;
+            }
+          }
+          console.log(i);
+        })
+      })
+    </script>
+
+    <div class="pay-result" style='display: none;'>
+      <div class="container">
+        <h2>请根据以下步骤进行支付宝转账还款</h2>
+        <div><b>1</b><p>进入支付宝首页，点击【转账】，选择【转到支付宝账户】，输入支付宝账户：<i>hx@xianjincard.com</i>，可通过账户全名“<i>上海浅橙网络科技有限公司</i>”进行校验<a id='copy-account' > 复制账户</a></p></div>
+        <div><b>2</b><p>点击【下一步】，输入转账金额（转账金额请与还款页面提示的还款金额一致，否则无法还款成功），并<i>添加备注: 彭帅 15201926567 还款</i><a href="" > 复制备注</a></p></div>
+        <div><b>3</b><p>点击【确认转账】，输入支付密码即可完成还款，转账成功后，请及时关注还款状态</p></div>
+        <div><b>4</b><p>输入您还款的支付宝账号，以进行验证：</p><br /><span class="tip">温馨提示：请先在支付宝APP完成转账操作，然后在当前页面提交您还款的支付宝账号，否则将无法还款成功</span></div>
+        <input type="text" placeholder="输入您还款的支付宝账号" />
+        <p class="error">支付宝账号不能为空</p>
+        <a class="confirm" href="">提交</a>
+      </div>
+      <a class="button" href="">查看图文说明</a>
+    </div>
+
+    <div class="toast" style="display: none;">
+      <span>复制成功</span> 
+    </div>
+
+    <div class="pay-result" style="display:none">
+      <div class="head"></div>
+      <p>请将支付金额转入到支付宝账户中并<i>标明备注</i>。</p>
+      <h1>收 款 人：黄铭</h1>
+      <h1>收 款 行：中国银行上海市创智天地科技园支行</h1>
+      <h1>银行卡号：6216 6108 0000 8133 523</h1>
+      <h1>备注：您的姓名+注册手机号</h1>
+      <a href="" class="button">点击复制账号</a>
+    </div>
+
+    <div class="phone-verify" style="display:none">
+      <ul>
+        <li><input name="" type="tel" value="" placeholder="请输入短信查询码" /></li>
+        <li class="tel">13917884931</li>
+        <li>
+          <input class="verify" name="" type="password" value="" placeholder="请输入手机服务密码" />
+          <a class="forget" href="">忘记密码？</a>
+        </li>
+      </ul>
+      <p class="error">输入不正确</p>
+      <p class="tips">温馨提示： <br/>1. 请输入正确的运营商（移动、联通、电信）服务密码，如若忘记可通过拨打运营上服务电话或者登陆网上营业厅找回密码； <br/>2.运营商认证需要2~3分钟，请耐心等待；</p>
+      <a class="button" href="">确认</a>
+      <p class="clearfix other">
+        <input id="checkbox" name="" type="checkbox" value="" checked="true" />
+        <label for="checkbox">我已阅读并同意<i></i><a href="">《运营商授权协议》</a></label>
+      </p>
+      <p id="bank-verify-note">银行级数据加密防护</p>
+    </div>
+    <div class="popup-spin popup-spin-new" id="loading" style="display: none;">
+       <div class="overlay"></div>
+       <div class="content">
+         <p class="tips-msg">运营商认证需要2~3分钟…</p>
+         <div class="spin" id="preview"></div>
+       </div>
+    </div>
+
+    <div class="phone-verify" style="display: none">
+      <ul>
+        <li class="tel">13917884931</li>
+        <li><input id="password" name="" type="password" value="" placeholder="请输入6位数新密码"/></li>
+        <li>
+          <input id="code" class="verify" name="" type="code" value="" placeholder="请输入验证码" />
+          <button class="send">获取验证码</button>
+        </li>
+      </ul>
+      <p class="error">输入不正确</p>
+      <p class="tips">温馨提示：请牢记您的新密码。若无法成功重置密码，可点此<a class='a-help'>查看帮助</a>。</p>
+      <button id="sumbit" class="button" disabled="disabled">提交</button>
+      <p id="bank-verify-note">银行级数据加密防护</p>
+    </div>
+    <div class="popup-spin" id="getCodeWait" style="display: none;">
+       <div class="overlay"></div>
+       <div class="content getCodeWait">
+         <p class="tips-msg reset-pass">获取验证码可能需要一点点<br />时间，请耐心等待哦</p>
+       </div>
+    </div>
+    <div class="popup-spin" id="loading" style="display: none;">
+       <div class="overlay"></div>
+       <div class="content">
+         <p class="tips-msg reset-pass">重置密码成功</p>
+         <i class='right'></i>
+       </div>
+    </div>
+    <div class="popup-confirm" style="display:none">
+      <div class="overlay"></div>
+      <div class="confirm-dialog">
+        <h3>重置密码失败</h3>
+        <p>很抱歉，重置密码失败，您可以重试或查看帮助</p>
+        <div class="confirm-button">
+          <a class="close">查看帮助</a>
+          <a class="confirm">我要重试</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        var dpr = lib.flexible.dpr;
+        new Spinner({color:'#fff',width:3*dpr,radius:11*dpr,length:8*dpr}).spin(document.getElementById('preview'));
+        document.getElementById('loading').style.display='none';
+      }())
+    </script>
+  </body>
+</html>

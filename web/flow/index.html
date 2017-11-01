@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <script src="js/flexible.js"></script>
+  <script src="js/zepto.js"></script>
+  <script src="js/swiper.js"></script>
+  <link href="css/swiper.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <title>更多选择</title>
+  <style>
+    .popup{
+        position: relative;
+        z-index: 10;
+        display: none;
+    }
+    .popup.active{
+        display: block;
+    }
+    .popup .dialog{
+        height: auto;
+    }
+    .popup .dialog p{
+        line-height: 36px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .popup .dialog a.button{
+        width: 75%;
+        color: #fff;
+        border-radius: 6px;
+        background-color: #4ab6fa;
+        margin: 20px auto;
+    }
+    .content{
+        white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+    <div class="quick-loan-body">
+        <h4>友情提示：一次申请多家，成功率更高！</h4>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide" data-name='yongqianbao'>
+                <img src="img/banner-2.jpg"/>
+            </div> -->
+            <!-- <div class="swiper-slide" data-name='qianzhan'>
+                <img src="img/banner-6.png"/>
+            </div> -->
+            <!--<div class="swiper-slide" data-name='idai'>
+                <img src="img/banner-1.jpg"/>
+            </div>-->
+            <!-- <div class="swiper-slide" data-name='shuixiang'>
+                <img src="img/banner-8.png"/>
+            </div> -->
+            <div class="swiper-slide" data-name='shoujidai'>
+                <img src="img/banner-5.png"/>
+            </div>
+            <div class="swiper-slide" data-name='kuaiqian'>
+                <img src="img/banner-9.png"/>
+            </div>
+            <div class="swiper-slide" data-name='tongniu'>
+                <img src="img/banner-10.jpg"/>
+            </div>
+            <!-- <div class="swiper-slide" data-name='jiekuanzhuanjia'>
+                <img src="img/banner-7.jpg"/>
+            </div> -->
+          </div>
+        </div>
+        <ul>
+            <!-- <li data-name='yongqianbao'>
+                <img src="img/icon-2.jpg"/>
+                <div class="content">
+                    <h3>用钱宝 - 0门槛借钱</h3>
+                    <p>5分钟审核，免费借三天</p>
+                    <p>参考日利率: <strong>0.3%</strong>最高额度：<strong>5000元</strong></p>
+                </div>
+            </li> -->
+            <!-- <li data-name='qianzhan'>
+                <img src="img/icon-6.png"/>
+                <div class="content">
+                    <h3>钱站 - 大额极速</h3>
+                    <p>3分钟申请10万额度</p>
+                    <p>参考日利率: <strong>0.02%</strong>最高额度：<strong>100000元</strong></p>
+                </div>
+            </li> -->
+            <li data-name='shoujidai'>
+                <img src="img/icon-5.jpg"/>
+                <div class="content">
+                    <h3>手机贷 - 高额到账快</h3>
+                    <p>最高一万 当天放款 假期也到账。</p>
+                    <p>参考日利率: <strong>0.3%</strong>最高额度：<strong>10000元</strong></p>
+                </div>
+            </li>
+            <li data-name='kuaidai'>
+                <img src="img/icon-9.png"/>
+                <div class="content">
+                    <h3>极速借款 - 无需征信当天到账</h3>
+                    <p>小额借款是为满足工薪族客户小额借款...</p>
+                    <p>参考月利率: <strong>0.06%</strong>最高额度：<strong>200000元</strong></p>
+                </div>
+            </li>
+            <li data-name='xianjinjiekuan'>
+                <img src="img/icon-4.jpg"/>
+                <div class="content">
+                    <h3>现金借款</h3>
+                    <p>信用换现金，3小时审核，30秒到账！</p>
+                    <p>参考日利率: <strong>0.3%</strong>最高额度：<strong>1000元</strong></p>
+                </div>
+            </li>
+            <li data-name='baidujinrong'>
+                <img src="img/icon-11.png"/>
+                <div class="content">
+                    <h3>百度金融商城</h3>
+                    <p>1-100万身份证贷款、消费贷款、抵押贷款...</p>
+                    <p>参考日利率: <strong>0.6%</strong>最高额度：<strong>100万元</strong></p>
+                </div>
+            </li>
+            <li data-name='hengyidai'>
+                <img src="img/icon-10.png"/>
+                <div class="content">
+                    <h3>恒易贷 - 无抵押、放款快</h3>
+                    <p>30秒申请，操作便捷，成功率高</p>
+                    <p>参考月利率: <strong>0.75%</strong>最高额度：<strong>200000元</strong></p>
+                </div>
+            </li>
+            <li data-name='jiandanjieqian'>
+                <img src="img/icon-18.png"/>
+                <div class="content">
+                    <h3>简单借钱 - 小额、随借随还</h3>
+                    <p>极速放款</p>
+                    <p>参考日利率: <strong>0.4%</strong>最高额度：<strong>5000</strong></p>
+                </div>
+            </li>
+            <li data-name='cashbus'>
+                <img src="img/icon-8.png"/>
+                <div class="content">
+                    <h3>现金巴士 - 小额应急极速放款</h3>
+                    <p>短期小额的应急借款，门槛低，只需手机...</p>
+                    <p>参考日利率: <strong>0.028%</strong>最高额度：<strong>1000元</strong></p>
+                </div>
+            </li>
+            <!-- <li data-name='tongniu'>
+                <img src="img/icon-14.jpg"/>
+                <div class="content">
+                    <h3>同牛贷 - 急速借钱</h3>
+                    <p>纯线上快速审核，1小时急速放款，资金周转...</p>
+                    <p>参考日利率: <strong>0.6%</strong>最高额度：<strong>5000元</strong></p>
+                </div>
+            </li> -->
+            <li data-name='kuaiqian'>
+                <img src="img/icon-13.png"/>
+                <div class="content">
+                    <h3>快钱 - 钱包极速借款</h3>
+                    <p>大额，极速借款</p>
+                    <p>参考月利率: <strong>0.5%</strong>最高额度：<strong>50000元</strong></p>
+                </div>
+            </li>
+            <li data-name='2345'>
+                <img src="img/icon-7.jpg"/>
+                <div class="content">
+                    <h3>贷款王 - 身份证贷款</h3>
+                    <p>2分钟极速放款，有身份证即可</p>
+                    <p>参考日利率: <strong>0.1%</strong>最高额度：<strong>5000元</strong></p>
+                </div>
+            </li>
+            <li data-name='anjiapai'>
+                <img src="img/icon-17.png"/>
+                <div class="content">
+                    <h3>安家派</h3>
+                    <p>纯线上，信用贷款</p>
+                    <p>参考日利率: <strong>0.65%</strong>最高额度：<strong>30000元</strong></p>
+                </div>
+            </li>
+            <li data-name='wolaidai'>
+                <img src="img/icon-16.png"/>
+                <div class="content">
+                    <h3>我来贷 - 极速贷</h3>
+                    <p>1分钟填资料，最快3分钟放款</p>
+                    <p>参考月利率: <strong>0.026%</strong>最高额度：<strong>30000元</strong></p>
+                </div>
+            </li>
+
+            <!-- <li data-name='paipaidai'>
+                <img src="img/icon-3.png"/>
+                <div class="content">
+                    <h3>拍拍贷 - 个人信用贷</h3>
+                    <p>30分钟快批、2小时到账</p>
+                    <p>参考日利率: <strong>0.044%</strong>最高额度：<strong>50000元</strong></p>
+                </div>
+            </li> -->
+            
+            <!-- <li data-name='shuixiang'>
+                <img src="img/icon-12.png"/>
+                <div class="content">
+                    <h3>水象分期</h3>
+                    <p>1分钟在线申请，审核秒批，最快3分钟到账...</p>
+                    <p>参考日利率: <strong>0.3%</strong>最高额度：<strong>5000元</strong></p>
+                </div>
+            </li> -->
+            
+            
+            <!-- <li data-name='xianjindai'>
+                <img src="img/icon-15.png"/>
+                <div class="content">
+                    <h3>现金贷 - 信用贷款</h3>
+                    <p>3分钟完成申请，最快当天放款，有公积金账...</p>
+                    <p>参考日利率: <strong>0.035%</strong>最高额度：<strong>50000元</strong></p>
+                </div>
+            </li> -->
+            <!--<li data-name='idai'>
+                <img src="img/icon-1.png"/>
+                <div class="content">
+                    <h3>I贷 - 放款最快3分钟</h3>
+                    <p>最高贷3万，最快3分钟放款</p>
+                    <p>参考日利率: <strong>0.04%</strong>最高额度：<strong>30000元</strong></p>
+                </div>
+            </li>-->
+            <!-- <li data-name='jiekuanzhuanjia'>
+                <img src="img/icon-8.png"/>
+                <div class="content">
+                    <h3>借款专家</h3>
+                    <p>人人都能借到钱</p>
+                    <p>参考日利率: <strong>0.04%</strong>最高额度：<strong>200000元</strong></p>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+    <div class='popup'>
+        <div class='overlay'></div>
+        <div class='dialog'>
+            <h2>即将进入“<span class='name'></span>”页面</h2>
+            <p>注册完成后请至各大应用市场下载“<span class='name'></span>”APP</p>
+            <a class='button'>前往</a>
+        </div>
+    </div>
+<script>
+var swiper = new Swiper('.swiper-container', {
+    autoplay: 3500
+});
+var data = {
+    yongqianbao: {
+        name: '用钱宝',
+        url: 'http://www.yongqianbao.com/wr/launch-register?c=576'
+    },
+    paipaidai: {
+        name: '拍拍贷',
+        url: 'http://m.ppdai.com/act/borrow/?source=tf323'
+    },
+    qianzhan: {
+        name: '钱站',
+        url: 'http://app-h5.iqianzhan.com/sources/outsideRegister.html?qd=xianjinbaika1'
+    },
+    shoujidai: {
+        name: '手机贷',
+        url: 'http://sjd-m.mobanker.com/?channel=xianjinbaika-llcs'
+    },
+    idai: {
+        name: 'I贷',
+        url: 'https://www.omsys.com.cn/Pinganwl/index.php?aid=UGluZ2Fud2xfNTQ1MF84MV95ZXM='
+    },
+    xianjinjiekuan: {
+        name: '现金借款',
+        url: 'https://www.yangqianguan.com/flexible/index?act=M2RJt9'
+    },
+    2345: {
+        name: '贷款王',
+        url: 'https://mdaikuan.2345.com/register3?channel=hj-xianjinbaika_cpl_zyn'
+    },
+    jiekuanzhuanjia: {
+        name: '借款专家',
+        url: 'https://m.jiekuanzhuanjia.com/register/login?channel=lxjbkjk0215dd'
+    },
+    cashbus: {
+        name: '现金巴士',
+        url: 'https://weixin.cashbus.com/#/events/promo/32501'
+    },
+    kuaidai: {
+        name: '极速借款',
+        url: 'https://microservice.wacai.com/loan/welfare/apply/xianjinbaika/28a00094?af=LW23XIANJINBAIKA&sign=5e9f8ca8342e3b95e4c3b71d029cb8af'
+    },
+    hengyidai: {
+        name: '恒易贷',
+        url: 'https://www.hengchang6.com/?utm_source=xianjcard&utm_content=50&utm_a=a'
+    },
+    baidujinrong: {
+        name: '百度金融商城',
+        url: 'http://jin.baidu.com/loan/apply/quick?page=scjdq&channel=scxjsd'
+    },
+    shuixiang: {
+        name: '水象分期',
+        url: 'https://www.beadwallet.com/loanpage/register1.html?cid=UHM2GICD7841JAC'
+    },
+    kuaiqian: {
+        name: '快钱',
+        url: 'http://t.cn/RJcwn4h'
+    },
+    tongniu: {
+        name: '同牛贷',
+        url: 'http://sudai.tongniutech.com?location=xjbka'
+    },
+    xianjindai: {
+        name: '现金贷',
+        url: 'http://www.gongziqianbao.com/wallet-weixin-client/wxh5/subject/currency/index.html?channel=nykj'
+    },
+    wolaidai: {
+        name: '我来贷',
+        url: 'https://m.wolaidai.com/staff/index.html?channel=on_prm_cor_93000000'
+    },
+    jiandanjieqian: {
+        name: '简单借钱',
+        url: 'https://activity.jiandanjiekuan.com/html/register_getNewUser.html?channelCode=3fc9c7bb77ee4c5785349ea419a4b7fe'
+    },
+    anjiapai: {
+        name: '安家派',
+        url: 'http://wap.apass.vcash.cn/#/downAppReg?channel=qcwl'
+    }
+};
+(function(){
+    var os = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+    var query = (function(){
+        var uri = location.search.replace(/^\?/, '');
+        if(!uri) return {};
+        var params = uri.split('&');
+        var temps = {};
+        for(var i in params){
+            var param = params[i].split('=');
+            temps[param[0]] = decodeURIComponent(param[1]);
+        }
+        return temps;
+    }());
+    var api = query.api || 'http://credit.xianjincard.com/credit-web/user-click-count';
+    var el = $('[data-name]');
+    var popup = $('.popup');
+    var lock = false;
+        popup.find('.overlay').on('click', function(){
+            popup.hide();
+        });
+    el.on('click', function(){
+        if(lock) return;
+        lock = true;
+        var name = $(this).data('name');
+        var elem = data[name];
+        if(elem){
+            $.ajax({
+                url: api,
+                data: {
+                    title: name
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                complete: function(response){
+                    lock = false;
+                    if(os){
+                        location.href = elem.url;
+                        return;
+                    }
+                    popup.find('.name').text(elem.name);
+                    popup.find('a.button').attr('href', elem.url);
+                    popup.show();
+                }
+            })
+        }
+    });
+}());
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f98257d164a7690cce2cab7629ec3707";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

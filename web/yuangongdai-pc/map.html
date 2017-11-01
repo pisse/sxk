@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>地图展示</title>
+  <style type="text/css">
+    body{
+      padding:0;
+      margin:0;
+      font-family: Helvetica, "Microsoft YaHei";
+      background: #000 url(img/map-bg.jpg) 50% 0 no-repeat;
+    }
+    .top{
+      height:70px;
+      background:rgba(225,225,225,.2);
+      line-height: 70px;
+      color:#0e224e;
+      font-size:35px;
+    }
+    .top p{
+      margin:0 auto;
+      padding-left:70px;
+      width:300px;
+      background: url(img/map-logo.png) 0 50% no-repeat;
+    }
+    .warp{
+      width:1387px;
+      margin:0px auto;
+      position: relative;
+      padding-top:50px;
+    }
+    .map{
+      width:1187px;
+      height:1020px;
+      background: url(img/map.png) 0 0 no-repeat;
+      position:relative;
+    }
+    .info{
+      color:#fff;
+      position:absolute;
+      top:500px;
+      left:1170px;
+      width:300px;
+    }
+    .info .title{
+      padding:15px;
+      background:#000;
+      font-size:16px;
+    }
+    .info .title span{
+      display:inline-block;
+    }
+    .info .title span:first-child{
+      margin-right:30px;
+    }
+    .info .title span i{
+      font-style:normal;
+    }
+    .info ul{
+      list-style-type: none;
+      padding:0;
+    }
+    .info ul li{
+      background: url(img/map-icon-user.jpg) 0 0 no-repeat;
+      padding-left:30px;
+      color:#647dbe;
+      font-size:20px;
+      margin-bottom:35px;
+    }
+    .info ul li p{
+      margin:0;
+    }
+    .info ul li h1{
+      margin:0;
+      font-size:36px;
+      font-weight: normal;
+      color:#fff;
+    }
+    .map .point{
+      position:absolute;
+      left:-1000px;
+      width:30px;
+      height:30px;
+      animation: point 0.2s infinite alternate;
+      -webkit-animation: point 0.2s infinite alternate;
+    }
+    @keyframes point {
+      from {
+        background: radial-gradient(rgba(225,225,225,1) 30%, rgba(225,225,225,0) 75%, rgba(225,225,225,0) 5%);
+      }
+
+      to {
+        background: radial-gradient(rgba(225,225,225,1) 10%, rgba(225,225,225,0) 75%, rgba(225,225,225,0) 5%);
+      }
+    }
+    @-webkit-keyframes point {
+      from {
+        background: radial-gradient(rgba(225,225,225,1) 30%, rgba(225,225,225,0) 75%, rgba(225,225,225,0) 5%);
+      }
+
+      to {
+        background: radial-gradient(rgba(225,225,225,1) 10%, rgba(225,225,225,0) 75%, rgba(225,225,225,0) 5%);
+      }
+    }
+    .map span{
+      display:block;
+      position:absolute;
+      font-size:14px;
+      color:#fff;
+      width:120px;
+      top: -40px;
+      left: 0;
+    }
+    img.logo{
+      display:block;
+      position:absolute;
+      top:50px;
+      left:50px;
+    }
+
+  </style>
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+  <script src="js/dest/map.js"></script>
+  </head>
+  <body>
+    <img class="logo" alt="" src="img/map-logo.png"/>
+    <div class="warp">
+      <div class="map">
+        <div class="point">
+          <span>用户183****6774申请1000元</span>
+        </div>
+      </div>
+      <div class="info">
+        <div class="title"><span>日期：<i class="date"></i></span><span>时间：<i class="time"></i></span></div>
+        <ul>
+          <li>
+            <p>累计注册用户总数(人):</p>
+            <h1 class="user">112,223</h1>
+          </li>
+          <li>
+            <p>累计成交额(累计借款总额):</p>
+            <h1 class="loanTotal">1,122,233</h1>
+          </li>
+          <li>
+            <p>累计借款笔数:</p>
+            <h1 class="loanCount">1,123,334</h1>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

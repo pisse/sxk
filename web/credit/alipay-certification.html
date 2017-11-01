@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="format-detection" content="telephone=no">
+    <title>忘记密码服务</title>
+    <script src="js/flexible.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/theme-orange.css" rel="stylesheet"/>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="alipay-certification">
+      <div>
+        <style>body{background:#f2f2f2}</style>      
+        <h3 class="tips">请填写正确的支付宝帐号与密码</h3>
+        <ul>
+          <li class="clearfix">
+            <label for="">支付宝帐号</label>
+            <input class="user" name="" type="text" value=""/>
+          </li>
+          <li class="clearfix">
+            <label for="">支付宝密码</label>
+            <input name="" type="text" value=""/>
+          </li>
+          <li class="code clearfix">
+            <input placeholder="请输入图片验证码！"  name="" type="text" value=""/>
+            <span></span>
+          </li>
+          <li class="tel">13917884931</li>
+          <li class="code clearfix">
+            <input placeholder="请输入短信校验码"  name="" type="text" value=""/>
+            <a href="">重新发送</a>
+          </li>
+        </ul>
+        <a class="common-button">马上认证</a>        
+      </div>
+      <div class="result" style="display:none">
+        <img alt="" src="img/img-1.png"/>
+        <p>恭喜通过支付宝认证</p>
+        <img alt="" src="img/img-2.png"/>
+        <p>认证超时，请重新认证</p>
+        <p><a href="">重新认证></a></p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+extends common/layout
+block prepend head
+    - let title = '浅橙科技 - 中国创新型金融科技公司';
+    - let keywords = '';
+    - let description = '';
+block prepend header
+    - let active = 1;
+block append wrapper
+    .home
+        .banner
+            .swiper-container#J_home_banner
+                .swiper-wrapper
+                    //- .swiper-slide
+                    //-     a(href='register.html'): img(src=require('assets/images/home/banner-1.png'))
+                    //- .swiper-slide
+                    //-     a(href='register.html'): img(src=require('assets/images/home/banner-2.png'))
+                .swiper-pagination
+        .content
+            section.data
+                .subject 平台数据
+                .container.clearfix
+                    .map#J_map
+                    .ranking
+                        dl
+                            dt 每日借款省份TOP5
+                            dd 四川
+                            dd 广东
+                            dd 湖北
+                            dd 湖南
+                            dd 河南
+                        dl
+                            dt 每日借款用户年龄分布
+                            dd <span>22-25岁</span><span>35%</span>
+                            dd <span>26-30岁</span><span>47%</span>
+                            dd <span>31-35岁</span><span>17%</span>
+                            dd <span>其他</span><span>1%</span>
+                .container
+                    p.declare 郑重声明：我们不向学生提供服务
+            section.loan
+                .subject 轻松<span>3步</span>完成借款
+                .container.clearfix
+                    .process
+                        .title 最快<i>1</i>分钟到账，轻松拿钱不等待！
+                        .picture
+                    ul.main
+                        li
+                            span 借款金额：
+                            span: input(type='range', min='500', max='3000', value='1000', step='100', data-rangeslider)
+                        li
+                            span 借款期限：
+                            span 7 ~ 14天
+                        li
+                            span 到账金额：
+                            span 开卡揭晓
+                        li
+                            span 综合费用：
+                            span 开卡揭晓
+                        li
+                            .button
+                                a 我要开卡
+                                .qrcode
+                                    img(src=require('assets/images/qrcode.png'))
+                                    p 扫码下载<span>现金卡</span>APP
+
+            section.backdrop
+                .subject 股东背景
+                .container
+                    ul.clearfix
+                        li
+                            a(href='/about/backdrop.html')
+                                img(src=require('assets/images/about/baoxiniao.png'))
+                                h4 报喜鸟
+                                p 浙江报喜鸟服饰股份有限公司是一家主板上市公司（股票代码002154），成立于2001年6月，主要从事西服和衬衫等男士系列服饰产品的设计、生产和销售，于2007年8月在深交所上市，是温州地区第一家...
+                        li
+                            a(href='/about/backdrop.html')
+                                img(src=require('assets/images/about/51xinyong.png'))
+                                h4 51信用卡
+                                p 杭州恩牛网络技术有限公司（简称51信用卡）成立于2012年5月，首创了帮助用户一键智能管理信用卡账单的“51信用卡管家”APP， 目前已发展成为管理中国信用卡账单最多的移动互联网金融公司，拥有超...
+                        li
+                            a(href='/about/backdrop.html')
+                                img(src=require('assets/images/about/hemeng.png'))
+                                h4 和盟创投
+                                p 和盟创投，具有10多年投资历程的专业创投机构，旗下有移动互联网、医疗生物基金、PE 股权投资三个板块。公司成功投资了杭州银行等优质项目，作为杭州银行大股东之一，发起成立了杭银消费金融公司...
+            section.news
+                .subject 媒体报道与平台动态
+                .container
+                    .tabs
+                        a.tab-link.active 媒体报道
+                        a.tab-link 平台动态
+                    .tab-content
+                        .content.active
+                            ul.clearfix#J_news_reported
+                        .content
+                            ul.clearfix#J_news_notice
+            section.parners
+                .subject 合作伙伴
+                .container
+                    .picture
+                        img(src=require('assets/images/home/parners.png'))
+                    //- ul.clearfix
+                    //-     li
+                    //-         img(src=require('assets/images/home/bank.jpg'))
+
+    //- .index-content
+    //-     .index-banner
+    //-     .index-map
+    //-         h1 数据平台
+    //-         .line
+    //-     .index-step
+    //-         h1 轻松<span>3步</span>完成借款
+    //-         .line
+    //-         .content
+    //-             .left
+    //-                 h2 最快<span>1</span>分钟到账，轻松拿钱不等待！
+    //-                     .step
+    //-                         p 注册<br>认证
+    //-                         p 一键<br>申请
+    //-                         p.active 审批<br>放款
+    //-             .open-card
+    //-                 .list.clearfix
+    //-                     .p-left 借款金额：
+    //-                     .p-right 7~14天
+    //-                 .list.clearfix
+    //-                     .p-left 借款期限
+    //-                     .p-right 7~14天
+    //-                 .list.clearfix
+    //-                     .p-left 到账金额
+    //-                     .p-right 开卡揭晓
+    //-                 .list.clearfix
+    //-                     .p-left 综合费用
+    //-                     .p-right 开卡揭晓
+    //-                 button 我要开卡
+    //-                 .QRcode(style='display: none;')
+    //-                     img(src=require('assets/images/home/index-step-QRcode.png'))
+    //-     .index-background
+    //-         h1 平台背景
+    //-         .line
+    //-         .content
+    //-             .contents
+    //-                 img(src=require('assets/images/home/index-background-01.jpg'))
+    //-                 h3 报喜鸟
+    //-                 p 报喜鸟是温州十大品牌之一，在全国极富盛名。除了自营品牌报喜鸟西服外还代理了诸多国外知名品牌，价格实惠，款式新颖。
+    //-             .contents
+    //-                 img(src=require('assets/images/home/index-background-02.jpg'))
+    //-                 h3 51信用卡
+    //-                 p 报喜鸟是温州十大品牌之一，在全国极富盛名。除了自营品牌报喜鸟西服外还代理了诸多国外知名品牌，价格实惠，款式新颖。
+    //-             .contents
+    //-                 img(src=require('assets/images/home/index-background-03.jpg'))
+    //-                 h3 和盟投资
+    //-                 p 报喜鸟是温州十大品牌之一，在全国极富盛名。除了自营品牌报喜鸟西服外还代理了诸多国外知名品牌，价格实惠，款式新颖。
+    //-     .index-partner
+    //-         h1 合作伙伴
+    //-         .line
+    //-         .partner-img
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-             img(src=require('assets/images/home/index-partner-01.jpg'))
+    //-     .index-media
+    //-         h1 媒体报道与平台动态
+    //-         .line
+    //-         .media-content-tab
+    //-             a.active 媒体报道
+    //-             a 平台动态
+    //-         .media-content
+    //-             .media-content-information
+    //-                 img(src=require('assets/images/home/index-media-01.jpg'))
+    //-                 .article
+    //-                     h3.title 科技驱动信用生态 现金卡亮相“金融创新……
+    //-                     p.date 2016-12-08
+    //-                     .contents 科技驱动信用生态 现金卡亮相“金融创新，信用……
+    //-             .media-content-information
+    //-                 img(src=require('assets/images/home/index-media-01.jpg'))
+    //-                 .article
+    //-                     h3.title 科技驱动信用生态 现金卡亮相“金融创新……
+    //-                     p.date 2016-12-08
+    //-                     .contents 科技驱动信用生态 现金卡亮相“金融创新，信用……
+    //-             .media-content-information
+    //-                 img(src=require('assets/images/home/index-media-01.jpg'))
+    //-                 .article
+    //-                     h3.title 科技驱动信用生态 现金卡亮相“金融创新……
+    //-                     p.date 2016-12-08
+    //-                     .contents 科技驱动信用生态 现金卡亮相“金融创新，信用……
+    //-             .media-content-information
+    //-                 img(src=require('assets/images/home/index-media-01.jpg'))
+    //-                 .article
+    //-                     h3.title 科技驱动信用生态 现金卡亮相“金融创新……
+    //-                     p.date 2016-12-08
+    //-                     .contents 科技驱动信用生态 现金卡亮相“金融创新，信用……
+    //-             <a class="look-more">查看更多</a>

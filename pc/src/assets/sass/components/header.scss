@@ -1,0 +1,135 @@
+.header{
+    height: 75px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(#000, .1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    .logo{
+        width: 132px;
+        height: 40px;
+        text-indent: -999px;
+        background: url(../images/common/logo.png) center no-repeat;
+        background-size: contain;
+        margin: 17.5px 0;
+        display: block;
+    }
+    .menu-item.dropdown{
+        .menu-item-link{
+            &:hover,
+            &__active{
+                &:after{
+                    border-top-color: #fff;
+                }
+            }
+        }
+    }
+    .menu-item-link{
+        $spacing: 35px;
+        min-width: 75px;
+        height: 75px;
+        line-height: 75px;
+        font-size: 17px;
+        padding-right: $spacing;
+        padding-left: $spacing;
+        transition: .15s ease-out;
+        &:hover,
+        &__active{
+            color: $white;
+            background-color: $brand-primary;
+        }
+    }
+    .users{
+        height: 75px;
+        line-height: 75px;
+        font-size: 14px;
+        margin-left: 15px;
+        a{
+            color: $gray-dark;
+            padding-right: 16px;
+            padding-left: 16px;
+            transition: .15s ease-out;
+            display: inline-block;
+            @include hover{
+                color: $brand-primary;
+            }
+            &.active{
+                color: $brand-primary;
+                
+            }
+            &.download{
+                transition: .15s ease-out;
+                position: relative;
+                &:before{
+                    width: 18px;
+                    height: 27px;
+                    content: '';
+                    background: url(../images/phone.png) center no-repeat;
+                    background-size: contain;
+                    display: inline-block;
+                    position: relative;
+                    margin-right: 8px;
+                    transition: .15s ease-out;
+                    top: 7px;
+                }
+                &:hover{
+                    color: #fff;
+                    background-color: $brand-primary;
+                    &:before{
+                        background-image: url(../images/phone-hover.png);
+                    }
+                    .qrcode{
+                        display: block;
+                    }
+                }
+            }
+        }
+        .qrcode{
+            width: 240px;
+            color: #333;
+            position: absolute;
+            left: 50%;
+            margin-left: -120px;
+            background-color: #fff;
+            padding: 30px 30px 0;
+            box-shadow: 0 3px 10px rgba(#000, .1);
+            display: none;
+            &:after{
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 10px solid #fff;
+                content: '';
+                margin-left: -5px;
+                position: absolute;
+                top: -9px;
+                left: 50%;
+            }
+            img{
+                width: 175px;
+                height: 175px;
+                display: block;
+            }
+            p{
+                line-height: normal;
+                padding-left: 39px;
+                margin: 15px 0;
+                position: relative;
+                &:before{
+                    width: 22px;
+                    height: 22px;
+                    content: '';
+                    background: url(../images/common/s.png) center no-repeat;
+                    background-size: contain;
+                    position: absolute;
+                    top: -2px;
+                    left: 11px;
+                }
+            }
+            span{
+                color: $brand-primary;
+            }
+        }
+    }
+}

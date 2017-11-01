@@ -1,0 +1,22 @@
+block head
+    head
+        meta(charset='utf-8')
+        title #{title ? title : '浅橙科技'}
+        meta(name='keywords', content=(keywords ? keywords : '浅橙科技，小额贷款，无抵押贷款'))
+        meta(name='description', content=(description ? description : '浅橙科技—上市系投资的互联网小额信贷信息服务平台，中国领先的互联网金融科技公司，专注于使用大数据构建信用生态，首创智能特征的HAS风控体系，风险定价，提供与之相匹配的金融信息产品与服务，帮助传统金融服务无法覆盖的人群，享受到高效、便捷的互联网金融服务'))
+        meta(name='author', content='me@dominicleo.me')
+        meta(name='renderer', content='webkit')
+        meta(http-equiv='X-UA-Compatible', content='IE=Edge, chrome=1')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1,user-scalable=no, minimal-ui')
+        meta(name='format-detection', content='telephone=no, email=no, address=no')
+        meta(http-equiv='Pragma', content='no-cache')
+        meta(http-equiv='Cache-Control', content='no-cache')
+        meta(name='apple-mobile-web-app-capable', content='yes')
+        meta(name='screen-orientation', content='portrait')
+        meta(name='x5-orientation', content='portrait')
+        meta(name='full-screen', content='yes')
+        meta(name='x5-fullscreen', content='true')
+        -
+            // if(__PROD__)
+            //     for(let i in htmlWebpackPlugin.files.css)
+            //         link(href=(htmlWebpackPlugin.files.css[i]), rel='stylesheet')

@@ -1,0 +1,167 @@
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary { margin: 0; padding: 0; border: 0; font-size: 100%; font-weight: normal; vertical-align: baseline; background: transparent; }
+
+article, aside, figure, footer, header, nav, section, details, summary { display: block; }
+
+/* Handle box-sizing while better addressing child elements: http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html { box-sizing: border-box; }
+
+*, *:before, *:after { box-sizing: inherit; }
+
+/* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
+/* Responsive images and other embedded objects */
+/* if you don't have full control over `img` tags (if you have to overcome attributes), consider adding height: auto */
+img, object, embed { max-width: 100%; }
+
+/* Note: keeping IMG here will cause problems if you're using foreground images as sprites. In fact, it *will* cause problems with Google Maps' controls at small size. If this is the case for you, try uncommenting the following: #map img { max-width: none; } */
+/* force a vertical scrollbar to prevent a jumpy page */
+html { overflow-y: scroll; }
+
+/* we use a lot of ULs that aren't bulleted.
+you'll have to restore the bullets within content,
+which is fine because they're probably customized anyway */
+ul { list-style: none; }
+
+blockquote, q { quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+
+a { margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent; }
+
+del { text-decoration: line-through; }
+
+abbr[title], dfn[title] { border-bottom: 1px dotted #000; cursor: help; }
+
+/* tables still need cellspacing="0" in the markup */
+table { border-collapse: separate; border-spacing: 0; }
+
+th { font-weight: bold; vertical-align: bottom; }
+
+td { font-weight: normal; vertical-align: top; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+input, select { vertical-align: middle; }
+
+pre { white-space: pre; /* CSS2 */ white-space: pre-wrap; /* CSS 2.1 */ white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */ word-wrap: break-word; /* IE */ }
+
+input[type="radio"] { vertical-align: text-bottom; }
+
+input[type="checkbox"] { vertical-align: bottom; }
+
+.ie7 input[type="checkbox"] { vertical-align: baseline; }
+
+.ie6 input { vertical-align: text-bottom; }
+
+select, input, textarea { font: 99% sans-serif; }
+
+table { font-size: inherit; font: 100%; }
+
+small { font-size: 85%; }
+
+strong { font-weight: bold; }
+
+td, td img { vertical-align: top; }
+
+/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+/* hand cursor on clickable elements */
+.clickable, label, input[type=button], input[type=submit], input[type=file], button { cursor: pointer; }
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea { margin: 0; }
+
+/* make buttons play nice in IE */
+button, input[type=button] { width: auto; overflow: visible; }
+
+/* scale images in IE7 more attractively */
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+/* prevent BG image flicker upon hover (commented out as usage is rare, and the filter syntax messes with some pre-processors) .ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));} */
+/* let's clear some floats */
+.clearfix:after { content: " "; display: block; clear: both; }
+
+* { font-family: Helvetica; }
+
+.double-twelve-body { width: 10rem; background: transparent url(../img/twelve-icon-02.jpg) 0 0 repeat-y; background-size: 10rem 5.6rem; }
+
+.double-twelve-body header { background: transparent url(../img/twelve-icon-01.jpg) 0 0 no-repeat; background-size: 10rem 5.6rem; width: 10rem; height: 5.6rem; }
+
+.double-twelve-body header h2 { color: #5e2603; font-size: 0.4rem; line-height: 0.4rem; font-weight: bold; text-align: center; padding-top: 2.7333333333rem; }
+
+.double-twelve-body .roll { margin: 0.2666666667rem auto 0; text-align: center; width: 7.3333333333rem; height: 1.1333333333rem; position: relative; }
+
+.double-twelve-body .roll .t_news { margin: 0.2666666667rem auto 0; text-align: center; width: 7.3333333333rem; height: 0.9333333333rem; font-size: 0.3733333333rem; overflow: hidden; position: relative; background-color: #fff; border: 0.0666666667rem solid #521a01; border-radius: 0.5333333333rem; z-index: 2; }
+
+.double-twelve-body .roll .t_news .news_li { line-height: 0.9333333333rem; text-align: center; position: absolute; margin-left: 0.04rem; top: 0rem; left: 0rem; margin-top: -0.0266666667rem; width: 7.3333333333rem; color: #ef2323; }
+
+.double-twelve-body .roll:after { content: ""; position: absolute; width: 7.3333333333rem; height: 1rem; background: transparent url(../img/twelve-icon-05.png) 0 0 no-repeat; background-size: 7.3333333333rem 1rem; top: 3px; left: 0px; z-index: 1; }
+
+.double-twelve-body .content { width: 8.4933333333rem; height: 8.4933333333rem; margin: 0.6666666667rem auto 0; border: 0.08rem solid #521a01; -webkit-box-shadow: inset 0 0 0 0.1333333333rem #fff; box-shadow: inset 0 0 0 0.1333333333rem #fff; border-radius: 50%; background-color: #ffd800; }
+
+.double-twelve-body .content .turntable { width: 7.2133333333rem; height: 7.2133333333rem; border: 0.0533333333rem solid #521a01; border-radius: 50%; -webkit-box-shadow: 0 0 0 0.04rem #fff; box-shadow: 0 0 0 0.04rem #fff; background-color: #dc9801; margin: 0.6rem auto; position: relative; }
+
+.double-twelve-body .content .turntable .rotate-point { width: 2.1733333333rem; height: 2.8266666667rem; position: absolute; background: transparent url(../img/twelve-icon-03.png) 0 0 no-repeat; background-size: 2.1733333333rem 2.8266666667rem; top: 50%; left: 50%; margin-top: -1.6rem; margin-left: -1.0866666667rem; }
+
+.double-twelve-body .content .turntable .rotate-bg { width: 6.9333333333rem; height: 6.8rem; position: absolute; top: 50%; left: 50%; margin-top: -3.44rem; margin-left: -3.4666666667rem; }
+
+.double-twelve-body .content .turntable .rotate-bg img { width: 6.9333333333rem; height: 6.8rem; }
+
+.double-twelve-body .rule { color: #521a01; }
+
+.double-twelve-body .rule h3 { font-size: 0.4266666667rem; line-height: 0.48rem; font-weight: bold; text-align: center; margin: 0.6666666667rem 0 0.2rem; }
+
+.double-twelve-body .rule p { font-size: 0.3733333333rem; padding: 0.0666666667rem 0.7333333333rem 0.0666666667rem 0.8rem; line-height: 0.5066666667rem; }
+
+.double-twelve-body .rule p span { color: #ef2323; }
+
+.double-twelve-body .rule p span b { margin-right: 0.0666666667rem; font-weight: bold; }
+
+.double-twelve-body p.description { font-size: 0.3466666667rem; line-height: 0.48rem; color: #dc9801; text-align: center; margin-bottom: 0.8rem; }
+
+.double-twelve-body .popup { position: relative; z-index: 3; }
+
+.double-twelve-body .popup .overlay { width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); position: fixed; top: 0; left: 0; }
+
+.double-twelve-body .popup .dialog { -webkit-transform: translate3d(0, 0, 0); background: #fff; width: 6.9333333333rem; height: auto; position: fixed; padding: 0; top: 50%; left: 50%; margin: -2.2666666667rem -3.4666666667rem; line-height: 3em; text-align: center; border-radius: 0.2rem; }
+
+.double-twelve-body .popup .dialog h2 { font-size: 0rem; height: 2.6rem; line-height: 2.6rem; padding: 0.1333333333rem 0.6666666667rem 0; }
+
+.double-twelve-body .popup .dialog h2 span { display: inline-block; font-size: 0.3733333333rem; line-height: 0.48rem; color: #521a01; vertical-align: middle; }
+
+.double-twelve-body .popup .dialog img { width: 2.2933333333rem; height: 2.2933333333rem; }
+
+.double-twelve-body .popup .dialog p { height: 1.9333333333rem; }
+
+.double-twelve-body .popup .dialog p a { display: block; font-size: 0.48rem; color: #521a01; border: 0.08rem solid #521a01; border-radius: 0.4666666667rem; text-decoration: none; width: 3.9066666667rem; height: 1.1333333333rem; margin: 0 auto; background-color: #ffd800; position: relative; z-index: 2; }
+
+.double-twelve-body .popup .dialog p:after { content: ''; display: block; width: 3.9066666667rem; height: 1.1333333333rem; background: transparent url(../img/twelve-icon-06.png) 0 0 no-repeat; background-size: 3.9066666667rem 1.1333333333rem; margin: 0 auto; position: relative; top: -1.0266666667rem; }
+
+.double-twelve-body .popup .dialog div.close { width: 0.72rem; height: 0.72rem; border-radius: 50%; background-color: #ffd800; position: absolute; top: -0.36rem; right: -0.36rem; }
+
+.double-twelve-body .popup .dialog div.close span { display: inline-block; position: absolute; left: 50%; top: 50%; width: 0.4533333333rem; height: 0.4533333333rem; margin-top: -0.1866666667rem; margin-left: -0.1866666667rem; cursor: pointer; }
+
+.double-twelve-body .popup .dialog div.close span:before, .double-twelve-body .popup .dialog div.close span:after { content: ''; position: absolute; height: 0.0533333333rem; width: 100%; top: 40%; left: 0; margin-top: -0.0133333333rem; margin-left: -0.0333333333rem; background: #521a01; }
+
+.double-twelve-body .popup .dialog div.close span:before { -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); -o-transform: rotate(45deg); transform: rotate(45deg); }
+
+.double-twelve-body .popup .dialog div.close span:after { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); }
+
+.double-twelve-body .popup .success { background-color: #ffc21c; }
+
+.double-twelve-body .popup .success h2 span { font-size: 0.3466666667rem; line-height: 1.4em; }
+
+.double-twelve-body .popup .success h2 span b { margin-left: 0.0666666667rem; margin-right: 0.0666666667rem; color: #ef2323; font-weight: bold; }
+
+.double-twelve-body .popup .success img { margin-top: -0.2666666667rem; }
+
+.double-twelve-body .popup .success p a { background-color: #fff; }
+
+.double-twelve-body .popup .success div.close { background-color: #fff; }

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="format-detection" content="telephone=no">
+    <title>申请续期</title>
+    <script src="js/flexible.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="extension">
+      <style>body{background:#f2f2f2;}</style>
+      <div>
+        <div class="tips">申请还款续期服务需要支付费用，请确认并支付!</div>
+        <ul class="common-list">
+          <li>
+            <label>借款金额</label>
+            <span><i>1000</i> 元 (当前信用可借最高额度)</span>
+          </li>
+          <li>
+            <label>借款期限</label>
+            <span>
+            <select>
+              <option value ="">7</option>
+              <option value ="">14</option>
+            </select>
+            天</span>
+          </li>
+          <li>
+            <label>实际到帐</label>
+            <span><i>900</i> 元</span>
+          </li>
+        </ul>        
+        <p>总服务费：<i>¥200</i> <a href="">关于续期></a></p>
+        <div class="ticket-choose">
+          <span class="use-ticket">可用券</span>
+          <span class="no-ticket" style="display: none;">不使用券</span>
+          <span class="number">-¥5.0</span>
+          <span id='look-ticket' class="right clearfix">···</span>
+        </div>
+        <a class="common-button" href="">马上支付</a>
+      </div>
+      
+      <div class="reulst" style="display:none">
+        <img alt="" src="img/img-1.png"/>
+        <p>申请展期还款成功，还款日展期至为2016年10月16日。届时请及时还款！</p>
+        <a class="common-button" href="">朕知道了</a>
+      </div>
+      <div style="display:none" class="reulst error">
+        <img alt="" src="img/img-3.png"/>
+        <p>很抱歉，您的展期还款申请未通过审核，请按时完成还款，以免产生逾期和不良信用记录！</p>
+        <a class="common-button" href="">朕知道了</a>
+      </div>
+      
+      <div class="info" style="display:none">
+        <p>1. 适用对象<br/>
+          适用于在到期还款日，因为资金不足而无法正常还款的用户。<br/>比如，小明的还款日是2016年11月11日，还款金额是1000.00元。但是当前可用活期资金为500.00元。此时小明可以申请展期服务。将还款期限延后几天。等资金充裕再完成还款。</p>
+        <p>2.相关费用<br/>
+          目前展期服务所收费用由三部分组成：服务费、操作费、逾期费。<br/>
+          服务费：即一笔借款延期一个借款周期的费用。即一个借款周期所需的费用；<br/>
+          操作费：申请展期服务所需的服务费用；<br/>
+          逾期费：即申请展期服务时该笔借款当前产生的逾期费用，申请展期服务的时候需要优先结算掉。<br/>
+        <p>3.展期次数<br/>
+          目前借款所允许的展期服务次数为3次。以平台最新官方公告为准。</p>
+      </div>
+
+      <div class="ticket-list" style="display: none;">
+        <div class="ticket-overlay"></div>
+        <div class="ticket-dialog">
+          <h3>可用优惠券</h3>
+          <span class="close"></span>
+          <div class="ticket-content">
+            <div class="ticket">
+              <img src='../img/coupon_color_03.png' />
+              <div class='content'>
+                <div class='left'>
+                  <h1>¥<b>999</b></h1>
+                  <h2>续期券</h2>
+                </div>
+                <div class='middle'>
+                  <div class='h3'>老用户奖励</div>
+                  <div class='p'>使用条件：无限制<br />有效期：2017.05.01-2017.06.01</div>
+                </div>
+                <i class="i-normal i-active"></i>
+              </div>
+            </div>
+            <div class="ticket">
+              <img src='../img/coupon_color_03.png' />
+              <div class='content'>
+                <div class='left'>
+                  <h1>¥<b>999</b></h1>
+                  <h2>续期券</h2>
+                </div>
+                <div class='middle'>
+                  <div class='h3'>老用户奖励</div>
+                  <div class='p'>使用条件：无限制<br />有效期：2017.05.01-2017.06.01</div>
+                </div>
+                <i class="i-normal"></i>
+              </div>
+            </div>
+            <div class="ticket">
+              <img src='../img/coupon_color_03.png' />
+              <div class='content'>
+                <div class='left'>
+                  <h1>¥<b>999</b></h1>
+                  <h2>续期券</h2>
+                </div>
+                <div class='middle'>
+                  <div class='h3'>老用户奖励</div>
+                  <div class='p'>使用条件：无限制<br />有效期：2017.05.01-2017.06.01</div>
+                </div>
+                <i class="i-normal"></i>
+              </div>
+            </div>
+            <div class="ticket">
+              <img src='../img/coupon_color_03.png' />
+              <div class='content'>
+                <div class='left'>
+                  <h1>¥<b>999</b></h1>
+                  <h2>续期券</h2>
+                </div>
+                <div class='middle'>
+                  <div class='h3'>老用户奖励</div>
+                  <div class='p'>使用条件：无限制<br />有效期：2017.05.01-2017.06.01</div>
+                </div>
+                <i class="i-normal"></i>
+              </div>
+            </div>
+            <div class="ticket notuse-ticket">
+              <h5>不使用优惠券</h5>
+              <div class="right clearfix">
+                <i class="i-normal"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="popup-confirm">
+        <div class="overlay"></div>
+        <div class="confirm-dialog">
+          <p>您尚未进行过续期，本次借款还能进行3次续期，是否确认续期？</p>
+          <div class="confirm-button">
+            <a class="close">取消</a>
+            <a class="confirm">确认续期</a>
+          </div>
+          <div class="ok-button" style="display: none;">
+            <a class="ok">朕知道了</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script>
+      $(function() {
+        $('#look-ticket').click(function() {
+          $('.ticket-list').show();
+          setTimeout(function() {
+            $('.ticket-dialog').addClass('active');
+          }, 100);
+        })
+
+        $('.close, .ticket-overlay').click(function() {
+          $('.ticket-dialog').removeClass('active');
+          setTimeout(function() {
+            $('.ticket-list').hide();
+          }, 300)
+        })
+
+        $(".ticket").each(function(i, v) {
+          $(v).attr('id', i);
+        })
+
+        $('.ticket').click(function() {
+          $(this).find('.i-normal').toggleClass('i-active');
+          var id = $(this).attr('id');
+          var lis = $('.ticket').filter(function(i, e) {
+            return $(e).attr('id') != id;
+          })
+          lis.each(function(index, v) {
+            $(lis[index]).find('.i-normal').removeClass('i-active');
+          })
+        })
+
+        $('.close, .ok, .overlay').click(function() {
+          $('.popup-confirm').hide();
+        })
+      })
+    </script>
+  
+</html>

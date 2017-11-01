@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>员工帮</title>
+    <script src="js/flexible.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="wx-login" >
+      <img src="img/wx-logo.png" alt="">
+      <input name="wx-phone" type="tel" placeholder="请输入您的手机号" />
+      <button>下一步</button>
+    </div>
+
+    <div class="wx-login wx-password" style="display: none;">
+      <img src="img/wx-icon01.png" alt="">
+      <h4>口袋君</h4>
+      <input name="wx-password" type="password" placeholder="请输入登录密码" />
+      <button>下一步</button>
+    </div>
+
+    <div class="result-wait wx-result" style="display: none;">
+      <div class="content">
+        <img alt="" src="img/empty.png" />
+        <p>您当前没有可领取的红包哦！</p>
+      </div>
+    </div>
+
+    <div class="result-wait wx-result" style="display: none;">
+      <div class="content">
+        <img alt="" src="img/time.png" />
+        <p>红包已发送到公众号里，请返回24小时内领取~</p>
+      </div>
+    </div>
+
+    <div class="result-wait wx-result" style="display: none;">
+      <div class="content">
+        <img alt="" src="img/download.png" />
+        <p>您当前没有可领取的红包<br/>下载<a href="">“现金白卡”</a>APP了解详情</p>
+      </div>
+    </div>
+  </body>
+</html>
