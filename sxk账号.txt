@@ -1,0 +1,5 @@
+mysql -h127.0.0.1 -uroot -p
+root
+
+svn://121.41.43.222/project/php_code
+chandler
