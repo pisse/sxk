@@ -61,7 +61,7 @@
             <li><span>到账金额</span><span>{{data.item.card[cIndex].amount_days.amount_text || (amount|number:2)}}</span></li>
             <li><span ng-click="showTips()">综合费用</span><span>{{data.item.card[cIndex].amount_days.interests_text || (cost|number:2)}}</span></li>
           </ul>
-          <a href="" id="loan" ng-click="apply(data.item.card[cIndex])">马上申请</a>
+          <a href="" id="loan" ng-click="apply(data.item.card[cIndex])">立即申请</a>
         </div>
         <div class="repayment-list" ng-if="data.item.card[cIndex].loan_infos">
           <ul>

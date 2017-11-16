@@ -35,7 +35,7 @@ angular.module('koudaidayFactory', [])
       return Platform.isApp ? 'wap2app://app.launch/login/applogin' : loginUrl.replace('#', '%23')
     },
     getData: function () {
-      var url = Domain.resolveUrl('http://api.xianjincard.com/act/kd-share-profit')
+      var url = Domain.resolveUrl('http://api.dahubao.com/act/kd-share-profit')
       return $http.get(url).then(function (response) {
         return response.data
       })

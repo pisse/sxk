@@ -6,7 +6,7 @@
             <span class="input-label">自拍照</span>
             <div class='attachs faces' style='{{ form.face_recognition_picture ? "background-image: url(" + form.face_recognition_picture + ");" : "" }}'>
                 <div class='button-upload'>
-                    <input type='file' ng-model='faces' ngf-accept="'image/jpg,image/jpeg,image/png'" ngf-select>
+                    <input type='file' ng-model='files.faces' ngf-accept="'image/jpg,image/jpeg,image/png'" ngf-select>
                 </div>
             </div>
         </label>
@@ -14,15 +14,16 @@
             <span class="input-label">身份证正面</span>
             <div class='attachs front-face' style='{{ form.id_number_z_picture ? "background-image: url(" + form.id_number_z_picture + ");" : "" }}'>
                 <div class='button-upload'>
-                    <input type='file' ng-model='idNumberFront' ngf-accept="'image/jpg,image/jpeg,image/png'" ngf-select>
+                    <input type='file' ng-model='files.idNumberFront' ngf-accept="'image/jpg,image/jpeg,image/png'"  ngf-select>
                 </div>
             </div>
         </label>
+
         <label ng-if='!new_user' class="item item-input">
             <span class="input-label">身份证反面</span>
             <div class='attachs back-face' style='{{ form.id_number_f_picture ? "background-image: url(" + form.id_number_f_picture + ");" : "" }}'>
                 <div class='button-upload'>
-                    <input type='file' ng-model='idNumberBack' ngf-accept="'image/jpg,image/jpeg,image/png'" ngf-select>
+                    <input type='file' ng-model='files.idNumberBack' ngf-accept="'image/jpg,image/jpeg,image/png'" ngf-select>
                 </div>
             </div>
         </label>

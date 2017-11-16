@@ -4,7 +4,7 @@
         </ion-refresher>
         <ion-list>
             <a class='item item-link item-icon-left' ng-click='item.verify && verify($event)' ng-repeat='item in items' nav-direction='forward' ng-href='{{item.url}}'>
-                <i class="icons" style='background-image: url({{item.logo}});'></i>
+                <i class="icons" tag="{{item.tag}}" ></i><!--style='background-image: url({{item.logo}});'-->
                 <div class='item-inner'>
                     <h2>{{item.title}}<span class='required' ng-bind-html='item.title_mark'></span></h2>
                     <p ng-bind='item.subtitle'></p>

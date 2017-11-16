@@ -1,5 +1,6 @@
 angular.module("mobileControllers")
   .controller("LoginController", function ($filter, $location, $rootScope, $scope, $state, Popup, $ionicViewSwitcher, $ionicLoading, MobileService) {
+    
     $scope.next = function (form) {
       $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
 
@@ -21,13 +22,12 @@ angular.module("mobileControllers")
         $scope.form = null;
 
         //1000已注册用户
-        if (data.code === 1000) {
+        if (data.data === 1) {
           $state.go('login-next', params)
           return
         }
-
         //0未注册用户
-        if (data.code === 0) {
+        if (data.data === 0) {
           /*
           if (data.data.item) {
             params.codeImg = $filter('removeProtocol')(data.data.item)

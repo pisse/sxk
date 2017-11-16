@@ -30,13 +30,13 @@ angular.module('CrossYearFactory', [])
 .factory('CrossYearService', function (Domain, $http, Platform, $location) {
   return {
     getData: function () {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/activate')
+      var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/activate')
       return $http.get(url).then(function (response) {
         return response.data
       })
     },
     createJigsaw: function () {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/create-jigsaw')
+      var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/create-jigsaw')
       return $http({
         method: 'POST',
         url: url,
@@ -52,13 +52,13 @@ angular.module('CrossYearFactory', [])
 /* .factory('TeamService', function(Domain, $http, Platform, $location, $httpParamSerializerJQLike) {
     return {
         getData: function(sign) {
-            var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/puzzle?sign=' + sign);
+            var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/puzzle?sign=' + sign);
             return $http.get(url).then(function(response){
                 return response.data;
             });
         },
         getCode: function(phone) {
-            var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-user/send-invite-code');
+            var url = Domain.resolveUrl('http://credit.dahubao.com/credit-user/send-invite-code');
             return $http({
                 method: 'POST',
                 url: url,
@@ -72,7 +72,7 @@ angular.module('CrossYearFactory', [])
         },
         reRegister: function(phone,code) {
             var activity_id = 'jigsaw';
-            var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/re-register?appMarket=' + activity_id);
+            var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/re-register?appMarket=' + activity_id);
             console.log(url);
             return $http({
                 method: 'POST',
@@ -86,7 +86,7 @@ angular.module('CrossYearFactory', [])
             });
         },
         luckDraw: function(sign) {
-            var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/puzzle?sign=' + sign);
+            var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/puzzle?sign=' + sign);
             return $http({
                 method: 'POST',
                 url: url,
@@ -98,7 +98,7 @@ angular.module('CrossYearFactory', [])
             });
         },
         createJigsaw: function() {
-            var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/create-jigsaw');
+            var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/create-jigsaw');
             return $http({
                 method: 'POST',
                 url: url,
@@ -165,7 +165,7 @@ angular.module('CrossYearControllers', [])
       window.location.href = 'koudaikj://app.launch/login/applogin'
     } else {
       $('.popup').css('display', 'none')
-      var login_url = 'http://h5.xianjincard.com/mobile/index.html#/login?appMarket=jigsaw&redirect_url='
+      var login_url = 'http://h5.dahubao.com/mobile/index.html#/login?appMarket=jigsaw&redirect_url='
       var url = Domain.resolveUrl(login_url)
       window.location.href = url + encodeURIComponent(location.href)
     }
@@ -192,14 +192,14 @@ angular.module('CrossYearControllers', [])
   var startJigsaw = function (sign, e) {
     if (Platform.isApp ? true : false) {
       e.preventDefault()
-      var share_url = 'http://h5.xianjincard.com/activity/cross-year-two/index.html?sign=' + sign
+      var share_url = 'http://h5.dahubao.com/activity/cross-year-two/index.html?sign=' + sign
       var share_url_domain = Domain.resolveUrl(share_url)
-      var url = 'http://credit.xianjincard.com/wx/user-auth-template?redirectUrl=' + encodeURIComponent(share_url_domain)
+      var url = 'http://credit.dahubao.com/wx/user-auth-template?redirectUrl=' + encodeURIComponent(share_url_domain)
       var wx_url = Domain.resolveUrl(url)
-      var img_url = Domain.resolveUrl('http://h5.xianjincard.com/activity/cross-year/img/cross-year-21.png')
+      var img_url = Domain.resolveUrl('http://h5.dahubao.com/activity/cross-year/img/cross-year-21.png')
       nativeShare('帮我抽个奖，挺急的，在线等！', '紧急求助！速度帮我完成拼图，和我一起赢取8888元现金！', wx_url, img_url, 0)
     } else {
-      var url = 'http://h5.xianjincard.com/activity/cross-year-two/index.html?sign=' + sign
+      var url = 'http://h5.dahubao.com/activity/cross-year-two/index.html?sign=' + sign
       var forward_url = Domain.resolveUrl(url)
       window.location.href = forward_url
     }
@@ -380,9 +380,9 @@ angular.module('CrossYearControllers', [])
                     loadingFlag = 2;
                 }
             } else if($scope.teamData.code == -1) {
-                var sharl_url = "http://h5.xianjincard.com/activity/cross-year/index.html?sign=" + $scope.sign['sign'] + "%23/team";
+                var sharl_url = "http://h5.dahubao.com/activity/cross-year/index.html?sign=" + $scope.sign['sign'] + "%23/team";
                 var sharl_url_domain = Domain.resolveUrl(sharl_url);
-                var url = "http://credit.xianjincard.com/wx/user-auth-template?redirectUrl=" + sharl_url_domain ;
+                var url = "http://credit.dahubao.com/wx/user-auth-template?redirectUrl=" + sharl_url_domain ;
                 var wx_url = Domain.resolveUrl(url);
                 alert(wx_url);
                 window.location.href = wx_url;
@@ -440,7 +440,7 @@ angular.module('CrossYearControllers', [])
                     $scope.diglogFlag = 6;
                     $(".popup-message").css("display", "block");
                 } else {
-                    var url = "http://h5.xianjincard.com/activity/cross-year/index.html?sign=" + data.data.sign + "#/team";
+                    var url = "http://h5.dahubao.com/activity/cross-year/index.html?sign=" + data.data.sign + "#/team";
                     var forward_url = Domain.resolveUrl(url)
                     window.location.href = forward_url;
                 }
@@ -592,7 +592,7 @@ angular.module('CrossYearControllers', [])
 
     $scope.lookDrawRed = function() {
         var clickedAt = +new Date;
-        window.location.href = "https://api.xianjincard.com/download-app.html";
+        window.location.href = "https://api.dahubao.com/download-app.html";
     }
 
     $scope.setCode = function() {

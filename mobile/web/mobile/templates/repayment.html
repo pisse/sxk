@@ -5,7 +5,7 @@
     <div ng-if="item.list.length > 0">
       <div class='item-divider'>全部待还<i>{{item.list.length}}</i>笔</div>
       <ul class="loan-list">
-        <li ng-repeat="loan in item.list">
+        <li ng-repeat="loan in item">
           <a class="clearfix" href="{{loan.url}}">
             <div class="left">
               <h4>还款时间</h4>
@@ -22,7 +22,7 @@
       </ul>
       <img class="bottom-logo" alt="" src="img/bottom-logo.png"/>
     </div>
-    <div ng-if="item.list.length == 0">
+    <div ng-if="item.length == 0">
       <div class="hand">
         <img alt="" src="img/noresult.png"/>
         <h3>您还没有还款记录哦~</h3>

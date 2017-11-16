@@ -30,7 +30,7 @@ angular.module('rewardFactory', [])
   .factory('RewardService', function (Domain, $http, Platform, $location, $httpParamSerializerJQLike) {
     return {
       register: function (params) {
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-info/user-offer-reward')
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-info/user-offer-reward')
         return $http({
           method: 'POST',
           url: url,
@@ -70,8 +70,8 @@ angular.module('rewardControllers', [])
     }({
       'share_title': '现金卡重金招募区域代理人！',
       'share_body': '5000万赏金虚位以待，寻找与众不同的你，I want you！',
-      'share_url': 'https://h5.xianjincard.com/activity/reward/index.html',
-      'share_logo': 'http://h5.xianjincard.com/activity/reward/img/share.png',
+      'share_url': 'https://h5.dahubao.com/activity/reward/index.html',
+      'share_logo': 'http://h5.dahubao.com/activity/reward/img/share.png',
       'type': '1'
     }))
     let tag = $location.$$search.tag;

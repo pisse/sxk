@@ -35,13 +35,13 @@ angular.module('InviteThreeFactory', [])
 .factory('InviteThreeHomeService', function (Domain, $http, Platform, $location) {
   return {
     getInviteCode: function () {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-invite/get-user-invite-code')
+      var url = Domain.resolveUrl('http://credit.dahubao.com/credit-invite/get-user-invite-code')
       return $http.get(url).then(function (response) {
         return response.data
       })
     },
     getInviteUrl: function (invite_url) {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-invite/get-short-url?url=' + invite_url)
+      var url = Domain.resolveUrl('http://credit.dahubao.com/credit-invite/get-short-url?url=' + invite_url)
       return $http.get(url).then(function (response) {
         return response.data
       })
@@ -51,13 +51,13 @@ angular.module('InviteThreeFactory', [])
   .factory('InviteThreeShareService', function (Domain, $http, Platform, $location, $httpParamSerializerJQLike) {
     return {
       getData: function (inviteCode) {
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-invite/get-user-info?invite_code=' + inviteCode)
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-invite/get-user-info?invite_code=' + inviteCode)
         return $http.get(url).then(function (response) {
           return response.data
         })
       },
       getCode: function (phone) {
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-user/reg-get-code')
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-user/reg-get-code')
         return $http({
           method: 'POST',
           url: url,
@@ -71,7 +71,7 @@ angular.module('InviteThreeFactory', [])
       },
       register: function (form, inviteCode) {
         var activity_id = 'inviteThree'  // 活动appMarket
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-user/register?appMarket=' + activity_id)
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-user/register?appMarket=' + activity_id)
         return $http({
           method: 'POST',
           url: url,
@@ -197,7 +197,7 @@ angular.module('InviteThreeControllers', [])
       setTimeout(function () {
         !window.document.webkitHidden && setTimeout(function () {
           if (+new Date() - clickedAt < 2000) {
-            window.location = 'https://credit.xianjincard.com/download-app.html'
+            window.location = 'https://credit.dahubao.com/download-app.html'
           }
         }, 500)
       }, 500)
@@ -223,18 +223,18 @@ angular.module('InviteThreeControllers', [])
     if (Platform.isApp ? true : false) {
       if (Platform.isAndroid) {
         if (version > 142) {
-          var url = 'http://h5.xianjincard.com/activity/invite/index.html?invite_code=' + $scope.inviteData.data.invite_code
+          var url = 'http://h5.dahubao.com/activity/invite/index.html?invite_code=' + $scope.inviteData.data.invite_code
           var share_url = Domain.resolveUrl(url)
-          var share_img_url = Domain.resolveUrl('http://h5.xianjincard.com/activity/invite/img/invite-share-logo.png')
+          var share_img_url = Domain.resolveUrl('http://h5.dahubao.com/activity/invite/img/invite-share-logo.png')
           nativeShare('送你一个10元红包', '通过我的邀请注册，1分钟认证，30分钟到账，被拒还有现金赔偿！', share_url, share_img_url, 2, share, '', '', 0)
         } else {
           $('.popup-old').show()
         }
       } else {
         if (version > 143) {
-          var url = 'http://h5.xianjincard.com/activity/invite/index.html?invite_code=' + $scope.inviteData.data.invite_code
+          var url = 'http://h5.dahubao.com/activity/invite/index.html?invite_code=' + $scope.inviteData.data.invite_code
           var share_url = Domain.resolveUrl(url)
-          var share_img_url = Domain.resolveUrl('http://h5.xianjincard.com/activity/invite/img/invite-share-logo.png')
+          var share_img_url = Domain.resolveUrl('http://h5.dahubao.com/activity/invite/img/invite-share-logo.png')
           nativeShare('送你一个10元红包', '通过我的邀请注册，1分钟认证，30分钟到账，被拒还有现金赔偿！', share_url, share_img_url, 2, share, '', '', 0)
         } else {
           $('.popup-old').show()
@@ -279,12 +279,12 @@ angular.module('InviteThreeControllers', [])
       $('.popup-error').show()
       return false
     }
-    var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-invite/invite-rebates-apply-cash')
+    var url = Domain.resolveUrl('http://credit.dahubao.com/credit-invite/invite-rebates-apply-cash')
     window.location.href = url
   }
 
   var getInviteCode = function () {
-    var invite_url = Domain.resolveUrl('http://h5.xianjincard.com/activity/invite/index.html?invite_code=')
+    var invite_url = Domain.resolveUrl('http://h5.dahubao.com/activity/invite/index.html?invite_code=')
     $ionicLoading.show({template: '<ion-spinner></ion-spinner>'})
     InviteThreeHomeService.getInviteCode().then(function (data) {
       code = data.code
@@ -333,9 +333,9 @@ angular.module('InviteThreeControllers', [])
       return false
     }
     if (Platform.isApp ? true : false) {
-      var url = 'http://h5.xianjincard.com/activity/invite/index.html?invite_code=' + $scope.inviteData.data.invite_code
+      var url = 'http://h5.dahubao.com/activity/invite/index.html?invite_code=' + $scope.inviteData.data.invite_code
       var share_url = Domain.resolveUrl(url)
-      var share_img_url = Domain.resolveUrl('http://h5.xianjincard.com/activity/invite/img/invite-share-logo.png')
+      var share_img_url = Domain.resolveUrl('http://h5.dahubao.com/activity/invite/img/invite-share-logo.png')
       nativeShare('送你一个10元红包', '通过我的邀请注册，1分钟认证，30分钟到账，被拒还有现金赔偿！', share_url, share_img_url, 0, '', '', '', 0)
     } else {
       $('.popup-share').show()
@@ -359,7 +359,7 @@ angular.module('InviteThreeControllers', [])
       window.location.href = 'koudaikj://app.launch/login/applogin'
     } else {
       $('.popup').hide()
-      var login_url = 'http://h5.xianjincard.com/mobile/index.html#/login?redirect_url='
+      var login_url = 'http://h5.dahubao.com/mobile/index.html#/login?redirect_url='
       var url = Domain.resolveUrl(login_url)
       window.location.href = url + encodeURIComponent(location.href)
     }
@@ -376,13 +376,13 @@ angular.module('InviteThreeControllers', [])
   $scope.downloadApp = function () {
     $('.popup').hide()
     if (Platform.isAndroid && !Platform.isWeixin) {
-      window.location.href = 'https://credit.xianjincard.com/download-app.html'
+      window.location.href = 'https://credit.dahubao.com/download-app.html'
       appAndroidlink()
     } else if (Platform.isIos && !Platform.isWeixin) {
       window.location.href = 'https://itunes.apple.com/app/id1156410247?mt=8'
       appIoslink()
     } else {
-      window.location.href = 'https://api.xianjincard.com/download-app.html'
+      window.location.href = 'https://api.dahubao.com/download-app.html'
     }
   }
 })
@@ -469,7 +469,7 @@ angular.module('InviteThreeControllers', [])
       setTimeout(function () {
         !window.document.webkitHidden && setTimeout(function () {
           if (+new Date() - clickedAt < 2000) {
-            window.location = 'https://credit.xianjincard.com/download-app.html'
+            window.location = 'https://credit.dahubao.com/download-app.html'
           }
         }, 500)
       }, 500)
@@ -540,13 +540,13 @@ angular.module('InviteThreeControllers', [])
   $scope.downloadApp = function () {
     $('.popup').hide()
     if (Platform.isAndroid && !Platform.isWeixin) {
-      window.location.href = 'xianjincard://com.kdlc.mcc/openapp'
+      window.location.href = 'dahubao://com.kdlc.mcc/openapp'
       appAndroidlink()
     } else if (Platform.isIos && !Platform.isWeixin) {
       window.location.href = 'https://itunes.apple.com/app/id1156410247?mt=8'
       appIoslink()
     } else {
-      window.location.href = 'https://api.xianjincard.com/download-app.html'
+      window.location.href = 'https://api.dahubao.com/download-app.html'
     }
   }
 

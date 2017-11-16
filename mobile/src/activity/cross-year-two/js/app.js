@@ -30,13 +30,13 @@ angular.module('CrossYearFactory', [])
 .factory('TeamService', function (Domain, $http, Platform, $location, $httpParamSerializerJQLike) {
   return {
     getData: function (sign) {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/puzzle?sign=' + sign)
+      var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/puzzle?sign=' + sign)
       return $http.get(url).then(function (response) {
         return response.data
       })
     },
     getCode: function (phone) {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-user/send-invite-code')
+      var url = Domain.resolveUrl('http://credit.dahubao.com/credit-user/send-invite-code')
       return $http({
         method: 'POST',
         url: url,
@@ -50,7 +50,7 @@ angular.module('CrossYearFactory', [])
     },
     reRegister: function (phone, code) {
       var activity_id = 'jigsaw'
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/re-register?appMarket=' + activity_id)
+      var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/re-register?appMarket=' + activity_id)
       return $http({
         method: 'POST',
         url: url,
@@ -63,7 +63,7 @@ angular.module('CrossYearFactory', [])
       })
     },
     luckDraw: function (sign) {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/puzzle?sign=' + sign)
+      var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/puzzle?sign=' + sign)
       return $http({
         method: 'POST',
         url: url,
@@ -75,7 +75,7 @@ angular.module('CrossYearFactory', [])
       })
     },
     createJigsaw: function () {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/jigsaw-puzzle/create-jigsaw')
+      var url = Domain.resolveUrl('http://credit.dahubao.com/jigsaw-puzzle/create-jigsaw')
       return $http({
         method: 'POST',
         url: url,
@@ -238,9 +238,9 @@ angular.module('CrossYearControllers', [])
           loadingFlag = 2
         }
       } else if ($scope.teamData.code == -1) {
-        var sharl_url = 'http://h5.xianjincard.com/activity/cross-year-two/index.html?sign=' + $scope.sign['sign']
+        var sharl_url = 'http://h5.dahubao.com/activity/cross-year-two/index.html?sign=' + $scope.sign['sign']
         var sharl_url_domain = Domain.resolveUrl(sharl_url)
-        var url = 'http://credit.xianjincard.com/wx/user-auth-template?redirectUrl=' + sharl_url_domain
+        var url = 'http://credit.dahubao.com/wx/user-auth-template?redirectUrl=' + sharl_url_domain
         var wx_url = Domain.resolveUrl(url)
         window.location.href = wx_url
         loadingFlag = 2
@@ -272,7 +272,7 @@ angular.module('CrossYearControllers', [])
   }
 
   $scope.showRule = function () {
-    var url = 'http://h5.xianjincard.com/activity/cross-year/index.html'
+    var url = 'http://h5.dahubao.com/activity/cross-year/index.html'
     var forward_url = Domain.resolveUrl(url)
     window.location.href = forward_url
   }
@@ -298,7 +298,7 @@ angular.module('CrossYearControllers', [])
           $scope.diglogFlag = 6
           $('.popup-message').css('display', 'block')
         } else {
-          var url = 'http://h5.xianjincard.com/activity/cross-year-two/index.html?sign=' + data.data.sign
+          var url = 'http://h5.dahubao.com/activity/cross-year-two/index.html?sign=' + data.data.sign
           var forward_url = Domain.resolveUrl(url)
           window.location.href = forward_url
         }
@@ -450,7 +450,7 @@ angular.module('CrossYearControllers', [])
 
   $scope.lookDrawRed = function () {
     var clickedAt = +new Date()
-    window.location.href = 'https://api.xianjincard.com/download-app.html'
+    window.location.href = 'https://api.dahubao.com/download-app.html'
   }
 
   $scope.setCode = function () {

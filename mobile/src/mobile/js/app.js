@@ -28,10 +28,10 @@ angular.module('mobile', ['credit', 'rzModule', 'ionic', 'mobileControllers', 'm
         controller: 'TestController'
       })
       .state('login', {
-      url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'LoginController'
-    })
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginController'
+      })
       .state('login-next', {
         url: '/login-next',
         templateUrl: 'templates/login-next.html',
@@ -44,64 +44,64 @@ angular.module('mobile', ['credit', 'rzModule', 'ionic', 'mobileControllers', 'm
         }
       })
       .state('reset-password', {
-      url: '/reset-password',
-      templateUrl: 'templates/reset-password.html',
-      controller: 'ResetPasswordController',
-      params: {
-        phone: null,
-        codeImg: null,
-        redirectUrl: null,
-        isRegister: false,
-        appMarket: null,
-        invite_code: null
-      }
-    })
+        url: '/reset-password',
+        templateUrl: 'templates/reset-password.html',
+        controller: 'ResetPasswordController',
+        params: {
+          phone: null,
+          codeImg: null,
+          redirectUrl: null,
+          isRegister: false,
+          appMarket: null,
+          invite_code: null
+        }
+      })
       .state('loan', {
-      url: '/loan',
-      cache: false,
-      templateUrl: 'templates/loan.html',
-      controller: 'LoanController',
-      params: {
-        money: null,
-        period: null,
-        item: null,
-        card_type: 1,
-        source: false
-      }
-    })
+        url: '/loan',
+        cache: false,
+        templateUrl: 'templates/loan.html',
+        controller: 'LoanController',
+        params: {
+          money: null,
+          period: null,
+          item: null,
+          card_type: 1,
+          source: false
+        }
+      })
       .state('tab', {
-      url: '',
-      abstract: true,
-      templateUrl: 'templates/tabs.html',
-      controller: 'TabController'
-    })
+        url: '',
+        abstract: true,
+        templateUrl: 'templates/tabs.html',
+        controller: 'TabController'
+      })
       .state('tab.home', {
-      url: '/',
-      views: {
-        'tab-view': {
-          templateUrl: 'templates/home.html',
-          controller: 'HomeController'
+        url: '/',
+        views: {
+          'tab-view': {
+            templateUrl: 'templates/home.html',
+            controller: 'HomeController'
+          }
         }
-      }
-    })
+      })
       .state('tab.repayment', {
-      url: '/repayment',
-      views: {
-        'tab-view': {
-          templateUrl: 'templates/repayment.html',
-          controller: 'RepaymentController'
+        url: '/repayment',
+        views: {
+          'tab-view': {
+            templateUrl: 'templates/repayment.html',
+            controller: 'RepaymentController'
+          }
         }
-      }
-    })
+      })
       .state('tab.my', {
-      url: '/my',
-      views: {
-        'tab-view': {
-          templateUrl: 'templates/my.html',
-          controller: 'MyController'
+        url: '/my',
+        views: {
+          'tab-view': {
+            templateUrl: 'templates/my.html',
+            controller: 'MyController'
+          }
         }
-      }
-    })
+      })
       .state('orders', {
         url: '/my/orders',
         templateUrl: 'templates/my/orders.html',
@@ -131,6 +131,16 @@ angular.module('mobile', ['credit', 'rzModule', 'ionic', 'mobileControllers', 'm
         templateUrl: 'templates/my/contacts.html',
         controller: 'ContactsController'
       })
+      .state('bank', {
+        url: '/my/certification/bank',
+        templateUrl: 'templates/my/bank.html',
+        controller: 'BankController'
+      })
+      .state('card', {
+        url: '/my/card',
+        templateUrl: 'templates/my/card.html',
+        controller: 'CardController'
+      })
       .state('position', {
         url: '/my/certification/information/position',
         templateUrl: 'templates/my/position.html',
@@ -145,13 +155,13 @@ angular.module('mobile', ['credit', 'rzModule', 'ionic', 'mobileControllers', 'm
         }
       })
       .state('findpaypassword', {
-      url: '/my/findpaypassword',
-      templateUrl: 'templates/my/findpaypassword.html',
-      controller: 'FindPayPasswordController',
-      params: {
-        state: ''
-      }
-    })
+        url: '/my/findpaypassword',
+        templateUrl: 'templates/my/findpaypassword.html',
+        controller: 'FindPayPasswordController',
+        params: {
+          state: ''
+        }
+      })
       .state('setpaypassword', {
         url: '/my/setpaypassword',
         templateUrl: 'templates/my/setpaypassword.html',
@@ -172,181 +182,30 @@ angular.module('mobile', ['credit', 'rzModule', 'ionic', 'mobileControllers', 'm
         templateUrl: 'templates/my/zhima.html'
       })
       .state('findwechat', {
-      url: '/findwechat',
-      templateUrl: 'templates/findwechat.html'
-    });
+        url: '/findwechat',
+        templateUrl: 'templates/findwechat.html'
+      })
+      .state('helpcenter', {
+        url: '/my/helpcenter',
+        templateUrl: 'templates/my/helpcenter.html',
+        controller: 'HelpCenterController',
+      })
+      .state('helpdetail', {
+        url: '/my/helpcenter/detail',
+        templateUrl: 'templates/my/helpdetail.html',
+        controller: 'HelpDetailController',
+        params: {
+          block: null,
+          id: null
+        }
+      })
 
     $urlRouterProvider.otherwise("/");
   });
 
-
-
 angular.module("mobileControllers", [])
   .controller("TabController", function (Domain) {
-    location.href = Domain.resolveUrl('https://h.xianjincard.com/mobile')
-  })
-  .controller("HomeController", function ($ionicSlideBoxDelegate, $ionicPopup, Popup, $ionicViewSwitcher, $state, $ionicScrollDelegate, $rootScope, $location, Platform, Domain, $scope, $ionicLoading, $timeout, $ionicSlideBoxDelegate, Popup, MobileService) {
-    $rootScope.currentPage = "current-home-page";
-    $scope.pullingTips = '科技让金融更简单';
-    $scope.cIndex = 0
-    $scope.dIndex = 0
-
-    MobileService.homeVdsStatistics().then(function (data) {
-      if (data.code == 0) {
-        if (window._vds) {
-          window._vds.push(['setCS1', 'inviteCode', data.data.invite_code]);
-          return
-        }
-        var _vds = _vds || [];
-        window._vds = _vds;
-        (function () {
-          _vds.push(['setAccountId', '8fd2500ba4956d6d']);
-          _vds.push(['enableHT', true]);
-          _vds.push(['setCS1', 'inviteCode', data.data.invite_code]);
-          (function () {
-            var vds = document.createElement('script');
-            vds.type = 'text/javascript';
-            vds.async = true;
-            vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(vds, s);
-          })();
-        })();
-      }
-    })
-
-    if (!$rootScope.awaken && Platform.isIos) {
-      $rootScope.awaken = true;
-      window.location.href = Platform.isAndroid ? 'xianjincard://com.kdlc.mcc/openapp' : 'xjbk915164674://';
-    }
-
-    if (Platform.isWeixin) {
-      MobileService.bindWechat().then(function (data) {
-        if (data.code == -1001) {
-          window.location.href = Domain.resolveUrl('http://credit.xianjincard.com/wx/user-auth-template?redirectUrl=' + window.location.href)
-          return;
-        }
-      });
-    }
-
-    $scope.onKnow = function (data) {
-      $ionicLoading.show({template: '<ion-spinner></ion-spinner>'})
-      MobileService.confirmKnow({id: data.id}).then(function (result) {
-        $ionicLoading.hide()
-        if (result.code === 0) {
-          location.href = data.active_url
-        } else {
-          Popup.alert(result.message);
-        }
-      })
-    }
-
-    $scope.showTips = function () {
-      $ionicPopup.alert({
-        template: "综合费用=借款利息+居间服务费+信息认证费，综合费用将在借款时一次性扣除",
-        okText: '我知道了',
-        okType: 'button-credit'
-      })
-    };
-    //申请借款
-    $scope.apply = function (data) {
-      $ionicViewSwitcher.nextDirection('forward');
-      _hmt.push(['_trackEvent', 'm版首页', '点击马上申请']);
-
-      if (data.verify_loan_pass === 0) {
-        $state.go('certification', {origin: 'home'});
-        return;
-      }
-
-      $ionicLoading.show({template: '<ion-spinner></ion-spinner>'})
-
-      var day = data.amount_days.days[$scope.dIndex]
-      var loan = {
-        'period': day,
-        'money': $scope.sliderAmount.value,
-        'card_type': data.card_type
-      }
-
-      MobileService.getConfirmLoan(loan).then(function (data) {
-        $ionicLoading.hide();
-        if (data.code !== 0) {
-          Popup.alert(data.message);
-          return;
-        }
-        if (data.code === 0) {
-          loan.item = data.data.item;
-          $state.go('loan', loan);
-        }
-      });
-    };
-
-    var costHandler = function () {
-      var interest = $scope.data.item.card[$scope.cIndex].amount_days.interests[$scope.dIndex];
-      var length = $scope.data.item.card[$scope.cIndex].amount_days.amounts.length
-      var amount = $scope.data.item.card[$scope.cIndex].amount_days.amounts[length - 1]
-      var ratio = interest / amount
-      $scope.cost = $scope.sliderAmount.value * ratio;
-      $scope.amount = $scope.sliderAmount.value - $scope.cost;
-    };
-
-    $scope.sliderAmount = {
-      value: 1000,
-      options: {
-        floor: 200,
-        step: 100,
-        showSelectionBar: true,
-        translate: function (value) {
-          return value + '元';
-        },
-        onChange: costHandler
-      }
-    };
-
-    var resetAmount = function (isUpdate) {
-      var amounts = $scope.data.item.card[$scope.cIndex].amount_days.amounts;
-      $scope.sliderAmount.options.floor = amounts[0] / 100;
-      isUpdate || ($scope.sliderAmount.value = amounts[amounts.length - 1] / 100)
-
-      costHandler()
-    }
-
-    $scope.slideHasChanged = function (index) {
-      console.log(index)
-      $scope.cIndex = index
-      resetAmount()
-    }
-
-    $scope.switchDay = function (index) {
-      $scope.dIndex = index
-      resetAmount(true)
-    }
-
-    var handler = function (data) {
-      if (data.code != 0) {
-        Popup.alert(data.message);
-        return;
-      }
-
-      $scope.data = data.data;
-      //console.log(data.data)
-
-      $ionicSlideBoxDelegate.update()
-
-      resetAmount()
-    };
-
-    $ionicLoading.show({template: '<ion-spinner></ion-spinner>'})
-    MobileService.getHomeData().then(function (data) {
-      $ionicLoading.hide();
-      handler(data);
-    });
-
-    $scope.doRefresh = function () {
-      MobileService.getHomeData().then(function (data) {
-        handler(data);
-        $scope.$broadcast('scroll.refreshComplete');
-      });
-    };
+    //location.href = Domain.resolveUrl('https://h5.dahubao.com/')
   })
   .controller('LoanController', function ($window, Platform, $timeout, $location, $stateParams, Popup, $rootScope, $scope, MobileService, $ionicLoading, $ionicViewSwitcher, $state) {
     if (!$stateParams.money) {
@@ -536,399 +395,6 @@ angular.module("mobileControllers", [])
       });
     }
   })
-  .controller("RepaymentController", function ($state, $rootScope, $scope, MobileService, $ionicLoading) {
-    $rootScope.currentPage = "current-repayment-page";
-
-    var handler = function (data) {
-      if (data.code === 0) {
-        $scope.item = data.data.item;
-      }
-    };
-
-    $ionicLoading.show({template: '<ion-spinner></ion-spinner>'})
-    MobileService.getMyLoan().then(function (data) {
-      $ionicLoading.hide();
-      $scope.$broadcast('scroll.refreshComplete');
-      handler(data);
-    });
-
-    $scope.doRefresh = function () {
-      MobileService.getMyLoan().then(function (data) {
-        $scope.$broadcast('scroll.refreshComplete');
-        handler(data);
-      });
-    };
-  })
-  .controller("MyController", function ($rootScope, $scope, $location, Popup, $ionicLoading, $ionicViewSwitcher, $state, radialIndicatorInstance, MobileService) {
-    $rootScope.currentPage = "current-my-page";
-    $scope.verify = function (event) {
-      if ($scope.verify_info && $scope.verify_info.real_verify_status === 0) {
-        event.preventDefault();
-        Popup.alert('亲，请先填写个人信息哦~', function () {
-          $ionicViewSwitcher.nextDirection('forward');
-          $state.go('certification');
-        });
-        return;
-      }
-    };
-    $scope.credit_info = {
-      card_amount: 0,
-      card_unused_amount: 0
-    };
-    $scope.indicatorOption = {
-      displayNumber: false,
-      barColor: '#4ab6fa',
-      barWidth: 64,
-      initValue: 0,
-      percentage: true,
-      frameTime: 3,
-      radius: 205
-    };
-    $scope.logout = function () {
-      Popup.confirm({
-        title: '<br/>您确定要退出登录嘛？',
-        ok: function () {
-          MobileService.logout().then(function (response) {
-            if (response.code != 0) {
-              Popup.alert(response.message);
-              return;
-            }
-            $state.go('login');
-            $location.replace();
-          });
-        }
-      })
-    }
-    $scope.doRefresh = function () {
-      $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-      MobileService.getMyInfo().then(function (response) {
-        $ionicLoading.hide();
-        if (response.code != 0) {
-          Popup.alert(response.message);
-          return;
-        }
-        for (var i in response.data.item) {
-          $scope[i] = response.data.item[i];
-        }
-        $scope.card_info && ($scope.card_info.format = $scope.card_info.bank_name + '(' + $scope.card_info.card_no_end + ')');
-        radialIndicatorInstance['amount'].animate($scope.credit_info.card_unused_amount / $scope.credit_info.card_amount * 100 || 0);
-        $scope.$broadcast('scroll.refreshComplete');
-      });
-    };
-    $scope.doRefresh();
-
-  })
-  .controller('ordersController', function ($rootScope, $scope, Popup, $ionicLoading, MobileService) {
-    $rootScope.currentPage = "current-my-page";
-    $scope.pullingTips = '科技让金融更简单';
-    $scope.items = [];
-    $scope.doRefresh = function () {
-      $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-      MobileService.getOrders().then(function (response) {
-        $ionicLoading.hide();
-        if (response.code != 0) {
-          Popup.alert(response.message);
-          return;
-        }
-        if (response.data && response.data.item && response.data.item.length) {
-          $scope.items = response.data.item
-        } else {
-          $scope.items = false;
-        }
-        $scope.$broadcast('scroll.refreshComplete');
-      });
-    };
-    $scope.doRefresh();
-  })
-  .controller('CertificationController', function (Platform, Domain, $rootScope, $scope, Popup, $ionicViewSwitcher, $location, $ionicLoading, $ionicViewSwitcher, $state, $ionicLoading, $state, MobileService) {
-    location.href = Domain.resolveUrl('https://h.xianjincard.com/mobile/certification');
-    var $query = $location.$$search;
-    if ($query.success == 1) {
-      MobileService.getConfirmLoan({
-        money: 1000,
-        period: 14,
-        card_type: 1
-      }).then(function (response) {
-        if (response.code != 0) {
-          Popup.alert(response.message);
-          return;
-        }
-        window.localStorage.removeItem('links');
-        $state.go('loan', {
-          money: 1000,
-          period: 14,
-          item: response.data.item,
-          source: Platform.isWeixin ? true : false
-        });
-      });
-    }
-    $scope.verify = function (event) {
-      if ($scope.real_verify_status === 0) {
-        event.preventDefault();
-        Popup.alert('亲，请先填写个人信息哦~', function () {
-          // $ionicViewSwitcher.nextDirection('forward');
-          // $state.go('information');
-        });
-        return;
-      }
-    };
-    $scope.doRefresh = function () {
-      $scope.items = [];
-      $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-      MobileService.getVerification().then(function (response) {
-        var disable = [2, 12, 7, 9, 13, 14];
-        var verify = [3, 4, 8, 5];
-        var query = {};
-
-        function format(data) {
-          var temp = [];
-          for (var i in data) {
-            temp.push(i + '=' + data[i]);
-          }
-          return '?' + temp.join('&');
-        }
-
-        var items = response.data.item.list || [];
-        var temps = [];
-        for (var i in items) {
-          var tag = items[i].tag;
-          if (tag === 1) {
-            items[i].url = '#/my/certification/information';
-            response.data.is_new_user == 1 && (items[i].url += '?new_user=1');
-          } else if (tag === 3) {
-            items[i].url = '#/my/certification/contacts';
-            response.data.is_new_user == 1 && (items[i].url += '?new_user=1');
-          } else if ([4, 8].indexOf(tag) >= 0) {
-            (!items[i].url && items[i].first_url) && (items[i].url = items[i].first_url);
-          }
-          if (verify.indexOf(tag) >= 0) {
-            items[i].verify = 1;
-          }
-          if (!(disable.indexOf(tag) >= 0)) {
-            $scope.items.push(items[i]);
-          }
-          temps.push(items[i].url);
-        }
-        temps.push(window.location.href + '?success=1');
-        if (!!response.data.is_new_user) {
-          for (var i in temps) {
-            if (i == 2) {
-              temps[i] += ('?url=' + temps[3]).replace(/\#/g, '%23')
-            } else if (i == 3) {
-              temps[i] += '?url=' + temps[4].replace(/\#/g, '%23')
-            }
-          }
-          for (var i in $scope.items) {
-            var tag = $scope.items[i].tag;
-            if (tag == 4) {
-              $scope.items[i].url += '?url=' + temps[3].replace(/\#/g, '%23')
-            } else if (tag == 5) {
-              $scope.items[i].url += '?url=' + temps[4].replace(/\#/g, '%23')
-            }
-          }
-        }
-
-        window.localStorage.setItem('links', JSON.stringify(temps));
-        // if(response.data.is_new_user == 1){
-        //   query.new_user = 1;
-        //   for(var i in $scope.items){
-        //     if($scope.items[i].status == 0){
-        //       query.url = encodeURIComponent($scope.items[i].url);
-        //       $scope.items[i].url += format(query); 
-        //       break;
-        //     }
-        //   }
-        // }
-
-        $scope.real_verify_status = response.data.item.real_verify_status || 0;
-        $ionicLoading.hide();
-        $scope.$broadcast('scroll.refreshComplete');
-      });
-    };
-    $scope.doRefresh();
-  })
-  .controller('InformationController', function ($scope, Domain, $location, Popup, Upload, $ionicViewSwitcher, $state, $ionicLoading, MobileService, $location, $stateParams) {
-    var query = $location.$$search;
-    $scope.new_user = query.new_user;
-    if (query.new_user == undefined) {
-      $scope.upload = function (file, type, name) {
-        // 1:身份证,2:学历证明,3:工作证明,4:薪资证明,5:资产证明,6:工牌照片,7:个人名片,8:银行卡或者信用卡,9:好房贷房产证,10:人脸识别,11:身份证正面,12:身份证反面,100:其它证明
-        if (type === 0) return;
-        $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-        lrz(file, {
-          width: 640
-        }).then(function (data) {
-          file.upload = Upload.upload({
-            url: Domain.resolveUrl('http://credit.xianjincard.com/picture/upload-file'),
-            data: {
-              type: type,
-              attach: data.base64,
-              ocrtype: 1
-            },
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-            }
-          }).then(function (response) {
-            (response.data.data && response.data.data.item) && ($scope.form[name] = response.data.data.item.url);
-            $ionicLoading.hide();
-            Popup.alert(response.data.message);
-          });
-        })
-
-      }
-      $scope.$watch('faces', function (file) {
-        if (file != null) {
-          $scope.upload(file, 10, 'face_recognition_picture');
-        }
-      });
-      $scope.$watch('idNumberFront', function (file) {
-        if (file != null) {
-          $scope.upload(file, 11, 'id_number_z_picture');
-        }
-      });
-      $scope.$watch('idNumberBack', function (file) {
-        if (file != null) {
-          $scope.upload(file, 12, 'id_number_f_picture');
-        }
-      });
-      $scope.form = {
-        degrees_all: [{degrees: 0, name: '请选择'}],
-        degrees_default: null,
-        company_worktype_list: [{work_type: 0, name: '请选择'}],
-        worktype_default: null,
-      };
-    }
-    $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-    MobileService.getInformation().then(function (response) {
-      $ionicLoading.hide();
-      if (response.code != 0) {
-        Popup.alert(response.message);
-        return;
-      }
-      var data = response.data;
-      // var params = $stateParams;
-      // if(params.position == 1 && params.address && params.lng && params.lat){
-      //   data.item.address_distinct = params.address;
-      //   data.item.longitude = params.lng;
-      //   data.item.latitude = params.lat;
-      // }
-      $scope.form = $.extend(true, $scope.form, data.item);
-      if (query.new_user == 1) {
-        for (var i in $scope.form.degrees_all) {
-          if ($scope.form.degrees_all[i].degrees === $scope.form.degrees) {
-            $scope.form.degrees_default = $scope.form.degrees_all[i];
-            break;
-          }
-        }
-        for (var i in $scope.form.company_worktype_list) {
-          if ($scope.form.company_worktype_list[i].work_type === $scope.form.company_worktype_id) {
-            $scope.form.worktype_default = $scope.form.company_worktype_list[i];
-            break;
-          }
-        }
-      }
-    });
-    $scope.save = function (form) {
-      $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-      if (!!query.new_user) {
-        var type = 'setInformation';
-      } else {
-        var type = form.real_verify_status ? 'setParsonInformation' : 'setInformation';
-        form.degrees = form.degrees_default.degrees || 0;
-        form.work_type = form.worktype_default.work_type || 0;
-      }
-      MobileService[type](form).then(function (response) {
-        $ionicLoading.hide();
-        Popup.alert(response.message, function () {
-          if (response.code != 0) return;
-          if (query.new_user == 1) {
-            var links = JSON.parse(window.localStorage.getItem('links'));
-            window.location.href = links[1];
-          } else {
-            $ionicViewSwitcher.nextDirection('back');
-            $state.go('certification');
-            $location.replace();
-          }
-        });
-        return;
-      });
-    };
-  })
-  .controller('ContactsController', function ($scope, Popup, $state, $location, $ionicViewSwitcher, $ionicLoading, MobileService) {
-    var query = $location.$$search;
-    // $scope.linealData = [{type: 0, name: '请选择'}];
-    $scope.form = {
-      lineal_list: [{type: 0, name: '请选择'}],
-      other_list: [{type: 0, name: '请选择'}],
-      lock: false
-    };
-    $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
-    MobileService.getContacts().then(function (response) {
-      $ionicLoading.hide();
-      if (response.code != 0) {
-        Popup.alert(response.message);
-        return;
-      }
-      var data = response.data;
-      if (data && data.item) {
-        var item = data.item;
-        // if(item.is_can_change == 0){
-        //   $scope.form.lock = true;
-        // }
-        // if(item.lineal_mobile && item.lineal_name && item.lineal_relation &&
-        //   item.other_mobile && item.other_name && item.other_relation){
-        //   $scope.form.lock = true;
-        // }
-      }
-      $scope.form = $.extend(true, $scope.form, data.item);
-      for (var i in $scope.form.lineal_list) {
-        if ($scope.form.lineal_list[i].type === $scope.form.lineal_relation) {
-          $scope.form.lineal_default = $scope.form.lineal_list[i];
-          break;
-        }
-      }
-      for (var i in $scope.form.other_list) {
-        if ($scope.form.other_list[i].type === $scope.form.other_relation) {
-          $scope.form.other_default = $scope.form.other_list[i];
-          break;
-        }
-      }
-    });
-    $scope.save = function (form) {
-      form.lineal_relation = form.lineal_default.type || '';
-      form.other_relation = form.other_default.type || '';
-      var data = {
-        type: form.lineal_relation,
-        name: form.lineal_name,
-        mobile: form.lineal_mobile,
-        relation_spare: form.other_relation,
-        name_spare: form.other_name,
-        mobile_spare: form.other_mobile
-      };
-      if (data.mobile_spare && data.mobile.length != 11) {
-        Popup.alert('直系亲属手机号码格式错误');
-        return;
-      }
-      if (data.mobile_spare && data.mobile_spare.length != 11) {
-        Popup.alert('其他联系人手机号码格式错误');
-        return;
-      }
-      MobileService.setContacts(data).then(function (response) {
-        $ionicLoading.hide();
-        Popup.alert(response.message, function () {
-          if (response.code != 0) return;
-          if (query.new_user == 1) {
-            var links = JSON.parse(window.localStorage.getItem('links'));
-            window.location.href = links[2] + '?url=' + links[4].replace(/\#/g, '%23');
-          } else {
-            $ionicViewSwitcher.nextDirection('back');
-            $state.go('certification');
-            $location.replace();
-          }
-        });
-      });
-    };
-  })
   .controller('PayPasswordController', function ($scope, $ionicLoading, $ionicViewSwitcher, $state, Popup, $stateParams, MobileService, Domain, $location) {
     $scope.active = false;
     $scope.data = {
@@ -964,7 +430,7 @@ angular.module("mobileControllers", [])
               if (/^(https?|\/\/)/.test(state)) {
                 window.location.href = state;
               } else if (state == 'certification') {
-                window.location.href = Domain.resolveUrl('http://h.xianjincard.com/mobile/certification');
+                window.location.href = Domain.resolveUrl('http://h.shanxiancard.com/certification');
               } else {
                 $ionicViewSwitcher.nextDirection('back');
                 $state.go(state);
@@ -1105,7 +571,7 @@ angular.module("mobileControllers", [])
             if (/^(https?|\/\/)/.test(state)) {
               window.location.href = state;
             } else if (state == 'certification') {
-              window.location.href = Domain.resolveUrl('http://h.xianjincard.com/mobile/certification');
+              window.location.href = Domain.resolveUrl('http://h.shanxiancard.com/certification');
             } else {
               $ionicViewSwitcher.nextDirection('back');
               $state.go(state);

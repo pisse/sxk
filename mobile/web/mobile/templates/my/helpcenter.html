@@ -1,0 +1,10 @@
+<ion-pane class="my help-center">
+  <ion-content >
+      <div class="auth" ng-repeat='(idx, item) in list'>
+        <h3>{{item.name}}</h3>
+        <ul>
+          <li ng-repeat='question in item.val' id="{{question.id}}" ng-click="detail(idx, question.id)">{{question.name}}</li>
+        </ul>
+      </div>
+    </ion-content>
+</ion-pane>

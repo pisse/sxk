@@ -15,7 +15,7 @@ angular.module('credit', []).directive('downloadPopup', [
       restrict: 'E',
       scope: {},
       replace: true,
-      template: '<div ng-show="isShow" ng-click="download()" class="download-popup">                   <a href="" class="close" ng-click="close($event)"></a>                   <img alt="" src="//h5.xianjincard.com/credit/img/download-logo.png"/>                   <div><p>\u4e0b\u8f7d\u5373\u4eab\u6781\u901f\u501f\u6b3e<br/>\u88ab\u62d2\u6700\u9ad8\u8d54\u507f<i>50\u5143</i></p></div>                 </div>',
+      template: '<div ng-show="isShow" ng-click="download()" class="download-popup">                   <a href="" class="close" ng-click="close($event)"></a>                   <img alt="" src="//h5.dahubao.com/credit/img/download-logo.png"/>                   <div><p>\u4e0b\u8f7d\u5373\u4eab\u6781\u901f\u501f\u6b3e<br/>\u88ab\u62d2\u6700\u9ad8\u8d54\u507f<i>50\u5143</i></p></div>                 </div>',
       link: function (scope, element, attrs) {
         scope.isShow = !Platform.isApp;
         scope.close = function ($event) {
@@ -23,7 +23,7 @@ angular.module('credit', []).directive('downloadPopup', [
           scope.isShow = false;
         };
         scope.download = function () {
-          window.location = 'https://credit.xianjincard.com/download-app.html';
+          window.location = 'https://credit.dahubao.com/download-app.html';
         };
       }
     };
@@ -35,11 +35,13 @@ angular.module('credit', []).directive('downloadPopup', [
       restrict: 'E',
       replace: true,
       scope: {
+        title: '=',
+        isHref: '=',
         isShow: '=',
         isError: '=',
         sendHandler: '&'
       },
-      template: '<div class="popup" id="defray" ng-show="isShow">                  <div class="overlay"></div>                  <div class="dialog pay">                    <span class="close" ng-click="close()"></span>                    <h2>\u8bf7\u8f93\u5165\u4ea4\u6613\u5bc6\u7801</h2>                    <p class="clearfix">                      <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>                      <input type="tel" value="" autofocus>                    </p>                    <p ng-show="isError" class="error-tips">\u5bc6\u7801\u9519\u8bef</p>                    <a nav-direction="forward" href="#/my/findpaypassword?state=loan">\u5fd8\u8bb0\u5bc6\u7801?</a>                  </div>                </div>',
+      template: '<div class="popup" id="defray" ng-show="isShow">                  <div class="overlay"></div>                  <div class="dialog pay">                    <span class="close" ng-click="close()"></span>                    <h2>{{title}}</h2>                    <p class="clearfix">                      <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>                      <input type="tel" value="" autofocus>                    </p>                    <p ng-show="isError" class="error-tips">\u5bc6\u7801\u9519\u8bef</p>                    <a ng-show="isHref" nav-direction="forward" href="#/my/findpaypassword?state=loan">\u5fd8\u8bb0\u5bc6\u7801?</a>                  </div>                </div>',
       link: function (scope, element, attrs) {
         scope.close = function () {
           scope.isShow = false;
@@ -47,6 +49,10 @@ angular.module('credit', []).directive('downloadPopup', [
         scope.$watch('isShow', function (val) {
           if (val) {
             $timeout(function () {
+              scope.isError = false;
+              $('#defray .error-tips').text('\u5bc6\u7801\u9519\u8bef');
+              $('#defray input').val('');
+              $('#defray i').removeClass('point');
               $('#defray input').focus();
             }, 0);
           }
@@ -54,6 +60,10 @@ angular.module('credit', []).directive('downloadPopup', [
         scope.$watch(function () {
           return element;
         }, function (elements) {
+          $('#defray div.overlay').click(function (e) {
+            e.stopPropagation();
+            $('#defray input').blur();
+          });
           var interval = null;
           $('#defray p').click(function (event) {
             $('#defray input').focus();
@@ -61,11 +71,15 @@ angular.module('credit', []).directive('downloadPopup', [
           $('#defray input').focus(function () {
             var interval = setInterval(function () {
                 if (document.activeElement.nodeName == 'INPUT') {
-                  // console.log('input')
-                  $('#defray .dialog').css({
+                  var top = $('#defray .dialog').position.top;
+                  if (top <= 0) {
+                    return;
+                  }
+                  document.body.scrollTop = 0;
+                  $('#defray .dialog').animate({
                     top: 0,
                     marginTop: 0
-                  });
+                  }, 100);
                 } else {
                   $('#defray .dialog').attr('style', '');
                   if (interval) {
@@ -73,7 +87,7 @@ angular.module('credit', []).directive('downloadPopup', [
                     interval = null;
                   }
                 }
-              }, 500);
+              }, 200);
           });
           $('#defray input').bind('input', function (event) {
             var val = $(this).val();
@@ -140,28 +154,32 @@ angular.module('credit', []).directive('downloadPopup', [
     var domain = {
         credit: $location.$$protocol + '://' + $location.$$host + '/credit/web/',
         api: $location.$$protocol + '://' + $location.$$host + '/frontend/web/',
-        h5: $location.$$protocol + '://' + $location.$$host + '/h5/mobile/web/'
+        h5: $location.$$protocol + '://' + $location.$$host + '/h5/mobile/web/',
+        h: $location.$$protocol + '://' + $location.$$host + ':8000/'
       };
     if (m !== null) {
       if (m[1] === 'h5') {
         domain = {
-          credit: $location.$$protocol + '://credit.xianjincard.com/',
-          api: $location.$$protocol + '://api.xianjincard.com/',
-          h5: $location.$$protocol + '://h5.xianjincard.com/'
+          credit: $location.$$protocol + '://credit.dahubao.com/',
+          api: $location.$$protocol + '://api.dahubao.com/',
+          h5: $location.$$protocol + '://h5.dahubao.com/',
+          h: $location.$$protocol + '://h.dahubao.com/'
         };
       }
       if (m[1] === 'pre-h5') {
         domain = {
-          credit: $location.$$protocol + '://pre-credit.xianjincard.com/',
-          api: $location.$$protocol + '://pre-api.xianjincard.com/',
-          h5: $location.$$protocol + '://pre-h5.xianjincard.com/'
+          credit: $location.$$protocol + '://pre-credit.dahubao.com/',
+          api: $location.$$protocol + '://pre-api.dahubao.com/',
+          h5: $location.$$protocol + '://pre-h5.dahubao.com/',
+          h: $location.$$protocol + '://pre-h.dahubao.com/'
         };
       }
       if (m[1] === 'test-h5') {
         domain = {
-          credit: $location.$$protocol + '://test-credit.xianjincard.com/',
-          api: $location.$$protocol + '://test-api.xianjincard.com/',
-          h5: $location.$$protocol + '://test-h5.xianjincard.com/'
+          credit: $location.$$protocol + '://test-credit.dahubao.com/',
+          api: $location.$$protocol + '://test-api.dahubao.com/',
+          h5: $location.$$protocol + '://test-h5.dahubao.com/',
+          h: $location.$$protocol + '://test-h.dahubao.com/'
         };
       }
       if (host == '192.168.39.214') {
@@ -275,7 +293,7 @@ angular.module('credit', []).directive('downloadPopup', [
             return $q.reject(response);
           }
           // 接口异常
-          if (response.data.code !== undefined && response.data.code == -2) {
+          if (response.data.code !== undefined && response.data.code == -99999) {
             // console.log(response.data)
             var Popup = $injector.get('Popup');
             var $ionicLoading = $injector.get('$ionicLoading');
@@ -290,6 +308,9 @@ angular.module('credit', []).directive('downloadPopup', [
           return response;
         },
         'request': function (config) {
+          // m版请求标识
+          if (!/\.html/.test(config.url)) {
+          }
           return config;
         },
         'requestError': function (config) {
@@ -360,7 +381,7 @@ angular.module('rewardFactory', []).factory('RewardService', [
   function (Domain, $http, Platform, $location, $httpParamSerializerJQLike) {
     return {
       register: function (params) {
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-info/user-offer-reward');
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-info/user-offer-reward');
         return $http({
           method: 'POST',
           url: url,
@@ -402,8 +423,8 @@ angular.module('rewardControllers', []).controller('HomeController', [
     }({
       'share_title': '\u73b0\u91d1\u5361\u91cd\u91d1\u62db\u52df\u533a\u57df\u4ee3\u7406\u4eba\uff01',
       'share_body': '5000\u4e07\u8d4f\u91d1\u865a\u4f4d\u4ee5\u5f85\uff0c\u5bfb\u627e\u4e0e\u4f17\u4e0d\u540c\u7684\u4f60\uff0cI want you\uff01',
-      'share_url': 'https://h5.xianjincard.com/activity/reward/index.html',
-      'share_logo': 'http://h5.xianjincard.com/activity/reward/img/share.png',
+      'share_url': 'https://h5.dahubao.com/activity/reward/index.html',
+      'share_logo': 'http://h5.dahubao.com/activity/reward/img/share.png',
       'type': '1'
     }));
     let tag = $location.$$search.tag;

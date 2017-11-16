@@ -35,7 +35,7 @@ angular.module('InviteFactory', [])
 .factory('InviteHomeService', function (Domain, $http, Platform, $location) {
   return {
     getData: function () {
-      var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-invite/invite-act')
+      var url = Domain.resolveUrl('http://credit.dahubao.com/credit-invite/invite-act')
       return $http.get(url).then(function (response) {
         return response.data
       })
@@ -45,13 +45,13 @@ angular.module('InviteFactory', [])
   .factory('InviteShareService', function (Domain, $http, Platform, $location, $httpParamSerializerJQLike) {
     return {
       getData: function (inviteCode) {
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-invite/get-user-info?invite_code=' + inviteCode)
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-invite/get-user-info?invite_code=' + inviteCode)
         return $http.get(url).then(function (response) {
           return response.data
         })
       },
       getCode: function (phone) {
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-user/reg-get-code')
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-user/reg-get-code')
         return $http({
           method: 'POST',
           url: url,
@@ -65,7 +65,7 @@ angular.module('InviteFactory', [])
       },
       register: function (form, inviteCode) {
         var activity_id = 'inviteThree'  // 活动appMarket
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-user/register?appMarket=' + activity_id)
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-user/register?appMarket=' + activity_id)
         return $http({
           method: 'POST',
           url: url,
@@ -200,7 +200,7 @@ angular.module('InviteControllers', [])
       setTimeout(function () {
         !window.document.webkitHidden && setTimeout(function () {
           if (+new Date() - clickedAt < 2000) {
-            window.location = 'https://credit.xianjincard.com/download-app.html'
+            window.location = 'https://credit.dahubao.com/download-app.html'
           }
         }, 500)
       }, 500)
@@ -211,9 +211,9 @@ angular.module('InviteControllers', [])
     if (Platform.isApp ? true : false) {
       if (code == 1) {
         e.preventDefault()
-        var url = 'http://h5.xianjincard.com/activity/invite/index.html?invite_code=' + $scope.homeData.invite_code
+        var url = 'http://h5.dahubao.com/activity/invite/index.html?invite_code=' + $scope.homeData.invite_code
         var share_url = Domain.resolveUrl(url)
-        var img_url = Domain.resolveUrl('http://h5.xianjincard.com/activity/invite/img/invite-share-logo.png')
+        var img_url = Domain.resolveUrl('http://h5.dahubao.com/activity/invite/img/invite-share-logo.png')
         nativeShare('送你一个新年红包', '通过我的邀请注册，1分钟认证，20分钟到账，被拒还有赔偿！', share_url, img_url, 0)
       } else if (code == -1) {
         $('.popup-login').show()
@@ -225,7 +225,7 @@ angular.module('InviteControllers', [])
         $('.popup-error').show()
       }
     } else {
-      window.location.href = 'https://api.xianjincard.com/download-app.html'
+      window.location.href = 'https://api.dahubao.com/download-app.html'
     }
   })
 
@@ -237,7 +237,7 @@ angular.module('InviteControllers', [])
         $scope.errorMessage = '本次邀请活动1月6日0:00开启哦！'
         $('.popup-error').show()
       } else {
-        var url = Domain.resolveUrl('http://credit.xianjincard.com/credit-invite/invite-rebates-apply-cash')
+        var url = Domain.resolveUrl('http://credit.dahubao.com/credit-invite/invite-rebates-apply-cash')
         window.location.href = url
       }
     } else {
@@ -255,10 +255,10 @@ angular.module('InviteControllers', [])
         window.location.href = 'https://itunes.apple.com/app/id1156410247?mt=8' // 紧急更换一下活动
         appIoslink()
       } else if (browser.versions.android === true) {
-        window.location.href = 'xianjincard://com.kdlc.mcc/openapp'
+        window.location.href = 'dahubao://com.kdlc.mcc/openapp'
         appAndroidlink()
       } else {
-        window.location.href = 'https://api.xianjincard.com/download-app.html'
+        window.location.href = 'https://api.dahubao.com/download-app.html'
       }
     }
   }
@@ -401,7 +401,7 @@ angular.module('InviteControllers', [])
   }
 
   $scope.downloadApp = function () {
-    window.location.href = 'https://api.xianjincard.com/download-app.html'
+    window.location.href = 'https://api.dahubao.com/download-app.html'
   }
 
   $scope.register = function (form) {

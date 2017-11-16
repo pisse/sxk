@@ -17,7 +17,7 @@ angular.module('credit', [])
       replace: true,
       template: '<div ng-show="isShow" ng-click="download()" class="download-popup">\
                    <a href="" class="close" ng-click="close($event)"></a>\
-                   <img alt="" src="//h5.xianjincard.com/credit/img/download-logo.png"/>\
+                   <img alt="" src="//h5.dahubao.com/credit/img/download-logo.png"/>\
                    <div><p>下载即享极速借款<br/>被拒最高赔偿<i>50元</i></p></div>\
                  </div>',
       link: function (scope, element, attrs) {
@@ -27,7 +27,7 @@ angular.module('credit', [])
           scope.isShow = false
         }
         scope.download = function () {
-          window.location = 'https://credit.xianjincard.com/download-app.html'
+          window.location = 'https://credit.dahubao.com/download-app.html'
         }
       }
     }
@@ -172,28 +172,28 @@ angular.module('credit', [])
     if (m !== null) {
       if (m[1] === 'h5') {
         domain = {
-          credit: $location.$$protocol + '://credit.xianjincard.com/',
-          api: $location.$$protocol + '://api.xianjincard.com/',
-          h5: $location.$$protocol + '://h5.xianjincard.com/',
-          h: $location.$$protocol + '://h.xianjincard.com/'
+          credit: $location.$$protocol + '://credit.dahubao.com/',
+          api: $location.$$protocol + '://api.dahubao.com/',
+          h5: $location.$$protocol + '://h5.dahubao.com/',
+          h: $location.$$protocol + '://h.dahubao.com/'
         }
       }
 
       if (m[1] === 'pre-h5') {
         domain = {
-          credit: $location.$$protocol + '://pre-credit.xianjincard.com/',
-          api: $location.$$protocol + '://pre-api.xianjincard.com/',
-          h5: $location.$$protocol + '://pre-h5.xianjincard.com/',
-          h: $location.$$protocol + '://pre-h.xianjincard.com/'
+          credit: $location.$$protocol + '://pre-credit.dahubao.com/',
+          api: $location.$$protocol + '://pre-api.dahubao.com/',
+          h5: $location.$$protocol + '://pre-h5.dahubao.com/',
+          h: $location.$$protocol + '://pre-h.dahubao.com/'
         }
       }
 
       if (m[1] === 'test-h5') {
         domain = {
-          credit: $location.$$protocol + '://test-credit.xianjincard.com/',
-          api: $location.$$protocol + '://test-api.xianjincard.com/',
-          h5: $location.$$protocol + '://test-h5.xianjincard.com/',
-          h: $location.$$protocol + '://test-h.xianjincard.com/'
+          credit: $location.$$protocol + '://test-credit.dahubao.com/',
+          api: $location.$$protocol + '://test-api.dahubao.com/',
+          h5: $location.$$protocol + '://test-h5.dahubao.com/',
+          h: $location.$$protocol + '://test-h.dahubao.com/'
         }
       }
 
@@ -308,7 +308,7 @@ angular.module('credit', [])
           return $q.reject(response)
         }
         // 接口异常
-        if (response.data.code !== undefined && response.data.code == -2) {
+        if (response.data.code !== undefined && response.data.code == -99999) {
           // console.log(response.data)
           var Popup = $injector.get('Popup')
           var $ionicLoading = $injector.get('$ionicLoading')

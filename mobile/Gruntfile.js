@@ -144,7 +144,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: [srcPath + '/js/*.js', srcPath + '/js/controllers/*.js', 'src/lib/common/*.js'],
-        tasks: ['concat', 'ngmin', 'uglify']
+        tasks: ['concat', 'ngmin']
       },
       livereload: {
         options: {
@@ -234,25 +234,34 @@ module.exports = function(grunt) {
       //console.log(grunt.config(['sass', 'dist', 'files']));
     }
 
+
     if (target === 'js') {
-      var dest = path.dirname(filepath).replace('src', 'web');
-      var src = path.dirname(filepath);
+      var dest = path.dirname(filepath).replace('src', 'web').replace('\\controllers', '');
+      var src = path.dirname(filepath).replace('\\controllers', '');;
 
       if (path.basename(filepath, '.js') == 'index') {
         cp.execSync('webpack ' + filepath + ' ' + src + '/app.js');
       }
 
+      console.log('src: ' + src)
+      console.log('dest: ' + dest)
       //console.log(filepath, dest, src);
+      if(src == 'src\\lib\\common\\js') {
+        console.log('nice')
+        src = 'src/mobile'
+        dest = 'web/mobile/js'
+      }
+
       grunt.config(['concat', 'generated', 'files'], [{
         dest: dest + '/app.js',
         src: [
           'src/lib/common/js/*.js',
           src + '/**/app.js',
           src + '/**/services.js',
-          src + '/**/controllers/*.js',
-          src + '/**/controllers.js',
+          src + '/**/controllers/*.js'
         ]
       }]);
+
       //console.log(grunt.config(['concat', 'generated', 'files']));
       grunt.config(['ngmin', 'directives'], {
         expand: true,
@@ -269,5 +278,6 @@ module.exports = function(grunt) {
       }]);
       //console.log(grunt.config(['uglify', 'dist', 'files']));
     }
+
   });
 };

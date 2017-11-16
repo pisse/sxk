@@ -10,7 +10,7 @@
                     <h6 ng-bind='credit_info.card_amount / 100'></h6>
                 </div>
             </div>
-            <p class='restAmount'>剩余可借：<span ng-bind='credit_info.card_unused_amount / 100'></span>元</p>
+            <p class='restAmount'>剩余可借：<span ng-bind='(credit_info.card_amount-credit_info.card_used_amount)/ 100'></span>元</p>
         </div>
         <ion-list>
             <a class="item item-link item-icon-left" nav-direction='forward' ng-href="#/my/orders">
@@ -21,12 +21,12 @@
                 <i class="icons icon-information"></i>
                 完善资料
             </a>
-            <a class="item item-link item-icon-left" ng-click='verify($event)' nav-direction='forward' ng-href="{{card_url}}">
+            <a class="item item-link item-icon-left" nav-direction='forward' ng-href="#/my/card">
                 <i class="icons icon-card"></i>
                 收款银行卡
                 <span class='item-note' ng-bind='card_info.format'></span>
             </a>
-            <a class="item item-link item-icon-left" nav-direction='forward' ng-href="{{url}}">
+            <a class="item item-link item-icon-left" nav-direction='forward' ng-href="#/my/helpcenter">
                 <i class="icons icon-help"></i>
                 帮助中心
             </a>

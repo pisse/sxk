@@ -32,7 +32,7 @@ angular.module("mobileControllers")
       $window.localStorage.setItem('phone', $stateParams.phone)
       $window.localStorage.setItem('isRegister', $stateParams.isRegister)
       $window.localStorage.setItem('invite_code', $stateParams.invite_code)
-      location.href = '//api.xianjincard.com/page/detail?id=535'
+      location.href = '//api.dahubao.com/page/detail?id=535'
     }
 
     var setup = function (m, l) {
@@ -49,7 +49,7 @@ angular.module("mobileControllers")
     $scope.sendCode = function () {
       $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
       // console.log($stateParams.phone)
-      var method = $stateParams.isRegister ? 'regGetCode' : 'getCode'
+      var method = $stateParams.isRegister ? 'getCaptcha' : 'getCode'
       MobileService[method]({phone: $stateParams.phone}).then(function (data) {
         $ionicLoading.hide();
         if (data.code !== 0) {
@@ -68,8 +68,9 @@ angular.module("mobileControllers")
     };
 
     $scope.refresh = function () {
-      var data = {type: 'captcha-login-reg'}; // $stateParams.isRegister ? 1 : 2
-      MobileService.getCaptcha(data).then(function (data) {
+      // $stateParams.isRegister ? 1 : 2
+      var method = $stateParams.isRegister ? 'getCaptcha' : 'getCode'
+      MobileService[method]({phone: $stateParams.phone}).then(function (data) {
         if (data.code === 0) {
           $scope.codeImg = $filter('removeProtocol')(data.data.item)
           $scope.codeError = false
@@ -85,6 +86,8 @@ angular.module("mobileControllers")
       var method = $stateParams.isRegister ? 'checkGetCaptcha' : 'checkResetPwdCode'
       if (!$stateParams.isRegister) {
         verify.type = 'find_pwd'
+      } else {
+        verify.captcha_code = verify.captcha
       }
       MobileService[method](verify).then(function (data) {
         if (data.code === -1) {

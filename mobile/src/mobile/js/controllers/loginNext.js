@@ -1,6 +1,7 @@
 angular.module("mobileControllers")
   .controller("LoginNextController", function (Domain, $stateParams, $location, $rootScope, $scope, $state, Popup, $ionicViewSwitcher, $ionicLoading, MobileService) {
 
+    console.log($stateParams)
     if (!$stateParams.phone || !/^1\d{10}$/.test($stateParams.phone)) {
       $state.go('login');
       return;
@@ -26,9 +27,9 @@ angular.module("mobileControllers")
             location.href = $stateParams.redirectUrl
             return
           }
-          // $state.go('tab.home');
+          $state.go('tab.home');
           // $location.replace(); //clear last history route
-          location.href = Domain.resolveUrl('https://h.xianjincard.com/mobile')
+          // location.href = Domain.resolveUrl('https://h5.dahubao.com')
         } else {
           Popup.alert(data.message);
         }

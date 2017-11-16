@@ -1,7 +1,7 @@
 @import "../../lib/common/scss/base";
 @import "../../lib/common/scss/rzslider";
 @import 'picker';
-$blue:#4ab6fa;
+$blue:#8ab7f4;
 $gray-3:#333;
 $gray-6:#666;
 $gray-9:#999;
@@ -10,6 +10,7 @@ $orange:#ff8003;
 $bg-color: #f2f2f2;
 $green: #2ebd59;
 $yellow: #fbbe03;
+$white: #fff;
 
 * {
   font-family: Helvetica, "Microsoft YaHei";
@@ -296,7 +297,7 @@ $yellow: #fbbe03;
     margin: rem(90px) auto;
   }
   input {
-    border: 1px solid $blue;
+    border: 1px solid $yellow;
     border-radius: rem(10px);
     font-size: rem(34px);
     height: rem(72px);
@@ -433,7 +434,9 @@ $yellow: #fbbe03;
     background:$bg-color;
   }
   div.top{
-    background: #233845;
+    //background: #233845;
+    background-image: linear-gradient(45deg, #233845, #31b7ff);
+    background-image: -webkit-linear-gradient(45deg, #233845, #31b7ff);
     padding-bottom: rem(40px);
     .slider-pager{
       bottom: rem(10px);
@@ -725,9 +728,13 @@ $yellow: #fbbe03;
     }
     .container {
       background:#fff;
-      border-left: rem(30px) solid $bg-color;
-      border-right: rem(30px) solid $bg-color;
-      padding-bottom:rem(30px);
+      //border-left: rem(30px) solid $bg-color;
+      //border-right: rem(30px) solid $bg-color;
+      //padding-bottom:rem(30px);
+      box-shadow: 0 0 11px #d1c6c6;
+      margin: 0.1rem 0.3rem;
+      padding: 0.2rem;
+      border-radius: 2px;
       .slider-range {
         padding: rem(20px) rem(20px) 0;
         p.slider-bottom {
@@ -960,7 +967,7 @@ $yellow: #fbbe03;
     margin-left: auto;
   }
   .credit-limit {
-    background-color: #fff;
+    background-color: $blue;
     text-align: center;
     padding: rem(60px) rem(45px);
   }
@@ -986,15 +993,17 @@ $yellow: #fbbe03;
     position: absolute;
     top: 50%;
     left: 50%;
+    color: $white;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     h6 {
       font-size: rem(42px);
       font-weight: 600;
+      color: $white;
     }
   }
   .restAmount {
-    color: $gray-6;
+    color: $white;
     font-size: rem(32px);
     margin-top: rem(24px);
   }
@@ -1062,8 +1071,8 @@ $yellow: #fbbe03;
     }
   }
   .icons {
-    width: rem(52px);
-    height: rem(52px);
+    width: rem(64px);
+    height: rem(64px);
     background: center no-repeat;
     background-size: contain;
     position: absolute;
@@ -1072,12 +1081,12 @@ $yellow: #fbbe03;
     -webkit-transform: translateY(-50%);
   }
   .icon-information {
-    height: rem(40px);
-    background-image: url(../img/information.png);
+    // height: rem(40px);
+    background-image: url(../img/myinfo.png);
   }
   .icon-orders {
     // height: rem(38px);
-    background-image: url(../img/orders.png);
+    background-image: url(../img/myorders.png);
     margin-left: -rem(20px);
   }
   .icon-contacts {
@@ -1085,8 +1094,8 @@ $yellow: #fbbe03;
     background-image: url(../img/contacts.png);
   }
   .icon-card {
-    height: rem(38px);
-    background-image: url(../img/card.png);
+    // height: rem(38px);
+    background-image: url(../img/mycard.png);
   }
   .icon-zhima {
     height: rem(48px);
@@ -1191,8 +1200,85 @@ $yellow: #fbbe03;
     .item-note{
       color: $gray-6;
     }
+    .icons[tag="1"]{
+      background-image: url(../img/cer-info.png);
+    }
+    .icons[tag="3"]{
+      background-image: url(../img/cer-contact.png);
+    }
+    .icons[tag="4"]{
+      background-image: url(../img/cer-bank.png);
+    }
+    .icons[tag="8"]{
+      background-image: url(../img/cer-zmxy.png);
+    }
   }
 }
+
+.help-center { background: #f2f2f2; padding: 1px 0; width: 10rem; }
+
+.help-center .consultation { width: 10rem; height: 2.5333333333rem; background: #f2f2f2; font-size: 0; }
+
+.help-center .consultation .online-consultation, .help-center .consultation .phone-consultation, .help-center .consultation .wx-consultation { display: block; background: #fff; text-decoration: none; }
+
+.help-center .consultation .online-consultation h4, .help-center .consultation .phone-consultation h4, .help-center .consultation .wx-consultation h4 { font-size: 0.4rem; color: #4ab6fa; text-align: center; position: relative; margin-top: 1.6rem; }
+
+.help-center .consultation .online-consultation h4:before, .help-center .consultation .phone-consultation h4:before, .help-center .consultation .wx-consultation h4:before { content: ''; width: 1.1866666667rem; height: 1.1866666667rem; position: absolute; top: -1.3333333333rem; left: 1.0666666667rem; }
+
+.help-center .consultation .online-consultation { display: inline-block; width: 3.3066666667rem; height: 2.5333333333rem; }
+
+.help-center .consultation .online-consultation h4:before { background: transparent url("../img/helpCenter-icon-06.jpg") 0 0 no-repeat; background-size: 1.1866666667rem 1.1866666667rem; }
+
+.help-center .consultation .phone-consultation { display: inline-block; width: 3.3066666667rem; height: 2.5333333333rem; margin-left: 0.04rem; }
+
+.help-center .consultation .phone-consultation h4:before { background: transparent url("../img/helpCenter-icon-07.jpg") 0 0 no-repeat; background-size: 1.1866666667rem 1.1866666667rem; }
+
+.help-center .consultation .wx-consultation { display: inline-block; width: 3.3066666667rem; height: 2.5333333333rem; margin-left: 0.04rem; }
+
+.help-center .consultation .wx-consultation h4:before { background: transparent url("../img/weixin.png") 0 0 no-repeat; background-size: 1.1866666667rem 1.1866666667rem; }
+
+.help-center .scroll> div { background: #fff; margin-top: 0.3333333333rem; font-size: 0rem; }
+
+.help-center h3 { display: inline-block; width: 2.4666666667rem; height: 4.2133333333rem; padding-top: 2.3333333333rem; font-size: 0.4rem; color: #4ab6fa; border-right: 1px solid #e6e6e6; vertical-align: top; text-align: center; box-sizing: border-box; }
+
+.help-center h3::after { content: ""; display: inline-block; width: 0.24rem; height: 0.2333333333rem; border-top: 1px solid #4ab6fa; border-right: 1px solid #4ab6fa; -webkit-transform: rotate(45deg); transform: rotate(45deg); box-sizing: border-box; }
+
+.help-center .auth h3 { background: transparent url(../img/helpCenter-icon-01.jpg) 50% 35% no-repeat; background-size: 1.3333333333rem 1.3333333333rem; }
+
+.help-center .loan h3 { background: transparent url(../img/helpCenter-icon-02.jpg) 50% 35% no-repeat; background-size: 1.3333333333rem 1.3333333333rem; }
+
+.help-center .repayment h3 { background: transparent url(../img/helpCenter-icon-03.jpg) 50% 35% no-repeat; background-size: 1.3333333333rem 1.3333333333rem; }
+
+.help-center .cost h3 { background: transparent url(../img/helpCenter-icon-04.jpg) 50% 35% no-repeat; background-size: 1.3333333333rem 1.3333333333rem; }
+
+.help-center .other { margin-bottom: 0.6rem; }
+
+.help-center .other h3 { background: transparent url(../img/helpCenter-icon-05.jpg) 50% 35% no-repeat; background-size: 1.3333333333rem 1.3333333333rem; }
+
+.help-center ul { display: inline-block; width: 7.5333333333rem; }
+
+.help-center ul li { font-size: 0.4rem; color: #333; line-height: 1.4rem; padding-left: 0.4rem; border-bottom: 1px solid #e6e6e6; box-sizing: border-box; }
+
+.help-center ul li:last-child { border-bottom: none; }
+
+.help-center li:hover, .help-center li:active { background-color: #DDD; -webkit-transition: all .4s ease-in-out; transition: all .4s ease-in-out; }
+
+.help-description { width: 10rem; }
+
+.help-description ul { margin-top: 0.3333333333rem; background-color: #fff; }
+
+.help-description ul li { position: relative; font-size: 0.4rem; line-height: 1.3866666667rem; color: #font-color-3; margin-left: 0.4rem; border-bottom: 1px solid #f2f2f2; }
+
+.help-description ul li span { display: block; margin-right: 1.0666666667rem; line-height: 0.8rem; }
+
+.help-description ul li p { display: none; font-size: 0.3458666667rem; color: #666; line-height: 0.5853333333rem; padding: 0.3066666667rem 0.4rem 0.36rem 0.3333333333rem; margin-top: -0.08rem; border-top: 1px solid #f2f2f2; }
+
+.help-description ul li:before { content: ""; display: inline-block; position: absolute; height: 0.2933333333rem; width: 0.28rem; top: 0.4666666667rem; right: 0.4666666667rem; -webkit-transform: rotate(135deg); transform: rotate(135deg); border-top: 1px solid #999; border-right: 1px solid #999; }
+
+.help-description ul li.active p { display: block; }
+
+.help-description ul li.active:before { top: 0.6rem; -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
+
 
 .personalinformation {
   .message-info {
