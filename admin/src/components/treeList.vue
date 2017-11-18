@@ -15,7 +15,7 @@
 
     <el-row :gutter="20" class="table-header">
       <el-col :span="2" :offset="20">&nbsp;<!--<el-button size="small"><i class="iconfont icon-download"></i>下载</el-button>--></el-col>
-      <el-col :span="2" ><!--<el-button icon="plus" size="small" @click="modifyType=1;dialogUserModifyVisible=true">新建</el-button>--></el-col>
+      <el-col :span="2" ><el-button icon="plus" size="small" @click="modifyType=1;dialogUserModifyVisible=true">新建</el-button></el-col>
     </el-row>
 
     <div class="table-wrap">
@@ -30,24 +30,33 @@
                   width="50">
           </el-table-column>-->
         <el-table-column
-            prop="user_id"
-            label="用户ID">
+            prop="id"
+            label="ID">
         </el-table-column>
         <el-table-column
-            prop="card_title"
-            label="卡类">
+            prop="name"
+            label="名称">
+        </el-table-column>
+
+        <el-table-column
+            prop="tree_root"
+            label="是否决策树">
         </el-table-column>
         <el-table-column
-            prop="amount"
-            label="金额">
+            prop="expression"
+            label="表达式">
+        </el-table-column>
+        <el-table-column
+            prop="type"
+            label="特征类型">
         </el-table-column>
         <el-table-column
             fixed="right"
             label="操作"
             width="150">
           <template slot-scope="scope">
-            <!--<el-button @click="onDetail" type="text" size="small">查看</el-button>-->
-            <el-button @click.prevent="onDetail(scope.$index, scope.row)" type="text" size="small">明细</el-button>
+            <el-button @click="onDelete" type="text" size="small">删除</el-button>
+            <el-button @click.prevent="onEdit(scope.$index, scope.row)" type="text" size="small">修改</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -65,16 +74,34 @@
       </el-pagination>
     </div>
 
-    <el-dialog :title="modifyType==1 ? '新建签名': '修改签名'" v-model="dialogUserModifyVisible" size="tiny" custom-class="user-dialog" @close="reset('userModify')">
+    <el-dialog :title="modifyType==1 ? '新建特征': '修改特征'" :visible.sync="dialogUserModifyVisible" width="40%" custom-class="user-dialog" @close="reset('userModify')">
       <el-form :model="userForm" :rules="userRules" ref="userModify"  v-loading="isModifyLoading">
-        <el-form-item label="用户ID" label-width="100px" prop="user_id">
-          <el-input size="small" v-model="userForm.user_id" auto-complete="off"></el-input>
+        <el-form-item label="名称" label-width="100px" prop="name">
+          <el-input size="small" v-model="userForm.name" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="签名" label-width="100px" prop="sign">
-          <el-input size="small" v-model="userForm.sign" auto-complete="off"></el-input>
+        <el-form-item label="方法名称" label-width="100px" prop="url">
+          <el-input size="small" v-model="userForm.url" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="扩展码" label-width="100px" prop="extno">
-          <el-input size="small" v-model="userForm.extno" auto-complete="off"></el-input>
+        <el-form-item label="默认值" label-width="100px" prop="result">
+          <el-input size="small" v-model="userForm.result" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="类型" label-width="100px" prop="type">
+          <el-radio-group v-model="userForm.type">
+            <el-radio label="0">基础</el-radio>
+            <el-radio label="1">扩展</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="扩展类型" label-width="100px" prop="extend_type">
+          <el-radio-group v-model="userForm.extend_type">
+            <el-radio label="0">表达式</el-radio>
+            <el-radio label="1">映射</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="是否是决策树" label-width="100px" prop="tree_root">
+          <el-switch on-text="" off-text="" v-model="userForm.tree_root"></el-switch>
+        </el-form-item>
+        <el-form-item label="表达式" label-width="100px" prop="expression">
+          <el-input size="small" v-model="userForm.expression" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -128,17 +155,21 @@ export default {
         sign: ''
       },
       userForm: {
-        user_id: '',
-        extno: '',
-        sign: '',
-        id: ''
+        rule_id: '',
+        name: '',
+        url: '',
+        result: '',
+        type: '0',
+        extend_type: '1',
+        tree_root: '',
+        expression: ''
       },
       userRules: {
-        user_id: [
-          { required: true, message: '用户账号不能为空', trigger: 'blur' }
+        name: [
+          { required: true, message: '名称不能为空', trigger: 'blur' }
         ],
-        sign: [
-          { required: true, message: '签名不能为空', trigger: 'blur' }
+        url: [
+          { required: true, message: '方法名称不能为空', trigger: 'blur' }
         ]
       },
       tableData: []
@@ -157,7 +188,7 @@ export default {
       this.getList()
     },
     getList () {
-      this.requestPost(Services.orderList, this.filterForm, (remoteData) => {
+      this.requestPost(Services.treeList, this.filterForm, (remoteData) => {
         this.tableData = remoteData && remoteData.data.list || []
         this.total = parseInt(remoteData.data.total)
       })
@@ -166,9 +197,9 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           if (this.modifyType == 1) {
-            this.AddSign(formName)
+            this.AddRule(formName)
           } else {
-            this.EditSign(formName)
+            this.EditRule(formName)
           }
         } else {
           return false
@@ -179,8 +210,11 @@ export default {
       console.log('reset')
       this.$refs[formName].resetFields()
     },
-    AddSign (formName) {
-      this.requestPost(Services.signAdd, this.userForm, (remoteData) => {
+    AddRule (formName) {
+      let params = {}
+      Object.assign(params, this.userForm)
+      params['tree_root'] = params['tree_root'] + 0
+      this.requestPost(Services.treeAdd, params, (remoteData) => {
         this.dialogUserModifyVisible = false
         this.$refs[formName].resetFields()
         this.getList()
@@ -189,12 +223,12 @@ export default {
         }, 'isModifyLoading')
       })
     },
-    EditSign (formName) {
+    EditRule (formName) {
       let params = {}
       Object.assign(params, this.userForm)
-      params['user_id'] = params['id']
+      params['tree_root'] = params['tree_root'] + 0
 
-      this.requestPost(Services.signModify, params, (remoteData) => {
+      this.requestPost(Services.treeModify, params, (remoteData) => {
         this.dialogUserModifyVisible = false
         this.$refs[formName].resetFields()
         this.getList()
@@ -225,20 +259,23 @@ export default {
       this.modifyType = 2
       this.dialogUserModifyVisible = true
       this.$nextTick(() => {
-        this.userForm.sign = rowData.sign
-        this.userForm.id = rowData.id
-        this.userForm.user_id = rowData.user_id
-        this.userForm.extno = rowData.extno
+        this.userForm.rule_id = rowData.id
+        this.userForm.name = rowData.name
+        this.userForm.url = rowData.url
+        this.userForm.extend_type = rowData.extend_type
+        this.userForm.type = rowData.type
+        this.userForm.expression = rowData.expression
+        this.userForm.tree_root = !!rowData.tree_root
       })
     },
     onDelete (idx, rowData) {
-      this.$confirm('确认要删除此签名吗?', '提示', {
+      this.$confirm('确认要删除此决策树吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.requestPost(Services.signDel, {
-          id: rowData.id
+        this.requestPost(Services.treeDelete, {
+          rule_id: rowData.id
         }, (remoteData) => {
           this.getList()
           this.$message({

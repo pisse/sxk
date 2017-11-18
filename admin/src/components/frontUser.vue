@@ -13,10 +13,11 @@
 
     <el-row :gutter="20" class="table-header">
       <el-col :span="2" :offset="20">&nbsp;<!--<el-button size="small"><i class="iconfont icon-download"></i>下载</el-button>--></el-col>
-      <el-col :span="2" ><el-button icon="plus" size="small" @click="modifyType=1;dialogUserModifyVisible=true">新建</el-button></el-col>
+      <el-col :span="2" ><!--<el-button icon="plus" size="small" @click="modifyType=1;dialogUserModifyVisible=true">新建</el-button>--></el-col>
     </el-row>
 
-    <el-table
+    <div class="table-wrap">
+      <el-table
             v-loading="isLoading"
             :data="tableData"
             style="width: 100%"
@@ -39,15 +40,18 @@
               label="操作"
               width="300">
         <template slot-scope="scope">
-          <el-button @click.prevent="onresetPwd(3,scope.$index, scope.row)" type="text" size="small">修改登录密码</el-button>
+          <!--<el-button @click.prevent="onresetPwd(3,scope.$index, scope.row)" type="text" size="small">修改登录密码</el-button>-->
           <!--<el-button @click.prevent="onresetPwd(4,scope.$index, scope.row)" type="text" size="small">修改发送密码</el-button>-->
           <!--<el-button @click.prevent="onMassSet(scope.$index, scope.row)" type="text" size="small">群发显示设置</el-button>
           <el-button @click.prevent="onStatisticSet(scope.$index, scope.row)" type="text" size="small">按发送状态统计账单</el-button>-->
-          <el-button @click.prevent="onEdit(scope.$index, scope.row)" type="text" size="small">编辑</el-button>
-          <el-button @click.prevent="onDelete(scope.$index, scope.row)" type="text" size="small">删除</el-button>
+          <!--<el-button @click.prevent="onEdit(scope.$index, scope.row)" type="text" size="small">编辑</el-button>
+          <el-button @click.prevent="onDelete(scope.$index, scope.row)" type="text" size="small">删除</el-button>-->
+          <el-button @click.prevent="onShowDetail(scope.$index, scope.row)" type="text" size="small">详细</el-button>
+          <el-button @click.prevent="onShowLoanLimit(scope.$index, scope.row)" type="text" size="small">额度</el-button>
         </template>
       </el-table-column>
     </el-table>
+    </div>
 
     <div class="mt15">
       <el-pagination
@@ -278,7 +282,7 @@ export default {
         ]
       },
       columns: [{key: 'id', title: '用户ID', isAdd: false}, {key: 'username', title: '用户名'}, {key: 'phone', title: '电话'},
-        {key: 'login_password', title: '登录密码'}],
+        {key: 'name', title: '姓名'}],
       tableData: []
     }
   },
@@ -385,7 +389,16 @@ export default {
     tableRowClassName (row, index) {
       return ''
     },
-    onDetail () {},
+    onShowDetail (idx, rowData) {
+      this.requestPost(Services.userDetail, {user_id: rowData['id']}, (remoteData) => {
+        console.log(remoteData)
+      })
+    },
+    onShowLoanLimit (idx, rowData) {
+      this.requestPost(Services.userLoanLimit, {user_id: rowData['id']}, (remoteData) => {
+        console.log(remoteData)
+      })
+    },
     ResetMass (formName) {
       let params = {
         user_id: this.userForm['user_id'],

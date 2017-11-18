@@ -27,10 +27,17 @@
         </el-submenu>
 
         <el-submenu index="/order">
-          <template slot="title"><i class="iconfont icon-10"></i>订单管理</template>
+          <template slot="title"><i class="iconfont icon-yunying"></i>订单管理</template>
           <el-menu-item index="/order/list"><!--<i class="iconfont icon-admin"></i>-->订单列表</el-menu-item>
           <!--<el-menu-item index="/user/sign">&lt;!&ndash;<i class="iconfont icon-gexingqianming"></i>&ndash;&gt;签名管理</el-menu-item>-->
         </el-submenu>
+
+        <el-submenu index="/tree">
+          <template slot="title"><i class="iconfont icon-mingxi"></i>决策树</template>
+          <el-menu-item index="/tree/list"><!--<i class="iconfont icon-admin"></i>-->决策树列表</el-menu-item>
+          <!--<el-menu-item index="/user/sign">&lt;!&ndash;<i class="iconfont icon-gexingqianming"></i>&ndash;&gt;签名管理</el-menu-item>-->
+        </el-submenu>
+
       <!--  <el-menu-item index="/errsms"><i class="iconfont icon-cuowu1"></i>错误信息管理</el-menu-item>
 
         <el-menu-item index="/operator"><i class="iconfont icon-yunying"></i>运营商管理</el-menu-item>
@@ -111,7 +118,7 @@
           height: 60px
           display : inline-block
           width: 60px
-          background-image : url('../assets/shanxian.png')
+          background-image : url('../assets/logo3.png')
           background-position: center;
           background-size: 100%;
           background-repeat: no-repeat;

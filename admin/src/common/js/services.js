@@ -16,6 +16,14 @@ let Services = {
 
   // 订单管理
   orderList: Domain + 'user/credit-list',
+  orderDetail: Domain + 'order/order-detail',
+
+  // 决策树管理
+  treeList: Domain + 'tree/rule-list',
+  treeDetail: Domain + 'tree/rule-detail',
+  treeDelete: Domain + 'tree/rule-delete',
+  treeAdd: Domain + 'tree/rule-add',
+  treeModify: Domain + 'tree/rule-modify',
 
   // 前台用户管理
   userFrontList: Domain + 'user/list',
@@ -26,6 +34,8 @@ let Services = {
   userFrontSendPwd: Domain + 'user-manage/user-modify-send-password',
   userSendMass: Domain + 'user-manage/user-send-mass',
   userStatisticType: Domain + 'user-manage/user-show-msg-statist',
+  userDetail: Domain + 'user/detail',
+  userLoanLimit: Domain + 'user/credit-list',
 
   // 签名列表
   singList: Domain + 'user-manage/sign-list',

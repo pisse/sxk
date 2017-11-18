@@ -34,6 +34,18 @@ let Routes = {
     name: '敏感信息'
   }, */
 
+  order: {
+    name: '订单',
+    children: {
+      list: {name: '列表'}
+    }
+  },
+  tree: {
+    name: '决策树',
+    children: {
+      list: {name: '列表'}
+    }
+  },
   smstask: {
     name: '短信任务'
   },

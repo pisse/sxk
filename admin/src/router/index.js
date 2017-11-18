@@ -5,6 +5,7 @@ import adminRole from '@/components/adminRole'
 import frontUser from '@/components/frontUser'
 import sign from '@/components/sign'
 import orderList from '@/components/orderList'
+import treeList from '@/components/treeList'
 import errSms from '@/components/errSms'
 import blackList from '@/components/blackList'
 import operatorList from '@/components/operatorList'
@@ -37,6 +38,11 @@ export default new Router({
       path: '/order/list',
       name: 'orderList',
       component: orderList
+    },
+    {
+      path: '/tree/list',
+      name: 'treeList',
+      component: treeList
     },
     {
       path: '/sys/errsms',
