@@ -17,6 +17,7 @@ let Services = {
   // 订单管理
   orderList: Domain + 'user/credit-list',
   orderDetail: Domain + 'order/order-detail',
+  orderCheckList: Domain + 'order/order-review-list',
 
   // 决策树管理
   treeList: Domain + 'tree/rule-list',

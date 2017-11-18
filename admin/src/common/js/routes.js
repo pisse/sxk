@@ -37,7 +37,8 @@ let Routes = {
   order: {
     name: '订单',
     children: {
-      list: {name: '列表'}
+      list: {name: '列表'},
+      check: {name: '审核列表'}
     }
   },
   tree: {

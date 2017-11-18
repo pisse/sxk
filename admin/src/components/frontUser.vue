@@ -38,7 +38,7 @@
       <el-table-column
               fixed="right"
               label="操作"
-              width="300">
+              width="100">
         <template slot-scope="scope">
           <!--<el-button @click.prevent="onresetPwd(3,scope.$index, scope.row)" type="text" size="small">修改登录密码</el-button>-->
           <!--<el-button @click.prevent="onresetPwd(4,scope.$index, scope.row)" type="text" size="small">修改发送密码</el-button>-->
@@ -46,7 +46,7 @@
           <el-button @click.prevent="onStatisticSet(scope.$index, scope.row)" type="text" size="small">按发送状态统计账单</el-button>-->
           <!--<el-button @click.prevent="onEdit(scope.$index, scope.row)" type="text" size="small">编辑</el-button>
           <el-button @click.prevent="onDelete(scope.$index, scope.row)" type="text" size="small">删除</el-button>-->
-          <el-button @click.prevent="onShowDetail(scope.$index, scope.row)" type="text" size="small">详细</el-button>
+          <!--<el-button @click.prevent="onShowDetail(scope.$index, scope.row)" type="text" size="small">详细</el-button>-->
           <el-button @click.prevent="onShowLoanLimit(scope.$index, scope.row)" type="text" size="small">额度</el-button>
         </template>
       </el-table-column>
@@ -64,8 +64,8 @@
       </el-pagination>
     </div>
 
-    <el-dialog :title="modifyType==1 ? '新建用户': modifyType==2 ? '修改用户' : modifyType==3 ? '修改登录密码': modifyType==4 ? '修改发送密码': modifyType==5 ? '群发菜单显示设置' : '按发送状态统计账单'"
-               :visible.sync="dialogUserModifyVisible" width="40%" custom-class="user-dialog" @close="reset('userModify')">
+    <el-dialog :title="modifyType==1 ? '额度': modifyType==2 ? '修改用户' : modifyType==3 ? '修改登录密码': modifyType==4 ? '修改发送密码': modifyType==5 ? '群发菜单显示设置' : '按发送状态统计账单'"
+               :visible.sync="dialogUserModifyVisible" width="80%" custom-class="user-dialog" @close="reset('userModify')">
       <el-form :model="userForm" :rules="userRules" ref="userModify"  v-loading="isModifyLoading">
 
         <template v-if="modifyType==3">
@@ -105,33 +105,25 @@
         </template>
 
         <template v-else-if="modifyType==1">
-          <el-form-item label="用户ID" :label-width="label_width" prop="user_id">
-            <el-input size="small" v-model="userForm.user_id" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="用户名" :label-width="label_width" prop="username">
-            <el-input size="small" v-model="userForm.username" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="主账号ID" :label-width="label_width" prop="parent_id">
-            <el-input size="small" v-model="userForm.parent_id" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="SP_ID" :label-width="label_width" prop="sp_id">
-            <el-input size="small" v-model="userForm.sp_id" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="手机号" :label-width="label_width" prop="phone">
-            <el-input v-model="userForm.phone" size="small" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="关联手机号" :label-width="label_width" prop="relation_phone">
-            <el-input v-model="userForm.relation_phone" size="small" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="发送密码" :label-width="label_width" prop="password">
-            <el-input type="password" size="small" v-model="userForm.password" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="确认发送密码" :label-width="label_width" prop="pwd2">
-            <el-input type="password" size="small" v-model="userForm.pwd2" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="是否需要验证码登录" :label-width="label_width" prop="is_captcha">
-            <el-switch on-text="" off-text="" v-model="userForm.is_captcha"></el-switch>
-          </el-form-item>
+
+          <el-table
+              v-loading="isLoading"
+              :data="creditListData"
+              style="width: 100%"
+              :row-class-name="tableRowClassName">
+            <!--<el-table-column
+                    label="序号"
+                    type="index"
+                    width="80px">
+            </el-table-column>
+      -->
+            <el-table-column v-for="(column, idx) in creditListColumns" :key="idx"
+                             :prop="column.key"
+                             :label="column.title"
+                             :width="column.width"
+            >
+            </el-table-column>
+          </el-table>
         </template>
 
         <template v-else-if="modifyType==2">
@@ -163,8 +155,9 @@
 
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogUserModifyVisible = false">取 消</el-button>
-        <el-button type="primary" @click="userValidate('userModify')">确 定</el-button>
+        <el-button @click="dialogUserModifyVisible = false">关闭</el-button>
+        <!--<el-button type="primary" @click="userValidate('userModify')">确 定</el-button>-->
+
       </div>
     </el-dialog>
 
@@ -215,6 +208,7 @@ export default {
       }
     }
     return {
+      detailData: {},
       modifyType: '1',
       dialogUserModifyVisible: false,
       isModifyLoading: false,
@@ -283,7 +277,11 @@ export default {
       },
       columns: [{key: 'id', title: '用户ID', isAdd: false}, {key: 'username', title: '用户名'}, {key: 'phone', title: '电话'},
         {key: 'name', title: '姓名'}],
-      tableData: []
+      creditListColumns: [{key: 'amount', title: '额度'}, {key: 'card_title', title: '卡名称'}, {key: 'card_title', title: '卡类'},
+        {key: 'house_min', title: 'house_min'}, {key: 'house_max', title: 'house_max'}, {key: 'initial_amount', title: '初始额度'},
+        {key: 'pocket_apr', title: 'pocket_apr'}, {key: 'pocket_late_apr', title: 'pocket_late_apr'}],
+      tableData: [],
+      creditListData: []
     }
   },
   watch: {
@@ -391,11 +389,17 @@ export default {
     },
     onShowDetail (idx, rowData) {
       this.requestPost(Services.userDetail, {user_id: rowData['id']}, (remoteData) => {
+        // this.dialogUserModifyVisible = true
+        // this.modifyType = 1
+        // this.detailData = remoteData.data
         console.log(remoteData)
       })
     },
     onShowLoanLimit (idx, rowData) {
       this.requestPost(Services.userLoanLimit, {user_id: rowData['id']}, (remoteData) => {
+        this.dialogUserModifyVisible = true
+        this.modifyType = 1
+        this.creditListData = remoteData.data && remoteData.data.list || []
         console.log(remoteData)
       })
     },

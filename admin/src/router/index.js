@@ -5,6 +5,7 @@ import adminRole from '@/components/adminRole'
 import frontUser from '@/components/frontUser'
 import sign from '@/components/sign'
 import orderList from '@/components/orderList'
+import orderCheckList from '@/components/orderCheckList'
 import treeList from '@/components/treeList'
 import errSms from '@/components/errSms'
 import blackList from '@/components/blackList'
@@ -38,6 +39,11 @@ export default new Router({
       path: '/order/list',
       name: 'orderList',
       component: orderList
+    },
+    {
+      path: '/order/check',
+      name: 'orderCheckList',
+      component: orderCheckList
     },
     {
       path: '/tree/list',

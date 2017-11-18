@@ -29,27 +29,57 @@
                   type="index"
                   width="50">
           </el-table-column>-->
-        <el-table-column
-            prop="user_id"
-            label="用户ID">
+        <el-table-column align="center" label="订单信息">
+          <el-table-column
+              prop="apr"
+              label="apr"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="card_type"
+              label="卡类型"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="late_fee"
+              label="late_fee"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="loan_term"
+              label="loan_term"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="money_amount"
+              label="money_amount"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="reason_remark"
+              label="reason_remark"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="user_id"
+              label="user_id"
+              width="120">
+          </el-table-column>
         </el-table-column>
-        <el-table-column
-            prop="card_title"
-            label="卡类">
+
+        <el-table-column label="还款信息">
+
         </el-table-column>
-        <el-table-column
-            prop="amount"
-            label="金额">
-        </el-table-column>
-        <el-table-column
+
+        <!--<el-table-column
             fixed="right"
             label="操作"
             width="150">
           <template slot-scope="scope">
-            <!--<el-button @click="onDetail" type="text" size="small">查看</el-button>-->
+            &lt;!&ndash;<el-button @click="onDetail" type="text" size="small">查看</el-button>&ndash;&gt;
             <el-button @click.prevent="onDetail(scope.$index, scope.row)" type="text" size="small">明细</el-button>
           </template>
-        </el-table-column>
+        </el-table-column>-->
       </el-table>
     </div>
 
@@ -154,8 +184,13 @@ export default {
       this.getList()
     },
     getList () {
-      this.requestPost(Services.orderList, this.filterForm, (remoteData) => {
-        this.tableData = remoteData && remoteData.data.list || []
+      this.requestPost(Services.orderCheckList, this.filterForm, (remoteData) => {
+        let data = remoteData && remoteData.data.list || []
+        this.tableData = data.map((item, idx) => {
+          let one = Object.assign({}, item.order_data)
+          return one
+        })
+        console.log(this.tableData)
         this.total = parseInt(remoteData.data.total)
       })
     },
