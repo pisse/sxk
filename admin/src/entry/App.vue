@@ -32,7 +32,7 @@ export default {
     min-width: 1200px;
     max-width: 1400px;
     position : relative
-    padding-left: 210px
+    padding-left: 190px
   .main
     position: relative
     padding-top: 80px

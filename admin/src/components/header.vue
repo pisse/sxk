@@ -16,7 +16,7 @@
   .header
     position :absolute
     height: 60px
-    left: 210px
+    left: 190px
     right: 0
     line-height : 60px
     padding : 0 20px 0 10px
@@ -60,9 +60,9 @@
           if (v != '') {
             breads.push({
               path: v,
-              title: routeMaps[v]['name']
+              title: routeMaps[v] && routeMaps[v]['name'] || routeMaps['name']
             })
-            if (routeMaps[v]['children']) {
+            if (routeMaps[v] && routeMaps[v]['children']) {
               routeMaps = routeMaps[v]['children']
             }
           }

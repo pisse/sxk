@@ -15,7 +15,7 @@ let Services = {
   userAdminPermissionGet: Domain + 'admin-user/get-user-role',
 
   // 订单管理
-  orderList: Domain + 'user/credit-list',
+  orderList: Domain + 'order/list',
   orderDetail: Domain + 'order/order-detail',
   orderCheckList: Domain + 'order/order-review-list',
 

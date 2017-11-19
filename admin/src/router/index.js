@@ -4,8 +4,8 @@ import adminUser from '@/components/adminUser'
 import adminRole from '@/components/adminRole'
 import frontUser from '@/components/frontUser'
 import sign from '@/components/sign'
-import orderList from '@/components/orderList'
-import orderCheckList from '@/components/orderCheckList'
+// import orderList from '@/components/orderList'
+// import orderCheckList from '@/components/orderCheckList'
 import treeList from '@/components/treeList'
 import errSms from '@/components/errSms'
 import blackList from '@/components/blackList'
@@ -38,12 +38,17 @@ export default new Router({
     {
       path: '/order/list',
       name: 'orderList',
-      component: orderList
+      component: () => import('@/components/orderList') // orderList
     },
     {
       path: '/order/check',
       name: 'orderCheckList',
-      component: orderCheckList
+      component: () => import('@/components/orderCheckList') // (resolve) => { require(['@/components/orderCheckList'], resolve) } // orderCheckList
+    },
+    {
+      path: '/order/:detail',
+      name: 'orderDetail',
+      component: () => import('@/components/orderDetail') // orderDtail
     },
     {
       path: '/tree/list',

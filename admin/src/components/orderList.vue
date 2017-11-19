@@ -29,17 +29,12 @@
                   type="index"
                   width="50">
           </el-table-column>-->
-        <el-table-column
-            prop="user_id"
-            label="用户ID">
-        </el-table-column>
-        <el-table-column
-            prop="card_title"
-            label="卡类">
-        </el-table-column>
-        <el-table-column
-            prop="amount"
-            label="金额">
+        <el-table-column v-for="(column, idx) in columns" :key="idx"
+                         :prop="column.key"
+                         :label="column.title"
+                         :width="column.width"
+                         :formatter="column.formatter"
+        >
         </el-table-column>
         <el-table-column
             fixed="right"
@@ -90,6 +85,9 @@
 import vInput from './filters/vInput'
 import _base from '../mixin/base.js'
 import _pagination from '../mixin/pagination.js'
+import moment from 'moment'
+
+var DataFormat = 'YYYY-MM-DD'
 
 import Services from 'common/js/services.js'
 
@@ -124,7 +122,7 @@ export default {
       filterForm: {
         user_id: '',
         phone: '',
-        status: '',
+        status: '100',
         order_id: ''
       },
       userForm: {
@@ -133,6 +131,23 @@ export default {
         sign: '',
         id: ''
       },
+      columns: [
+        {key: 'id', title: '订单号'},
+        {key: 'user_id', title: '用户ID'},
+        {key: 'user_name', title: '姓名'},
+        {key: 'phone', title: '手机号'},
+        // {key: 'card_title', title: '是否是老用户'},
+        {key: 'money_amount', title: '借款金额（元）', width: '120', formatter: (row, column) => { return row[column['property']] / 100 }},
+        // {key: 'id', title: '借款项目'},
+        {key: 'loan_term', title: '借款期限'},
+        // {key: 'id', title: '公司名称'},
+        // {key: 'id', title: '是否服务费后置'},
+        {key: 'sub_order_type_text', title: '申请来源'},
+        {key: 'created_at', title: '申请时间', formatter: (row, column) => { return moment(row[column['property']] * 1000).format(DataFormat) }},
+        {key: 'plan_fee_time', title: '应还时间', formatter: (row, column) => { return row[column['property']] && moment(row[column['property']] * 1000).format(DataFormat) }},
+        {key: 'status_text', title: '状态'}
+        // {key: 'id', title: '资方'},
+      ],
       userRules: {
         user_id: [
           { required: true, message: '用户账号不能为空', trigger: 'blur' }
@@ -155,7 +170,16 @@ export default {
     },
     getList () {
       this.requestPost(Services.orderList, this.filterForm, (remoteData) => {
-        this.tableData = remoteData && remoteData.data.list || []
+        let data = remoteData && remoteData.data.list || []
+        this.tableData = data.map((item, idx) => {
+          let one = Object.assign({}, item.order_data)
+          let user = item.loan_person_data || {}
+          one['user_id'] = user['id']
+          one['user_name'] = user['name']
+          one['phone'] = user['phone']
+          one['id_number'] = user['id_number']
+          return one
+        })
         this.total = parseInt(remoteData.data.total)
       })
     },
@@ -214,9 +238,12 @@ export default {
       console.log(`当前页: ${val}`)
     },
     onDetail (idx, rowData) {
+      this.$router.push({ name: 'orderDetail', params: {detail: rowData['id']} })
+      /*
       this.requestPost(Services.orderDetail, {order_id: rowData['id']}, (remoteData) => {
         console.log(remoteData)
       })
+      */
     },
     onEdit (idx, rowData) {
       this.modifyType = 2
