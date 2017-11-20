@@ -87,7 +87,7 @@ import _base from '../mixin/base.js'
 import _pagination from '../mixin/pagination.js'
 import moment from 'moment'
 
-var DataFormat = 'YYYY-MM-DD'
+var DataFormat = 'YYYY-MM-DD HH:mm:ss'
 
 import Services from 'common/js/services.js'
 

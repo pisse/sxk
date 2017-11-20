@@ -1,7 +1,7 @@
 @import "../../lib/common/scss/base";
 @import "../../lib/common/scss/rzslider";
 @import 'picker';
-$blue:#8ab7f4;
+$blue:#4374e2;
 $gray-3:#333;
 $gray-6:#666;
 $gray-9:#999;
@@ -11,6 +11,7 @@ $bg-color: #f2f2f2;
 $green: #2ebd59;
 $yellow: #fbbe03;
 $white: #fff;
+
 
 * {
   font-family: Helvetica, "Microsoft YaHei";
@@ -435,8 +436,8 @@ $white: #fff;
   }
   div.top{
     //background: #233845;
-    background-image: linear-gradient(45deg, #233845, #31b7ff);
-    background-image: -webkit-linear-gradient(45deg, #233845, #31b7ff);
+    background-image: linear-gradient(45deg, #233845, #4374e2);
+    background-image: -webkit-linear-gradient(45deg, #233845, #4374e2);
     padding-bottom: rem(40px);
     .slider-pager{
       bottom: rem(10px);
@@ -496,7 +497,7 @@ $white: #fff;
       }
       p.credit-number {
         font-size: rem(46px);
-        color:#257fc7;
+        color:#fff;
         padding: rem(40px) rem(40px) rem(20px);
         text-align:justify;
         //text-align-last:justify;
@@ -1279,6 +1280,36 @@ $white: #fff;
 
 .help-description ul li.active:before { top: 0.6rem; -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
 
+.agreement{
+  font-size: rem(32px);
+  padding: 10px;
+  .title{
+    font-size: rem(46px);
+    text-align: center;
+  }
+  .normal{
+    line-height: rem(42px);
+  }
+  table{
+    border-collapse: collapse;
+  }
+  td{
+    line-height: 2em;
+    min-width: 24px;
+    border: 1px solid #d4d4d4;
+    padding: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    vertical-align: top;
+  }
+  .right{
+    float: right;
+  }
+  h2{
+   margin-top: rem(36px);
+  }
+
+}
 
 .personalinformation {
   .message-info {

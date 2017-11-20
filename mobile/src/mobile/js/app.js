@@ -199,6 +199,32 @@ angular.module('mobile', ['credit', 'rzModule', 'ionic', 'mobileControllers', 'm
           id: null
         }
       })
+      .state('agreement', {
+        url: '/agreement',
+        templateUrl: 'templates/agreements/platform2.html',
+        controller: 'AgreementController'
+      })
+      .state('agreement2', {
+        url: '/agreement/2',
+        templateUrl: 'templates/agreements/platform2.html',
+        controller: 'AgreementController'
+      })
+      .state('agreement3', {
+        url: '/agreement/3',
+        templateUrl: 'templates/agreements/platform3.html',
+        controller: 'AgreementController'
+      })
+      .state('agree-loan', {
+        url: '/agreement/loan',
+        templateUrl: 'templates/agreements/loan.html',
+        controller: 'AgreementController'
+      })
+      .state('agree-auth', {
+        url: '/agreement/auth',
+        templateUrl: 'templates/agreements/auth.html',
+        controller: 'AgreementController'
+      })
+
 
     $urlRouterProvider.otherwise("/");
   });

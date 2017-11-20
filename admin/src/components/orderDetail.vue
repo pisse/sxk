@@ -15,28 +15,46 @@
         <el-container>
           <el-main>
             <el-row>
-              <el-col :span="5"><div class="grid-content ">用户ID：</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">用户ID：</div></el-col>
               <el-col :span="7"><div class="grid-content">{{orderData.user_id}}</div></el-col>
-              <el-col :span="5"><div class="grid-content ">订单号：</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">订单号：</div></el-col>
               <el-col :span="7"><div class="grid-content">{{orderData.id}}</div></el-col>
             </el-row>
             <el-row>
-              <el-col :span="5"><div class="grid-content ">借款金额：</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">借款金额：</div></el-col>
               <el-col :span="7"><div class="grid-content">{{orderData.money_amount/100}}</div></el-col>
-              <el-col :span="5"><div class="grid-content ">应还款日：</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">应还款日：</div></el-col>
               <el-col :span="7"><div class="grid-content">{{orderData.plan_fee_time}} </div></el-col>
             </el-row>
             <el-row>
-              <el-col :span="5"><div class="grid-content ">申请时间：</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">申请时间：</div></el-col>
               <el-col :span="7"><div class="grid-content">{{orderData.created_at * 1000 | toDate }}</div></el-col>
-              <el-col :span="5"><div class="grid-content ">借款利息：</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">借款利息：</div></el-col>
               <el-col :span="7"><div class="grid-content">{{orderData.plan_fee_time}}</div></el-col>
             </el-row>
             <el-row>
-              <el-col :span="5"><div class="grid-content ">服务费：</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">应还时间：</div></el-col>
+              <el-col :span="7"><div class="grid-content">{{currentRepay.plan_repayment_time * 1000 | toDate}}</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">逾期开始时间：</div></el-col>
+              <el-col :span="7"><div class="grid-content">{{currentRepay.plan_fee_time * 1000 | toDate}}</div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="5"><div class="grid-content grid-title">实际还款时间：</div></el-col>
+              <el-col :span="7"><div class="grid-content">{{currentRepay.true_repayment_time * 1000 | toDate }}</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">实际还款金额：</div></el-col>
+              <el-col :span="7"><div class="grid-content">{{currentRepay.true_total_money / 100}}</div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="5"><div class="grid-content grid-title">服务费：</div></el-col>
               <el-col :span="7"><div class="grid-content">{{orderData.counter_fee/100 }}</div></el-col>
-              <el-col :span="5"><div class="grid-content ">服务费率：</div></el-col>
-              <el-col :span="7"><div class="grid-content">{{orderData.plan_fee_time}}</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">逾期天数：</div></el-col>
+              <el-col :span="7"><div class="grid-content">{{orderData.overdue_day}}</div></el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="5"><div class="grid-content grid-title">借款时间：</div></el-col>
+              <el-col :span="7"><div class="grid-content">{{orderData.loan_time * 1000 | toDate }}</div></el-col>
+              <el-col :span="5"><div class="grid-content grid-title">借款期限：</div></el-col>
+              <el-col :span="7"><div class="grid-content">{{orderData.loan_term}}</div></el-col>
             </el-row>
           </el-main>
         </el-container>
@@ -53,51 +71,40 @@
         <el-container>
           <el-main>
             <el-row>
-              <el-col :span="2"><div class="grid-content ">用户ID：</div></el-col>
-              <el-col :span="3"><div class="grid-content">{{userInfo.uid}}</div></el-col>
-              <el-col :span="2"><div class="grid-content ">姓名：</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">用户ID：</div></el-col>
+              <el-col :span="3"><div class="grid-content">{{userInfo.id}}</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title ">姓名：</div></el-col>
               <el-col :span="4"><div class="grid-content">{{userInfo.name}}</div></el-col>
 
-              <el-col :span="2"><div class="grid-content ">身份证号：</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">身份证号：</div></el-col>
               <el-col :span="4"><div class="grid-content">{{userInfo.id_number}}</div></el-col>
-              <el-col :span="3"><div class="grid-content ">联系方式：</div></el-col>
+              <el-col :span="3"><div class="grid-content grid-title">联系方式：</div></el-col>
               <el-col :span="4"><div class="grid-content">{{userInfo.phone}}</div></el-col>
             </el-row>
             <el-row>
-              <el-col :span="2"><div class="grid-content ">出生日期：</div></el-col>
-              <el-col :span="3"><div class="grid-content">{{userInfo.uid}}</div></el-col>
-              <el-col :span="2"><div class="grid-content ">性别：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.name}}</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">出生日期：</div></el-col>
+              <el-col :span="3"><div class="grid-content">{{userInfo.birthday}}</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">性别：</div></el-col>
+              <el-col :span="4"><div class="grid-content">{{userInfo.sex}}</div></el-col>
 
-              <el-col :span="2"><div class="grid-content ">年龄：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.id_number}}</div></el-col>
-              <el-col :span="3"><div class="grid-content ">身份证地址：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.phone}}</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">年龄：</div></el-col>
+              <el-col :span="4"><div class="grid-content">{{userInfo.age}}</div></el-col>
+              <el-col :span="3"><div class="grid-content grid-title">身份证地址：</div></el-col>
+              <el-col :span="4"><div class="grid-content">{{userInfo.addr}}</div></el-col>
             </el-row>
             <el-row>
-              <el-col :span="2"><div class="grid-content ">学历：</div></el-col>
-              <el-col :span="3"><div class="grid-content">{{userInfo.uid}}</div></el-col>
-              <el-col :span="2"><div class="grid-content ">婚姻：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.name}}</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">学历：</div></el-col>
+              <el-col :span="3"><div class="grid-content">{{userInfo.edu}}</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">婚姻：</div></el-col>
+              <el-col :span="4"><div class="grid-content">{{userInfo.marriage}}</div></el-col>
 
-              <el-col :span="2"><div class="grid-content ">常用地址：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.id_number}}</div></el-col>
-              <el-col :span="3"><div class="grid-content ">账号申请创建时：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.phone}}</div></el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="2"><div class="grid-content ">学历：</div></el-col>
-              <el-col :span="3"><div class="grid-content">{{userInfo.uid}}</div></el-col>
-              <el-col :span="2"><div class="grid-content ">身份证：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.name}}</div></el-col>
-
-              <el-col :span="2"><div class="grid-content ">常用地址：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.id_number}}</div></el-col>
-              <el-col :span="3"><div class="grid-content ">账号申请创建时：</div></el-col>
-              <el-col :span="4"><div class="grid-content">{{userInfo.phone}}</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">常用地址：</div></el-col>
+              <el-col :span="4"><div class="grid-content">{{userInfo.addr}}</div></el-col>
+              <el-col :span="3"><div class="grid-content grid-title">账号申请时间：</div></el-col>
+              <el-col :span="4"><div class="grid-content">{{userInfo.time}}</div></el-col>
             </el-row>
             <el-row class="picture">
-              <el-col :span="2"><div class="grid-content ">身份证：</div></el-col>
+              <el-col :span="2"><div class="grid-content grid-title">身份证：</div></el-col>
               <el-col :span="22"><div class="grid-content">
                 <img :src="item.url" alt="" v-for="(item, idx) in pictures" :key="idx">
               </div></el-col>
@@ -111,7 +118,7 @@
     <br>
 
     <el-container direction="vertical" class="history-detail">
-      <el-header>历史审核信息</el-header>
+      <el-header>历史借款信息</el-header>
           <el-main>
             <el-table
                     v-loading="isLoading"
@@ -131,6 +138,17 @@
               >
               </el-table-column>
             </el-table>
+
+            <div class="mt15">
+              <el-pagination
+                  @size-change="handleSizeChange"
+                  @current-change="handleCurrentChange"
+                  :current-page="currentPage"
+                  :page-size="pageSize"
+                  layout="total, prev, pager, next, jumper"
+                  :total="total">
+              </el-pagination>
+            </div>
 
           </el-main>
     </el-container>
@@ -191,14 +209,14 @@ export default {
       },
       columns: [
         {key: 'order_id', title: '订单号'},
-        {key: 'user_id', title: '审核人'},
-        {key: 'user_name', title: '审核类型'},
-        {key: 'phone', title: '审核时间', formatter: (row, column) => { return moment(row[column['property']] * 1000).format(DataFormat) }},
-        {key: 'money_amount', title: '审核内容'},
-        {key: 'loan_term', title: '操作类型'},
-        {key: 'id', title: '审核码'},
-        {key: 'id', title: '审核前状态'},
-        {key: 'id', title: '审核后状态'}
+        {key: 'money_amount', title: '借款金额'},
+        {key: 'counter_fee', title: '服务费'},
+        {key: 'order_time', title: '订单时间'},
+        {key: 'order_status_text', title: '订单状态'},
+        {key: 'overdue_day', title: '逾期天数'},
+        {key: 'plan_fee_time', title: '应还款日'},
+        {key: 'repayment_time', title: '还款时间'},
+        {key: 'true_total_money', title: '还款金额', formatter: (row, column) => { return row[column['property']] / 100 }}
       ],
       userRules: {
         user_id: [
@@ -208,12 +226,23 @@ export default {
       tableData: [],
       orderData: {},
       userInfo: {},
+      repaymentInfo: [],
       pictures: []
     }
   },
   filters: {
     toDate (timestamp) {
       return moment(timestamp).format(DataFormat)
+    }
+  },
+  computed: {
+    currentRepay () {
+      let ord_id = this.orderData.id
+      let repeyment = this.repaymentInfo.filter((item, idx) => {
+        return item.order_id == ord_id
+      })
+      console.log(repeyment)
+      return repeyment && repeyment.length && repeyment[0] || {}
     }
   },
   watch: {
@@ -230,13 +259,14 @@ export default {
     },
     getList () {
       let param = {
-        order_id: this.$route.params.detail
+        order_id: this.filterForm.order_id || this.$route.params.detail
       }
       this.requestPost(Services.orderDetail, param, (remoteData) => {
         this.orderData = remoteData.data && remoteData.data.order_data || {}
         this.userInfo = remoteData.data && remoteData.data.user || {}
         this.pictures = remoteData.data && remoteData.data.user_picture || {}
         let tableData = remoteData.data && remoteData.data.history_order_data || {}
+        this.repaymentInfo = remoteData.data && remoteData.data.order_repayment || []
         this.tableData = []
         for (let key in tableData) {
           this.tableData.push(tableData[key])
@@ -338,11 +368,15 @@ export default {
   .order-detail
     >.el-container
       border: 1px solid #D3DCE6
+      min-width: 1200px
     .el-header, .el-footer
       background-color: #e5e9f2
       color: #333
       text-align: center
       line-height: 60px
+
+    .grid-title
+      font-weight bold
 
     .el-row
       &:first-child

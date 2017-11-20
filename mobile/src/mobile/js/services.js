@@ -300,6 +300,10 @@ angular.module('mobileFactory', [])
         return $http.get(url).then(function (response) {
           return response.data;
         });
+      },
+      getLoanContract: function(data) {
+        var url = Domain.resolveUrl(root_url +  'user/get-contact-info');
+        return $post(url, data);
       }
     };
   });

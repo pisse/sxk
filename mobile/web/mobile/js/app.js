@@ -336,7 +336,127 @@ angular.module('credit', []).directive('downloadPopup', [
       return $sce.trustAsHtml(html);
     };
   }
-]);
+]).filter('private', function () {
+  return function (str) {
+    if (!str)
+      return '';
+    str = '' + str;
+    return str.substring(0, str.length - 4) + '****';
+  };
+}).filter('toBig', function () {
+  return function (num) {
+    num = num + '';
+    for (var i = num.length - 1; i >= 0; i--) {
+      num = num.replace(',', '');
+      // 替换num中的“,”
+      num = num.replace(' ', '');
+    }
+    if (isNaN(num)) {
+      // 验证输入的字符是否为数字
+      // alert('请检查小写金额是否正确')
+      return;
+    }
+    // 字符处理完毕后开始转换，采用前后两部分分别转换
+    var part = String(num).split('.');
+    var newchar = '';
+    // 小数点前进行转化
+    for (i = part[0].length - 1; i >= 0; i--) {
+      if (part[0].length > 10) {
+        // alert('位数过大，无法计算')
+        return '';
+      }
+      // 若数量超过拾亿单位，提示
+      var tmpnewchar = '';
+      var perchar = part[0].charAt(i);
+      switch (perchar) {
+      case '0':
+        tmpnewchar = '\u96f6' + tmpnewchar;
+        break;
+      case '1':
+        tmpnewchar = '\u58f9' + tmpnewchar;
+        break;
+      case '2':
+        tmpnewchar = '\u8d30' + tmpnewchar;
+        break;
+      case '3':
+        tmpnewchar = '\u53c1' + tmpnewchar;
+        break;
+      case '4':
+        tmpnewchar = '\u8086' + tmpnewchar;
+        break;
+      case '5':
+        tmpnewchar = '\u4f0d' + tmpnewchar;
+        break;
+      case '6':
+        tmpnewchar = '\u9646' + tmpnewchar;
+        break;
+      case '7':
+        tmpnewchar = '\u67d2' + tmpnewchar;
+        break;
+      case '8':
+        tmpnewchar = '\u634c' + tmpnewchar;
+        break;
+      case '9':
+        tmpnewchar = '\u7396' + tmpnewchar;
+        break;
+      }
+      switch (part[0].length - i - 1) {
+      case 0:
+        break;
+      case 1:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u62fe';
+        break;
+      case 2:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u4f70';
+        break;
+      case 3:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u4edf';
+        break;
+      case 4:
+        tmpnewchar = tmpnewchar + '\u4e07';
+        break;
+      case 5:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u62fe';
+        break;
+      case 6:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u4f70';
+        break;
+      case 7:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u4edf';
+        break;
+      case 8:
+        tmpnewchar = tmpnewchar + '\u5104';
+        break;
+      case 9:
+        tmpnewchar = tmpnewchar + '\u62fe';
+        break;
+      }
+      newchar = tmpnewchar + newchar;
+    }
+    // 替换所有无用汉字，直到没有此类无用的数字为止
+    while (newchar.search('\u96f6\u96f6') != -1 || newchar.search('\u96f6\u5104') != -1 || newchar.search('\u5104\u4e07') != -1 || newchar.search('\u96f6\u4e07') != -1) {
+      newchar = newchar.replace('\u96f6\u5104', '\u5104');
+      newchar = newchar.replace('\u5104\u4e07', '\u5104');
+      newchar = newchar.replace('\u96f6\u4e07', '\u4e07');
+      newchar = newchar.replace('\u96f6\u96f6', '\u96f6');
+    }
+    // 替换以“一十”开头的，为“十”
+    if (newchar.indexOf('\u58f9\u62fe') == 0) {
+      newchar = newchar.substr(1);
+    }
+    // 替换以“零”结尾的，为“”
+    if (newchar.lastIndexOf('\u96f6') == newchar.length - 1) {
+      newchar = newchar.substr(0, newchar.length - 1);
+    }
+    return newchar;
+  };
+});
 angular.module('mobile', [
   'credit',
   'rzModule',
@@ -521,6 +641,26 @@ angular.module('mobile', [
         block: null,
         id: null
       }
+    }).state('agreement', {
+      url: '/agreement',
+      templateUrl: 'templates/agreements/platform2.html',
+      controller: 'AgreementController'
+    }).state('agreement2', {
+      url: '/agreement/2',
+      templateUrl: 'templates/agreements/platform2.html',
+      controller: 'AgreementController'
+    }).state('agreement3', {
+      url: '/agreement/3',
+      templateUrl: 'templates/agreements/platform3.html',
+      controller: 'AgreementController'
+    }).state('agree-loan', {
+      url: '/agreement/loan',
+      templateUrl: 'templates/agreements/loan.html',
+      controller: 'AgreementController'
+    }).state('agree-auth', {
+      url: '/agreement/auth',
+      templateUrl: 'templates/agreements/auth.html',
+      controller: 'AgreementController'
     });
     $urlRouterProvider.otherwise('/');
   }
@@ -1247,8 +1387,76 @@ angular.module('mobileFactory', []).factory('MobileService', [
         return $http.get(url).then(function (response) {
           return response.data;
         });
+      },
+      getLoanContract: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/get-contact-info');
+        return $post(url, data);
       }
     };
+  }
+]);
+angular.module('mobileControllers').controller('AgreementController', [
+  '$ionicSlideBoxDelegate',
+  '$location',
+  '$ionicPopup',
+  'Popup',
+  '$ionicViewSwitcher',
+  '$state',
+  '$ionicScrollDelegate',
+  '$rootScope',
+  '$location',
+  'Platform',
+  'Domain',
+  '$scope',
+  '$ionicLoading',
+  '$timeout',
+  '$ionicSlideBoxDelegate',
+  'Popup',
+  'MobileService',
+  function ($ionicSlideBoxDelegate, $location, $ionicPopup, Popup, $ionicViewSwitcher, $state, $ionicScrollDelegate, $rootScope, $location, Platform, Domain, $scope, $ionicLoading, $timeout, $ionicSlideBoxDelegate, Popup, MobileService) {
+    $rootScope.currentPage = 'current-home-page';
+    $scope.pullingTips = '\u95ea\u7535\u5ba1\u6838\uff0c\u73b0\u91d1\u901f\u8fbe';
+    $scope.cIndex = 0;
+    $scope.dIndex = 0;
+    var ord_id = $location.search().ord_id;
+    MobileService.getLoanContract({
+      out_order_id: ord_id,
+      type: 1
+    }).then(function (response) {
+      $scope.data = response.data || {};
+      if ($scope.data.loan_time) {
+        $scope.data.date = $scope.data.loan_time.split(' ')[0];
+      }
+      console.log($scope.data);
+      if ($scope.data.plan_repayment_time) {
+        $scope.data.repay_date = $scope.data.plan_repayment_time.split(' ')[0];
+        console.log($scope.data.repay_date);
+      }
+    });  /*
+     MobileService.homeVdsStatistics().then(function (data) {
+     if (data.code == 0) {
+     if (window._vds) {
+     window._vds.push(['setCS1', 'inviteCode', data.data.invite_code]);
+     return
+     }
+     var _vds = _vds || [];
+     window._vds = _vds;
+     (function () {
+     _vds.push(['setAccountId', '8fd2500ba4956d6d']);
+     _vds.push(['enableHT', true]);
+     _vds.push(['setCS1', 'inviteCode', data.data.invite_code]);
+     (function () {
+     var vds = document.createElement('script');
+     vds.type = 'text/javascript';
+     vds.async = true;
+     vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+     var s = document.getElementsByTagName('script')[0];
+     s.parentNode.insertBefore(vds, s);
+     })();
+     })();
+     }
+     })
+     */
   }
 ]);
 angular.module('mobileControllers').controller('BankController', [
