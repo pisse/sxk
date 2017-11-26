@@ -1,8 +1,8 @@
 angular.module('mobileFactory', [])
 
-  .factory('MobileService', function(Domain, Platform, $http, $location, $ionicPopup, $httpParamSerializerJQLike) {
+  .factory('MobileService', function(Env, Domain, Platform, $http, $location, $ionicPopup, $httpParamSerializerJQLike) {
 
-    var root_url = 'http://120.55.61.62/frontend/web/'
+    var root_url = Env.env == 'pro' ? '//h5.dahubao.com/' : '//120.55.61.62/frontend/web/'
 
     function $post(url, data) {
       return $http({

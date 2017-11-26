@@ -1,4 +1,4 @@
-angular.module('mobile', ['credit', 'rzModule', 'ionic', 'mobileControllers', 'mobileFactory', 'ionicPicker', 'radialIndicator', 'ngFileUpload'])
+angular.module('mobile', ['_config', 'credit', 'rzModule', 'ionic', 'mobileControllers', 'mobileFactory', 'ionicPicker', 'radialIndicator', 'ngFileUpload'])
 
   .run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {
@@ -224,7 +224,6 @@ angular.module('mobile', ['credit', 'rzModule', 'ionic', 'mobileControllers', 'm
         templateUrl: 'templates/agreements/auth.html',
         controller: 'AgreementController'
       })
-
 
     $urlRouterProvider.otherwise("/");
   });

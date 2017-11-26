@@ -12,21 +12,24 @@
     "grunt-contrib-uglify": "^0.11.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-ngmin": "0.0.3",
+    "grunt-replace": "^1.0.1",
     "grunt-rev": "^0.1.0",
     "grunt-sass": "^1.2.1",
     "grunt-usemin": "^3.1.1",
+    "install": "^0.10.2",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "load-grunt-tasks": "^3.4.1",
+    "npm": "^5.5.1",
     "time-grunt": "^1.3.0"
   },
   "scripts": {
-    "dev": "grunt release --target=mobile",
-    "start": "grunt serve",
-    "p": "grunt release --target=mobile"
+    "dev": "grunt serve --env=dev",
+    "devp": "grunt release --target=mobile --env=dev",
+    "p": "grunt release --target=mobile --env=pro"
   },
   "dependencies": {
     "grunt-cli": "^1.2.0",

@@ -4,6 +4,11 @@ module.exports = function(grunt) {
   var srcPath = 'src/' + target;
   var destPath = 'web/' + target;
 
+
+  var env = grunt.option('env') || 'pro';
+
+  console.log(env);
+
   var path = require('path');
   var cp = require('child_process');
   //console.log(target, srcPath, destPath);
@@ -18,6 +23,21 @@ module.exports = function(grunt) {
   //Configure grunt
   grunt.initConfig({
     // The actual grunt server settings
+    replace: {
+      dist: {
+        options: {
+          patterns: [
+            {
+              match: '__ENV__',
+              replacement: env
+            }
+          ]
+        },
+        files: [
+          {expand: true, flatten: true, src: ['./_config.js'], dest: ('src/mobile/js/')}
+        ]
+      }
+    },
     connect: {
       options: {
         port: port,
@@ -109,6 +129,7 @@ module.exports = function(grunt) {
           dest: destPath + '/js/app.js',
           src: [
             'src/lib/common/js/*.js',
+            srcPath + '/**/_config.js',
             srcPath + '/**/controllers/*.js',
             srcPath + '/**/app.js',
             srcPath + '/**/services.js',
@@ -144,7 +165,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: [srcPath + '/js/*.js', srcPath + '/js/controllers/*.js', 'src/lib/common/*.js'],
-        tasks: ['concat', 'ngmin']
+        tasks: ['replace', 'concat', 'ngmin']
       },
       livereload: {
         options: {
@@ -178,7 +199,7 @@ module.exports = function(grunt) {
       multiple: {
         options: {
           src: './'+destPath+'/',
-          dest: "../../../php_release/h5/" + destPath,
+          dest: '../../' + (env=='dev'? 'sxk_php':'php_release') + 'frontend/web/mobile', //"../../php_release/frontend/web/test" + destPath,
           recursive: true
         }
       }
@@ -194,6 +215,7 @@ module.exports = function(grunt) {
       });
     }
     grunt.task.run([
+      'replace',
       'connect:all',
       'watch'
     ]);
@@ -209,7 +231,7 @@ module.exports = function(grunt) {
   //grunt release --target=(project name)
   //grunt.registerTask('release', ['clean', 'sass', 'concat', 'ngmin', 'uglify', 'rev', 'usemin']);
   grunt.registerTask('rs', ['rsync'])
-  grunt.registerTask('release', ['sass', 'concat', 'ngmin', 'uglify', 'cachebreaker','rs']);
+  grunt.registerTask('release', ['sass', 'replace', 'concat', 'ngmin', 'uglify', 'cachebreaker','rs']);
 
   grunt.event.on('watch', function(action, filepath, target) {
     //grunt target is not default and return
@@ -256,6 +278,7 @@ module.exports = function(grunt) {
         dest: dest + '/app.js',
         src: [
           'src/lib/common/js/*.js',
+          src + '/**/_config.js',
           src + '/**/app.js',
           src + '/**/services.js',
           src + '/**/controllers/*.js'
