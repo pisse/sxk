@@ -258,8 +258,8 @@ module.exports = function(grunt) {
 
 
     if (target === 'js') {
-      var dest = path.dirname(filepath).replace('src', 'web').replace('\\controllers', '');
-      var src = path.dirname(filepath).replace('\\controllers', '');;
+      var dest = path.dirname(filepath).replace('src', 'web').replace(path.sep + 'controllers', '');
+      var src = path.dirname(filepath).replace( path.sep + 'controllers', '');;
 
       if (path.basename(filepath, '.js') == 'index') {
         cp.execSync('webpack ' + filepath + ' ' + src + '/app.js');
@@ -268,7 +268,7 @@ module.exports = function(grunt) {
       console.log('src: ' + src)
       console.log('dest: ' + dest)
       //console.log(filepath, dest, src);
-      if(src == 'src\\lib\\common\\js') {
+      if(src == 'src\\lib\\common\\js' || src == 'src/lib/common/js') {
         console.log('nice')
         src = 'src/mobile'
         dest = 'web/mobile/js'

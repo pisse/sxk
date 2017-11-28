@@ -1,2 +1,2689 @@
-/* 2017-11-25 22:11:03 */angular.module("ionic").directive("kdPane",function(){return{restrict:"E",link:function(a,b){b.addClass("pane"),b.addClass("kd-pane")}}}),angular.module("credit",[]).directive("downloadPopup",["Platform","$timeout",function(a,b){return{restrict:"E",scope:{},replace:!0,template:'<div ng-show="isShow" ng-click="download()" class="download-popup">                   <a href="" class="close" ng-click="close($event)"></a>                   <img alt="" src="//h5.dahubao.com/credit/img/download-logo.png"/>                   <div><p>下载即享极速借款<br/>被拒最高赔偿<i>50元</i></p></div>                 </div>',link:function(b,c,d){b.isShow=!a.isApp,b.close=function(a){a.stopPropagation(),b.isShow=!1},b.download=function(){window.location="https://credit.dahubao.com/download-app.html"}}}}]).directive("popupPassword",["$timeout",function(a){return{restrict:"E",replace:!0,scope:{title:"=",isHref:"=",isShow:"=",isError:"=",sendHandler:"&"},template:'<div class="popup" id="defray" ng-show="isShow">                  <div class="overlay"></div>                  <div class="dialog pay">                    <span class="close" ng-click="close()"></span>                    <h2>{{title}}</h2>                    <p class="clearfix">                      <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>                      <input type="tel" value="" autofocus>                    </p>                    <p ng-show="isError" class="error-tips">密码错误</p>                    <a ng-show="isHref" nav-direction="forward" href="#/my/findpaypassword?state=loan">忘记密码?</a>                  </div>                </div>',link:function(b,c,d){b.close=function(){b.isShow=!1},b.$watch("isShow",function(c){c&&a(function(){b.isError=!1,$("#defray .error-tips").text("密码错误"),$("#defray input").val(""),$("#defray i").removeClass("point"),$("#defray input").focus()},0)}),b.$watch(function(){return c},function(a){$("#defray div.overlay").click(function(a){a.stopPropagation(),$("#defray input").blur()});$("#defray p").click(function(a){$("#defray input").focus()}),$("#defray input").focus(function(){var a=setInterval(function(){if("INPUT"==document.activeElement.nodeName){var b=$("#defray .dialog").position.top;if(b<=0)return;document.body.scrollTop=0,$("#defray .dialog").animate({top:0,marginTop:0},100)}else $("#defray .dialog").attr("style",""),a&&(clearInterval(a),a=null)},200)}),$("#defray input").bind("input",function(a){var c=$(this).val();$("#defray i").removeClass("point"),$("#defray i").slice(0,c.length).addClass("point"),b.isError=!1,b.$apply(),c.length>=6&&($(this).val(c.slice(0,6)),b.sendHandler({password:$(this).val()}))})})}}}]).directive("textScroll",["$timeout",function(a){return{restrict:"E",replace:!0,scope:{items:"=",interval:"="},template:'<ul class="text-scroll"><li ng-repeat="item in items track by $index">{{item}}</li></ul>',link:function(a,b,c){a.$watch("items",function(b){b&&a.items.push(a.items[0])}),a.$watch(function(){return b[0].children[0]},function(c){try{var d=b[0].children.length,e=c.offsetHeight,f=0,g=a.interval||1e3,h=function(){f++,f>=d&&(f=1,b.css("top",0)),$(b).animate({top:-e*f})};setInterval(h,g)}catch(i){}})}}}]).factory("Domain",["$location",function(a){var b=a.$$host,c=/(?:http(?:s)?:\/\/)?(?:www\.)?(.*?)\./,d=/https?:\/\/(?:[^\/]+\.)?([^.\/]+\.(?:com))(?:$|\/)/,e=b.match(c),f={credit:a.$$protocol+"://"+a.$$host+"/credit/web/",api:a.$$protocol+"://"+a.$$host+"/frontend/web/",h5:a.$$protocol+"://"+a.$$host+"/h5/mobile/web/",h:a.$$protocol+"://"+a.$$host+":8000/"};return null!==e&&("h5"===e[1]&&(f={credit:a.$$protocol+"://credit.dahubao.com/",api:a.$$protocol+"://api.dahubao.com/",h5:a.$$protocol+"://h5.dahubao.com/",h:a.$$protocol+"://h.dahubao.com/"}),"pre-h5"===e[1]&&(f={credit:a.$$protocol+"://pre-credit.dahubao.com/",api:a.$$protocol+"://pre-api.dahubao.com/",h5:a.$$protocol+"://pre-h5.dahubao.com/",h:a.$$protocol+"://pre-h.dahubao.com/"}),"test-h5"===e[1]&&(f={credit:a.$$protocol+"://test-credit.dahubao.com/",api:a.$$protocol+"://test-api.dahubao.com/",h5:a.$$protocol+"://test-h5.dahubao.com/",h:a.$$protocol+"://test-h.dahubao.com/"}),"192.168.39.214"==b&&(f={credit:a.$$protocol+"://"+a.$$host+"/kdkj/credit/web/",api:a.$$protocol+"://"+a.$$host+"/kdkj/frontend/web/",h5:a.$$protocol+"://"+a.$$host+"/kdkj/h5/mobile/web/"}),"121.42.12.69"==b&&(f={credit:a.$$protocol+"://"+a.$$host+"/koudai/kdkj/credit/web/",api:a.$$protocol+"://"+a.$$host+"/koudai/kdkj/frontend/web/",h5:a.$$protocol+"://"+a.$$host+"/koudai/kdkj/h5/mobile/web/"})),{resolveUrl:function(b){var e=b.match(c);return f[e[1]]?b.replace(d,f[e[1]]):b.replace(/^https?/,a.$$protocol)},domain:f}}]).factory("Platform",["$location",function(a){function b(b){if(void 0!==a.search()[b])return a.seach()[b];b=b.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new RegExp("[\\?&]"+b+"=([^&#]*)"),d=c.exec(location.search);return null===d?void 0:decodeURIComponent(d[1].replace(/\+/g," "))}var c=navigator.userAgent,d=c.split("/");return{getParamByName:b,appVersion:d[d.length-1],isApp:c.indexOf("kdxj")!==-1,isAndroid:c.indexOf("Android")>-1||c.indexOf("Adr")>-1,isIos:!!c.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),isWeixin:c.indexOf("MicroMessenger")>-1,isQQ:" qq"==c.match(/\sQQ/i)}}]).factory("Popup",["$ionicPopup",function(a){function b(b,c){a.alert({title:"提示",template:b,okText:"确定",okType:"button-credit"}).then(function(a){"function"==typeof c&&c()})}var c=function(b){a.confirm({title:b.title||"确认",template:b.content,cancelText:"取消",cancelType:"button-credit-gray",okText:"确定",okType:"button-credit"}).then(function(a){"function"==typeof b.callback&&b.callback(a),a?"function"==typeof b.ok&&b.ok():"function"==typeof b.cance&&b.cance()})};return{alert:b,confirm:c}}]).factory("HttpInterceptor",["$q","$injector",function(a,b){var c={responseError:function(b){return a.reject(b)},response:function(c){if(200!==c.status){var d=b.get("Popup"),e=b.get("$ionicLoading");return e.hide(),d.alert("请求不成功"),a.reject(c)}if(void 0!==c.data.code&&c.data.code==-99999){var d=b.get("Popup"),e=b.get("$ionicLoading");return e.hide(),d.alert(c.data.message,function(){var a=b.get("$state");a.go("login")}),a.reject(c)}return c},request:function(a){return!/\.html/.test(a.url),a},requestError:function(b){return a.reject(b)}};return c}]).filter("isEmpty",function(){var a;return function(b){for(a in b)if(b.hasOwnProperty(a))return!1;return!0}}).filter("trusted",["$sce",function(a){return function(b){return a.trustAsHtml(b)}}]).filter("private",function(){return function(a){return a?(a=""+a,a.substring(0,a.length-4)+"****"):""}}).filter("toBig",function(){return function(a){a+="";for(var b=a.length-1;b>=0;b--)a=a.replace(",",""),a=a.replace(" ","");if(!isNaN(a)){var c=String(a).split("."),d="";for(b=c[0].length-1;b>=0;b--){if(c[0].length>10)return"";var e="",f=c[0].charAt(b);switch(f){case"0":e="零"+e;break;case"1":e="壹"+e;break;case"2":e="贰"+e;break;case"3":e="叁"+e;break;case"4":e="肆"+e;break;case"5":e="伍"+e;break;case"6":e="陆"+e;break;case"7":e="柒"+e;break;case"8":e="捌"+e;break;case"9":e="玖"+e}switch(c[0].length-b-1){case 0:break;case 1:0!=f&&(e+="拾");break;case 2:0!=f&&(e+="佰");break;case 3:0!=f&&(e+="仟");break;case 4:e+="万";break;case 5:0!=f&&(e+="拾");break;case 6:0!=f&&(e+="佰");break;case 7:0!=f&&(e+="仟");break;case 8:e+="億";break;case 9:e+="拾"}d=e+d}for(;d.search("零零")!=-1||d.search("零億")!=-1||d.search("億万")!=-1||d.search("零万")!=-1;)d=d.replace("零億","億"),d=d.replace("億万","億"),d=d.replace("零万","万"),d=d.replace("零零","零");return 0==d.indexOf("壹拾")&&(d=d.substr(1)),d.lastIndexOf("零")==d.length-1&&(d=d.substr(0,d.length-1)),d}}}),angular.module("_config",[]).factory("Env",function(){return{env:"pro"}}),angular.module("mobileControllers").controller("AgreementController",["$ionicSlideBoxDelegate","$location","$ionicPopup","Popup","$ionicViewSwitcher","$state","$ionicScrollDelegate","$rootScope","$location","Platform","Domain","$scope","$ionicLoading","$timeout","$ionicSlideBoxDelegate","Popup","MobileService",function(a,b,c,d,e,f,g,h,b,i,j,k,l,m,a,d,n){h.currentPage="current-home-page",k.pullingTips="闪电审核，现金速达",k.cIndex=0,k.dIndex=0;var o=b.search().ord_id;n.getLoanContract({out_order_id:o,type:1}).then(function(a){k.data=a.data||{},k.data.loan_time&&(k.data.date=k.data.loan_time.split(" ")[0]),console.log(k.data),k.data.plan_repayment_time&&(k.data.repay_date=k.data.plan_repayment_time.split(" ")[0],console.log(k.data.repay_date))})}]),angular.module("mobileControllers").controller("BankController",["$scope","Popup","$state","$location","$timeout","$ionicViewSwitcher","$ionicLoading","MobileService",function(a,b,c,d,e,f,g,h){d.$$search;a.form={list:[{type:0,name:"请选择"}],lock:!1},g.show({template:"<ion-spinner></ion-spinner>"}),h.getBankCard().then(function(c){if(g.hide(),0!=c.code)return void b.alert(c.message);var d=c.data;if(d&&d.item){d.item}a.form=$.extend(!0,a.form,d),a.form.card_default=a.form.list[0],a.sendDisabled=!1,a.codeText="发送验证码"});var i=function(b,c){e(function(){a.codeText=b+"秒后重试",b?i(--b,1e3):(a.codeText="重新发送",a.sendDisabled=!1)},c)};a.sendCode=function(){var c=a.form.mobile;return/^1\d{10}$/.test(c)?(g.show({template:"<ion-spinner></ion-spinner>"}),void h.getBankCardCode({phone:c,source:"shanxianka"}).then(function(c){return g.hide(),0!==c.code?void b.alert(c.message):(a.sendDisabled=!0,void i(60))})):void b.alert("手机号格式不对")},a.save=function(a){a.bank_id=a.card_default.bank_id||"";var d={phone:a.mobile,card_no:a.card_no,bank_id:a.bank_id,code:a.v_code};return d.phone&&11==d.phone.length?d.card_no&&/^(\d{16}|\d{19})$/.test(d.card_no)?(g.show({template:"<ion-spinner></ion-spinner>"}),void h.addBankCard(d).then(function(a){g.hide(),b.alert(a.message,function(){0==a.code&&c.go("certification")})})):void b.alert("银行卡号只能16或19位数字"):void b.alert("银行手机预留号码格式错误")}}]),angular.module("mobileControllers").controller("CardController",["$scope","Popup","$state","$location","$timeout","$ionicViewSwitcher","$ionicLoading","MobileService",function(a,b,c,d,e,f,g,h){d.$$search;a.form={list:[{type:0,name:"请选择"}],lock:!1},a.visible=!1,a.bindText="确定绑卡",g.show({template:"<ion-spinner></ion-spinner>"}),h.getBankCard().then(function(c){if(g.hide(),0!=c.code)return void b.alert(c.message);var d=c.data;d&&d.item&&d.item.length>0&&(a.visible=!0,a.bindText="重新绑卡",a.card_info=d.item[0]),a.form=$.extend(!0,a.form,d),a.form.card_default=a.form.list[0],a.sendDisabled=!1,a.codeText="发送验证码"});var i=function(b,c){e(function(){a.codeText=b+"秒后重试",b?i(--b,1e3):(a.codeText="重新发送",a.sendDisabled=!1)},c)};a.sendCode=function(){var c=a.form.mobile;return/^1\d{10}$/.test(c)?(g.show({template:"<ion-spinner></ion-spinner>"}),void h.getBankCardCode({phone:c,source:"shanxianka"}).then(function(c){return g.hide(),0!==c.code?void b.alert(c.message):(a.sendDisabled=!0,void i(60))})):void b.alert("手机号格式不对")},a.save=function(d){if(a.visible)return a.visible=!1,void(a.bindText="确定绑卡");d.bank_id=d.card_default.bank_id||"";var e={phone:d.mobile,card_no:d.card_no,bank_id:d.bank_id,code:d.v_code,skipValidateCaptcha:1,skipCheckCardRecord:1};return e.card_no&&/^(\d{16}|\d{19})$/.test(e.card_no)?(g.show({template:"<ion-spinner></ion-spinner>"}),void h.bindBankCard(e).then(function(a){g.hide(),b.alert(a.message,function(){0==a.code&&c.go("certification")})})):void b.alert("银行卡号只能16或19位数字")}}]),angular.module("mobileControllers").controller("CertificationController",["Platform","Domain","$rootScope","$scope","Popup","$ionicViewSwitcher","$location","$ionicLoading","$ionicViewSwitcher","$state","$ionicLoading","$state","MobileService",function(a,b,c,d,e,f,g,h,f,i,h,i,j){var k=g.$$search;1==k.success&&j.getConfirmLoan({money:1e3,period:14,card_type:1}).then(function(b){return 0!=b.code?void e.alert(b.message):(window.localStorage.removeItem("links"),void i.go("loan",{money:1e3,period:14,item:b.data.item,source:!!a.isWeixin}))}),d.verify=function(a){if(0===d.real_verify_status)return a.preventDefault(),void e.alert("亲，请先填写个人信息哦~",function(){})},d.doRefresh=function(){d.items=[],h.show({template:"<ion-spinner></ion-spinner>"}),j.getVerification().then(function(a){var b=[2,12,7,9,13,14],c=[3,4,8,5],e=a.data.item.list||[],f=[];for(var g in e){var i=e[g].tag;1===i?(e[g].url="#/my/certification/information",1==a.data.is_new_user&&(e[g].url+="?new_user=1")):3===i?(e[g].url="#/my/certification/contacts",1==a.data.is_new_user&&(e[g].url+="?new_user=1")):4===i?(e[g].url="#/my/certification/bank",1==a.data.is_new_user&&(e[g].url+="?new_user=1")):[8].indexOf(i)>=0&&!e[g].url&&e[g].first_url&&(e[g].url=e[g].first_url),c.indexOf(i)>=0&&(e[g].verify=1),b.indexOf(i)>=0||d.items.push(e[g]),f.push(e[g].url)}if(f.push(window.location.href+"?success=1"),a.data.is_new_user){for(var g in f)2==g?f[g]+=("?url="+f[3]).replace(/\#/g,"%23"):3==g&&(f[g]+="?url="+f[4].replace(/\#/g,"%23"));for(var g in d.items){var i=d.items[g].tag;4==i?d.items[g].url+="?url="+f[3].replace(/\#/g,"%23"):5==i&&(d.items[g].url+="?url="+f[4].replace(/\#/g,"%23"))}}window.localStorage.setItem("links",JSON.stringify(f)),d.real_verify_status=a.data.item.real_verify_status||0,h.hide(),d.$broadcast("scroll.refreshComplete")})},d.doRefresh()}]),angular.module("mobileControllers").controller("ContactsController",["$scope","Popup","$state","$location","$ionicViewSwitcher","$ionicLoading","MobileService",function(a,b,c,d,e,f,g){var h=d.$$search;a.form={lineal_list:[{type:0,name:"请选择"}],other_list:[{type:0,name:"请选择"}],lock:!1},f.show({template:"<ion-spinner></ion-spinner>"}),g.getContacts().then(function(c){if(f.hide(),0!=c.code)return void b.alert(c.message);var d=c.data;if(d&&d.item){d.item}a.form=$.extend(!0,a.form,d.item);for(var e in a.form.lineal_list)if(a.form.lineal_list[e].type===a.form.lineal_relation){a.form.lineal_default=a.form.lineal_list[e];break}for(var e in a.form.other_list)if(a.form.other_list[e].type===a.form.other_relation){a.form.other_default=a.form.other_list[e];break}}),a.save=function(a){a.lineal_relation=a.lineal_default.type||"",a.other_relation=a.other_default.type||"";var i={type:a.lineal_relation,name:a.lineal_name,mobile:a.lineal_mobile,relation_spare:a.other_relation,name_spare:a.other_name,mobile_spare:a.other_mobile};return i.mobile_spare&&11!=i.mobile.length?void b.alert("直系亲属手机号码格式错误"):i.mobile_spare&&11!=i.mobile_spare.length?void b.alert("其他联系人手机号码格式错误"):void g.setContacts(i).then(function(a){f.hide(),b.alert(a.message,function(){if(0==a.code)if(1==h.new_user){var b=JSON.parse(window.localStorage.getItem("links"));window.location.href=b[2]+"?url="+b[4].replace(/\#/g,"%23")}else e.nextDirection("back"),c.go("certification"),d.replace()})})}}]),angular.module("mobileControllers").controller("HelpCenterController",["$scope","$ionicViewSwitcher","$state",function(a,b,c){a.list=[{name:"认证相关",val:[{name:"为什么会读取联系人失败？",id:"5"},{name:"如何更换收款银行卡？",id:"8"},{name:"手机运营商认证失败的原因有哪些？",id:"12"}]},{name:"借款相关",val:[{name:"审核通过后多久打款？",id:"7"},{name:"审核被拒绝的原因一般有哪些？",id:"8"},{name:"如何提升信用额度？",id:"9"}]},{name:"还款相关",val:[{name:"每种方式需要多久更新还款状态？",id:"2"},{name:"如何进行支付宝还款？",id:"7"},{name:"逾期还能申请续期服务吗？",id:"12"}]},{name:"费用相关",val:[{name:"借款费用如何收取？",id:"1"},{name:"逾期费用如何收取？",id:"2"},{name:"续期费用如何收取？",id:"3"}]}],a.detail=function(a,d){var e={block:a,id:d};b.nextDirection("forward"),c.go("helpdetail",e)}}]),angular.module("mobileControllers").controller("HelpDetailController",["$scope","$state","$stateParams",function(a,b,c){a.block=null===c.block?0:c.block,a.id=c.id||1,console.log(c)}]).directive("showHelpDetail",["$ionicViewSwitcher","$state",function(a,b){return{restrict:"A",scope:!0,controller:["$scope",function(a){a.showTarget=function(a,b,c){for(var d=a[0],e=d.querySelectorAll("p"),f=0;f<e.length;f++)e[f].style.display="none";var g=d.querySelectorAll("ul")[b],h=g.querySelectorAll("li")[c],i=h.querySelector("p");i.style.display="block"}}],link:function(a,b,c){a.showTarget(b,a.block,a.id-1),b.bind("click",function(a){for(var c=b[0],d=c.querySelectorAll("p"),e=0;e<d.length;e++)d[e].style.display="none";var f=a.target.querySelector("p");f.style.display="block"})}}}]),angular.module("mobileControllers").controller("HomeController",["$ionicSlideBoxDelegate","$ionicPopup","Popup","$ionicViewSwitcher","$state","$ionicScrollDelegate","$rootScope","$location","Platform","Domain","$scope","$ionicLoading","$timeout","$ionicSlideBoxDelegate","Popup","MobileService",function(a,b,c,d,e,f,g,h,i,j,k,l,m,a,c,n){g.currentPage="current-home-page",k.pullingTips="闪电审核，现金速达",k.cIndex=0,k.dIndex=0,!g.awaken&&i.isIos,i.isWeixin,k.onKnow=function(a){l.show({template:"<ion-spinner></ion-spinner>"}),n.confirmKnow({id:a.id}).then(function(b){l.hide(),0===b.code?location.href=a.active_url:c.alert(b.message)})},k.showTips=function(){b.alert({template:"综合费用=借款利息+居间服务费+信息认证费，综合费用将在借款时一次性扣除",okText:"我知道了",okType:"button-credit"})},k.apply=function(a){if(d.nextDirection("forward"),0===a.verify_loan_pass)return void e.go("certification",{origin:"home"});l.show({template:"<ion-spinner></ion-spinner>"});var b=a.amount_days.days[k.dIndex],f={period:b,money:k.sliderAmount.value,card_type:a.card_type};n.getConfirmLoan(f).then(function(a){return l.hide(),0!==a.code?void c.alert(a.message):void(0===a.code&&(f.item=a.data.item,e.go("loan",f)))})};var o=function(){var a=k.data.item.card[k.cIndex].amount_days.interests[k.dIndex],b=k.data.item.card[k.cIndex].amount_days.amounts.length,c=k.data.item.card[k.cIndex].amount_days.amounts[b-1],d=a/c;k.cost=k.sliderAmount.value*d,k.amount=k.sliderAmount.value-k.cost};k.sliderAmount={value:1e3,options:{floor:200,step:100,showSelectionBar:!0,translate:function(a){return a+"元"},onChange:o}};var p=function(a){var b=k.data.item.card[k.cIndex].amount_days.amounts;k.sliderAmount.options.floor=b[0]/100,a||(k.sliderAmount.value=b[b.length-1]/100),o()};k.slideHasChanged=function(a){console.log(a),k.cIndex=a,p()},k.switchDay=function(a){k.dIndex=a,p(!0)};var q=function(b){return 0!=b.code?void c.alert(b.message):(k.data=b.data,a.update(),void p())};l.show({template:"<ion-spinner></ion-spinner>"}),n.getHomeData().then(function(a){l.hide(),q(a)}),k.doRefresh=function(){n.getHomeData().then(function(a){q(a),k.$broadcast("scroll.refreshComplete")})}}]),angular.module("mobileControllers").controller("InformationController",["$scope","Domain","$location","Popup","Upload","$ionicViewSwitcher","$state","$ionicLoading","MobileService","$location","$stateParams",function(a,b,c,d,e,f,g,h,i,c,j){var k=c.$$search;a.new_user=k.new_user,void 0==k.new_user&&(a.upload=function(c,f,g){0!==f&&(h.show({template:"<ion-spinner></ion-spinner>"}),lrz(c,{width:640}).then(function(i){c.upload=e.upload({url:b.resolveUrl("http://120.55.61.62/frontend/web/picture/upload-file"),data:{type:f,attach:i.base64,ocrtype:1},headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(b){b.data.data&&b.data.data.item&&(a.form[g]=b.data.data.item.url),h.hide(),d.alert(b.data.message)})}))},a.files={},a.$watch("files.faces",function(b){null!=b&&a.upload(b,10,"face_recognition_picture")}),a.$watch("files.idNumberFront",function(b){console.log(b),null!=b&&a.upload(b,11,"id_number_z_picture")}),a.$watch("files.idNumberBack",function(b){null!=b&&a.upload(b,12,"id_number_f_picture")}),a.form={degrees_all:[{degrees:0,name:"请选择"}],degrees_default:null,company_worktype_list:[{work_type:0,name:"请选择"}],worktype_default:null}),a.$watch("file",function(b){null!=a.file&&console.log(b)}),h.show({template:"<ion-spinner></ion-spinner>"}),i.getInformation().then(function(b){if(h.hide(),0!=b.code)return void d.alert(b.message);var c=b.data;if(a.form=$.extend(!0,a.form,c.item),1==k.new_user){for(var e in a.form.degrees_all)if(a.form.degrees_all[e].degrees===a.form.degrees){a.form.degrees_default=a.form.degrees_all[e];break}for(var e in a.form.company_worktype_list)if(a.form.company_worktype_list[e].work_type===a.form.company_worktype_id){a.form.worktype_default=a.form.company_worktype_list[e];break}}}),a.save=function(a){if(console.log(a),h.show({template:"<ion-spinner></ion-spinner>"}),k.new_user)var b="setInformation";else{var b=a.real_verify_status?"setParsonInformation":"setInformation";a.degrees=a.degrees_default.degrees||0,a.work_type=a.worktype_default.work_type||0}i[b](a).then(function(a){h.hide(),d.alert(a.message,function(){if(0==a.code)if(1==k.new_user){var b=JSON.parse(window.localStorage.getItem("links"));window.location.href=b[1]}else f.nextDirection("back"),g.go("certification"),c.replace()})})}}]),angular.module("mobileControllers").controller("LoginController",["$filter","$location","$rootScope","$scope","$state","Popup","$ionicViewSwitcher","$ionicLoading","MobileService",function(a,b,c,d,e,f,g,h,i){d.next=function(c){h.show({template:"<ion-spinner></ion-spinner>"}),i.regGetCode(c).then(function(c){if(h.hide(),c.code==-1)return void f.alert(c.message);var g={phone:d.form.phone,redirectUrl:b.search().redirect_url,appMarket:b.search().appMarket,invite_code:b.search().inviteCode};return d.form=null,1===c.data?void e.go("login-next",g):void(0===c.data&&i.getCaptcha({type:"captcha-login-reg"}).then(function(b){0==b.code&&b.data.item&&(g.codeImg=a("removeProtocol")(b.data.item)),g.isRegister=!0,e.go("reset-password",g)}))})}}]),angular.module("mobileControllers").controller("LoginNextController",["Domain","$stateParams","$location","$rootScope","$scope","$state","Popup","$ionicViewSwitcher","$ionicLoading","MobileService",function(a,b,c,d,e,f,g,h,i,j){return console.log(b),b.phone&&/^1\d{10}$/.test(b.phone)?(e.resetPassword=function(){h.nextDirection("forward"),f.go("reset-password",b)},e.phone=b.phone.toString().replace(/(\d{3})\d{4}(\d{4})/,"$1****$2"),void(e.submit=function(a){i.show({template:"<ion-spinner></ion-spinner>"}),a.username=b.phone,j.login(a).then(function(a){if(i.hide(),e.form=null,0===a.code){if(b.redirectUrl)return void(location.href=b.redirectUrl);f.go("tab.home")}else g.alert(a.message)})})):void f.go("login")}]),angular.module("mobileControllers").controller("MyController",["$rootScope","$scope","$location","Popup","$ionicLoading","$ionicViewSwitcher","$state","radialIndicatorInstance","MobileService",function(a,b,c,d,e,f,g,h,i){a.currentPage="current-my-page",b.verify=function(a){if(b.verify_info&&0===b.verify_info.real_verify_status)return a.preventDefault(),void d.alert("亲，请先填写个人信息哦~",function(){f.nextDirection("forward"),g.go("certification")})},b.credit_info={card_amount:0,card_unused_amount:0},b.indicatorOption={displayNumber:!1,barColor:"#f5d314",barWidth:64,initValue:0,percentage:!0,frameTime:3,radius:205},b.logout=function(){d.confirm({title:"<br/>您确定要退出登录嘛？",ok:function(){i.logout().then(function(a){return 0!=a.code?void d.alert(a.message):(g.go("login"),void c.replace())})}})},b.doRefresh=function(){e.show({template:"<ion-spinner></ion-spinner>"}),i.getMyInfo().then(function(a){if(e.hide(),0!=a.code)return void d.alert(a.message);for(var c in a.data.item)b[c]=a.data.item[c];b.card_info&&(b.card_info.format=b.card_info.bank_name+"("+b.card_info.card_no_end+")"),h.amount.animate((b.credit_info.card_unused_amount||1e5)/b.credit_info.card_amount*100||0),b.$broadcast("scroll.refreshComplete")})},b.doRefresh()}]),angular.module("mobileControllers").controller("ordersController",["$rootScope","$scope","Popup","$ionicLoading","MobileService",function(a,b,c,d,e){a.currentPage="current-my-page",b.pullingTips="科技让金融更简单",b.items=[],b.doRefresh=function(){d.show({template:"<ion-spinner></ion-spinner>"}),e.getOrders().then(function(a){return d.hide(),0!=a.code?void c.alert(a.message):(a.data&&a.data.item&&a.data.item.length?b.items=a.data.item:b.items=!1,void b.$broadcast("scroll.refreshComplete"))})},b.doRefresh()}]),angular.module("mobileControllers").controller("RepaymentController",["$state","$rootScope","$scope","MobileService","$ionicLoading",function(a,b,c,d,e){b.currentPage="current-repayment-page";var f=function(a){0===a.code&&(c.item=a.data.item)};e.show({template:"<ion-spinner></ion-spinner>"}),d.getOrders().then(function(a){e.hide(),c.$broadcast("scroll.refreshComplete"),f(a)}),c.doRefresh=function(){d.getMyLoan().then(function(a){c.$broadcast("scroll.refreshComplete"),f(a)})}}]),angular.module("mobileControllers").controller("ResetPasswordController",["$filter","$window","$stateParams","$rootScope","$scope","$timeout","MobileService","$ionicLoading","$state","Popup","$location",function(a,b,c,d,e,f,g,h,i,j,k){if(!c.phone||!/^1\d{10}$/.test(c.phone)){if(!b.localStorage.getItem("phone"))return void i.go("login");c.phone=b.localStorage.getItem("phone"),c.isRegister=b.localStorage.getItem("isRegister"),c.invite_code=b.localStorage.getItem("invite_code"),b.localStorage.removeItem("phone"),b.localStorage.removeItem("invite_code"),b.localStorage.removeItem("isRegister")}e.codeText="发送验证码",e.sendDisabled=!1,e.isAgress=!0,e.codeImg=null,e.codeError=!1,e.onAgree=function(){e.isAgress=!e.isAgress},e.onHref=function(a){a.stopPropagation(),b.localStorage.setItem("phone",c.phone),b.localStorage.setItem("isRegister",c.isRegister),b.localStorage.setItem("invite_code",c.invite_code),location.href="//api.dahubao.com/page/detail?id=535"};var l=function(a,b){f(function(){e.codeText=a+"秒后重试",a?l(--a,1e3):(e.codeText="重新发送",e.sendDisabled=!1)},b)};e.sendCode=function(){h.show({template:"<ion-spinner></ion-spinner>"});var b=c.isRegister?"getCaptcha":"getCode";g[b]({phone:c.phone}).then(function(b){return h.hide(),0!==b.code?void j.alert(b.message):void(b.data.item?e.codeImg=a("removeProtocol")(b.data.item):(e.sendDisabled=!0,l(60)))})},e.refresh=function(){var b=c.isRegister?"getCaptcha":"getCode";g[b]({phone:c.phone}).then(function(b){0===b.code?(e.codeImg=a("removeProtocol")(b.data.item),e.codeError=!1,document.getElementById("verifyForm").reset()):j.alert(b.message)})},e.verifyCode=function(a){a.phone=c.phone;var b=c.isRegister?"checkGetCaptcha":"checkResetPwdCode";c.isRegister?a.captcha_code=a.captcha:a.type="find_pwd",g[b](a).then(function(a){return a.code===-1?void j.alert(a.message):a.code===-3?void(e.codeError=!0):void(0===a.code&&(document.getElementById("verifyForm").reset(),e.codeImg=null,e.codeError=!1,e.sendDisabled=!0,l(60)))})};var m=c.isRegister?"register":"resetPassword";c.isRegister&&(c.source=51,c.codeImg?e.codeImg=a("removeProtocol")(c.codeImg):(e.sendDisabled=!0,l(60))),e.reset=function(a){h.show({template:"<ion-spinner></ion-spinner>"}),angular.extend(a,c),g[m](a).then(function(a){return h.hide(),e.form=null,0!==a.code?void j.alert(a.message):void(0===a.code&&(i.go("login-next",c),k.replace()))})}}]),angular.module("mobile",["_config","credit","rzModule","ionic","mobileControllers","mobileFactory","ionicPicker","radialIndicator","ngFileUpload"]).run(["$ionicPlatform","$rootScope",function(a,b){a.ready(function(){window.StatusBar&&StatusBar.styleDefault()}),b.$on("$stateChangeStart",function(){var a=document.querySelector(".picker-tools-button.cancel-button");a&&a.click()})}]).config(["$locationProvider","$httpProvider","$compileProvider","$stateProvider","$urlRouterProvider","$ionicConfigProvider",function(a,b,c,d,e,f){f.tabs.position("bottom"),f.tabs.style("standard"),f.navBar.alignTitle("center"),c.aHrefSanitizationWhitelist(/^\s*(https?|http?|wap2app|schemekdlc|kdlc.app.launch):/),b.defaults.withCredentials=!0,b.interceptors.push("HttpInterceptor"),d.state("test",{url:"/test",templateUrl:"templates/test.html",controller:"TestController"}).state("login",{url:"/login",templateUrl:"templates/login.html",controller:"LoginController"}).state("login-next",{url:"/login-next",templateUrl:"templates/login-next.html",controller:"LoginNextController",params:{phone:null,redirectUrl:null,appMarket:null,invite_code:null}}).state("reset-password",{url:"/reset-password",templateUrl:"templates/reset-password.html",controller:"ResetPasswordController",params:{phone:null,codeImg:null,redirectUrl:null,isRegister:!1,appMarket:null,invite_code:null}}).state("loan",{url:"/loan",cache:!1,templateUrl:"templates/loan.html",controller:"LoanController",params:{money:null,period:null,item:null,card_type:1,source:!1}}).state("tab",{url:"","abstract":!0,templateUrl:"templates/tabs.html",controller:"TabController"}).state("tab.home",{url:"/",views:{"tab-view":{templateUrl:"templates/home.html",controller:"HomeController"}}}).state("tab.repayment",{url:"/repayment",views:{"tab-view":{templateUrl:"templates/repayment.html",controller:"RepaymentController"}}}).state("tab.my",{url:"/my",views:{"tab-view":{templateUrl:"templates/my.html",controller:"MyController"}}}).state("orders",{url:"/my/orders",templateUrl:"templates/my/orders.html",controller:"ordersController"}).state("certification",{url:"/my/certification",templateUrl:"templates/my/certification.html",controller:"CertificationController",params:{origin:null}}).state("information",{url:"/my/certification/information",templateUrl:"templates/my/information.html",controller:"InformationController",params:{position:"",address:"",lng:"",lat:""}}).state("contacts",{url:"/my/certification/contacts",templateUrl:"templates/my/contacts.html",controller:"ContactsController"}).state("bank",{url:"/my/certification/bank",templateUrl:"templates/my/bank.html",controller:"BankController"}).state("card",{url:"/my/card",templateUrl:"templates/my/card.html",controller:"CardController"}).state("position",{url:"/my/certification/information/position",templateUrl:"templates/my/position.html",controller:"PositionController"}).state("paypassword",{url:"/my/paypassword",templateUrl:"templates/my/paypassword.html",controller:"PayPasswordController",params:{state:""}}).state("findpaypassword",{url:"/my/findpaypassword",templateUrl:"templates/my/findpaypassword.html",controller:"FindPayPasswordController",params:{state:""}}).state("setpaypassword",{url:"/my/setpaypassword",templateUrl:"templates/my/setpaypassword.html",controller:"SetPayPasswordController",params:{state:"",phone:"",code:""}}).state("zhimaVerify",{url:"/my/certification/zhima-verify",templateUrl:"templates/my/zhima-verify.html",controller:"zhimaVerifyController"}).state("zhima",{url:"/my/certification/zhima",templateUrl:"templates/my/zhima.html"}).state("findwechat",{url:"/findwechat",templateUrl:"templates/findwechat.html"}).state("helpcenter",{url:"/my/helpcenter",templateUrl:"templates/my/helpcenter.html",controller:"HelpCenterController"}).state("helpdetail",{url:"/my/helpcenter/detail",templateUrl:"templates/my/helpdetail.html",controller:"HelpDetailController",params:{block:null,id:null}}).state("agreement",{url:"/agreement",templateUrl:"templates/agreements/platform2.html",controller:"AgreementController"}).state("agreement2",{url:"/agreement/2",templateUrl:"templates/agreements/platform2.html",controller:"AgreementController"}).state("agreement3",{url:"/agreement/3",templateUrl:"templates/agreements/platform3.html",controller:"AgreementController"}).state("agree-loan",{url:"/agreement/loan",templateUrl:"templates/agreements/loan.html",controller:"AgreementController"}).state("agree-auth",{url:"/agreement/auth",templateUrl:"templates/agreements/auth.html",controller:"AgreementController"}),e.otherwise("/")}]),angular.module("mobileControllers",[]).controller("TabController",["Domain",function(a){}]).controller("LoanController",["$window","Platform","$timeout","$location","$stateParams","Popup","$rootScope","$scope","MobileService","$ionicLoading","$ionicViewSwitcher","$state",function(a,b,c,d,e,f,g,h,i,j,k,l){if(!e.money){if(!a.localStorage.getItem("money"))return k.nextDirection("forward"),void l.go("tab.home");e.money=a.localStorage.getItem("money"),e.period=a.localStorage.getItem("period"),e.card_type=a.localStorage.getItem("card_type"),e.item=JSON.parse(a.localStorage.getItem("item")),a.localStorage.removeItem("money"),a.localStorage.removeItem("period"),a.localStorage.removeItem("item"),a.localStorage.removeItem("card_type")}h.item=e.item,h.item.tips=h.item.tips.replace(/(\d+\.?\d+)/g,"<b>$1</b>"),h.isAgress=!0,h.isHref=1===h.item.real_pay_pwd_status,h.passwordTitle=1===h.item.real_pay_pwd_status?"请输入交易密码":"请设置交易密码",h.onAgree=function(){h.isAgress=!h.isAgress},h.onHref=function(b){b.stopPropagation(),a.localStorage.setItem("money",e.money),
-a.localStorage.setItem("period",e.period),a.localStorage.setItem("card_type",e.card_type),a.localStorage.setItem("item",JSON.stringify(e.item)),location.href=h.item.protocol_url},h.isPicker=!1,h.ticket="不使用券",h.selectIndex=-1,h.showPicker=function(){h.item.coupon_total<=0||(h.isPicker=!0,h.pickerAction="picker-ticket-action")},h.closePicker=function(){c(function(){h.isPicker=!1},300),h.pickerAction=""},h.notPicker=function(){h.ticket="不使用券",h.selectedTicketClass="",h.closePicker(),h.selectIndex=-1,m()};var m=function(){j.show({template:"<ion-spinner></ion-spinner>"});var a={period:e.period,money:e.money,card_type:e.card_type};h.selectIndex>=0&&h.selectIndex<h.item.coupon_list.length&&(a.coupon_id=h.item.coupon_list[h.selectIndex].coupon_id),i.getConfirmLoan(a).then(function(a){return j.hide(),0!==a.code?void f.alert(a.message):void(0===a.code&&(h.item=a.data.item,h.item.tips=h.item.tips.replace(/(\d+\.?\d+)/g,"<b>$1</b>"),h.selectIndex!==-1&&(h.selectIndex=0,h.ticket=h.item.coupon_list[0].str_amount)))})};h.selectPicker=function(a,b){h.selectIndex=b,h.closePicker(),h.ticket=a.str_amount,h.selectedTicketClass="selected-ticket-class",m()},h.confirm=function(){h.isShow=!0};var n=null,o=function(a){return"请设置交易密码"===h.passwordTitle?void c(function(){n=a,h.passwordTitle="请确认交易密码",$("#defray input").val(""),$("#defray i").removeClass("point")},0):a!==n?($("#defray .error-tips").text("两次输入交易密码不同，请重新输入"),void c(function(){h.error=!0},0)):(j.show({template:"<ion-spinner></ion-spinner>"}),void i.setPayPassword({password:a}).then(function(a){return j.hide(),a.code==-1?void f.alert(a.message):(h.isHref=!0,h.passwordTitle="请输入交易密码",h.isShow=!1,f.alert("交易密码设置成功",function(){h.isShow=!0}),void 0)}))},p=function(a){j.show({template:"<ion-spinner></ion-spinner>"});var c={period:e.period,money:h.item.money,card_type:e.card_type};c.pay_password=a,c.order_other=2,h.selectIndex>=0&&h.selectIndex<h.item.coupon_list.length&&(c.coupon_id=h.item.coupon_list[0].coupon_id),i.applyLoan(c).then(function(a){return j.hide(),3===a.code?void(h.error=!0):2===a.code?void f.alert(a.message,function(){l.go("paypassword",{state:"loan"})}):void(0===a.code&&(b.isWeixin?l.go("tab.home"):(l.go("findwechat"),d.replace())))})};h.applyLoan=function(a){h.isHref?p(a):o(a)}}]).controller("zhimaVerifyController",["Popup","$location","$state","$scope","$ionicLoading",function(a,b,c,d,e){var f=b.$$search;/^(https?:\/\/)/.test(f.url)?window.location.href=f.url:a.alert("亲，请先填写个人信息哦~",function(){if(navigator.userAgent.indexOf("kdkj")>=0)return void(window.nativeMethod&&window.nativeMethod.returnNativeMethod('{"type" : "0"}'))})}]).controller("PayPasswordController",["$scope","$ionicLoading","$ionicViewSwitcher","$state","Popup","$stateParams","MobileService","Domain","$location",function(a,b,c,d,e,f,g,h,i){a.active=!1,a.data={phone:0,verify:0,loaded:0},a.form={};var j=i.$$search.state||f.state||"certification";b.show({template:"<ion-spinner></ion-spinner>"}),g.getMyInfo().then(function(c){a.data=c.data.item,a.data.verify=a.data.verify_info.real_pay_pwd_status,b.hide()}),a.save=function(f){b.show({template:"<ion-spinner></ion-spinner>"});var i="setPayPassword",k={};a.data.verify?(i="changePayPassword",k.old_pwd=f.old_pwd,k.new_pwd=f.new_pwd):k.password=f.new_pwd,g[i](k).then(function(a){b.hide(),a&&e.alert(a.message,function(){a.code>=0&&(/^(https?|\/\/)/.test(j)?window.location.href=j:"certification"==j?window.location.href=h.resolveUrl("http://h.shanxiancard.com/certification"):(c.nextDirection("back"),d.go(j)))})})},a.checkout=function(b){var c=/^\d{6,}$/;a.data.verify&&(c.test(b.old_pwd)?a.active=!0:a.active=!1),c.test(b.new_pwd)&&b.new_pwd===b.confirm_pwd?a.active=!0:a.active=!1}}]).controller("FindPayPasswordController",["$scope","$location","$stateParams","$ionicViewSwitcher","$state","Popup","$ionicLoading","$q","$interval","MobileService",function(a,b,c,d,e,f,g,h,i,j){function k(){var b=h.defer(),c=60;return a.sendCodeText=[c,"秒"].join(""),a.sendCodeTimer=i(function(){c<=1&&(a.sendCodeTimer&&i.cancel(a.sendCodeTimer),b.resolve()),a.sendCodeText=[--c,"秒"].join("")},1e3),b.promise}a.active=!1,a.form={type:"find_pay_pwd",code:"",phone:"",realname:"",id_card:""};var l=b.$$search.state||c.state||"certification";g.show({template:"<ion-spinner></ion-spinner>"}),j.getBaseInformation().then(function(b){a.data=b.data.item,a.form.phone=a.data.phone,a.data.phone=function(){return a.data.phone.replace(/(\d{3})\d{4}(\d{4})/,"$1****$2")}(),g.hide()}),a.checkout=function(b){b.id_card.length>=15&&b.code.length>=4&&b.realname?a.active=!0:a.active=!1},a.save=function(a){g.show({template:"<ion-spinner></ion-spinner>"}),j.verifyResetPayPassword(a).then(function(b){return g.hide(),b.code==-1?void f.alert(b.message):(d.nextDirection("forward"),void e.go("setpaypassword",{state:l,phone:a.phone,code:a.code}))})},a.sendCodeLock=!1,a.sendCodeFirstSend=!1,a.sendCodeFirstText="获取验证码",a.sendCodeText=a.sendCodeFirstText,a.sendCodeTimer=void 0,a.sendVerifyCode=function(){a.sendCodeLock||(a.sendCodeLock=!0,a.sendCodeFirstSend=!0,g.show({template:"<ion-spinner></ion-spinner>"}),j.sendVerifyCode(a.form).then(function(b){g.hide(),k().then(function(){a.sendCodeText="重新获取",a.sendCodeLock=!1})}))}}]).controller("SetPayPasswordController",["$scope","Popup","$state","Domain","$ionicViewSwitcher","$stateParams","$ionicLoading","MobileService",function(a,b,c,d,e,f,g,h){a.active=!1,a.form={};var i=f;""==i.phone&&""==i.code?b.alert("缺少参数",function(){e.nextDirection("back"),c.go("findpaypassword",{state:i.state})}):(a.form.phone=i.phone,a.form.code=i.code),a.checkout=function(b){/^\d{6,}/.test(b.new_pwd)&&b.new_pwd===b.confirm_pwd?a.active=!0:a.active=!1},a.save=function(a){g.show({template:"<ion-spinner></ion-spinner>"}),a.password=a.new_pwd,h.resetPayPassword(a).then(function(a){return g.hide(),a.code==-1?void b.alert(a.message):void b.alert(a.message,function(){var a=i.state||"certification";/^(https?|\/\/)/.test(a)?window.location.href=a:"certification"==a?window.location.href=d.resolveUrl("http://h.shanxiancard.com/certification"):(e.nextDirection("back"),c.go(a))})})}}]).filter("removeProtocol",function(){return function(a){return a?a.replace(/^(https?):/,""):a}}).directive("noResult",function(){return{restrict:"E",replace:!0,transclude:!0,templateUrl:"templates/common/noresult.html"}}).directive("ngState",["$ionicViewSwitcher","$state",function(a,b){return{restrict:"A",link:function(c,d,e){angular.element(d).on("click",function(){a.nextDirection("forward"),b.go(e.ngState)})}}}]),angular.module("mobileFactory",[]).factory("MobileService",["Env","Domain","Platform","$http","$location","$ionicPopup","$httpParamSerializerJQLike",function(a,b,c,d,e,f,g){function h(a,b){return d({method:"POST",url:a,data:g(b),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})}var i="pro"==a.env?"//h5.dahubao.com/":"//120.55.61.62/frontend/web/";return{homeVdsStatistics:function(){var a=b.resolveUrl("http://credit.shanxiancard.com/activity/default/get-invite-code");return d.get(a).then(function(a){return a.data})},getHomeData:function(){var a=b.resolveUrl(i+"credit-app/multi-index");return d.get(a).then(function(a){return a.data})},confirmKnow:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-loan/confirm-failed-loan");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},getConfirmLoan:function(a){var c=b.resolveUrl(i+"credit-loan/get-confirm-loan");return h(c,a)},applyLoan:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-loan/apply-loan");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},getMyLoan:function(){var a=b.resolveUrl("http://credit.shanxiancard.com/credit-loan/get-my-loan");return d({method:"POST",url:a,headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},regGetCode:function(a){var c=b.resolveUrl(i+"user/check-user-register");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},login:function(a){var c=b.resolveUrl(i+"user/login");return h(c,a)},register:function(a){var c=a.appMarket?"http://credit.shanxiancard.com/credit-user/register?appMarket="+a.appMarket:i+"user/register";return d({method:"POST",url:b.resolveUrl(c),data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},getCode:function(a){var c=b.resolveUrl(i+"user/reset-pwd-code");return a.type="find_pwd",h(c,a)},getCaptcha:function(a){var c=b.resolveUrl(i+"user/refresh-captcha");return a.type="captcha-login-reg",h(c,a)},refreshCaptcha:function(a){var c=b.resolveUrl(i+"user/get-image-captcha?type="+(a||1));return d.get(c).then(function(a){return a.data})},checkGetCaptcha:function(a){var c=b.resolveUrl(i+"user/check-captcha-send-message");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},checkResetPwdCode:function(a){var c=b.resolveUrl(i+"user/check-reset-password-code");return h(c,a)},resetPassword:function(a){var c=b.resolveUrl(i+"user/reset-password");return h(c,a)},getVerification:function(){var a=b.resolveUrl(i+"shx-card/get-verification-info");return d.get(a).then(function(a){return a.data})},getBaseInformation:function(){var a=b.resolveUrl("http://credit.shanxiancard.com/credit-info/get-person-info");return d.get(a).then(function(a){return a.data})},getInformation:function(){var a=b.resolveUrl(i+"shx-card/get-person-info");return d.get(a).then(function(a){return a.data})},setInformation:function(a){var c=b.resolveUrl(i+"shx-card/save-person-info");return h(c,a)},setParsonInformation:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-info/save-person-info");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},getContacts:function(){var a=b.resolveUrl(i+"shx-card/get-contacts");return d.get(a).then(function(a){return a.data})},setContacts:function(a){var c=b.resolveUrl(i+"shx-card/save-contacts");return h(c,a)},getBankCard:function(a){var c=b.resolveUrl(i+"shx-card/get-bank-card");return h(c,a)},addBankCard:function(a){var c=b.resolveUrl(i+"shx-card/add-bank-card");return h(c,a)},bindBankCard:function(a){var c=b.resolveUrl(i+"shx-card/do-bind-card");return h(c,a)},getBankCardCode:function(a){var c=b.resolveUrl(i+"bank-card/get-code");return h(c,a)},getOrders:function(a){var c=b.resolveUrl(i+"credit-loan/get-my-orders");return h(c,a)},getMyInfo:function(){var a=b.resolveUrl(i+"user/get-info");return d.get(a).then(function(a){return a.data})},setPayPassword:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-user/set-paypassword");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},changePayPassword:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-user/change-paypassword");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},sendVerifyCode:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-user/reset-pwd-code");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},verifyResetPayPassword:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-user/verify-reset-password");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},resetPayPassword:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-user/reset-pay-password");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},setPayPassword:function(a){var c=b.resolveUrl("http://credit.shanxiancard.com/credit-user/set-paypassword");return d({method:"POST",url:c,data:g(a),headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"}}).then(function(a){return a.data})},logout:function(){var a=b.resolveUrl(i+"user/logout");return d.get(a).then(function(a){return a.data})},bindWechat:function(){var a=b.resolveUrl("http://credit.shanxiancard.com/credit-user/bind-wx");return d.get(a).then(function(a){return a.data})},getLoanContract:function(a){var c=b.resolveUrl(i+"user/get-contact-info");return h(c,a)}}}]);
+angular.module('ionic').directive('kdPane', function () {
+  return {
+    restrict: 'E',
+    link: function (scope, element) {
+      element.addClass('pane');
+      element.addClass('kd-pane');
+    }
+  };
+});
+angular.module('credit', []).directive('downloadPopup', [
+  'Platform',
+  '$timeout',
+  function (Platform, $timeout) {
+    return {
+      restrict: 'E',
+      scope: {},
+      replace: true,
+      template: '<div ng-show="isShow" ng-click="download()" class="download-popup">                   <a href="" class="close" ng-click="close($event)"></a>                   <img alt="" src="//h5.dahubao.com/credit/img/download-logo.png"/>                   <div><p>\u4e0b\u8f7d\u5373\u4eab\u6781\u901f\u501f\u6b3e<br/>\u88ab\u62d2\u6700\u9ad8\u8d54\u507f<i>50\u5143</i></p></div>                 </div>',
+      link: function (scope, element, attrs) {
+        scope.isShow = !Platform.isApp;
+        scope.close = function ($event) {
+          $event.stopPropagation();
+          scope.isShow = false;
+        };
+        scope.download = function () {
+          window.location = 'https://credit.dahubao.com/download-app.html';
+        };
+      }
+    };
+  }
+]).directive('popupPassword', [
+  '$timeout',
+  function ($timeout) {
+    return {
+      restrict: 'E',
+      replace: true,
+      scope: {
+        title: '=',
+        isHref: '=',
+        isShow: '=',
+        isError: '=',
+        sendHandler: '&'
+      },
+      template: '<div class="popup" id="defray" ng-show="isShow">                  <div class="overlay"></div>                  <div class="dialog pay">                    <span class="close" ng-click="close()"></span>                    <h2>{{title}}</h2>                    <p class="clearfix">                      <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>                      <input type="tel" value="" autofocus>                    </p>                    <p ng-show="isError" class="error-tips">\u5bc6\u7801\u9519\u8bef</p>                    <a ng-show="isHref" nav-direction="forward" href="#/my/findpaypassword?state=loan">\u5fd8\u8bb0\u5bc6\u7801?</a>                  </div>                </div>',
+      link: function (scope, element, attrs) {
+        scope.close = function () {
+          scope.isShow = false;
+        };
+        scope.$watch('isShow', function (val) {
+          if (val) {
+            $timeout(function () {
+              scope.isError = false;
+              $('#defray .error-tips').text('\u5bc6\u7801\u9519\u8bef');
+              $('#defray input').val('');
+              $('#defray i').removeClass('point');
+              $('#defray input').focus();
+            }, 0);
+          }
+        });
+        scope.$watch(function () {
+          return element;
+        }, function (elements) {
+          $('#defray div.overlay').click(function (e) {
+            e.stopPropagation();
+            $('#defray input').blur();
+          });
+          var interval = null;
+          $('#defray p').click(function (event) {
+            $('#defray input').focus();
+          });
+          $('#defray input').focus(function () {
+            var interval = setInterval(function () {
+                if (document.activeElement.nodeName == 'INPUT') {
+                  var top = $('#defray .dialog').position.top;
+                  if (top <= 0) {
+                    return;
+                  }
+                  document.body.scrollTop = 0;
+                  $('#defray .dialog').animate({
+                    top: 0,
+                    marginTop: 0
+                  }, 100);
+                } else {
+                  $('#defray .dialog').attr('style', '');
+                  if (interval) {
+                    clearInterval(interval);
+                    interval = null;
+                  }
+                }
+              }, 200);
+          });
+          $('#defray input').bind('input', function (event) {
+            var val = $(this).val();
+            $('#defray i').removeClass('point');
+            $('#defray i').slice(0, val.length).addClass('point');
+            scope.isError = false;
+            scope.$apply();
+            if (val.length >= 6) {
+              $(this).val(val.slice(0, 6));
+              scope.sendHandler({ password: $(this).val() });
+            }
+          });
+        });
+      }
+    };
+  }
+]).directive('textScroll', [
+  '$timeout',
+  function ($timeout) {
+    return {
+      restrict: 'E',
+      replace: true,
+      scope: {
+        items: '=',
+        interval: '='
+      },
+      template: '<ul class="text-scroll"><li ng-repeat="item in items track by $index">{{item}}</li></ul>',
+      link: function (scope, element, attrs) {
+        scope.$watch('items', function (val) {
+          if (val) {
+            scope.items.push(scope.items[0]);
+          }
+        });
+        scope.$watch(function () {
+          return element[0].children[0];
+        }, function (elem) {
+          try {
+            var l = element[0].children.length;
+            var h = elem.offsetHeight;
+            var i = 0;
+            var t = scope.interval || 1000;
+            var setup = function () {
+              i++;
+              if (i >= l) {
+                i = 1;
+                element.css('top', 0);
+              }
+              $(element).animate({ 'top': -h * i });
+            };
+            setInterval(setup, t);
+          } catch (e) {
+          }
+        });
+      }
+    };
+  }
+]).factory('Domain', [
+  '$location',
+  function ($location) {
+    var host = $location.$$host;
+    var reg = /(?:http(?:s)?:\/\/)?(?:www\.)?(.*?)\./;
+    var regR = /https?:\/\/(?:[^\/]+\.)?([^.\/]+\.(?:com))(?:$|\/)/;
+    var m = host.match(reg);
+    var domain = {
+        credit: $location.$$protocol + '://' + $location.$$host + '/credit/web/',
+        api: $location.$$protocol + '://' + $location.$$host + '/frontend/web/',
+        h5: $location.$$protocol + '://' + $location.$$host + '/h5/mobile/web/',
+        h: $location.$$protocol + '://' + $location.$$host + ':8000/'
+      };
+    if (m !== null) {
+      if (m[1] === 'h5') {
+        domain = {
+          credit: $location.$$protocol + '://credit.dahubao.com/',
+          api: $location.$$protocol + '://api.dahubao.com/',
+          h5: $location.$$protocol + '://h5.dahubao.com/',
+          h: $location.$$protocol + '://h.dahubao.com/'
+        };
+      }
+      if (m[1] === 'pre-h5') {
+        domain = {
+          credit: $location.$$protocol + '://pre-credit.dahubao.com/',
+          api: $location.$$protocol + '://pre-api.dahubao.com/',
+          h5: $location.$$protocol + '://pre-h5.dahubao.com/',
+          h: $location.$$protocol + '://pre-h.dahubao.com/'
+        };
+      }
+      if (m[1] === 'test-h5') {
+        domain = {
+          credit: $location.$$protocol + '://test-credit.dahubao.com/',
+          api: $location.$$protocol + '://test-api.dahubao.com/',
+          h5: $location.$$protocol + '://test-h5.dahubao.com/',
+          h: $location.$$protocol + '://test-h.dahubao.com/'
+        };
+      }
+      if (host == '192.168.39.214') {
+        domain = {
+          credit: $location.$$protocol + '://' + $location.$$host + '/kdkj/credit/web/',
+          api: $location.$$protocol + '://' + $location.$$host + '/kdkj/frontend/web/',
+          h5: $location.$$protocol + '://' + $location.$$host + '/kdkj/h5/mobile/web/'
+        };
+      }
+      if (host == '121.42.12.69') {
+        domain = {
+          credit: $location.$$protocol + '://' + $location.$$host + '/koudai/kdkj/credit/web/',
+          api: $location.$$protocol + '://' + $location.$$host + '/koudai/kdkj/frontend/web/',
+          h5: $location.$$protocol + '://' + $location.$$host + '/koudai/kdkj/h5/mobile/web/'
+        };
+      }
+    }
+    return {
+      resolveUrl: function (url) {
+        var arr = url.match(reg);
+        if (domain[arr[1]]) {
+          return url.replace(regR, domain[arr[1]]);
+        }
+        return url.replace(/^https?/, $location.$$protocol);
+      },
+      domain: domain
+    };
+  }
+]).factory('Platform', [
+  '$location',
+  function ($location) {
+    function param(name) {
+      // Check if param is set in url#hash
+      if ($location.search()[name] !== void 0) {
+        return $location.seach()[name];
+      }
+      // Otherwise check url params
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'), results = regex.exec(location.search);
+      return results === null ? void 0 : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    var u = navigator.userAgent;
+    var versions = u.split('/');
+    return {
+      getParamByName: param,
+      appVersion: versions[versions.length - 1],
+      isApp: u.indexOf('kdxj') === -1 ? false : true,
+      isAndroid: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1,
+      isIos: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+      isWeixin: u.indexOf('MicroMessenger') > -1,
+      isQQ: u.match(/\sQQ/i) == ' qq'
+    };
+  }
+]).factory('Popup', [
+  '$ionicPopup',
+  function ($ionicPopup) {
+    function alert(message, callback) {
+      $ionicPopup.alert({
+        title: '\u63d0\u793a',
+        template: message,
+        okText: '\u786e\u5b9a',
+        okType: 'button-credit'
+      }).then(function (res) {
+        if (typeof callback === 'function')
+          callback();
+      });
+    }
+    var confirm = function (data) {
+      $ionicPopup.confirm({
+        title: data.title || '\u786e\u8ba4',
+        template: data.content,
+        cancelText: '\u53d6\u6d88',
+        cancelType: 'button-credit-gray',
+        okText: '\u786e\u5b9a',
+        okType: 'button-credit'
+      }).then(function (res) {
+        if (typeof data.callback === 'function') {
+          data.callback(res);
+        }
+        if (res) {
+          if (typeof data.ok === 'function') {
+            data.ok();
+          }
+        } else {
+          if (typeof data.cance === 'function') {
+            data.cance();
+          }
+        }
+      });
+    };
+    return {
+      alert: alert,
+      confirm: confirm
+    };
+  }
+]).factory('HttpInterceptor', [
+  '$q',
+  '$injector',
+  function ($q, $injector) {
+    var httpInterceptor = {
+        'responseError': function (response) {
+          return $q.reject(response);
+        },
+        'response': function (response) {
+          // 服务器错误
+          if (response.status !== 200) {
+            var Popup = $injector.get('Popup');
+            var $ionicLoading = $injector.get('$ionicLoading');
+            $ionicLoading.hide();
+            Popup.alert('\u8bf7\u6c42\u4e0d\u6210\u529f');
+            return $q.reject(response);
+          }
+          // 接口异常
+          if (response.data.code !== undefined && response.data.code == -99999) {
+            // console.log(response.data)
+            var Popup = $injector.get('Popup');
+            var $ionicLoading = $injector.get('$ionicLoading');
+            $ionicLoading.hide();
+            Popup.alert(response.data.message, function () {
+              var $state = $injector.get('$state');
+              $state.go('login');
+            });
+            return $q.reject(response);
+          }
+          // console.log('http interceptor response', response);
+          return response;
+        },
+        'request': function (config) {
+          // m版请求标识
+          if (!/\.html/.test(config.url)) {
+          }
+          return config;
+        },
+        'requestError': function (config) {
+          return $q.reject(config);
+        }
+      };
+    return httpInterceptor;
+  }
+]).filter('isEmpty', function () {
+  var bar;
+  return function (obj) {
+    for (bar in obj) {
+      if (obj.hasOwnProperty(bar)) {
+        return false;
+      }
+    }
+    return true;
+  };
+}).filter('trusted', [
+  '$sce',
+  function ($sce) {
+    return function (html) {
+      return $sce.trustAsHtml(html);
+    };
+  }
+]).filter('private', function () {
+  return function (str) {
+    if (!str)
+      return '';
+    str = '' + str;
+    return str.substring(0, str.length - 4) + '****';
+  };
+}).filter('toBig', function () {
+  return function (num) {
+    num = num + '';
+    for (var i = num.length - 1; i >= 0; i--) {
+      num = num.replace(',', '');
+      // 替换num中的“,”
+      num = num.replace(' ', '');
+    }
+    if (isNaN(num)) {
+      // 验证输入的字符是否为数字
+      // alert('请检查小写金额是否正确')
+      return;
+    }
+    // 字符处理完毕后开始转换，采用前后两部分分别转换
+    var part = String(num).split('.');
+    var newchar = '';
+    // 小数点前进行转化
+    for (i = part[0].length - 1; i >= 0; i--) {
+      if (part[0].length > 10) {
+        // alert('位数过大，无法计算')
+        return '';
+      }
+      // 若数量超过拾亿单位，提示
+      var tmpnewchar = '';
+      var perchar = part[0].charAt(i);
+      switch (perchar) {
+      case '0':
+        tmpnewchar = '\u96f6' + tmpnewchar;
+        break;
+      case '1':
+        tmpnewchar = '\u58f9' + tmpnewchar;
+        break;
+      case '2':
+        tmpnewchar = '\u8d30' + tmpnewchar;
+        break;
+      case '3':
+        tmpnewchar = '\u53c1' + tmpnewchar;
+        break;
+      case '4':
+        tmpnewchar = '\u8086' + tmpnewchar;
+        break;
+      case '5':
+        tmpnewchar = '\u4f0d' + tmpnewchar;
+        break;
+      case '6':
+        tmpnewchar = '\u9646' + tmpnewchar;
+        break;
+      case '7':
+        tmpnewchar = '\u67d2' + tmpnewchar;
+        break;
+      case '8':
+        tmpnewchar = '\u634c' + tmpnewchar;
+        break;
+      case '9':
+        tmpnewchar = '\u7396' + tmpnewchar;
+        break;
+      }
+      switch (part[0].length - i - 1) {
+      case 0:
+        break;
+      case 1:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u62fe';
+        break;
+      case 2:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u4f70';
+        break;
+      case 3:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u4edf';
+        break;
+      case 4:
+        tmpnewchar = tmpnewchar + '\u4e07';
+        break;
+      case 5:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u62fe';
+        break;
+      case 6:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u4f70';
+        break;
+      case 7:
+        if (perchar != 0)
+          tmpnewchar = tmpnewchar + '\u4edf';
+        break;
+      case 8:
+        tmpnewchar = tmpnewchar + '\u5104';
+        break;
+      case 9:
+        tmpnewchar = tmpnewchar + '\u62fe';
+        break;
+      }
+      newchar = tmpnewchar + newchar;
+    }
+    // 替换所有无用汉字，直到没有此类无用的数字为止
+    while (newchar.search('\u96f6\u96f6') != -1 || newchar.search('\u96f6\u5104') != -1 || newchar.search('\u5104\u4e07') != -1 || newchar.search('\u96f6\u4e07') != -1) {
+      newchar = newchar.replace('\u96f6\u5104', '\u5104');
+      newchar = newchar.replace('\u5104\u4e07', '\u5104');
+      newchar = newchar.replace('\u96f6\u4e07', '\u4e07');
+      newchar = newchar.replace('\u96f6\u96f6', '\u96f6');
+    }
+    // 替换以“一十”开头的，为“十”
+    if (newchar.indexOf('\u58f9\u62fe') == 0) {
+      newchar = newchar.substr(1);
+    }
+    // 替换以“零”结尾的，为“”
+    if (newchar.lastIndexOf('\u96f6') == newchar.length - 1) {
+      newchar = newchar.substr(0, newchar.length - 1);
+    }
+    return newchar;
+  };
+});
+angular.module('_config', []).factory('Env', function () {
+  return { env: 'dev' };
+});
+angular.module('mobile', [
+  '_config',
+  'credit',
+  'rzModule',
+  'ionic',
+  'mobileControllers',
+  'mobileFactory',
+  'ionicPicker',
+  'radialIndicator',
+  'ngFileUpload'
+]).run([
+  '$ionicPlatform',
+  '$rootScope',
+  function ($ionicPlatform, $rootScope) {
+    $ionicPlatform.ready(function () {
+      if (window.StatusBar) {
+        StatusBar.styleDefault();
+      }
+    });
+    $rootScope.$on('$stateChangeStart', function () {
+      var cancel = document.querySelector('.picker-tools-button.cancel-button');
+      cancel && cancel.click();
+    });
+  }
+]).config([
+  '$locationProvider',
+  '$httpProvider',
+  '$compileProvider',
+  '$stateProvider',
+  '$urlRouterProvider',
+  '$ionicConfigProvider',
+  function ($locationProvider, $httpProvider, $compileProvider, $stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom');
+    $ionicConfigProvider.tabs.style('standard');
+    $ionicConfigProvider.navBar.alignTitle('center');
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|http?|wap2app|schemekdlc|kdlc.app.launch):/);
+    $httpProvider.defaults.withCredentials = true;
+    $httpProvider.interceptors.push('HttpInterceptor');
+    $stateProvider.state('test', {
+      url: '/test',
+      templateUrl: 'templates/test.html',
+      controller: 'TestController'
+    }).state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginController'
+    }).state('login-next', {
+      url: '/login-next',
+      templateUrl: 'templates/login-next.html',
+      controller: 'LoginNextController',
+      params: {
+        phone: null,
+        redirectUrl: null,
+        appMarket: null,
+        invite_code: null
+      }
+    }).state('reset-password', {
+      url: '/reset-password',
+      templateUrl: 'templates/reset-password.html',
+      controller: 'ResetPasswordController',
+      params: {
+        phone: null,
+        codeImg: null,
+        redirectUrl: null,
+        isRegister: false,
+        appMarket: null,
+        invite_code: null
+      }
+    }).state('loan', {
+      url: '/loan',
+      cache: false,
+      templateUrl: 'templates/loan.html',
+      controller: 'LoanController',
+      params: {
+        money: null,
+        period: null,
+        item: null,
+        card_type: 1,
+        source: false
+      }
+    }).state('tab', {
+      url: '',
+      abstract: true,
+      templateUrl: 'templates/tabs.html',
+      controller: 'TabController'
+    }).state('tab.home', {
+      url: '/',
+      views: {
+        'tab-view': {
+          templateUrl: 'templates/home.html',
+          controller: 'HomeController'
+        }
+      }
+    }).state('tab.repayment', {
+      url: '/repayment',
+      views: {
+        'tab-view': {
+          templateUrl: 'templates/repayment.html',
+          controller: 'RepaymentController'
+        }
+      }
+    }).state('tab.my', {
+      url: '/my',
+      views: {
+        'tab-view': {
+          templateUrl: 'templates/my.html',
+          controller: 'MyController'
+        }
+      }
+    }).state('orders', {
+      url: '/my/orders',
+      templateUrl: 'templates/my/orders.html',
+      controller: 'ordersController'
+    }).state('certification', {
+      url: '/my/certification',
+      templateUrl: 'templates/my/certification.html',
+      controller: 'CertificationController',
+      params: { origin: null }
+    }).state('information', {
+      url: '/my/certification/information',
+      templateUrl: 'templates/my/information.html',
+      controller: 'InformationController',
+      params: {
+        position: '',
+        address: '',
+        lng: '',
+        lat: ''
+      }
+    }).state('contacts', {
+      url: '/my/certification/contacts',
+      templateUrl: 'templates/my/contacts.html',
+      controller: 'ContactsController'
+    }).state('bank', {
+      url: '/my/certification/bank',
+      templateUrl: 'templates/my/bank.html',
+      controller: 'BankController'
+    }).state('card', {
+      url: '/my/card',
+      templateUrl: 'templates/my/card.html',
+      controller: 'CardController'
+    }).state('position', {
+      url: '/my/certification/information/position',
+      templateUrl: 'templates/my/position.html',
+      controller: 'PositionController'
+    }).state('paypassword', {
+      url: '/my/paypassword',
+      templateUrl: 'templates/my/paypassword.html',
+      controller: 'PayPasswordController',
+      params: { state: '' }
+    }).state('findpaypassword', {
+      url: '/my/findpaypassword',
+      templateUrl: 'templates/my/findpaypassword.html',
+      controller: 'FindPayPasswordController',
+      params: { state: '' }
+    }).state('setpaypassword', {
+      url: '/my/setpaypassword',
+      templateUrl: 'templates/my/setpaypassword.html',
+      controller: 'SetPayPasswordController',
+      params: {
+        state: '',
+        phone: '',
+        code: ''
+      }
+    }).state('zhimaVerify', {
+      url: '/my/certification/zhima-verify',
+      templateUrl: 'templates/my/zhima-verify.html',
+      controller: 'zhimaVerifyController'
+    }).state('zhima', {
+      url: '/my/certification/zhima',
+      templateUrl: 'templates/my/zhima.html'
+    }).state('findwechat', {
+      url: '/findwechat',
+      templateUrl: 'templates/findwechat.html'
+    }).state('helpcenter', {
+      url: '/my/helpcenter',
+      templateUrl: 'templates/my/helpcenter.html',
+      controller: 'HelpCenterController'
+    }).state('helpdetail', {
+      url: '/my/helpcenter/detail',
+      templateUrl: 'templates/my/helpdetail.html',
+      controller: 'HelpDetailController',
+      params: {
+        block: null,
+        id: null
+      }
+    }).state('agreement', {
+      url: '/agreement',
+      templateUrl: 'templates/agreements/platform2.html',
+      controller: 'AgreementController'
+    }).state('agreement2', {
+      url: '/agreement/2',
+      templateUrl: 'templates/agreements/platform2.html',
+      controller: 'AgreementController'
+    }).state('agreement3', {
+      url: '/agreement/3',
+      templateUrl: 'templates/agreements/platform3.html',
+      controller: 'AgreementController'
+    }).state('agree-loan', {
+      url: '/agreement/loan',
+      templateUrl: 'templates/agreements/loan.html',
+      controller: 'AgreementController'
+    }).state('agree-auth', {
+      url: '/agreement/auth',
+      templateUrl: 'templates/agreements/auth.html',
+      controller: 'AgreementController'
+    });
+    $urlRouterProvider.otherwise('/');
+  }
+]);
+angular.module('mobileControllers', []).controller('TabController', [
+  'Domain',
+  function (Domain) {
+  }
+]).controller('LoanController', [
+  '$window',
+  'Platform',
+  '$timeout',
+  '$location',
+  '$stateParams',
+  'Popup',
+  '$rootScope',
+  '$scope',
+  'MobileService',
+  '$ionicLoading',
+  '$ionicViewSwitcher',
+  '$state',
+  function ($window, Platform, $timeout, $location, $stateParams, Popup, $rootScope, $scope, MobileService, $ionicLoading, $ionicViewSwitcher, $state) {
+    if (!$stateParams.money) {
+      if (!$window.localStorage.getItem('money')) {
+        $ionicViewSwitcher.nextDirection('forward');
+        $state.go('tab.home');
+        return;
+      }
+      $stateParams.money = $window.localStorage.getItem('money');
+      $stateParams.period = $window.localStorage.getItem('period');
+      $stateParams.card_type = $window.localStorage.getItem('card_type');
+      $stateParams.item = JSON.parse($window.localStorage.getItem('item'));
+      $window.localStorage.removeItem('money');
+      $window.localStorage.removeItem('period');
+      $window.localStorage.removeItem('item');
+      $window.localStorage.removeItem('card_type');
+    }
+    $scope.item = $stateParams.item;
+    $scope.item.tips = $scope.item.tips.replace(/(\d+\.?\d+)/g, '<b>$1</b>');
+    $scope.isAgress = true;
+    $scope.isHref = $scope.item.real_pay_pwd_status === 1 ? true : false;
+    $scope.passwordTitle = $scope.item.real_pay_pwd_status === 1 ? '\u8bf7\u8f93\u5165\u4ea4\u6613\u5bc6\u7801' : '\u8bf7\u8bbe\u7f6e\u4ea4\u6613\u5bc6\u7801';
+    $scope.onAgree = function () {
+      $scope.isAgress = !$scope.isAgress;
+    };
+    $scope.onHref = function ($event) {
+      $event.stopPropagation();
+      $window.localStorage.setItem('money', $stateParams.money);
+      $window.localStorage.setItem('period', $stateParams.period);
+      $window.localStorage.setItem('card_type', $stateParams.card_type);
+      $window.localStorage.setItem('item', JSON.stringify($stateParams.item));
+      location.href = $scope.item.protocol_url;
+    };
+    $scope.isPicker = false;
+    $scope.ticket = '\u4e0d\u4f7f\u7528\u5238';
+    $scope.selectIndex = -1;
+    //没有选中的
+    $scope.showPicker = function () {
+      if ($scope.item.coupon_total <= 0)
+        return;
+      $scope.isPicker = true;
+      $scope.pickerAction = 'picker-ticket-action';
+    };
+    $scope.closePicker = function () {
+      $timeout(function () {
+        $scope.isPicker = false;
+      }, 300);
+      $scope.pickerAction = '';
+    };
+    $scope.notPicker = function () {
+      $scope.ticket = '\u4e0d\u4f7f\u7528\u5238';
+      $scope.selectedTicketClass = '';
+      $scope.closePicker();
+      $scope.selectIndex = -1;
+      //没选择券
+      loadLoan();
+    };
+    var loadLoan = function () {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      var loan = {
+          'period': $stateParams.period,
+          'money': $stateParams.money,
+          'card_type': $stateParams.card_type
+        };
+      if ($scope.selectIndex >= 0 && $scope.selectIndex < $scope.item.coupon_list.length) {
+        loan['coupon_id'] = $scope.item.coupon_list[$scope.selectIndex].coupon_id;
+      }
+      MobileService.getConfirmLoan(loan).then(function (data) {
+        $ionicLoading.hide();
+        if (data.code !== 0) {
+          Popup.alert(data.message);
+          return;
+        }
+        if (data.code === 0) {
+          $scope.item = data.data.item;
+          $scope.item.tips = $scope.item.tips.replace(/(\d+\.?\d+)/g, '<b>$1</b>');
+          //选择券请求计算返回，券列表第一个是选中的，所以selectIndex = 0
+          if ($scope.selectIndex !== -1) {
+            $scope.selectIndex = 0;
+            $scope.ticket = $scope.item.coupon_list[0].str_amount;
+          }
+        }
+      });
+    };
+    $scope.selectPicker = function (coupon, index) {
+      $scope.selectIndex = index;
+      $scope.closePicker();
+      $scope.ticket = coupon.str_amount;
+      $scope.selectedTicketClass = 'selected-ticket-class';
+      loadLoan();
+    };
+    $scope.confirm = function () {
+      $scope.isShow = true;
+    };
+    var oldPass = null;
+    var setPassword = function (password) {
+      if ($scope.passwordTitle === '\u8bf7\u8bbe\u7f6e\u4ea4\u6613\u5bc6\u7801') {
+        $timeout(function () {
+          oldPass = password;
+          $scope.passwordTitle = '\u8bf7\u786e\u8ba4\u4ea4\u6613\u5bc6\u7801';
+          $('#defray input').val('');
+          $('#defray i').removeClass('point');
+        }, 0);
+        return;
+      }
+      if (password !== oldPass) {
+        $('#defray .error-tips').text('\u4e24\u6b21\u8f93\u5165\u4ea4\u6613\u5bc6\u7801\u4e0d\u540c\uff0c\u8bf7\u91cd\u65b0\u8f93\u5165');
+        $timeout(function () {
+          $scope.error = true;
+        }, 0);
+        return;
+      }
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.setPayPassword({ 'password': password }).then(function (response) {
+        $ionicLoading.hide();
+        if (response.code == -1) {
+          Popup.alert(response.message);
+          return;
+        } else {
+          $scope.isHref = true;
+          $scope.passwordTitle = '\u8bf7\u8f93\u5165\u4ea4\u6613\u5bc6\u7801';
+          $scope.isShow = false;
+          Popup.alert('\u4ea4\u6613\u5bc6\u7801\u8bbe\u7f6e\u6210\u529f', function () {
+            $scope.isShow = true;
+          });
+        }
+      });
+    };
+    var confirmLoan = function (password) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      var loan = {
+          'period': $stateParams.period,
+          'money': $scope.item.money,
+          'card_type': $stateParams.card_type
+        };
+      loan.pay_password = password;
+      loan.order_other = 2;
+      if ($scope.selectIndex >= 0 && $scope.selectIndex < $scope.item.coupon_list.length) {
+        loan['coupon_id'] = $scope.item.coupon_list[0].coupon_id;
+      }
+      MobileService.applyLoan(loan).then(function (data) {
+        $ionicLoading.hide();
+        if (data.code === 3) {
+          $scope.error = true;
+          return;
+        }
+        if (data.code === 2) {
+          Popup.alert(data.message, function () {
+            $state.go('paypassword', { state: 'loan' });
+          });
+          return;
+        }
+        if (data.code === 0) {
+          if (!Platform.isWeixin) {
+            $state.go('findwechat');
+            $location.replace();
+          } else {
+            $state.go('tab.home');
+          }
+        }
+      });
+    };
+    $scope.applyLoan = function (password) {
+      $scope.isHref ? confirmLoan(password) : setPassword(password);
+    };
+  }
+]).controller('zhimaVerifyController', [
+  'Popup',
+  '$location',
+  '$state',
+  '$scope',
+  '$ionicLoading',
+  function (Popup, $location, $state, $scope, $ionicLoading) {
+    var param = $location.$$search;
+    if (/^(https?:\/\/)/.test(param.url)) {
+      window.location.href = param.url;
+    } else {
+      Popup.alert('\u4eb2\uff0c\u8bf7\u5148\u586b\u5199\u4e2a\u4eba\u4fe1\u606f\u54e6~', function () {
+        if (navigator.userAgent.indexOf('kdkj') >= 0) {
+          window.nativeMethod && window.nativeMethod.returnNativeMethod('{"type" : "0"}');
+          return;
+        }
+      });
+    }
+  }
+]).controller('PayPasswordController', [
+  '$scope',
+  '$ionicLoading',
+  '$ionicViewSwitcher',
+  '$state',
+  'Popup',
+  '$stateParams',
+  'MobileService',
+  'Domain',
+  '$location',
+  function ($scope, $ionicLoading, $ionicViewSwitcher, $state, Popup, $stateParams, MobileService, Domain, $location) {
+    $scope.active = false;
+    $scope.data = {
+      phone: 0,
+      verify: 0,
+      loaded: 0
+    };
+    $scope.form = {};
+    var state = $location.$$search.state || $stateParams.state || 'certification';
+    // setPayPassword
+    $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+    MobileService.getMyInfo().then(function (response) {
+      $scope.data = response.data.item;
+      $scope.data.verify = $scope.data.verify_info.real_pay_pwd_status;
+      $ionicLoading.hide();
+    });
+    $scope.save = function (form) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      var type = 'setPayPassword';
+      var data = {};
+      if ($scope.data.verify) {
+        type = 'changePayPassword';
+        data.old_pwd = form.old_pwd;
+        data.new_pwd = form.new_pwd;
+      } else {
+        data.password = form.new_pwd;
+      }
+      MobileService[type](data).then(function (response) {
+        $ionicLoading.hide();
+        if (response)
+          Popup.alert(response.message, function () {
+            if (response.code >= 0) {
+              if (/^(https?|\/\/)/.test(state)) {
+                window.location.href = state;
+              } else if (state == 'certification') {
+                window.location.href = Domain.resolveUrl('http://h.shanxiancard.com/certification');
+              } else {
+                $ionicViewSwitcher.nextDirection('back');
+                $state.go(state);
+              }
+            }
+          });
+        return;
+      });
+    };
+    $scope.checkout = function (form) {
+      var match = /^\d{6,}$/;
+      if ($scope.data.verify) {
+        if (match.test(form.old_pwd)) {
+          $scope.active = true;
+        } else {
+          $scope.active = false;
+        }
+      }
+      if (match.test(form.new_pwd) && form.new_pwd === form.confirm_pwd) {
+        $scope.active = true;
+      } else {
+        $scope.active = false;
+      }
+    };
+  }
+]).controller('FindPayPasswordController', [
+  '$scope',
+  '$location',
+  '$stateParams',
+  '$ionicViewSwitcher',
+  '$state',
+  'Popup',
+  '$ionicLoading',
+  '$q',
+  '$interval',
+  'MobileService',
+  function ($scope, $location, $stateParams, $ionicViewSwitcher, $state, Popup, $ionicLoading, $q, $interval, MobileService) {
+    $scope.active = false;
+    $scope.form = {
+      type: 'find_pay_pwd',
+      code: '',
+      phone: '',
+      realname: '',
+      id_card: ''
+    };
+    var state = $location.$$search.state || $stateParams.state || 'certification';
+    $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+    MobileService.getBaseInformation().then(function (response) {
+      $scope.data = response.data.item;
+      $scope.form.phone = $scope.data.phone;
+      // fill data
+      // $scope.form.id_card = $scope.data.id_number;
+      // $scope.form.realname = $scope.data.name;
+      $scope.data.phone = function () {
+        return $scope.data.phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+      }();
+      $ionicLoading.hide();
+    });
+    $scope.checkout = function (form) {
+      if (form.id_card.length >= 15 && form.code.length >= 4 && form.realname) {
+        $scope.active = true;
+      } else {
+        $scope.active = false;
+      }
+    };
+    $scope.save = function (form) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.verifyResetPayPassword(form).then(function (response) {
+        $ionicLoading.hide();
+        if (response.code == -1) {
+          Popup.alert(response.message);
+          return;
+        } else {
+          $ionicViewSwitcher.nextDirection('forward');
+          $state.go('setpaypassword', {
+            state: state,
+            phone: form.phone,
+            code: form.code
+          });
+        }
+      });
+    };
+    $scope.sendCodeLock = false;
+    $scope.sendCodeFirstSend = false;
+    $scope.sendCodeFirstText = '\u83b7\u53d6\u9a8c\u8bc1\u7801';
+    $scope.sendCodeText = $scope.sendCodeFirstText;
+    $scope.sendCodeTimer = undefined;
+    $scope.sendVerifyCode = function () {
+      if (!$scope.sendCodeLock) {
+        $scope.sendCodeLock = true;
+        $scope.sendCodeFirstSend = true;
+        $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+        MobileService.sendVerifyCode($scope.form).then(function (response) {
+          $ionicLoading.hide();
+          countdown().then(function () {
+            $scope.sendCodeText = '\u91cd\u65b0\u83b7\u53d6';
+            $scope.sendCodeLock = false;
+          });
+        });
+      }
+    };
+    function countdown() {
+      var deferred = $q.defer();
+      var count = 60;
+      $scope.sendCodeText = [
+        count,
+        '\u79d2'
+      ].join('');
+      $scope.sendCodeTimer = $interval(function () {
+        if (count <= 1) {
+          $scope.sendCodeTimer && $interval.cancel($scope.sendCodeTimer);
+          deferred.resolve();
+        }
+        $scope.sendCodeText = [
+          --count,
+          '\u79d2'
+        ].join('');
+      }, 1000);
+      return deferred.promise;
+    }
+  }
+]).controller('SetPayPasswordController', [
+  '$scope',
+  'Popup',
+  '$state',
+  'Domain',
+  '$ionicViewSwitcher',
+  '$stateParams',
+  '$ionicLoading',
+  'MobileService',
+  function ($scope, Popup, $state, Domain, $ionicViewSwitcher, $stateParams, $ionicLoading, MobileService) {
+    $scope.active = false;
+    $scope.form = {};
+    var param = $stateParams;
+    if (param.phone == '' && param.code == '') {
+      Popup.alert('\u7f3a\u5c11\u53c2\u6570', function () {
+        $ionicViewSwitcher.nextDirection('back');
+        $state.go('findpaypassword', { state: param.state });
+      });
+    } else {
+      $scope.form.phone = param.phone;
+      $scope.form.code = param.code;
+    }
+    $scope.checkout = function (form) {
+      if (/^\d{6,}/.test(form.new_pwd) && form.new_pwd === form.confirm_pwd) {
+        $scope.active = true;
+      } else {
+        $scope.active = false;
+      }
+    };
+    $scope.save = function (form) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      form.password = form.new_pwd;
+      MobileService.resetPayPassword(form).then(function (response) {
+        $ionicLoading.hide();
+        if (response.code == -1) {
+          Popup.alert(response.message);
+          return;
+        } else {
+          Popup.alert(response.message, function () {
+            var state = param.state || 'certification';
+            if (/^(https?|\/\/)/.test(state)) {
+              window.location.href = state;
+            } else if (state == 'certification') {
+              window.location.href = Domain.resolveUrl('http://h.shanxiancard.com/certification');
+            } else {
+              $ionicViewSwitcher.nextDirection('back');
+              $state.go(state);
+            }
+          });
+        }
+      });
+    };
+  }
+]).filter('removeProtocol', function () {
+  return function (url) {
+    return url ? url.replace(/^(https?):/, '') : url;
+  };
+}).directive('noResult', function () {
+  return {
+    restrict: 'E',
+    replace: true,
+    transclude: true,
+    templateUrl: 'templates/common/noresult.html'
+  };
+}).directive('ngState', [
+  '$ionicViewSwitcher',
+  '$state',
+  function ($ionicViewSwitcher, $state) {
+    return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+        angular.element(element).on('click', function () {
+          $ionicViewSwitcher.nextDirection('forward');
+          $state.go(attrs.ngState);
+        });
+      }
+    };
+  }
+]);
+angular.module('mobileFactory', []).factory('MobileService', [
+  'Env',
+  'Domain',
+  'Platform',
+  '$http',
+  '$location',
+  '$ionicPopup',
+  '$httpParamSerializerJQLike',
+  function (Env, Domain, Platform, $http, $location, $ionicPopup, $httpParamSerializerJQLike) {
+    var root_url = Env.env == 'pro' ? '//h5.dahubao.com/' : '//120.55.61.62/frontend/web/';
+    function $post(url, data) {
+      return $http({
+        method: 'POST',
+        url: url,
+        data: $httpParamSerializerJQLike(data),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+      }).then(function (response) {
+        return response.data;
+      });
+    }
+    return {
+      homeVdsStatistics: function () {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/activity/default/get-invite-code');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      getHomeData: function () {
+        var url = Domain.resolveUrl(root_url + 'credit-app/multi-index');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      confirmKnow: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/confirm-failed-loan');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      getConfirmLoan: function (data) {
+        var url = Domain.resolveUrl(root_url + 'credit-loan/get-confirm-loan');
+        return $post(url, data);
+      },
+      applyLoan: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/apply-loan');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      getMyLoan: function () {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/get-my-loan');
+        return $http({
+          method: 'POST',
+          url: url,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      regGetCode: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/check-user-register');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      login: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/login');
+        return $post(url, data);
+      },
+      register: function (data) {
+        var url = data.appMarket ? 'http://credit.shanxiancard.com/credit-user/register?appMarket=' + data.appMarket : root_url + 'user/register';
+        return $http({
+          method: 'POST',
+          url: Domain.resolveUrl(url),
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      getCode: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/reset-pwd-code');
+        data.type = 'find_pwd';
+        return $post(url, data);
+      },
+      getCaptcha: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/refresh-captcha');
+        data.type = 'captcha-login-reg';
+        return $post(url, data);
+      },
+      refreshCaptcha: function (type) {
+        var url = Domain.resolveUrl(root_url + 'user/get-image-captcha?type=' + (type || 1));
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      checkGetCaptcha: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/check-captcha-send-message');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      checkResetPwdCode: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/check-reset-password-code');
+        return $post(url, data);
+      },
+      resetPassword: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/reset-password');
+        return $post(url, data);
+      },
+      getVerification: function () {
+        var url = Domain.resolveUrl(root_url + 'shx-card/get-verification-info');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      getBaseInformation: function () {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-info/get-person-info');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      getInformation: function () {
+        var url = Domain.resolveUrl(root_url + 'shx-card/get-person-info');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      setInformation: function (data) {
+        var url = Domain.resolveUrl(root_url + 'shx-card/save-person-info');
+        return $post(url, data);
+      },
+      setParsonInformation: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-info/save-person-info');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      getContacts: function () {
+        var url = Domain.resolveUrl(root_url + 'shx-card/get-contacts');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      setContacts: function (data) {
+        var url = Domain.resolveUrl(root_url + 'shx-card/save-contacts');
+        return $post(url, data);
+      },
+      getBankCard: function (data) {
+        var url = Domain.resolveUrl(root_url + 'shx-card/get-bank-card');
+        return $post(url, data);
+      },
+      addBankCard: function (data) {
+        var url = Domain.resolveUrl(root_url + 'shx-card/add-bank-card');
+        return $post(url, data);
+      },
+      bindBankCard: function (data) {
+        var url = Domain.resolveUrl(root_url + 'shx-card/do-bind-card');
+        return $post(url, data);
+      },
+      getBankCardCode: function (data) {
+        var url = Domain.resolveUrl(root_url + 'bank-card/get-code');
+        return $post(url, data);
+      },
+      getOrders: function (data) {
+        var url = Domain.resolveUrl(root_url + 'credit-loan/get-my-orders');
+        return $post(url, data);
+      },
+      getMyInfo: function () {
+        var url = Domain.resolveUrl(root_url + 'user/get-info');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      setPayPassword: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/set-paypassword');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      changePayPassword: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/change-paypassword');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      sendVerifyCode: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/reset-pwd-code');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      verifyResetPayPassword: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/verify-reset-password');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      resetPayPassword: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/reset-pay-password');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      setPayPassword: function (data) {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/set-paypassword');
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $httpParamSerializerJQLike(data),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+        }).then(function (response) {
+          return response.data;
+        });
+      },
+      logout: function () {
+        var url = Domain.resolveUrl(root_url + 'user/logout');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      bindWechat: function () {
+        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/bind-wx');
+        return $http.get(url).then(function (response) {
+          return response.data;
+        });
+      },
+      getLoanContract: function (data) {
+        var url = Domain.resolveUrl(root_url + 'user/get-contact-info');
+        return $post(url, data);
+      }
+    };
+  }
+]);
+angular.module('mobileControllers').controller('AgreementController', [
+  '$ionicSlideBoxDelegate',
+  '$location',
+  '$ionicPopup',
+  'Popup',
+  '$ionicViewSwitcher',
+  '$state',
+  '$ionicScrollDelegate',
+  '$rootScope',
+  '$location',
+  'Platform',
+  'Domain',
+  '$scope',
+  '$ionicLoading',
+  '$timeout',
+  '$ionicSlideBoxDelegate',
+  'Popup',
+  'MobileService',
+  function ($ionicSlideBoxDelegate, $location, $ionicPopup, Popup, $ionicViewSwitcher, $state, $ionicScrollDelegate, $rootScope, $location, Platform, Domain, $scope, $ionicLoading, $timeout, $ionicSlideBoxDelegate, Popup, MobileService) {
+    $rootScope.currentPage = 'current-home-page';
+    $scope.pullingTips = '\u95ea\u7535\u5ba1\u6838\uff0c\u73b0\u91d1\u901f\u8fbe';
+    $scope.cIndex = 0;
+    $scope.dIndex = 0;
+    var ord_id = $location.search().ord_id;
+    MobileService.getLoanContract({
+      out_order_id: ord_id,
+      type: 1
+    }).then(function (response) {
+      $scope.data = response.data || {};
+      if ($scope.data.loan_time) {
+        $scope.data.date = $scope.data.loan_time.split(' ')[0];
+      }
+      console.log($scope.data);
+      if ($scope.data.plan_repayment_time) {
+        $scope.data.repay_date = $scope.data.plan_repayment_time.split(' ')[0];
+        console.log($scope.data.repay_date);
+      }
+    });  /*
+     MobileService.homeVdsStatistics().then(function (data) {
+     if (data.code == 0) {
+     if (window._vds) {
+     window._vds.push(['setCS1', 'inviteCode', data.data.invite_code]);
+     return
+     }
+     var _vds = _vds || [];
+     window._vds = _vds;
+     (function () {
+     _vds.push(['setAccountId', '8fd2500ba4956d6d']);
+     _vds.push(['enableHT', true]);
+     _vds.push(['setCS1', 'inviteCode', data.data.invite_code]);
+     (function () {
+     var vds = document.createElement('script');
+     vds.type = 'text/javascript';
+     vds.async = true;
+     vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+     var s = document.getElementsByTagName('script')[0];
+     s.parentNode.insertBefore(vds, s);
+     })();
+     })();
+     }
+     })
+     */
+  }
+]);
+angular.module('mobileControllers').controller('BankController', [
+  '$scope',
+  'Popup',
+  '$state',
+  '$location',
+  '$timeout',
+  '$ionicViewSwitcher',
+  '$ionicLoading',
+  'MobileService',
+  function ($scope, Popup, $state, $location, $timeout, $ionicViewSwitcher, $ionicLoading, MobileService) {
+    var query = $location.$$search;
+    // $scope.linealData = [{type: 0, name: '请选择'}];
+    $scope.form = {
+      list: [{
+          type: 0,
+          name: '\u8bf7\u9009\u62e9'
+        }],
+      lock: false
+    };
+    $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+    MobileService.getBankCard().then(function (response) {
+      $ionicLoading.hide();
+      if (response.code != 0) {
+        Popup.alert(response.message);
+        return;
+      }
+      var data = response.data;
+      if (data && data.item) {
+        var item = data.item;  // if(item.is_can_change == 0){
+                               //   $scope.form.lock = true;
+                               // }
+                               // if(item.lineal_mobile && item.lineal_name && item.lineal_relation &&
+                               //   item.other_mobile && item.other_name && item.other_relation){
+                               //   $scope.form.lock = true;
+                               // }
+      }
+      $scope.form = $.extend(true, $scope.form, data);
+      $scope.form.card_default = $scope.form.list[0];
+      $scope.sendDisabled = false;
+      $scope.codeText = '\u53d1\u9001\u9a8c\u8bc1\u7801';
+    });
+    var setup = function (m, l) {
+      $timeout(function () {
+        $scope.codeText = m + '\u79d2\u540e\u91cd\u8bd5';
+        if (m) {
+          setup(--m, 1000);
+        } else {
+          $scope.codeText = '\u91cd\u65b0\u53d1\u9001';
+          $scope.sendDisabled = false;
+        }
+      }, l);
+    };
+    $scope.sendCode = function () {
+      // console.log($stateParams.phone)
+      var phone = $scope.form.mobile;
+      if (!/^1\d{10}$/.test(phone)) {
+        Popup.alert('\u624b\u673a\u53f7\u683c\u5f0f\u4e0d\u5bf9');
+        return;
+      }
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.getBankCardCode({
+        phone: phone,
+        source: 'shanxianka'
+      }).then(function (data) {
+        $ionicLoading.hide();
+        if (data.code !== 0) {
+          Popup.alert(data.message);
+          return;
+        }
+        $scope.sendDisabled = true;
+        setup(60);
+      });
+    };
+    $scope.save = function (form) {
+      form.bank_id = form.card_default.bank_id || '';
+      var data = {
+          phone: form.mobile,
+          card_no: form.card_no,
+          bank_id: form.bank_id,
+          code: form.v_code
+        };
+      if (!data.phone || data.phone.length != 11) {
+        Popup.alert('\u94f6\u884c\u624b\u673a\u9884\u7559\u53f7\u7801\u683c\u5f0f\u9519\u8bef');
+        return;
+      }
+      if (!data.card_no || !/^(\d{16}|\d{19})$/.test(data.card_no)) {
+        Popup.alert('\u94f6\u884c\u5361\u53f7\u53ea\u80fd16\u621619\u4f4d\u6570\u5b57');
+        return;
+      }
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.addBankCard(data).then(function (response) {
+        $ionicLoading.hide();
+        Popup.alert(response.message, function () {
+          if (response.code != 0)
+            return;
+          $state.go('certification');
+        });
+      });
+    };
+  }
+]);
+angular.module('mobileControllers').controller('CardController', [
+  '$scope',
+  'Popup',
+  '$state',
+  '$location',
+  '$timeout',
+  '$ionicViewSwitcher',
+  '$ionicLoading',
+  'MobileService',
+  function ($scope, Popup, $state, $location, $timeout, $ionicViewSwitcher, $ionicLoading, MobileService) {
+    var query = $location.$$search;
+    // $scope.linealData = [{type: 0, name: '请选择'}];
+    $scope.form = {
+      list: [{
+          type: 0,
+          name: '\u8bf7\u9009\u62e9'
+        }],
+      lock: false
+    };
+    $scope.visible = false;
+    $scope.bindText = '\u786e\u5b9a\u7ed1\u5361';
+    $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+    MobileService.getBankCard().then(function (response) {
+      $ionicLoading.hide();
+      if (response.code != 0) {
+        Popup.alert(response.message);
+        return;
+      }
+      var data = response.data;
+      if (data && data.item && data.item.length > 0) {
+        $scope.visible = true;
+        $scope.bindText = '\u91cd\u65b0\u7ed1\u5361';
+        $scope.card_info = data.item[0];  // if(item.is_can_change == 0){
+                                          //   $scope.form.lock = true;
+                                          // }
+                                          // if(item.lineal_mobile && item.lineal_name && item.lineal_relation &&
+                                          //   item.other_mobile && item.other_name && item.other_relation){
+                                          //   $scope.form.lock = true;
+                                          // }
+      }
+      $scope.form = $.extend(true, $scope.form, data);
+      $scope.form.card_default = $scope.form.list[0];
+      $scope.sendDisabled = false;
+      $scope.codeText = '\u53d1\u9001\u9a8c\u8bc1\u7801';
+    });
+    var setup = function (m, l) {
+      $timeout(function () {
+        $scope.codeText = m + '\u79d2\u540e\u91cd\u8bd5';
+        if (m) {
+          setup(--m, 1000);
+        } else {
+          $scope.codeText = '\u91cd\u65b0\u53d1\u9001';
+          $scope.sendDisabled = false;
+        }
+      }, l);
+    };
+    $scope.sendCode = function () {
+      // console.log($stateParams.phone)
+      var phone = $scope.form.mobile;
+      if (!/^1\d{10}$/.test(phone)) {
+        Popup.alert('\u624b\u673a\u53f7\u683c\u5f0f\u4e0d\u5bf9');
+        return;
+      }
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.getBankCardCode({
+        phone: phone,
+        source: 'shanxianka'
+      }).then(function (data) {
+        $ionicLoading.hide();
+        if (data.code !== 0) {
+          Popup.alert(data.message);
+          return;
+        }
+        $scope.sendDisabled = true;
+        setup(60);
+      });
+    };
+    $scope.save = function (form) {
+      // 重新绑卡
+      if ($scope.visible) {
+        $scope.visible = false;
+        $scope.bindText = '\u786e\u5b9a\u7ed1\u5361';
+        return;
+      }
+      // 确定绑卡
+      form.bank_id = form.card_default.bank_id || '';
+      var data = {
+          phone: form.mobile,
+          card_no: form.card_no,
+          bank_id: form.bank_id,
+          code: form.v_code,
+          skipValidateCaptcha: 1,
+          skipCheckCardRecord: 1
+        };
+      if (!data.card_no || !/^(\d{16}|\d{19})$/.test(data.card_no)) {
+        Popup.alert('\u94f6\u884c\u5361\u53f7\u53ea\u80fd16\u621619\u4f4d\u6570\u5b57');
+        return;
+      }
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.bindBankCard(data).then(function (response) {
+        $ionicLoading.hide();
+        Popup.alert(response.message, function () {
+          if (response.code != 0)
+            return;
+          $state.go('certification');
+        });
+      });
+    };
+  }
+]);
+angular.module('mobileControllers').controller('CertificationController', [
+  'Platform',
+  'Domain',
+  '$rootScope',
+  '$scope',
+  'Popup',
+  '$ionicViewSwitcher',
+  '$location',
+  '$ionicLoading',
+  '$ionicViewSwitcher',
+  '$state',
+  '$ionicLoading',
+  '$state',
+  'MobileService',
+  function (Platform, Domain, $rootScope, $scope, Popup, $ionicViewSwitcher, $location, $ionicLoading, $ionicViewSwitcher, $state, $ionicLoading, $state, MobileService) {
+    // location.href = Domain.resolveUrl('https://h.dahubao.com/mobile/certification');
+    var $query = $location.$$search;
+    if ($query.success == 1) {
+      MobileService.getConfirmLoan({
+        money: 1000,
+        period: 14,
+        card_type: 1
+      }).then(function (response) {
+        if (response.code != 0) {
+          Popup.alert(response.message);
+          return;
+        }
+        window.localStorage.removeItem('links');
+        $state.go('loan', {
+          money: 1000,
+          period: 14,
+          item: response.data.item,
+          source: Platform.isWeixin ? true : false
+        });
+      });
+    }
+    $scope.verify = function (event) {
+      if ($scope.real_verify_status === 0) {
+        event.preventDefault();
+        Popup.alert('\u4eb2\uff0c\u8bf7\u5148\u586b\u5199\u4e2a\u4eba\u4fe1\u606f\u54e6~', function () {
+        });
+        return;
+      }
+    };
+    $scope.doRefresh = function () {
+      $scope.items = [];
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.getVerification().then(function (response) {
+        var disable = [
+            2,
+            12,
+            7,
+            9,
+            13,
+            14
+          ];
+        var verify = [
+            3,
+            4,
+            8,
+            5
+          ];
+        var query = {};
+        function format(data) {
+          var temp = [];
+          for (var i in data) {
+            temp.push(i + '=' + data[i]);
+          }
+          return '?' + temp.join('&');
+        }
+        var items = response.data.item.list || [];
+        var temps = [];
+        for (var i in items) {
+          var tag = items[i].tag;
+          if (tag === 1) {
+            items[i].url = '#/my/certification/information';
+            response.data.is_new_user == 1 && (items[i].url += '?new_user=1');
+          } else if (tag === 3) {
+            items[i].url = '#/my/certification/contacts';
+            response.data.is_new_user == 1 && (items[i].url += '?new_user=1');
+          } else if (tag === 4) {
+            items[i].url = '#/my/certification/bank';
+            response.data.is_new_user == 1 && (items[i].url += '?new_user=1');
+          } else if ([8].indexOf(tag) >= 0) {
+            !items[i].url && items[i].first_url && (items[i].url = items[i].first_url);
+          }
+          if (verify.indexOf(tag) >= 0) {
+            items[i].verify = 1;
+          }
+          if (!(disable.indexOf(tag) >= 0)) {
+            $scope.items.push(items[i]);
+          }
+          temps.push(items[i].url);
+        }
+        temps.push(window.location.href + '?success=1');
+        if (!!response.data.is_new_user) {
+          for (var i in temps) {
+            if (i == 2) {
+              temps[i] += ('?url=' + temps[3]).replace(/\#/g, '%23');
+            } else if (i == 3) {
+              temps[i] += '?url=' + temps[4].replace(/\#/g, '%23');
+            }
+          }
+          for (var i in $scope.items) {
+            var tag = $scope.items[i].tag;
+            if (tag == 4) {
+              $scope.items[i].url += '?url=' + temps[3].replace(/\#/g, '%23');
+            } else if (tag == 5) {
+              $scope.items[i].url += '?url=' + temps[4].replace(/\#/g, '%23');
+            }
+          }
+        }
+        window.localStorage.setItem('links', JSON.stringify(temps));
+        // if(response.data.is_new_user == 1){
+        //   query.new_user = 1;
+        //   for(var i in $scope.items){
+        //     if($scope.items[i].status == 0){
+        //       query.url = encodeURIComponent($scope.items[i].url);
+        //       $scope.items[i].url += format(query);
+        //       break;
+        //     }
+        //   }
+        // }
+        $scope.real_verify_status = response.data.item.real_verify_status || 0;
+        $ionicLoading.hide();
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    };
+    $scope.doRefresh();
+  }
+]);
+angular.module('mobileControllers').controller('ContactsController', [
+  '$scope',
+  'Popup',
+  '$state',
+  '$location',
+  '$ionicViewSwitcher',
+  '$ionicLoading',
+  'MobileService',
+  function ($scope, Popup, $state, $location, $ionicViewSwitcher, $ionicLoading, MobileService) {
+    var query = $location.$$search;
+    // $scope.linealData = [{type: 0, name: '请选择'}];
+    $scope.form = {
+      lineal_list: [{
+          type: 0,
+          name: '\u8bf7\u9009\u62e9'
+        }],
+      other_list: [{
+          type: 0,
+          name: '\u8bf7\u9009\u62e9'
+        }],
+      lock: false
+    };
+    $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+    MobileService.getContacts().then(function (response) {
+      $ionicLoading.hide();
+      if (response.code != 0) {
+        Popup.alert(response.message);
+        return;
+      }
+      var data = response.data;
+      if (data && data.item) {
+        var item = data.item;  // if(item.is_can_change == 0){
+                               //   $scope.form.lock = true;
+                               // }
+                               // if(item.lineal_mobile && item.lineal_name && item.lineal_relation &&
+                               //   item.other_mobile && item.other_name && item.other_relation){
+                               //   $scope.form.lock = true;
+                               // }
+      }
+      $scope.form = $.extend(true, $scope.form, data.item);
+      for (var i in $scope.form.lineal_list) {
+        if ($scope.form.lineal_list[i].type === $scope.form.lineal_relation) {
+          $scope.form.lineal_default = $scope.form.lineal_list[i];
+          break;
+        }
+      }
+      for (var i in $scope.form.other_list) {
+        if ($scope.form.other_list[i].type === $scope.form.other_relation) {
+          $scope.form.other_default = $scope.form.other_list[i];
+          break;
+        }
+      }
+    });
+    $scope.save = function (form) {
+      form.lineal_relation = form.lineal_default.type || '';
+      form.other_relation = form.other_default.type || '';
+      var data = {
+          type: form.lineal_relation,
+          name: form.lineal_name,
+          mobile: form.lineal_mobile,
+          relation_spare: form.other_relation,
+          name_spare: form.other_name,
+          mobile_spare: form.other_mobile
+        };
+      if (data.mobile_spare && data.mobile.length != 11) {
+        Popup.alert('\u76f4\u7cfb\u4eb2\u5c5e\u624b\u673a\u53f7\u7801\u683c\u5f0f\u9519\u8bef');
+        return;
+      }
+      if (data.mobile_spare && data.mobile_spare.length != 11) {
+        Popup.alert('\u5176\u4ed6\u8054\u7cfb\u4eba\u624b\u673a\u53f7\u7801\u683c\u5f0f\u9519\u8bef');
+        return;
+      }
+      MobileService.setContacts(data).then(function (response) {
+        $ionicLoading.hide();
+        Popup.alert(response.message, function () {
+          if (response.code != 0)
+            return;
+          if (query.new_user == 1) {
+            var links = JSON.parse(window.localStorage.getItem('links'));
+            window.location.href = links[2] + '?url=' + links[4].replace(/\#/g, '%23');
+          } else {
+            $ionicViewSwitcher.nextDirection('back');
+            $state.go('certification');
+            $location.replace();
+          }
+        });
+      });
+    };
+  }
+]);
+angular.module('mobileControllers').controller('HelpCenterController', [
+  '$scope',
+  '$ionicViewSwitcher',
+  '$state',
+  function ($scope, $ionicViewSwitcher, $state) {
+    $scope.list = [
+      {
+        name: '\u8ba4\u8bc1\u76f8\u5173',
+        val: [
+          {
+            name: '\u4e3a\u4ec0\u4e48\u4f1a\u8bfb\u53d6\u8054\u7cfb\u4eba\u5931\u8d25\uff1f',
+            id: '5'
+          },
+          {
+            name: '\u5982\u4f55\u66f4\u6362\u6536\u6b3e\u94f6\u884c\u5361\uff1f',
+            id: '8'
+          },
+          {
+            name: '\u624b\u673a\u8fd0\u8425\u5546\u8ba4\u8bc1\u5931\u8d25\u7684\u539f\u56e0\u6709\u54ea\u4e9b\uff1f',
+            id: '12'
+          }
+        ]
+      },
+      {
+        name: '\u501f\u6b3e\u76f8\u5173',
+        val: [
+          {
+            name: '\u5ba1\u6838\u901a\u8fc7\u540e\u591a\u4e45\u6253\u6b3e\uff1f',
+            id: '7'
+          },
+          {
+            name: '\u5ba1\u6838\u88ab\u62d2\u7edd\u7684\u539f\u56e0\u4e00\u822c\u6709\u54ea\u4e9b\uff1f',
+            id: '8'
+          },
+          {
+            name: '\u5982\u4f55\u63d0\u5347\u4fe1\u7528\u989d\u5ea6\uff1f',
+            id: '9'
+          }
+        ]
+      },
+      {
+        name: '\u8fd8\u6b3e\u76f8\u5173',
+        val: [
+          {
+            name: '\u6bcf\u79cd\u65b9\u5f0f\u9700\u8981\u591a\u4e45\u66f4\u65b0\u8fd8\u6b3e\u72b6\u6001\uff1f',
+            id: '2'
+          },
+          {
+            name: '\u5982\u4f55\u8fdb\u884c\u652f\u4ed8\u5b9d\u8fd8\u6b3e\uff1f',
+            id: '7'
+          },
+          {
+            name: '\u903e\u671f\u8fd8\u80fd\u7533\u8bf7\u7eed\u671f\u670d\u52a1\u5417\uff1f',
+            id: '12'
+          }
+        ]
+      },
+      {
+        name: '\u8d39\u7528\u76f8\u5173',
+        val: [
+          {
+            name: '\u501f\u6b3e\u8d39\u7528\u5982\u4f55\u6536\u53d6\uff1f',
+            id: '1'
+          },
+          {
+            name: '\u903e\u671f\u8d39\u7528\u5982\u4f55\u6536\u53d6\uff1f',
+            id: '2'
+          },
+          {
+            name: '\u7eed\u671f\u8d39\u7528\u5982\u4f55\u6536\u53d6\uff1f',
+            id: '3'
+          }
+        ]
+      }
+    ];
+    $scope.detail = function (block, id) {
+      var params = {
+          block: block,
+          id: id
+        };
+      $ionicViewSwitcher.nextDirection('forward');
+      $state.go('helpdetail', params);
+    };
+  }
+]);
+angular.module('mobileControllers').controller('HelpDetailController', [
+  '$scope',
+  '$state',
+  '$stateParams',
+  function ($scope, $state, $stateParams) {
+    $scope.block = $stateParams.block === null ? 0 : $stateParams.block;
+    $scope.id = $stateParams.id || 1;
+    console.log($stateParams);
+  }
+]).directive('showHelpDetail', [
+  '$ionicViewSwitcher',
+  '$state',
+  function ($ionicViewSwitcher, $state) {
+    return {
+      restrict: 'A',
+      scope: true,
+      controller: [
+        '$scope',
+        function ($scope) {
+          $scope.showTarget = function (element, block, detail) {
+            var wrap = element[0];
+            var ps = wrap.querySelectorAll('p');
+            for (var i = 0; i < ps.length; i++) {
+              ps[i].style.display = 'none';
+            }
+            var block_ul = wrap.querySelectorAll('ul')[block];
+            var target_li = block_ul.querySelectorAll('li')[detail];
+            var target_p = target_li.querySelector('p');
+            target_p.style.display = 'block';
+          };
+        }
+      ],
+      link: function (scope, element, attrs) {
+        scope.showTarget(element, scope.block, scope.id - 1);
+        element.bind('click', function (e) {
+          var wrap = element[0];
+          var ps = wrap.querySelectorAll('p');
+          for (var i = 0; i < ps.length; i++) {
+            ps[i].style.display = 'none';
+          }
+          var target_p = e.target.querySelector('p');
+          target_p.style.display = 'block';
+        });
+      }
+    };
+  }
+]);
+angular.module('mobileControllers').controller('HomeController', [
+  '$ionicSlideBoxDelegate',
+  '$ionicPopup',
+  'Popup',
+  '$ionicViewSwitcher',
+  '$state',
+  '$ionicScrollDelegate',
+  '$rootScope',
+  '$location',
+  'Platform',
+  'Domain',
+  '$scope',
+  '$ionicLoading',
+  '$timeout',
+  '$ionicSlideBoxDelegate',
+  'Popup',
+  'MobileService',
+  function ($ionicSlideBoxDelegate, $ionicPopup, Popup, $ionicViewSwitcher, $state, $ionicScrollDelegate, $rootScope, $location, Platform, Domain, $scope, $ionicLoading, $timeout, $ionicSlideBoxDelegate, Popup, MobileService) {
+    $rootScope.currentPage = 'current-home-page';
+    $scope.pullingTips = '\u95ea\u7535\u5ba1\u6838\uff0c\u73b0\u91d1\u901f\u8fbe';
+    $scope.cIndex = 0;
+    $scope.dIndex = 0;
+    /*
+     MobileService.homeVdsStatistics().then(function (data) {
+     if (data.code == 0) {
+     if (window._vds) {
+     window._vds.push(['setCS1', 'inviteCode', data.data.invite_code]);
+     return
+     }
+     var _vds = _vds || [];
+     window._vds = _vds;
+     (function () {
+     _vds.push(['setAccountId', '8fd2500ba4956d6d']);
+     _vds.push(['enableHT', true]);
+     _vds.push(['setCS1', 'inviteCode', data.data.invite_code]);
+     (function () {
+     var vds = document.createElement('script');
+     vds.type = 'text/javascript';
+     vds.async = true;
+     vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+     var s = document.getElementsByTagName('script')[0];
+     s.parentNode.insertBefore(vds, s);
+     })();
+     })();
+     }
+     })
+     */
+    if (!$rootScope.awaken && Platform.isIos) {
+    }
+    if (Platform.isWeixin) {
+    }
+    $scope.onKnow = function (data) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.confirmKnow({ id: data.id }).then(function (result) {
+        $ionicLoading.hide();
+        if (result.code === 0) {
+          location.href = data.active_url;
+        } else {
+          Popup.alert(result.message);
+        }
+      });
+    };
+    $scope.showTips = function () {
+      $ionicPopup.alert({
+        template: '\u7efc\u5408\u8d39\u7528=\u501f\u6b3e\u5229\u606f+\u5c45\u95f4\u670d\u52a1\u8d39+\u4fe1\u606f\u8ba4\u8bc1\u8d39\uff0c\u7efc\u5408\u8d39\u7528\u5c06\u5728\u501f\u6b3e\u65f6\u4e00\u6b21\u6027\u6263\u9664',
+        okText: '\u6211\u77e5\u9053\u4e86',
+        okType: 'button-credit'
+      });
+    };
+    //申请借款
+    $scope.apply = function (data) {
+      $ionicViewSwitcher.nextDirection('forward');
+      // _hmt.push(['_trackEvent', 'm版首页', '点击马上申请']);
+      if (data.verify_loan_pass === 0) {
+        $state.go('certification', { origin: 'home' });
+        return;
+      }
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      var day = data.amount_days.days[$scope.dIndex];
+      var loan = {
+          'period': day,
+          'money': $scope.sliderAmount.value,
+          'card_type': data.card_type
+        };
+      MobileService.getConfirmLoan(loan).then(function (data) {
+        $ionicLoading.hide();
+        if (data.code !== 0) {
+          Popup.alert(data.message);
+          return;
+        }
+        if (data.code === 0) {
+          loan.item = data.data.item;
+          $state.go('loan', loan);
+        }
+      });
+    };
+    var costHandler = function () {
+      var interest = $scope.data.item.card[$scope.cIndex].amount_days.interests[$scope.dIndex];
+      var length = $scope.data.item.card[$scope.cIndex].amount_days.amounts.length;
+      var amount = $scope.data.item.card[$scope.cIndex].amount_days.amounts[length - 1];
+      var ratio = interest / amount;
+      $scope.cost = $scope.sliderAmount.value * ratio;
+      $scope.amount = $scope.sliderAmount.value - $scope.cost;
+    };
+    $scope.sliderAmount = {
+      value: 1000,
+      options: {
+        floor: 200,
+        step: 100,
+        showSelectionBar: true,
+        translate: function (value) {
+          return value + '\u5143';
+        },
+        onChange: costHandler
+      }
+    };
+    var resetAmount = function (isUpdate) {
+      var amounts = $scope.data.item.card[$scope.cIndex].amount_days.amounts;
+      $scope.sliderAmount.options.floor = amounts[0] / 100;
+      isUpdate || ($scope.sliderAmount.value = amounts[amounts.length - 1] / 100);
+      costHandler();
+    };
+    $scope.slideHasChanged = function (index) {
+      console.log(index);
+      $scope.cIndex = index;
+      resetAmount();
+    };
+    $scope.switchDay = function (index) {
+      $scope.dIndex = index;
+      resetAmount(true);
+    };
+    var handler = function (data) {
+      if (data.code != 0) {
+        Popup.alert(data.message);
+        return;
+      }
+      $scope.data = data.data;
+      //console.log(data.data)
+      $ionicSlideBoxDelegate.update();
+      resetAmount();
+    };
+    $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+    MobileService.getHomeData().then(function (data) {
+      $ionicLoading.hide();
+      handler(data);
+    });
+    $scope.doRefresh = function () {
+      MobileService.getHomeData().then(function (data) {
+        handler(data);
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    };
+  }
+]);
+angular.module('mobileControllers').controller('InformationController', [
+  '$scope',
+  'Domain',
+  '$location',
+  'Popup',
+  'Upload',
+  '$ionicViewSwitcher',
+  '$state',
+  '$ionicLoading',
+  'MobileService',
+  '$location',
+  '$stateParams',
+  function ($scope, Domain, $location, Popup, Upload, $ionicViewSwitcher, $state, $ionicLoading, MobileService, $location, $stateParams) {
+    var query = $location.$$search;
+    $scope.new_user = query.new_user;
+    if (query.new_user == undefined) {
+      $scope.upload = function (file, type, name) {
+        // 1:身份证,2:学历证明,3:工作证明,4:薪资证明,5:资产证明,6:工牌照片,7:个人名片,8:银行卡或者信用卡,9:好房贷房产证,10:人脸识别,11:身份证正面,12:身份证反面,100:其它证明
+        if (type === 0)
+          return;
+        $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+        lrz(file, { width: 640 }).then(function (data) {
+          file.upload = Upload.upload({
+            url: Domain.resolveUrl('http://120.55.61.62/frontend/web/picture/upload-file'),
+            data: {
+              type: type,
+              attach: data.base64,
+              ocrtype: 1
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+          }).then(function (response) {
+            response.data.data && response.data.data.item && ($scope.form[name] = response.data.data.item.url);
+            $ionicLoading.hide();
+            Popup.alert(response.data.message);
+          });
+        });
+      };
+      $scope.files = {};
+      $scope.$watch('files.faces', function (file) {
+        if (file != null) {
+          $scope.upload(file, 10, 'face_recognition_picture');
+        }
+      });
+      $scope.$watch('files.idNumberFront', function (file) {
+        console.log(file);
+        if (file != null) {
+          $scope.upload(file, 11, 'id_number_z_picture');
+        }
+      });
+      $scope.$watch('files.idNumberBack', function (file) {
+        if (file != null) {
+          $scope.upload(file, 12, 'id_number_f_picture');
+        }
+      });
+      $scope.form = {
+        degrees_all: [{
+            degrees: 0,
+            name: '\u8bf7\u9009\u62e9'
+          }],
+        degrees_default: null,
+        company_worktype_list: [{
+            work_type: 0,
+            name: '\u8bf7\u9009\u62e9'
+          }],
+        worktype_default: null
+      };
+    }
+    $scope.$watch('file', function (aaa) {
+      if ($scope.file != null) {
+        console.log(aaa);
+      }
+    });
+    $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+    MobileService.getInformation().then(function (response) {
+      $ionicLoading.hide();
+      if (response.code != 0) {
+        Popup.alert(response.message);
+        return;
+      }
+      var data = response.data;
+      // var params = $stateParams;
+      // if(params.position == 1 && params.address && params.lng && params.lat){
+      //   data.item.address_distinct = params.address;
+      //   data.item.longitude = params.lng;
+      //   data.item.latitude = params.lat;
+      // }
+      $scope.form = $.extend(true, $scope.form, data.item);
+      if (query.new_user == 1) {
+        for (var i in $scope.form.degrees_all) {
+          if ($scope.form.degrees_all[i].degrees === $scope.form.degrees) {
+            $scope.form.degrees_default = $scope.form.degrees_all[i];
+            break;
+          }
+        }
+        for (var i in $scope.form.company_worktype_list) {
+          if ($scope.form.company_worktype_list[i].work_type === $scope.form.company_worktype_id) {
+            $scope.form.worktype_default = $scope.form.company_worktype_list[i];
+            break;
+          }
+        }
+      }
+    });
+    $scope.save = function (form) {
+      console.log(form);
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      if (!!query.new_user) {
+        var type = 'setInformation';
+      } else {
+        var type = form.real_verify_status ? 'setParsonInformation' : 'setInformation';
+        form.degrees = form.degrees_default.degrees || 0;
+        form.work_type = form.worktype_default.work_type || 0;
+      }
+      MobileService[type](form).then(function (response) {
+        $ionicLoading.hide();
+        Popup.alert(response.message, function () {
+          if (response.code != 0)
+            return;
+          if (query.new_user == 1) {
+            var links = JSON.parse(window.localStorage.getItem('links'));
+            window.location.href = links[1];
+          } else {
+            $ionicViewSwitcher.nextDirection('back');
+            $state.go('certification');
+            $location.replace();
+          }
+        });
+        return;
+      });
+    };
+  }
+]);
+angular.module('mobileControllers').controller('LoginController', [
+  '$filter',
+  '$location',
+  '$rootScope',
+  '$scope',
+  '$state',
+  'Popup',
+  '$ionicViewSwitcher',
+  '$ionicLoading',
+  'MobileService',
+  function ($filter, $location, $rootScope, $scope, $state, Popup, $ionicViewSwitcher, $ionicLoading, MobileService) {
+    $scope.next = function (form) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.regGetCode(form).then(function (data) {
+        $ionicLoading.hide();
+        if (data.code == -1) {
+          Popup.alert(data.message);
+          return;
+        }
+        var params = {
+            phone: $scope.form.phone,
+            redirectUrl: $location.search().redirect_url,
+            appMarket: $location.search().appMarket,
+            invite_code: $location.search().inviteCode
+          };
+        $scope.form = null;
+        //1000已注册用户
+        if (data.data === 1) {
+          $state.go('login-next', params);
+          return;
+        }
+        //0未注册用户
+        if (data.data === 0) {
+          /*
+          if (data.data.item) {
+            params.codeImg = $filter('removeProtocol')(data.data.item)
+          }
+          */
+          // 预先获取验证码
+          MobileService.getCaptcha({ type: 'captcha-login-reg' }).then(function (data) {
+            if (data.code == 0 && data.data.item) {
+              params.codeImg = $filter('removeProtocol')(data.data.item);
+            }
+            params.isRegister = true;
+            $state.go('reset-password', params);
+          });
+        }
+      });
+    };
+  }
+]);
+angular.module('mobileControllers').controller('LoginNextController', [
+  'Domain',
+  '$stateParams',
+  '$location',
+  '$rootScope',
+  '$scope',
+  '$state',
+  'Popup',
+  '$ionicViewSwitcher',
+  '$ionicLoading',
+  'MobileService',
+  function (Domain, $stateParams, $location, $rootScope, $scope, $state, Popup, $ionicViewSwitcher, $ionicLoading, MobileService) {
+    console.log($stateParams);
+    if (!$stateParams.phone || !/^1\d{10}$/.test($stateParams.phone)) {
+      $state.go('login');
+      return;
+    }
+    $scope.resetPassword = function () {
+      $ionicViewSwitcher.nextDirection('forward');
+      $state.go('reset-password', $stateParams);
+    };
+    $scope.phone = $stateParams.phone.toString().replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+    $scope.submit = function (form) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      form.username = $stateParams.phone;
+      MobileService.login(form).then(function (data) {
+        $ionicLoading.hide();
+        $scope.form = null;
+        if (data.code === 0) {
+          if ($stateParams.redirectUrl) {
+            location.href = $stateParams.redirectUrl;
+            return;
+          }
+          $state.go('tab.home');  // $location.replace(); //clear last history route
+                                  // location.href = Domain.resolveUrl('https://h5.dahubao.com')
+        } else {
+          Popup.alert(data.message);
+        }
+      });
+    };
+  }
+]);
+angular.module('mobileControllers').controller('MyController', [
+  '$rootScope',
+  '$scope',
+  '$location',
+  'Popup',
+  '$ionicLoading',
+  '$ionicViewSwitcher',
+  '$state',
+  'radialIndicatorInstance',
+  'MobileService',
+  function ($rootScope, $scope, $location, Popup, $ionicLoading, $ionicViewSwitcher, $state, radialIndicatorInstance, MobileService) {
+    $rootScope.currentPage = 'current-my-page';
+    $scope.verify = function (event) {
+      if ($scope.verify_info && $scope.verify_info.real_verify_status === 0) {
+        event.preventDefault();
+        Popup.alert('\u4eb2\uff0c\u8bf7\u5148\u586b\u5199\u4e2a\u4eba\u4fe1\u606f\u54e6~', function () {
+          $ionicViewSwitcher.nextDirection('forward');
+          $state.go('certification');
+        });
+        return;
+      }
+    };
+    $scope.credit_info = {
+      card_amount: 0,
+      card_unused_amount: 0
+    };
+    $scope.indicatorOption = {
+      displayNumber: false,
+      barColor: '#e2e1e0',
+      barWidth: 64,
+      initValue: 0,
+      percentage: true,
+      frameTime: 3,
+      radius: 205
+    };
+    $scope.logout = function () {
+      Popup.confirm({
+        title: '<br/>\u60a8\u786e\u5b9a\u8981\u9000\u51fa\u767b\u5f55\u561b\uff1f',
+        ok: function () {
+          MobileService.logout().then(function (response) {
+            if (response.code != 0) {
+              Popup.alert(response.message);
+              return;
+            }
+            $state.go('login');
+            $location.replace();
+          });
+        }
+      });
+    };
+    $scope.doRefresh = function () {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.getMyInfo().then(function (response) {
+        $ionicLoading.hide();
+        if (response.code != 0) {
+          Popup.alert(response.message);
+          return;
+        }
+        for (var i in response.data.item) {
+          $scope[i] = response.data.item[i];
+        }
+        $scope.card_info && ($scope.card_info.format = $scope.card_info.bank_name + '(' + $scope.card_info.card_no_end + ')');
+        radialIndicatorInstance['amount'].animate(($scope.credit_info.card_unused_amount || 100000) / $scope.credit_info.card_amount * 100 || 0);
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    };
+    $scope.doRefresh();
+  }
+]);
+angular.module('mobileControllers').controller('ordersController', [
+  '$rootScope',
+  '$scope',
+  'Popup',
+  '$ionicLoading',
+  'MobileService',
+  function ($rootScope, $scope, Popup, $ionicLoading, MobileService) {
+    $rootScope.currentPage = 'current-my-page';
+    $scope.pullingTips = '\u79d1\u6280\u8ba9\u91d1\u878d\u66f4\u7b80\u5355';
+    $scope.items = [];
+    $scope.doRefresh = function () {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      MobileService.getOrders().then(function (response) {
+        $ionicLoading.hide();
+        if (response.code != 0) {
+          Popup.alert(response.message);
+          return;
+        }
+        if (response.data && response.data.item && response.data.item.length) {
+          $scope.items = response.data.item;
+        } else {
+          $scope.items = false;
+        }
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    };
+    $scope.doRefresh();
+  }
+]);
+angular.module('mobileControllers').controller('RepaymentController', [
+  '$state',
+  '$rootScope',
+  '$scope',
+  'MobileService',
+  '$ionicLoading',
+  function ($state, $rootScope, $scope, MobileService, $ionicLoading) {
+    $rootScope.currentPage = 'current-repayment-page';
+    var handler = function (data) {
+      if (data.code === 0) {
+        $scope.item = data.data.item;
+      }
+    };
+    $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+    MobileService.getOrders().then(function (data) {
+      $ionicLoading.hide();
+      $scope.$broadcast('scroll.refreshComplete');
+      handler(data);
+    });
+    $scope.doRefresh = function () {
+      MobileService.getMyLoan().then(function (data) {
+        $scope.$broadcast('scroll.refreshComplete');
+        handler(data);
+      });
+    };
+  }
+]);
+angular.module('mobileControllers').controller('ResetPasswordController', [
+  '$filter',
+  '$window',
+  '$stateParams',
+  '$rootScope',
+  '$scope',
+  '$timeout',
+  'MobileService',
+  '$ionicLoading',
+  '$state',
+  'Popup',
+  '$location',
+  function ($filter, $window, $stateParams, $rootScope, $scope, $timeout, MobileService, $ionicLoading, $state, Popup, $location) {
+    if (!$stateParams.phone || !/^1\d{10}$/.test($stateParams.phone)) {
+      if ($window.localStorage.getItem('phone')) {
+        $stateParams.phone = $window.localStorage.getItem('phone');
+        $stateParams.isRegister = $window.localStorage.getItem('isRegister');
+        $stateParams.invite_code = $window.localStorage.getItem('invite_code');
+        $window.localStorage.removeItem('phone');
+        $window.localStorage.removeItem('invite_code');
+        $window.localStorage.removeItem('isRegister');
+      } else {
+        $state.go('login');
+        return;
+      }
+    }
+    // $stateParams.phone = 12312345679
+    // $stateParams.isRegister = true
+    $scope.codeText = '\u53d1\u9001\u9a8c\u8bc1\u7801';
+    $scope.sendDisabled = false;
+    $scope.isAgress = true;
+    $scope.codeImg = null;
+    $scope.codeError = false;
+    $scope.onAgree = function () {
+      $scope.isAgress = !$scope.isAgress;
+    };
+    $scope.onHref = function ($event) {
+      $event.stopPropagation();
+      $window.localStorage.setItem('phone', $stateParams.phone);
+      $window.localStorage.setItem('isRegister', $stateParams.isRegister);
+      $window.localStorage.setItem('invite_code', $stateParams.invite_code);
+      location.href = '//api.dahubao.com/page/detail?id=535';
+    };
+    var setup = function (m, l) {
+      $timeout(function () {
+        $scope.codeText = m + '\u79d2\u540e\u91cd\u8bd5';
+        if (m) {
+          setup(--m, 1000);
+        } else {
+          $scope.codeText = '\u91cd\u65b0\u53d1\u9001';
+          $scope.sendDisabled = false;
+        }
+      }, l);
+    };
+    $scope.sendCode = function () {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      // console.log($stateParams.phone)
+      var method = $stateParams.isRegister ? 'getCaptcha' : 'getCode';
+      MobileService[method]({ phone: $stateParams.phone }).then(function (data) {
+        $ionicLoading.hide();
+        if (data.code !== 0) {
+          Popup.alert(data.message);
+          return;
+        }
+        if (data.data.item) {
+          $scope.codeImg = $filter('removeProtocol')(data.data.item);
+        } else {
+          $scope.sendDisabled = true;
+          setup(60);
+        }
+      });
+    };
+    $scope.refresh = function () {
+      // $stateParams.isRegister ? 1 : 2
+      var method = $stateParams.isRegister ? 'getCaptcha' : 'getCode';
+      MobileService[method]({ phone: $stateParams.phone }).then(function (data) {
+        if (data.code === 0) {
+          $scope.codeImg = $filter('removeProtocol')(data.data.item);
+          $scope.codeError = false;
+          document.getElementById('verifyForm').reset();
+        } else {
+          Popup.alert(data.message);
+        }
+      });
+    };
+    $scope.verifyCode = function (verify) {
+      verify.phone = $stateParams.phone;
+      var method = $stateParams.isRegister ? 'checkGetCaptcha' : 'checkResetPwdCode';
+      if (!$stateParams.isRegister) {
+        verify.type = 'find_pwd';
+      } else {
+        verify.captcha_code = verify.captcha;
+      }
+      MobileService[method](verify).then(function (data) {
+        if (data.code === -1) {
+          Popup.alert(data.message);
+          return;
+        }
+        if (data.code === -3) {
+          $scope.codeError = true;
+          return;
+        }
+        if (data.code === 0) {
+          document.getElementById('verifyForm').reset();
+          $scope.codeImg = null;
+          $scope.codeError = false;
+          $scope.sendDisabled = true;
+          setup(60);
+        }
+      });
+    };
+    //重置密码处理
+    var handler = function (form) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      angular.extend(form, $stateParams);
+      MobileService.resetPassword(form).then(function (data) {
+        $ionicLoading.hide();
+        $scope.form = null;
+        if (data.code !== 0) {
+          Popup.alert(data.message);
+          return;
+        }
+        if (data.code === 0) {
+          $state.go('login-next', $stateParams);
+          $location.replace();  //clear last history route
+        }
+      });
+    };
+    var method = $stateParams.isRegister ? 'register' : 'resetPassword';
+    if ($stateParams.isRegister) {
+      $stateParams.source = 51;
+      if ($stateParams.codeImg) {
+        $scope.codeImg = $filter('removeProtocol')($stateParams.codeImg);
+      } else {
+        $scope.sendDisabled = true;
+        setup(60);
+      }
+    }
+    $scope.reset = function (form) {
+      $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
+      angular.extend(form, $stateParams);
+      MobileService[method](form).then(function (data) {
+        $ionicLoading.hide();
+        $scope.form = null;
+        if (data.code !== 0) {
+          Popup.alert(data.message);
+          return;
+        }
+        if (data.code === 0) {
+          $state.go('login-next', $stateParams);
+          $location.replace();  //clear last history route
+        }
+      });
+    };
+  }
+]);

@@ -673,7 +673,6 @@ angular.module("mobileControllers", [])
   //       Popup.alert(data.message, function(){
   //         $state.go('information', {});
   //       });
-
   //     }
   //     var cache = {};
   //     var searchTimer;
@@ -784,3 +783,4 @@ angular.module("mobileControllers", [])
       }
     };
   });
+
