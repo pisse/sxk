@@ -1,7 +1,7 @@
 @import "../../lib/common/scss/base";
 @import "../../lib/common/scss/rzslider";
 @import 'picker';
-$blue: #fbbe03;
+$blue: #00a6e9;
 $gray-3:#333;
 $gray-6:#666;
 $gray-9:#999;
@@ -11,7 +11,6 @@ $bg-color: #f2f2f2;
 $green: #2ebd59;
 $yellow: #fbbe03;
 $white: #fff;
-
 
 * {
   font-family: Helvetica, "Microsoft YaHei";
@@ -350,6 +349,16 @@ $white: #fff;
 .reset-password {
   width: rem(690px);
   margin: 0 auto;
+  .company-pick{
+    border: 1px solid #00a6e9;
+    border-radius: .1333333333rem;
+    margin-bottom: rem(30px);
+    height: rem(72px);
+    font-size: rem(28px);
+    .input-label{
+      font-size: rem(28px);
+    }
+  }
   p.not-agress:after{
     display:none
   }
@@ -433,6 +442,40 @@ $white: #fff;
 .home {
   .has-bg{
     background:$bg-color;
+  }
+  .home-bottom-bg{
+    background-image: url(../img/timg.jpg);
+    height: 300px;
+    width: 100%;
+    position: absolute;
+    bottom: 100px;
+    opacity: 0.1;
+    background-size: cover;
+  }
+  div.container.company{
+    .renzheng{
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.5rem;
+    }
+    .icon {
+      width: 1em; height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+    background-image: url(../img/wave.png);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+    margin-top: 0.4rem;
+    padding: 0.4rem;
+    border-radius: 5px;
+    .item{
+      border-color: transparent;
+      background-color: transparent;
+    }
   }
   div.top{
     //background: #233845;
@@ -732,7 +775,7 @@ $white: #fff;
       //border-left: rem(30px) solid $bg-color;
       //border-right: rem(30px) solid $bg-color;
       //padding-bottom:rem(30px);
-      box-shadow: 0 0 11px #d1c6c6;
+      // box-shadow: 0 0 11px #d1c6c6;
       margin: 0.1rem 0.3rem;
       padding: 0.2rem;
       border-radius: 2px;

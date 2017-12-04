@@ -61,9 +61,9 @@ angular.module("mobileControllers")
           } else if (tag === 4) {
             items[i].url = '#/my/certification/bank';
             response.data.is_new_user == 1 && (items[i].url += '?new_user=1');
-          } else if ([8].indexOf(tag) >= 0) {
+          } /*else if ([8].indexOf(tag) >= 0) {
             (!items[i].url && items[i].first_url) && (items[i].url = items[i].first_url);
-          }
+          }*/
           if (verify.indexOf(tag) >= 0) {
             items[i].verify = 1;
           }

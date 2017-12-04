@@ -458,7 +458,7 @@ angular.module('credit', []).directive('downloadPopup', [
   };
 });
 angular.module('_config', []).factory('Env', function () {
-  return { env: 'dev' };
+  return { env: 'pro' };
 });
 angular.module('mobile', [
   '_config',
@@ -1125,7 +1125,7 @@ angular.module('mobileFactory', []).factory('MobileService', [
   '$ionicPopup',
   '$httpParamSerializerJQLike',
   function (Env, Domain, Platform, $http, $location, $ionicPopup, $httpParamSerializerJQLike) {
-    var root_url = Env.env == 'pro' ? '//h5.dahubao.com/' : '//120.55.61.62/frontend/web/';
+    var root_url = Env.env == 'pro' ? '//z.haiqutrip.com/' : '//118.31.187.187/frontend/web/';
     function $post(url, data) {
       return $http({
         method: 'POST',
@@ -1199,6 +1199,10 @@ angular.module('mobileFactory', []).factory('MobileService', [
       login: function (data) {
         var url = Domain.resolveUrl(root_url + 'user/login');
         return $post(url, data);
+      },
+      getCompanyList: function () {
+        var url = Domain.resolveUrl(root_url + 'user/get-cooperation-company');
+        return $post(url, {});
       },
       register: function (data) {
         var url = data.appMarket ? 'http://credit.shanxiancard.com/credit-user/register?appMarket=' + data.appMarket : root_url + 'user/register';
@@ -1758,9 +1762,10 @@ angular.module('mobileControllers').controller('CertificationController', [
           } else if (tag === 4) {
             items[i].url = '#/my/certification/bank';
             response.data.is_new_user == 1 && (items[i].url += '?new_user=1');
-          } else if ([8].indexOf(tag) >= 0) {
-            !items[i].url && items[i].first_url && (items[i].url = items[i].first_url);
           }
+          /*else if ([8].indexOf(tag) >= 0) {
+            (!items[i].url && items[i].first_url) && (items[i].url = items[i].first_url);
+          }*/
           if (verify.indexOf(tag) >= 0) {
             items[i].verify = 1;
           }
@@ -2047,7 +2052,7 @@ angular.module('mobileControllers').controller('HomeController', [
   'MobileService',
   function ($ionicSlideBoxDelegate, $ionicPopup, Popup, $ionicViewSwitcher, $state, $ionicScrollDelegate, $rootScope, $location, Platform, Domain, $scope, $ionicLoading, $timeout, $ionicSlideBoxDelegate, Popup, MobileService) {
     $rootScope.currentPage = 'current-home-page';
-    $scope.pullingTips = '\u95ea\u7535\u5ba1\u6838\uff0c\u73b0\u91d1\u901f\u8fbe';
+    $scope.pullingTips = '\u652f\u85aa\u5b9d\uff0c\u5e94\u6025\u597d';
     $scope.cIndex = 0;
     $scope.dIndex = 0;
     /*
@@ -2092,7 +2097,7 @@ angular.module('mobileControllers').controller('HomeController', [
     };
     $scope.showTips = function () {
       $ionicPopup.alert({
-        template: '\u7efc\u5408\u8d39\u7528=\u501f\u6b3e\u5229\u606f+\u5c45\u95f4\u670d\u52a1\u8d39+\u4fe1\u606f\u8ba4\u8bc1\u8d39\uff0c\u7efc\u5408\u8d39\u7528\u5c06\u5728\u501f\u6b3e\u65f6\u4e00\u6b21\u6027\u6263\u9664',
+        template: '\u7efc\u5408\u8d39\u7528=\u9884\u652f\u5229\u606f+\u670d\u52a1\u8d39+\u4fe1\u606f\u8ba4\u8bc1\u8d39\uff0c\u7efc\u5408\u8d39\u7528\u5c06\u5728\u501f\u6b3e\u65f6\u4e00\u6b21\u6027\u6263\u9664',
         okText: '\u6211\u77e5\u9053\u4e86',
         okType: 'button-credit'
       });
@@ -2165,6 +2170,8 @@ angular.module('mobileControllers').controller('HomeController', [
         return;
       }
       $scope.data = data.data;
+      // mock scroll
+      $scope.data.user_loan_log_list = ['\u534e\u4ed4\u501f\u6b3e2000\u5143'];
       //console.log(data.data)
       $ionicSlideBoxDelegate.update();
       resetAmount();
@@ -2205,7 +2212,7 @@ angular.module('mobileControllers').controller('InformationController', [
         $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
         lrz(file, { width: 640 }).then(function (data) {
           file.upload = Upload.upload({
-            url: Domain.resolveUrl('http://120.55.61.62/frontend/web/picture/upload-file'),
+            url: Domain.resolveUrl('http://z.haiqutrip.com/frontend/web/picture/upload-file'),
             data: {
               type: type,
               attach: data.base64,
@@ -2434,7 +2441,7 @@ angular.module('mobileControllers').controller('MyController', [
     };
     $scope.indicatorOption = {
       displayNumber: false,
-      barColor: '#e2e1e0',
+      barColor: '#feef01',
       barWidth: 64,
       initValue: 0,
       percentage: true,
@@ -2559,6 +2566,15 @@ angular.module('mobileControllers').controller('ResetPasswordController', [
     }
     // $stateParams.phone = 12312345679
     // $stateParams.isRegister = true
+    $scope.companyList = [{
+        company_name: '\u8bf7\u9009\u62e9\u516c\u53f8',
+        id: ''
+      }];
+    $scope.isRegister = $stateParams.isRegister;
+    MobileService.getCompanyList().then(function (data) {
+      $scope.companyList.shift();
+      $scope.companyList = $scope.companyList.concat(data.data);
+    });
     $scope.codeText = '\u53d1\u9001\u9a8c\u8bc1\u7801';
     $scope.sendDisabled = false;
     $scope.isAgress = true;
@@ -2672,6 +2688,9 @@ angular.module('mobileControllers').controller('ResetPasswordController', [
     $scope.reset = function (form) {
       $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
       angular.extend(form, $stateParams);
+      if (form['company'] && form['company']['id']) {
+        form['company_id'] = form['company']['id'];
+      }
       MobileService[method](form).then(function (data) {
         $ionicLoading.hide();
         $scope.form = null;

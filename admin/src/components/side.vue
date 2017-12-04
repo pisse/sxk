@@ -33,11 +33,16 @@
           <!--<el-menu-item index="/user/sign">&lt;!&ndash;<i class="iconfont icon-gexingqianming"></i>&ndash;&gt;签名管理</el-menu-item>-->
         </el-submenu>
 
-        <el-submenu index="/tree">
-          <template slot="title"><i class="iconfont icon-mingxi"></i>决策树</template>
-          <el-menu-item index="/tree/list"><!--<i class="iconfont icon-admin"></i>-->决策树列表</el-menu-item>
-          <!--<el-menu-item index="/user/sign">&lt;!&ndash;<i class="iconfont icon-gexingqianming"></i>&ndash;&gt;签名管理</el-menu-item>-->
+        <el-submenu index="/company">
+          <template slot="title"><i class="iconfont icon-mingxi"></i>公司管理</template>
+          <el-menu-item index="/company/list"><!--<i class="iconfont icon-admin"></i>-->公司列表</el-menu-item>
         </el-submenu>
+
+        <!--<el-submenu index="/tree">
+          <template slot="title"><i class="iconfont icon-mingxi"></i>决策树</template>
+          <el-menu-item index="/tree/list">&lt;!&ndash;<i class="iconfont icon-admin"></i>&ndash;&gt;决策树列表</el-menu-item>
+          &lt;!&ndash;<el-menu-item index="/user/sign">&lt;!&ndash;<i class="iconfont icon-gexingqianming"></i>&ndash;&gt;签名管理</el-menu-item>&ndash;&gt;
+        </el-submenu>-->
 
       <!--  <el-menu-item index="/errsms"><i class="iconfont icon-cuowu1"></i>错误信息管理</el-menu-item>
 
@@ -116,10 +121,11 @@
         color: #fff
         border-bottom : 1px solid rgb(102,102,102)
         .logo-img
+          border-radius: 50%;
           height: 60px
           display : inline-block
           width: 60px
-          background-image : url('../assets/logo3.png')
+          background-image : url('../assets/logo_zxb.png')
           background-position: center;
           background-size: 100%;
           background-repeat: no-repeat;

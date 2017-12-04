@@ -17,6 +17,13 @@ angular.module("mobileControllers")
     // $stateParams.phone = 12312345679
     // $stateParams.isRegister = true
 
+    $scope.companyList = [{company_name: '请选择公司', id: ''}]
+    $scope.isRegister = $stateParams.isRegister
+    MobileService.getCompanyList().then(function (data) {
+      $scope.companyList.shift()
+      $scope.companyList = $scope.companyList.concat(data.data)
+    });
+
     $scope.codeText = '发送验证码'
     $scope.sendDisabled = false
     $scope.isAgress = true
@@ -147,6 +154,9 @@ angular.module("mobileControllers")
       $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
       angular.extend(form, $stateParams);
 
+      if (form['company'] && form['company']['id']){
+        form['company_id'] = form['company']['id']
+      }
       MobileService[method](form).then(function (data) {
         $ionicLoading.hide();
         $scope.form = null;

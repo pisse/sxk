@@ -7,6 +7,7 @@ import sign from '@/components/sign'
 // import orderList from '@/components/orderList'
 // import orderCheckList from '@/components/orderCheckList'
 import treeList from '@/components/treeList'
+import companyList from '@/components/companyList'
 import errSms from '@/components/errSms'
 import blackList from '@/components/blackList'
 import operatorList from '@/components/operatorList'
@@ -49,6 +50,11 @@ export default new Router({
       path: '/order/:detail',
       name: 'orderDetail',
       component: () => import('@/components/orderDetail') // orderDtail
+    },
+    {
+      path: '/company/list',
+      name: 'companyList',
+      component: companyList
     },
     {
       path: '/tree/list',

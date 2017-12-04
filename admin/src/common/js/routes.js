@@ -20,6 +20,12 @@ let Routes = {
       sensitive: {name: '敏感信息'}
     }
   },
+  company: {
+    name: '公司管理',
+    children: {
+      list: {name: '公司列表'}
+    }
+  },
 
   /* errsms: {
     name: '错误信息'

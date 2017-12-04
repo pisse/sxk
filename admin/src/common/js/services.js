@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/5/7.
  */
-const Domain = 'http://120.55.61.62/admin/web/'
+const Domain = 'http://118.31.187.187/admin/web/'
 
 let Services = {
   // 后台用户管理
@@ -25,6 +25,12 @@ let Services = {
   treeDelete: Domain + 'tree/rule-delete',
   treeAdd: Domain + 'tree/rule-add',
   treeModify: Domain + 'tree/rule-modify',
+
+  // 公司管理
+  companyList: Domain + 'cooperation-company/list',
+  companyAdd: Domain + 'cooperation-company/add',
+  companyModify: Domain + 'cooperation-company/modify',
+  companyOperate: Domain + 'cooperation-company/operate',
 
   // 前台用户管理
   userFrontList: Domain + 'user/list',

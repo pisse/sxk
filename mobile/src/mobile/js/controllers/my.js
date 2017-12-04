@@ -17,7 +17,7 @@ angular.module("mobileControllers")
     };
     $scope.indicatorOption = {
       displayNumber: false,
-      barColor: '#e2e1e0',
+      barColor: '#feef01',
       barWidth: 64,
       initValue: 0,
       percentage: true,

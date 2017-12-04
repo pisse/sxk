@@ -3,7 +3,7 @@
     <ion-refresher pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()">
     </ion-refresher>
     <ion-list>
-      <ion-slide-box ng-if="data.item.card.length > 1" class="top" on-slide-changed="slideHasChanged($index)">
+      <!--<ion-slide-box ng-if="data.item.card.length > 1" class="top" on-slide-changed="slideHasChanged($index)">
         <ion-slide ng-repeat="card in data.item.card track by $index">
           <div ng-class="card.card_type === 2 ? 'head gold-card' : 'head'">
             <h1>{{card.card_title}}</h1>
@@ -17,9 +17,9 @@
             </div>
           </div>
         </ion-slide>
-      </ion-slide-box>
+      </ion-slide-box>-->
 
-      <div ng-if="data.item.card.length === 1" class="top">
+      <!--<div ng-if="data.item.card.length === 1" class="top">
         <div ng-repeat="card in data.item.card track by $index" ng-class="card.card_type === 2 ? 'head gold-card' : 'head'">
           <h1>{{card.card_title}}</h1>
           <div class="credit">
@@ -31,8 +31,22 @@
             <div class="info clearfix"><span>{{card.card_validity}}</span><a href="{{card.amount_sub_url || '#/login'}}">{{card.amount_sub_title}}</a></div>
           </div>
         </div>
-      </div>
+      </div>-->
 
+      <div class="content">
+        <div class="container company">
+          <div class="item item-avatar">
+            <img src="./img/logo_zxb_old.png">
+            <h2>您好 {{data.user_name}}</h2>
+            <p>{{data.user_company || '登录可见'}}</p>
+            <div class="renzheng">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-yirenzhengsvg--copy"></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="content">
         <!-- <div ng-if="data.is_login" class="number-warp"><p class="number clearfix"><span>今日待抢额度:</span><span><i>￥</i><i ng-repeat="amount in todayLastAmount track by $index">{{amount}}</i></span></p></div> -->
@@ -51,17 +65,18 @@
             <rzslider rz-slider-model="sliderAmount.value" rz-slider-options="sliderAmount.options"></rzslider>
             <p class="slider-bottom"><span>{{data.item.card[cIndex].amount_days.amounts[0]/100}}元</span><span>{{data.item.card[cIndex].amount_days.amounts[data.item.card[cIndex].amount_days.amounts.length-1]/100}}元</span></p>
             <div class="loan-date clearfix">
-              <span>借款时间</span>
+              <span>预支时间</span>
               <span>
                 <button ng-repeat="day in data.item.card[cIndex].amount_days.days track by $index" ng-class="$index === dIndex ? 'current' : ''" ng-click="switchDay($index)">{{day}}天</button>
               </span>
             </div>
           </div>
           <ul>
+            <li><span>还款时间</span><span>发薪日</span></li>
             <li><span>到账金额</span><span>{{data.item.card[cIndex].amount_days.amount_text || (amount|number:2)}}</span></li>
             <li><span ng-click="showTips()">综合费用</span><span>{{data.item.card[cIndex].amount_days.interests_text || (cost|number:2)}}</span></li>
           </ul>
-          <a href="" id="loan" ng-click="apply(data.item.card[cIndex])">立即申请</a>
+          <a href="" id="loan" ng-click="apply(data.item.card[cIndex])">我要预支</a>
         </div>
         <div class="repayment-list" ng-if="data.item.card[cIndex].loan_infos">
           <ul>
@@ -73,6 +88,8 @@
           <a ng-if="data.item.card[cIndex].loan_infos.button" href="" ng-click="onKnow(data.item.card[cIndex].loan_infos.button)">{{data.item.card[cIndex].loan_infos.button.msg}}</a>
         </div>
       </div>
+      </div>
     </ion-list>
   </ion-content>
+  <div class="home-bottom-bg"></div>
 </ion-pane>

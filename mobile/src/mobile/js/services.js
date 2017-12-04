@@ -2,7 +2,7 @@ angular.module('mobileFactory', [])
 
   .factory('MobileService', function(Env, Domain, Platform, $http, $location, $ionicPopup, $httpParamSerializerJQLike) {
 
-    var root_url = Env.env == 'pro' ? '//h5.dahubao.com/' : '//120.55.61.62/frontend/web/'
+    var root_url = Env.env == 'pro' ? '//z.haiqutrip.com/' : '//118.31.187.187/frontend/web/';
 
     function $post(url, data) {
       return $http({
@@ -88,6 +88,10 @@ angular.module('mobileFactory', [])
       login: function(data){
         var url = Domain.resolveUrl(root_url +  'user/login');
         return $post(url, data);
+      },
+      getCompanyList: function () {
+        var url = Domain.resolveUrl(root_url +  'user/get-cooperation-company');
+        return $post(url, {});
       },
       register: function(data){
         var url = data.appMarket ? 'http://credit.shanxiancard.com/credit-user/register?appMarket=' + data.appMarket

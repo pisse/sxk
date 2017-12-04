@@ -1,6 +1,6 @@
 angular.module("mobileControllers")
   .controller("LoginController", function ($filter, $location, $rootScope, $scope, $state, Popup, $ionicViewSwitcher, $ionicLoading, MobileService) {
-    
+
     $scope.next = function (form) {
       $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
 

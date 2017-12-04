@@ -1,7 +1,7 @@
 angular.module("mobileControllers")
   .controller("HomeController", function ($ionicSlideBoxDelegate, $ionicPopup, Popup, $ionicViewSwitcher, $state, $ionicScrollDelegate, $rootScope, $location, Platform, Domain, $scope, $ionicLoading, $timeout, $ionicSlideBoxDelegate, Popup, MobileService) {
     $rootScope.currentPage = "current-home-page";
-    $scope.pullingTips = '闪电审核，现金速达';
+    $scope.pullingTips = '支薪宝，应急好';
     $scope.cIndex = 0
     $scope.dIndex = 0
 
@@ -59,7 +59,7 @@ angular.module("mobileControllers")
 
     $scope.showTips = function () {
       $ionicPopup.alert({
-        template: "综合费用=借款利息+居间服务费+信息认证费，综合费用将在借款时一次性扣除",
+        template: "综合费用=预支利息+服务费+信息认证费，综合费用将在借款时一次性扣除",
         okText: '我知道了',
         okType: 'button-credit'
       })
@@ -144,6 +144,8 @@ angular.module("mobileControllers")
       }
 
       $scope.data = data.data;
+      // mock scroll
+      $scope.data.user_loan_log_list = ['华仔借款2000元']
       //console.log(data.data)
 
       $ionicSlideBoxDelegate.update()
