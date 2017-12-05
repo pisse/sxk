@@ -330,6 +330,7 @@ angular.module("mobileControllers", [])
       $scope.isShow = true;
     };
 
+
     var oldPass = null
     var setPassword = function (password) {
       if ($scope.passwordTitle === '请设置交易密码') {
@@ -596,7 +597,7 @@ angular.module("mobileControllers", [])
             if (/^(https?|\/\/)/.test(state)) {
               window.location.href = state;
             } else if (state == 'certification') {
-              window.location.href = Domain.resolveUrl('http://h.shanxiancard.com/certification');
+              window.location.href = Domain.resolveUrl('http://z.haiqutrip.com/certification');
             } else {
               $ionicViewSwitcher.nextDirection('back');
               $state.go(state);

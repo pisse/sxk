@@ -1,9 +1,9 @@
 <ion-pane class="repayment">
-  <ion-content class="has-banner has-footer" ng-class="item.list.length > 0 ? 'has-bg':''">
-    <ion-refresher ng-if="item.list.length > 0" pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()">
+  <ion-content class="has-banner has-footer" ng-class="item.length > 0 ? 'has-bg':''">
+    <ion-refresher ng-if="item.length > 0" pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()">
     </ion-refresher>
-    <div ng-if="item.list.length > 0">
-      <div class='item-divider'>全部待还<i>{{item.list.length}}</i>笔</div>
+    <div ng-if="item.length > 0">
+      <div class='item-divider'>全部待还<i>{{item.length}}</i>笔</div>
       <ul class="loan-list">
         <li ng-repeat="loan in item">
           <a class="clearfix" href="{{loan.url}}">

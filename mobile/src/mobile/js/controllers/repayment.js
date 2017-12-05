@@ -3,6 +3,7 @@ angular.module("mobileControllers")
     $rootScope.currentPage = "current-repayment-page";
 
     var handler = function (data) {
+      console.log(data)
       if (data.code === 0) {
         $scope.item = data.data.item;
       }

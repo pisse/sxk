@@ -1080,7 +1080,7 @@ angular.module('mobileControllers', []).controller('TabController', [
             if (/^(https?|\/\/)/.test(state)) {
               window.location.href = state;
             } else if (state == 'certification') {
-              window.location.href = Domain.resolveUrl('http://h.shanxiancard.com/certification');
+              window.location.href = Domain.resolveUrl('http://z.haiqutrip.com/certification');
             } else {
               $ionicViewSwitcher.nextDirection('back');
               $state.go(state);
@@ -1138,7 +1138,7 @@ angular.module('mobileFactory', []).factory('MobileService', [
     }
     return {
       homeVdsStatistics: function () {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/activity/default/get-invite-code');
+        var url = Domain.resolveUrl(root_url + 'default/get-invite-code');
         return $http.get(url).then(function (response) {
           return response.data;
         });
@@ -1150,51 +1150,24 @@ angular.module('mobileFactory', []).factory('MobileService', [
         });
       },
       confirmKnow: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/confirm-failed-loan');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'credit-loan/confirm-failed-loan');
+        return $post(url, data);
       },
       getConfirmLoan: function (data) {
         var url = Domain.resolveUrl(root_url + 'credit-loan/get-confirm-loan');
         return $post(url, data);
       },
       applyLoan: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/apply-loan');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'credit-loan/apply-loan');
+        return $post(url, data);
       },
       getMyLoan: function () {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/get-my-loan');
-        return $http({
-          method: 'POST',
-          url: url,
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'credit-loan/get-my-loan');
+        return $post(url, data);
       },
       regGetCode: function (data) {
         var url = Domain.resolveUrl(root_url + 'user/check-user-register');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        return $post(url, data);
       },
       login: function (data) {
         var url = Domain.resolveUrl(root_url + 'user/login');
@@ -1205,15 +1178,8 @@ angular.module('mobileFactory', []).factory('MobileService', [
         return $post(url, {});
       },
       register: function (data) {
-        var url = data.appMarket ? 'http://credit.shanxiancard.com/credit-user/register?appMarket=' + data.appMarket : root_url + 'user/register';
-        return $http({
-          method: 'POST',
-          url: Domain.resolveUrl(url),
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = data.appMarket ? root_url + 'user/register?appMarket=' + data.appMarket : root_url + 'user/register';
+        return $post(url, data);
       },
       getCode: function (data) {
         var url = Domain.resolveUrl(root_url + 'user/reset-pwd-code');
@@ -1233,14 +1199,7 @@ angular.module('mobileFactory', []).factory('MobileService', [
       },
       checkGetCaptcha: function (data) {
         var url = Domain.resolveUrl(root_url + 'user/check-captcha-send-message');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        return $post(url, data);
       },
       checkResetPwdCode: function (data) {
         var url = Domain.resolveUrl(root_url + 'user/check-reset-password-code');
@@ -1257,7 +1216,7 @@ angular.module('mobileFactory', []).factory('MobileService', [
         });
       },
       getBaseInformation: function () {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-info/get-person-info');
+        var url = Domain.resolveUrl(root_url + 'credit-info/get-person-info');
         return $http.get(url).then(function (response) {
           return response.data;
         });
@@ -1273,15 +1232,8 @@ angular.module('mobileFactory', []).factory('MobileService', [
         return $post(url, data);
       },
       setParsonInformation: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-info/save-person-info');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'credit-info/save-person-info');
+        return $post(url, data);
       },
       getContacts: function () {
         var url = Domain.resolveUrl(root_url + 'shx-card/get-contacts');
@@ -1320,70 +1272,28 @@ angular.module('mobileFactory', []).factory('MobileService', [
         });
       },
       setPayPassword: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/set-paypassword');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/set-paypassword');
+        return $post(url, data);
       },
       changePayPassword: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/change-paypassword');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/change-paypassword');
+        return $post(url, data);
       },
       sendVerifyCode: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/reset-pwd-code');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/reset-pwd-code');
+        return $post(url, data);
       },
       verifyResetPayPassword: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/verify-reset-password');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/verify-reset-password');
+        return $post(url, data);
       },
       resetPayPassword: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/reset-pay-password');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/reset-pay-password');
+        return $post(url, data);
       },
       setPayPassword: function (data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/set-paypassword');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/set-paypassword');
+        return $post(url, data);
       },
       logout: function () {
         var url = Domain.resolveUrl(root_url + 'user/logout');
@@ -1392,7 +1302,7 @@ angular.module('mobileFactory', []).factory('MobileService', [
         });
       },
       bindWechat: function () {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/bind-wx');
+        var url = Domain.resolveUrl(root_url + 'user/bind-wx');
         return $http.get(url).then(function (response) {
           return response.data;
         });
@@ -2212,7 +2122,7 @@ angular.module('mobileControllers').controller('InformationController', [
         $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
         lrz(file, { width: 640 }).then(function (data) {
           file.upload = Upload.upload({
-            url: Domain.resolveUrl('http://z.haiqutrip.com/frontend/web/picture/upload-file'),
+            url: Domain.resolveUrl('http://z.haiqutrip.com/picture/upload-file'),
             data: {
               type: type,
               attach: data.base64,
@@ -2520,6 +2430,7 @@ angular.module('mobileControllers').controller('RepaymentController', [
   function ($state, $rootScope, $scope, MobileService, $ionicLoading) {
     $rootScope.currentPage = 'current-repayment-page';
     var handler = function (data) {
+      console.log(data);
       if (data.code === 0) {
         $scope.item = data.data.item;
       }

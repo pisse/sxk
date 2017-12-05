@@ -19,7 +19,7 @@ angular.module('mobileFactory', [])
 
     return {
       homeVdsStatistics: function(){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/activity/default/get-invite-code');
+        var url = Domain.resolveUrl(root_url + 'default/get-invite-code');
         return $http.get(url).then(function (response) {
           return response.data;
         });
@@ -31,59 +31,24 @@ angular.module('mobileFactory', [])
         });
       },
       confirmKnow: function(data) {
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/confirm-failed-loan');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function(response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'credit-loan/confirm-failed-loan');
+        return $post(url, data);
       },
       getConfirmLoan: function(data){
         var url = Domain.resolveUrl(root_url +  'credit-loan/get-confirm-loan');
         return $post(url, data);
       },
       applyLoan: function(data){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/apply-loan');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function(response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url +  'credit-loan/apply-loan');
+        return $post(url, data);
       },
       getMyLoan: function(){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-loan/get-my-loan');
-        return $http({
-          method: 'POST',
-          url: url,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function(response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'credit-loan/get-my-loan');
+        return $post(url, data);
       },
       regGetCode: function(data){
         var url = Domain.resolveUrl(root_url +  'user/check-user-register');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function(response) {
-          return response.data;
-        });
+        return $post(url, data);
       },
       login: function(data){
         var url = Domain.resolveUrl(root_url +  'user/login');
@@ -94,18 +59,9 @@ angular.module('mobileFactory', [])
         return $post(url, {});
       },
       register: function(data){
-        var url = data.appMarket ? 'http://credit.shanxiancard.com/credit-user/register?appMarket=' + data.appMarket
+        var url = data.appMarket ? root_url + 'user/register?appMarket=' + data.appMarket
           : root_url +  'user/register';
-        return $http({
-          method: 'POST',
-          url: Domain.resolveUrl(url),
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function(response) {
-          return response.data;
-        });
+        return $post(url, data);
       },
       getCode: function(data){
         var url = Domain.resolveUrl(root_url +  'user/reset-pwd-code');
@@ -125,16 +81,7 @@ angular.module('mobileFactory', [])
       },
       checkGetCaptcha: function(data){
         var url = Domain.resolveUrl(root_url +  'user/check-captcha-send-message');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function(response) {
-          return response.data;
-        });
+        return $post(url, data);
       },
       checkResetPwdCode: function(data){
         var url = Domain.resolveUrl(root_url +  'user/check-reset-password-code');
@@ -151,7 +98,7 @@ angular.module('mobileFactory', [])
         });
       },
       getBaseInformation: function(){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-info/get-person-info');
+        var url = Domain.resolveUrl(root_url + 'credit-info/get-person-info');
         return $http.get(url).then(function (response) {
           return response.data;
         });
@@ -167,17 +114,8 @@ angular.module('mobileFactory', [])
         return $post(url, data);
       },
       setParsonInformation: function(data){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-info/save-person-info');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'credit-info/save-person-info');
+        return $post(url, data);
       },
       getContacts: function(){
         var url = Domain.resolveUrl(root_url + 'shx-card/get-contacts');
@@ -216,82 +154,28 @@ angular.module('mobileFactory', [])
         });
       },
       setPayPassword: function(data){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/set-paypassword');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/set-paypassword');
+        return $post(url, data);
       },
       changePayPassword: function(data){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/change-paypassword');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/change-paypassword');
+        return $post(url, data);
       },
       sendVerifyCode: function(data){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/reset-pwd-code');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/reset-pwd-code');
+        return $post(url, data);
       },
       verifyResetPayPassword: function(data){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/verify-reset-password');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/verify-reset-password');
+        return $post(url, data);
       },
       resetPayPassword: function(data){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/reset-pay-password');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/reset-pay-password');
+        return $post(url, data);
       },
       setPayPassword: function(data){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/set-paypassword');
-        return $http({
-          method: 'POST',
-          url: url,
-          data: $httpParamSerializerJQLike(data),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-          }
-        }).then(function (response) {
-          return response.data;
-        });
+        var url = Domain.resolveUrl(root_url + 'user/set-paypassword');
+        return $post(url, data);
       },
       logout: function(){
         var url = Domain.resolveUrl(root_url +  'user/logout');
@@ -300,7 +184,7 @@ angular.module('mobileFactory', [])
         });
       },
       bindWechat: function(){
-        var url = Domain.resolveUrl('http://credit.shanxiancard.com/credit-user/bind-wx');
+        var url = Domain.resolveUrl(root_url + 'user/bind-wx');
         return $http.get(url).then(function (response) {
           return response.data;
         });

@@ -1402,7 +1402,7 @@ $white: #fff;
   .bottom-logo{
     display: block;
     width: rem(180px);
-    height: rem(54px);
+    height: rem(180px);
     margin: rem(50px) auto;
   }
   ul.loan-list{
@@ -1863,10 +1863,18 @@ $white: #fff;
   }
 }
 .findwechat{
-  width: 100%;
-  height: 100%;
-  background: #4bb6fa url(../img/findwechat.png) center no-repeat;
-  background-size: rem(657px) rem(1101px);
+  img {
+    display: block;
+    width: rem(167px);
+    height: rem(167px);
+    margin: rem(90px) auto;
+  }
+  .top{
+    margin-top: rem(100px);
+  }
+  .text{
+    text-align: center;
+  }
 }
 
 .verify-dialog {

@@ -12,7 +12,7 @@ angular.module("mobileControllers")
           width: 640
         }).then(function (data) {
           file.upload = Upload.upload({
-            url: Domain.resolveUrl('http://z.haiqutrip.com/frontend/web/picture/upload-file'),
+            url: Domain.resolveUrl('http://z.haiqutrip.com/picture/upload-file'),
             data: {
               type: type,
               attach: data.base64,
