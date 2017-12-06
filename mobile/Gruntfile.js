@@ -130,8 +130,8 @@ module.exports = function(grunt) {
           src: [
             'src/lib/common/js/*.js',
             srcPath + '/**/_config.js',
-            srcPath + '/**/controllers/*.js',
             srcPath + '/**/app.js',
+            srcPath + '/**/controllers/*.js',
             srcPath + '/**/services.js',
           ]
         }]
@@ -199,7 +199,7 @@ module.exports = function(grunt) {
       multiple: {
         options: {
           src: './'+destPath+'/',
-          dest: '../../' + (env=='dev'? 'sxk_php':'zxb_code') + '/frontend/web/mobile', //"../../php_release/frontend/web/test" + destPath,
+          dest: '../../' + (env=='dev'? 'zxb_code':'zxb_code') + '/frontend/web/mobile', //"../../php_release/frontend/web/test" + destPath,
           recursive: true
         }
       }
@@ -230,7 +230,7 @@ module.exports = function(grunt) {
   //grunt release --target=(project name)
   //grunt.registerTask('release', ['clean', 'sass', 'concat', 'ngmin', 'uglify', 'rev', 'usemin']);
   grunt.registerTask('rs', ['rsync'])
-  grunt.registerTask('release', ['sass', 'replace', 'concat']);
+  grunt.registerTask('release', ['sass', 'replace', 'concat', 'ngmin', 'rs']);
 
   grunt.event.on('watch', function(action, filepath, target) {
     //grunt target is not default and return

@@ -144,6 +144,8 @@ angular.module("mobileControllers")
       }
 
       $scope.data = data.data;
+      $scope.verify_class = $scope.data.item.card[$scope.cIndex]['verify_pass_credit'] ? '#icon-yirenzheng-copy': '#icon-yirenzhengsvg--copy';
+      console.log($scope.verify_class )
       // mock scroll
       $scope.data.user_loan_log_list = ['华仔借款2000元']
       //console.log(data.data)

@@ -2080,6 +2080,8 @@ angular.module('mobileControllers').controller('HomeController', [
         return;
       }
       $scope.data = data.data;
+      $scope.verify_class = $scope.data.item.card[$scope.cIndex]['verify_pass_credit'] ? '#icon-yirenzheng-copy' : '#icon-yirenzhengsvg--copy';
+      console.log($scope.verify_class);
       // mock scroll
       $scope.data.user_loan_log_list = ['\u534e\u4ed4\u501f\u6b3e2000\u5143'];
       //console.log(data.data)

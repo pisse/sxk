@@ -29,7 +29,8 @@
   "scripts": {
     "dev": "grunt serve --env=pro",
     "devp": "grunt release --target=mobile --env=dev",
-    "p": "grunt release --target=mobile --env=pro"
+    "p": "grunt release --target=mobile --env=pro",
+    "admin": "grunt admin"
   },
   "dependencies": {
     "grunt-cli": "^1.2.0",
