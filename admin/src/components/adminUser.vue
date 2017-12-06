@@ -42,7 +42,7 @@
             <!--<el-button @click="onDetail" type="text" size="small">查看</el-button>-->
             <el-button @click.prevent="onEdit(scope.$index, scope.row)" type="text" size="small">编辑</el-button>
             <el-button @click.prevent="onDelete(scope.$index, scope.row)" type="text" size="small">删除</el-button>
-            <!--<el-button @click.prevent="onEditPermission(scope.$index, scope.row)" type="text" size="small">角色编辑</el-button>-->
+            <el-button @click.prevent="onEditPermission(scope.$index, scope.row)" type="text" size="small">角色编辑</el-button>
             <!--<el-button @click.prevent="onDelete" type="text" size="small">删除</el-button>-->
           </template>
         </el-table-column>

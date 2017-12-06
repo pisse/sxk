@@ -21,7 +21,7 @@
         <el-submenu index="/user">
           <template slot="title"><i class="iconfont icon-10"></i>用户管理</template>
           <el-menu-item index="/user/admin"><!--<i class="iconfont icon-admin"></i>-->后台用户</el-menu-item>
-          <!--<el-menu-item index="/user/role">&lt;!&ndash;<i class="iconfont icon-admin"></i>&ndash;&gt;角色管理(后台)</el-menu-item>-->
+          <el-menu-item index="/user/role"><!--<i class="iconfont icon-admin"></i>-->角色管理(后台)</el-menu-item>
           <el-menu-item index="/user/front"><!--<i class="iconfont icon-10"></i>-->前台用户</el-menu-item>
           <!--<el-menu-item index="/user/sign">&lt;!&ndash;<i class="iconfont icon-gexingqianming"></i>&ndash;&gt;签名管理</el-menu-item>-->
         </el-submenu>

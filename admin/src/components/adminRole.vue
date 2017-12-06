@@ -56,7 +56,7 @@
       </el-pagination>-->
     </div>
 
-    <el-dialog :title="modifyType==1 ? '新建角色': '编辑角色'" v-model="dialogModifyVisible" size="small" custom-class="modify-dialog" @close="reset('roleModify')">
+    <el-dialog :title="modifyType==1 ? '新建角色': '编辑角色'" :visible.sync="dialogModifyVisible" width="40%" custom-class="modify-dialog" @close="reset('roleModify')">
       <el-form :model="roleForm" :rules="roleRules" ref="roleModify"  v-loading="isModifyLoading">
         <el-form-item label="名称" label-width="100px" prop="title">
           <el-input size="small" v-model="roleForm.title" auto-complete="off"></el-input>
