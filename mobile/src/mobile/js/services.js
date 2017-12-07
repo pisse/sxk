@@ -42,6 +42,10 @@ angular.module('mobileFactory', [])
         var url = Domain.resolveUrl(root_url +  'credit-loan/apply-loan');
         return $post(url, data);
       },
+      loanDetail: function (data) {
+        var url = Domain.resolveUrl(root_url +  'credit-loan/loan-detail');
+        return $post(url, data);
+      },
       getMyLoan: function(){
         var url = Domain.resolveUrl(root_url + 'credit-loan/get-my-loan');
         return $post(url, data);

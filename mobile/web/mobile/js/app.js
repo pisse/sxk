@@ -540,6 +540,12 @@ angular.module('mobile', [
         card_type: 1,
         source: false
       }
+    }).state('loandetail', {
+      url: '/loandetail',
+      cache: false,
+      templateUrl: 'templates/loandetail.html',
+      controller: 'LoanDetailController',
+      params: { loan_id: null }
     }).state('tab', {
       url: '',
       abstract: true,
@@ -1159,6 +1165,10 @@ angular.module('mobileFactory', []).factory('MobileService', [
       },
       applyLoan: function (data) {
         var url = Domain.resolveUrl(root_url + 'credit-loan/apply-loan');
+        return $post(url, data);
+      },
+      loanDetail: function (data) {
+        var url = Domain.resolveUrl(root_url + 'credit-loan/loan-detail');
         return $post(url, data);
       },
       getMyLoan: function () {
@@ -2232,6 +2242,96 @@ angular.module('mobileControllers').controller('InformationController', [
     };
   }
 ]);
+angular.module('mobileControllers').controller('LoanDetailController', [
+  '$ionicSlideBoxDelegate',
+  '$stateParams',
+  '$location',
+  '$ionicPopup',
+  '$ionicViewSwitcher',
+  '$state',
+  '$ionicScrollDelegate',
+  '$rootScope',
+  '$location',
+  'Platform',
+  'Domain',
+  '$scope',
+  '$ionicLoading',
+  '$timeout',
+  '$ionicSlideBoxDelegate',
+  'Popup',
+  'MobileService',
+  function ($ionicSlideBoxDelegate, $stateParams, $location, $ionicPopup, $ionicViewSwitcher, $state, $ionicScrollDelegate, $rootScope, $location, Platform, Domain, $scope, $ionicLoading, $timeout, $ionicSlideBoxDelegate, Popup, MobileService) {
+    $rootScope.currentPage = 'current-loandetail-page';
+    $scope.pullingTips = '\u95ea\u7535\u5ba1\u6838\uff0c\u73b0\u91d1\u901f\u8fbe';
+    console.log($stateParams);
+    if (!$stateParams.loan_id) {
+      return;
+    }
+    $scope.keys = [
+      {
+        key: 'money_amount',
+        name: '\u501f\u6b3e\u91d1\u989d'
+      },
+      {
+        key: 'true_money_amount',
+        name: '\u5b9e\u9645\u5230\u8d26'
+      },
+      {
+        key: 'service_fee',
+        name: '\u670d\u52a1\u8d39\u7528'
+      },
+      {
+        key: 'loan_interests',
+        name: '\u5229\u606f'
+      },
+      {
+        key: 'counter_fee',
+        name: '\u62b5\u6263\u91d1\u989d'
+      },
+      {
+        key: 'loan_term',
+        name: '\u501f\u6b3e\u671f\u9650'
+      },
+      {
+        key: 'order_time',
+        name: '\u7533\u8bf7\u65e5\u671f'
+      },
+      {
+        key: 'bank_info',
+        name: '\u6536\u6b3e\u94f6\u884c'
+      },
+      {
+        key: '',
+        name: '\u8d44\u91d1\u63d0\u4f9b\u65b9'
+      }
+    ];
+    $scope.repaykeys = [
+      {
+        key: '',
+        name: '\u8fd8\u6b3e\u603b\u91d1\u989d'
+      },
+      {
+        key: '',
+        name: '\u5f85\u8fd8\u91d1\u989d'
+      },
+      {
+        key: '',
+        name: '\u5f85\u8fd8\u91d1\u989d'
+      },
+      {
+        key: '',
+        name: '\u6700\u8fdf\u8fd8\u6b3e\u65e5\u671f'
+      },
+      {
+        key: '',
+        name: '\u5b9e\u9645\u8fd8\u6b3e\u65e5\u671f'
+      }
+    ];
+    MobileService.loanDetail({ id: $stateParams.loan_id }).then(function (data) {
+      $scope.data = data.data;
+    });
+  }
+]);
 angular.module('mobileControllers').controller('LoginController', [
   '$filter',
   '$location',
@@ -2396,14 +2496,20 @@ angular.module('mobileControllers').controller('MyController', [
 ]);
 angular.module('mobileControllers').controller('ordersController', [
   '$rootScope',
+  '$ionicViewSwitcher',
+  '$state',
   '$scope',
   'Popup',
   '$ionicLoading',
   'MobileService',
-  function ($rootScope, $scope, Popup, $ionicLoading, MobileService) {
+  function ($rootScope, $ionicViewSwitcher, $state, $scope, Popup, $ionicLoading, MobileService) {
     $rootScope.currentPage = 'current-my-page';
     $scope.pullingTips = '\u79d1\u6280\u8ba9\u91d1\u878d\u66f4\u7b80\u5355';
     $scope.items = [];
+    $scope.goDetail = function (id) {
+      $ionicViewSwitcher.nextDirection('forward');
+      $state.go('loandetail', { loan_id: id });
+    };
     $scope.doRefresh = function () {
       $ionicLoading.show({ template: '<ion-spinner></ion-spinner>' });
       MobileService.getOrders().then(function (response) {
@@ -2413,6 +2519,12 @@ angular.module('mobileControllers').controller('ordersController', [
           return;
         }
         if (response.data && response.data.item && response.data.item.length) {
+          var items = response.data.item || [];
+          var re = /.+id=(\d+)$/;
+          for (var i = 0; i < items.length; i++) {
+            var match = re.exec(items[i]['url']);
+            items[i]['loan_id'] = match && match[1] || '';
+          }
           $scope.items = response.data.item;
         } else {
           $scope.items = false;

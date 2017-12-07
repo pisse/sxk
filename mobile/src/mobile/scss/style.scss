@@ -1323,6 +1323,71 @@ $white: #fff;
 
 .help-description ul li.active:before { top: 0.6rem; -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
 
+/* 还款记录*/
+.repayment-detail.wrap { background: #f2f2f2; padding-bottom: 1.7333333333rem; }
+.repayment-detail.wrap .head { height: 0.8rem; line-height: 0.8rem; padding-left: 0.4rem; }
+
+.repayment-detail.wrap .head h3 { font-size: 0.32rem; color: #999; line-height: 0.8rem;}
+.repayment-detail.wrap > p { margin-top: 0.2666666667rem; color: #999; font-size: 0.3466666667rem; line-height: 2.5em; background: #fff; padding: 0 0.4rem; }
+
+.repayment-detail.wrap > p a { text-decoration: none; color: #4ab6fa; }
+.repayment-detail.wrap .content { background: #fff; padding: 0.5333333333rem 0.4rem; }
+
+.repayment-detail.wrap .content ul > li { color: #999; position: relative; padding-left: 0.8rem; margin-bottom: 0.8rem; background: url(../img/icon_02.png) 0 0.1066666667rem no-repeat; background-size: 0.4666666667rem 0.4666666667rem; }
+
+.repayment-detail.wrap .content ul > li:last-child { margin-bottom: 0; }
+
+.repayment-detail.wrap .content ul > li:last-child:after { display: none; }
+
+.repayment-detail.wrap .content ul > li:first-child:before { display: none; }
+
+.repayment-detail.wrap .content ul > li:before { content: ''; display: block; width: 0.0533333333rem; height: 0.7733333333rem; background: #dddddd; position: absolute; top: -0.6666666667rem; left: 0.2rem; }
+
+.repayment-detail.wrap .content ul > li:after { content: ''; display: block; width: 0.0533333333rem; height: 100%; background: #ddd; position: absolute; top: 0.56rem; left: 0.2rem; }
+
+.repayment-detail.wrap .content ul > li h1 { font-size: 0.4266666667rem; padding-bottom: 0.1333333333rem; }
+
+.repayment-detail.wrap .content ul > li h1 span, .repayment-detail.wrap .content ul > li h1 i { padding-left: 0.2666666667rem; }
+
+.repayment-detail.wrap .content ul > li h1 i { font-style: normal; }
+
+.repayment-detail.wrap .content ul > li p, .repayment-detail.wrap .content ul > li span { font-size: 0.3466666667rem; }
+
+.repayment-detail.wrap .content ul > li.do:first-child { background-image: url(../img/icon_01.png); }
+
+.repayment-detail.wrap .content ul > li.do:first-child:after { background: #4ab6fa; }
+
+.repayment-detail.wrap .content ul > li.do:first-child h1 { color: #000; }
+
+.repayment-detail.wrap .content ul > li.do:first-child h1 span { color: #333; }
+
+.repayment-detail.wrap .content ul > li.do:first-child h1 a { font-size: 0.3466666667rem; text-decoration: none; display: inline-block; margin-left: 0.1333333333rem; color: #4ab6fa; position: relative; }
+
+.repayment-detail.wrap .content ul > li.do:first-child .popup-message { width: 3.6rem; position: absolute; top: 0.6666666667rem; left: -1.0666666667rem; z-index: 10; transition: all 0.5s linear; }
+
+.repayment-detail.wrap .content ul > li.do:first-child .popup-message p { background: #49b6f9; color: #fff; padding: 0.2rem 0.2666666667rem; border-radius: 0.1333333333rem; word-wrap: break-word; }
+
+.repayment-detail.wrap .content ul > li.do:first-child .popup-message p:before { content: ''; display: block; position: absolute; top: -0.2rem; left: 1.6rem; width: 0.3958666667rem; height: 0.3958666667rem; background: #49b6f9; -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+
+.repayment-detail.wrap .content ul > li.do:first-child p { color: #333; }
+
+.repayment-detail.wrap .content ul > li.die:first-child { background-image: url(../img/icon_03.png); }
+
+.repayment-detail.wrap .content ul > li.die:first-child:after { background: #ff8003; }
+
+.repayment-detail.wrap .content ul > li.die:first-child h1 { color: #000; }
+
+.repayment-detail.wrap .content ul > li.die:first-child h1 span { color: #333; }
+
+.repayment-detail.wrap .content ul > li.die:first-child p { color: #333; }
+
+.repayment-detail.wrap .item { padding: 0.5333333333rem 0.4rem; margin: 0.2666666667rem 0; background: #fff; font-size: 0.4266666667rem; }
+
+.repayment-detail.wrap .item ul > li { line-height: 1.6em; }
+
+.repayment-detail.wrap .item span { display: inline-block; position: relative; color: #333; min-width: 2.6rem; vertical-align: top; }
+.repayment-detail.wrap .item i { display: inline-block; font-style: normal; color: #666; padding-left: 0.2666666667rem; max-width: 6.4rem; }
+
 .agreement{
   font-size: rem(32px);
   padding: 10px;

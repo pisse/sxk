@@ -69,6 +69,15 @@ angular.module('mobile', ['_config', 'credit', 'rzModule', 'ionic', 'mobileContr
           source: false
         }
       })
+      .state('loandetail', {
+        url: '/loandetail',
+        cache: false,
+        templateUrl: 'templates/loandetail.html',
+        controller: 'LoanDetailController',
+        params: {
+          loan_id: null
+        }
+      })
       .state('tab', {
         url: '',
         abstract: true,

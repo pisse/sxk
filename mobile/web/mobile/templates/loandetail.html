@@ -1,0 +1,28 @@
+<ion-pane>
+  <ion-content>
+    <div class="repayment-detail wrap">
+      <div class="head"><h3>借款详情</h3></div>
+      <div class="content">
+        <ul>
+          <li class="{{item.class}}" ng-repeat='item in data.list'>
+            <h1>{{item.title}}</h1>
+            <p>{{item.body}}</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <ul>
+          <li ng-repeat='item in keys'><span>{{item.name}}</span><i>{{data.order[item.key]}}</i></li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <ul>
+          <li ng-repeat='item in repaykeys'><span>{{item.name}}</span><i></i></li>
+        </ul>
+      </div>
+    </div>
+  </ion-content>
+</ion-pane>
+

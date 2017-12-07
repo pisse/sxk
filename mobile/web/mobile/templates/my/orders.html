@@ -3,7 +3,7 @@
         <ion-refresher pulling-text="{{pullingTips}}" spinner="ios" on-pulling="doPulling()" on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list class="list-link">
-            <a class="item item-link" ng-repeat='item in items' ng-href='{{item.url}}'>
+            <a class="item item-link" ng-repeat='item in items' ng-click="goDetail(item.loan_id)" >
                 <div class='item-inner'>
                     <h2 ng-bind='item.title'></h2>
                     <p ng-bind='item.time'></p>
